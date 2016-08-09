@@ -9,6 +9,8 @@
 		<meta name="author" content="Erwan Datin (MacKentoch)">
 
 
+			<!-- jquery framework : top 1 priority -->
+			<script type="text/javascript" src="./public/lib/js/jquery.min.js"></script>
 		<!-- IMPORTANT : angular js lib (here for better result with ng-cloak) -->
 		<script type="text/javascript" src="./public/lib/js/angular.min.js"></script>
 		<!-- Bootstrap core CSS -->
@@ -173,6 +175,7 @@
 								'What is it?' : 'this log shows you easy form returned model on save event',
 								'easyFormGeneratorModel' : easyFormGeneratorModel
 						});
+						console.log(easyFormGeneratorModel.edaFieldsModelStringified);
 
 					/**
 					 *
@@ -249,7 +252,8 @@
 												"required": false,
 												"description": "A Loaded Form from Your controller",
 												"placeholder": "",
-												"options": []
+												"options": [],
+												"referenceId": 1
 											},
 											"formlyExpressionProperties": {},
 											"formlyValidators": {},
@@ -272,11 +276,13 @@
 											"selectedControl": "TextInput",
 											"subtype": "",
 											"templateOptions": {
-												"label": "text input",
+												"label": "Text",
 												"required": true,
 												"description": "text input",
 												"placeholder": "text input",
-												"options": []
+												"maxLengthOption": 20,
+												"options": [],
+												"referenceId": 2
 											},
 											"formlyExpressionProperties": {},
 											"formlyValidators": {},
@@ -292,14 +298,18 @@
 										"control": {
 											"type": "input",
 											"key": "input-1441426295927",
-											"selectedControl": "Password",
-											"subtype": "password",
+											"selectedControl": "Number",
+											"subtype": "number",
 											"templateOptions": {
 												"label": "password",
 												"required": true,
 												"description": "password",
 												"placeholder": "password",
-												"options": []
+												"minValueOption": 1,
+												"maxValueOption": 550,
+												"incrementalOption": false,
+												"options": [],
+												"referenceId": 3
 											},
 											"formlyExpressionProperties": {},
 											"formlyValidators": {},
@@ -315,19 +325,21 @@
 										"control": {
 											"type": "input",
 											"key": "input-1441426313388",
-											"selectedControl": "Email",
-											"subtype": "email",
+											"selectedControl": "Year",
+											"subtype": "year",
 											"templateOptions": {
 												"label": "email",
 												"required": true,
 												"description": "email",
 												"placeholder": "email",
-												"options": []
+												"currentYearOption": false,
+												"options": [],
+												"referenceId": 4
 											},
 											"formlyExpressionProperties": {},
 											"formlyValidators": {
-												"emailShape": {
-													"message": "$viewValue + ' is not a valid email'"
+												"yearShape": {
+													"message": "not a valid year"
 												}
 											},
 											"formlyValidation": {
@@ -356,6 +368,7 @@
 												"description": "date",
 												"placeholder": "",
 												"options": [],
+												"referenceId": 5,
 												"datepickerPopup": "dd-MMMM-yyyy"
 											},
 											"formlyExpressionProperties": {},
@@ -395,7 +408,32 @@
 														"value": 2,
 														"group": ""
 													}
-												]
+												],
+												"referenceId": 6
+											},
+											"formlyExpressionProperties": {},
+											"formlyValidators": {},
+											"formlyValidation": {
+												"messages": {}
+											},
+											"edited": true
+										}
+									},
+									{
+										"numColumn": 3,
+										"exist": true,
+										"control": {
+											"type": "input",
+											"key": "input-1441426313678",
+											"selectedControl": "Email",
+											"subtype": "email",
+											"templateOptions": {
+												"label": "email",
+												"required": true,
+												"description": "email",
+												"placeholder": "email",
+												"options": [],
+												"referenceId": 7
 											},
 											"formlyExpressionProperties": {},
 											"formlyValidators": {},
@@ -424,7 +462,8 @@
 												"required": false,
 												"description": "",
 												"placeholder": "",
-												"options": []
+												"options": [],
+												"referenceId": 8
 											},
 											"formlyExpressionProperties": {},
 											"formlyValidators": {},
@@ -463,7 +502,7 @@
 			<script type="text/javascript" src='./public/lib/js/textAngular-sanitize.min.js'></script>
 			<script type="text/javascript" src='./public/lib/js/textAngular.min.js'></script>
       <!-- dropzone js -->
-			<script type="text/javascript" src='./public/lib/js/dropzone.min.js'></script>      
+			<script type="text/javascript" src='./public/lib/js/dropzone.min.js'></script>
 			<!-- lodash -->
 			<script type="text/javascript" src='./public/lib/js/lodash.min.js'></script>
 			<!--angular-translate -->

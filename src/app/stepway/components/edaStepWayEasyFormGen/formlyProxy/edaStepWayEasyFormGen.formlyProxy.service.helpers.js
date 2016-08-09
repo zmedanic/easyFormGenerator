@@ -71,8 +71,36 @@ const extractTemplateOptionLabel = (obj)=>{
 	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.label !== 'undefined'? obj.templateOptions.label: '') : '';
 };
 
+const extractTemplateOptionParentId = (obj)=>{
+	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.parentId !== 'undefined'? obj.templateOptions.parentId: '') : '';
+};
+
+const extractTemplateOptionReferenceId = (obj)=>{
+	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.referenceId !== 'undefined'? obj.templateOptions.referenceId: '') : '';
+};
+
 const extractTemplateOptionDatepickerOptions= (obj)=>{
 	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.datepickerOptions !== 'undefined'? angular.copy(obj.templateOptions.datepickerOptions) : {format: ''}) : {format: ''};
+};
+
+const extractTemplateOptionMaxLengthOption= (obj)=>{
+	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.maxLengthOption !== 'undefined'? obj.templateOptions.maxLengthOption: '') : '';
+};
+
+const extractTemplateOptionMinValueOption= (obj)=>{
+	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.minValueOption !== 'undefined'? obj.templateOptions.minValueOption: '') : '';
+};
+
+const extractTemplateOptionMaxValueOption= (obj)=>{
+	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.maxValueOption !== 'undefined'? obj.templateOptions.maxValueOption: '') : '';
+};
+
+const extractTemplateOptionIncrementalOption= (obj)=>{
+	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.incrementalOption !== 'undefined'? obj.templateOptions.incrementalOption: '') : '';
+};
+
+const extractTemplateOptionCurrentYearOption= (obj)=>{
+	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.currentYearOption !== 'undefined'? obj.templateOptions.currentYearOption: '') : '';
 };
 
 const extractFormlyExpressionProperties = (obj)=>{
@@ -108,10 +136,29 @@ const extractTemplateOptionDescription = (obj)=>{
 };
 
 
-const addDatepickerOptionsProperty = (fieldToPush, configurationModel,lineIndex) => {
-		fieldToPush.templateOptions.datepickerOptions = extractTemplateOptionDatepickerOptions(configurationModel.lines[lineIndex].columns[0].control);
+const addDatepickerOptionsProperty = (fieldToPush, configurationModel,lineIndex, position) => {
+		fieldToPush.templateOptions.datepickerOptions = extractTemplateOptionDatepickerOptions(configurationModel.lines[lineIndex].columns[position].control);
 };
 
+const addMaxLengthOptionProperty = (fieldToPush, configurationModel,lineIndex, position) => {
+		fieldToPush.templateOptions.maxLengthOption = extractTemplateOptionMaxLengthOption(configurationModel.lines[lineIndex].columns[position].control);
+};
+
+const addMinValueOptionProperty = (fieldToPush, configurationModel,lineIndex, position) => {
+		fieldToPush.templateOptions.minValueOption = extractTemplateOptionMinValueOption(configurationModel.lines[lineIndex].columns[position].control);
+};
+
+const addMaxValueOptionProperty = (fieldToPush, configurationModel,lineIndex, position) => {
+		fieldToPush.templateOptions.maxValueOption = extractTemplateOptionMaxValueOption(configurationModel.lines[lineIndex].columns[position].control);
+};
+
+const addIncrementalOptionProperty = (fieldToPush, configurationModel,lineIndex, position) => {
+		fieldToPush.templateOptions.incrementalOption = extractTemplateOptionIncrementalOption(configurationModel.lines[lineIndex].columns[position].control);
+};
+
+const addCurrentYearOptionProperty = (fieldToPush, configurationModel,lineIndex, position) => {
+		fieldToPush.templateOptions.currentYearOption = extractTemplateOptionCurrentYearOption(configurationModel.lines[lineIndex].columns[position].control);
+};
 
 const addOneColumnHeader = (formlyModel, configurationModel,lineIndex) => {
 	const headerTemplateCol0 = `<div class="row"><div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h2 class="text-center">${extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[0].control)}<h2></div></div><hr/>`;
@@ -141,7 +188,9 @@ const addOneColumnControl = (formlyModel, configurationModel,lineIndex) => {
 			required              : extractTemplateOptionRequired(configurationModel.lines[lineIndex].columns[0].control),
 			placeholder           : extractTemplateOptionPlaceholder(configurationModel.lines[lineIndex].columns[0].control),
 			description           : extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[0].control),
-			options               : extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[0].control)
+			options               : extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[0].control),
+			referenceId           : extractTemplateOptionReferenceId(configurationModel.lines[lineIndex].columns[0].control),
+			parentId     		      : extractTemplateOptionParentId(configurationModel.lines[lineIndex].columns[0].control)
 		},
 		expressionProperties  : extractFormlyExpressionProperties(configurationModel.lines[lineIndex].columns[0].control),
 		validators            : extractFormlyValidators(configurationModel.lines[lineIndex].columns[0].control),
@@ -151,7 +200,24 @@ const addOneColumnControl = (formlyModel, configurationModel,lineIndex) => {
 	//datepicker additionnal particular property
 	//////////////////////////////////////////////
 	if (configurationModel.lines[lineIndex].columns[0].control.type === 'datepicker') {
-		addDatepickerOptionsProperty(fieldToPush, configurationModel,lineIndex);
+		addDatepickerOptionsProperty(fieldToPush, configurationModel,lineIndex, 0);
+	}
+	if (configurationModel.lines[lineIndex].columns[0].control.type === 'input') {
+		switch (configurationModel.lines[lineIndex].columns[0].control.subtype) {
+			case "":
+				addMaxLengthOptionProperty(fieldToPush, configurationModel,lineIndex, 0);
+				break;
+
+			case "number":
+				addMinValueOptionProperty(fieldToPush, configurationModel,lineIndex, 0);
+				addMaxValueOptionProperty(fieldToPush, configurationModel,lineIndex, 0);
+				addIncrementalOptionProperty(fieldToPush, configurationModel,lineIndex, 0);
+				break;
+
+			case "year":
+				addCurrentYearOptionProperty(fieldToPush, configurationModel,lineIndex, 0);
+				break;
+		}
 	}
 
 	formlyModel.push(fieldToPush);
@@ -182,7 +248,9 @@ const addTwoColumnControl = (formlyModel, configurationModel,lineIndex) => {
 					required 			: extractTemplateOptionRequired(configurationModel.lines[lineIndex].columns[0].control),
 					placeholder 	: extractTemplateOptionPlaceholder(configurationModel.lines[lineIndex].columns[0].control),
 					description 	: extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[0].control),
-					options 			: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[0].control)
+					options 			: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[0].control),
+					referenceId   : extractTemplateOptionReferenceId(configurationModel.lines[lineIndex].columns[0].control),
+					parentId      : extractTemplateOptionParentId(configurationModel.lines[lineIndex].columns[0].control)
 			},
 					expressionProperties 	: extractFormlyExpressionProperties(configurationModel.lines[lineIndex].columns[0].control),
 					validators 						: extractFormlyValidators(configurationModel.lines[lineIndex].columns[0].control),
@@ -192,7 +260,24 @@ const addTwoColumnControl = (formlyModel, configurationModel,lineIndex) => {
 	//datepicker additionnal particular property
 	//////////////////////////////////////////////
 	if (configurationModel.lines[lineIndex].columns[0].control.type === 'datepicker') {
-		addDatepickerOptionsProperty(controlCol0, configurationModel,lineIndex);
+		addDatepickerOptionsProperty(controlCol0, configurationModel,lineIndex, 0);
+	}
+	if (configurationModel.lines[lineIndex].columns[0].control.type === 'input') {
+		switch (configurationModel.lines[lineIndex].columns[0].control.subtype) {
+			case "":
+				addMaxLengthOptionProperty(controlCol0, configurationModel,lineIndex, 0);
+				break;
+
+			case "number":
+				addMinValueOptionProperty(controlCol0, configurationModel,lineIndex, 0);
+				addMaxValueOptionProperty(controlCol0, configurationModel,lineIndex, 0);
+				addIncrementalOptionProperty(controlCol0, configurationModel,lineIndex, 0);
+				break;
+
+			case "year":
+				addCurrentYearOptionProperty(controlCol0, configurationModel,lineIndex, 0);
+				break;
+		}
 	}
 
 	let controlCol1 =  {
@@ -205,7 +290,9 @@ const addTwoColumnControl = (formlyModel, configurationModel,lineIndex) => {
 				required 		: extractTemplateOptionRequired(configurationModel.lines[lineIndex].columns[1].control),
 				placeholder : extractTemplateOptionPlaceholder(configurationModel.lines[lineIndex].columns[1].control),
 				description : extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[1].control),
-				options 		: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[1].control)
+				options 		: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[1].control),
+				referenceId : extractTemplateOptionReferenceId(configurationModel.lines[lineIndex].columns[1].control),
+				parentId    : extractTemplateOptionParentId(configurationModel.lines[lineIndex].columns[1].control)
 		},
 				expressionProperties 	: extractFormlyExpressionProperties(configurationModel.lines[lineIndex].columns[1].control),
 				validators 						: extractFormlyValidators(configurationModel.lines[lineIndex].columns[1].control),
@@ -216,7 +303,24 @@ const addTwoColumnControl = (formlyModel, configurationModel,lineIndex) => {
 	//datepicker additionnal particular property
 	//////////////////////////////////////////////
 	if (configurationModel.lines[lineIndex].columns[1].control.type === 'datepicker') {
-		addDatepickerOptionsProperty(controlCol1, configurationModel,lineIndex);
+		addDatepickerOptionsProperty(controlCol1, configurationModel,lineIndex, 1);
+	}
+	if (configurationModel.lines[lineIndex].columns[1].control.type === 'input') {
+		switch (configurationModel.lines[lineIndex].columns[1].control.subtype) {
+			case "":
+				addMaxLengthOptionProperty(controlCol1, configurationModel,lineIndex, 1);
+				break;
+
+			case "number":
+				addMinValueOptionProperty(controlCol1, configurationModel,lineIndex, 1);
+				addMaxValueOptionProperty(controlCol1, configurationModel,lineIndex, 1);
+				addIncrementalOptionProperty(controlCol1, configurationModel,lineIndex, 1);
+				break;
+
+			case "year":
+				addCurrentYearOptionProperty(controlCol1, configurationModel,lineIndex, 1);
+				break;
+		}
 	}
 
 	let FieldGroup = [];
@@ -269,7 +373,9 @@ const addThreeColumnControl = (formlyModel, configurationModel,lineIndex) => {
 				required 		: extractTemplateOptionRequired(configurationModel.lines[lineIndex].columns[0].control),
 				placeholder : extractTemplateOptionPlaceholder(configurationModel.lines[lineIndex].columns[0].control),
 				description : extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[0].control),
-				options 		: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[0].control)
+				options 		: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[0].control),
+				referenceId : extractTemplateOptionReferenceId(configurationModel.lines[lineIndex].columns[0].control),
+				parentId    : extractTemplateOptionParentId(configurationModel.lines[lineIndex].columns[0].control)
 		},
 				expressionProperties 	: extractFormlyExpressionProperties(configurationModel.lines[lineIndex].columns[0].control),
 				validators 						: extractFormlyValidators(configurationModel.lines[lineIndex].columns[0].control),
@@ -279,7 +385,24 @@ const addThreeColumnControl = (formlyModel, configurationModel,lineIndex) => {
 	//datepicker additionnal particular property
 	//////////////////////////////////////////////
 	if (configurationModel.lines[lineIndex].columns[0].control.type === 'datepicker') {
-		addDatepickerOptionsProperty(controlCol0, configurationModel,lineIndex);
+		addDatepickerOptionsProperty(controlCol0, configurationModel,lineIndex, 0);
+	}
+	if (configurationModel.lines[lineIndex].columns[0].control.type === 'input') {
+		switch (configurationModel.lines[lineIndex].columns[0].control.subtype) {
+			case "":
+				addMaxLengthOptionProperty(controlCol0, configurationModel,lineIndex, 0);
+				break;
+
+			case "number":
+				addMinValueOptionProperty(controlCol0, configurationModel,lineIndex, 0);
+				addMaxValueOptionProperty(controlCol0, configurationModel,lineIndex, 0);
+				addIncrementalOptionProperty(controlCol0, configurationModel,lineIndex, 0);
+				break;
+
+			case "year":
+				addCurrentYearOptionProperty(controlCol0, configurationModel,lineIndex, 0);
+				break;
+		}
 	}
 
 	let controlCol1 = {
@@ -292,7 +415,9 @@ const addThreeColumnControl = (formlyModel, configurationModel,lineIndex) => {
 				required 		: extractTemplateOptionRequired(configurationModel.lines[lineIndex].columns[1].control),
 				placeholder : extractTemplateOptionPlaceholder(configurationModel.lines[lineIndex].columns[1].control),
 				description : extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[1].control),
-				options 		: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[1].control)
+				options 		: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[1].control),
+				referenceId : extractTemplateOptionReferenceId(configurationModel.lines[lineIndex].columns[1].control),
+				parentId    : extractTemplateOptionParentId(configurationModel.lines[lineIndex].columns[1].control)
 		},
 				expressionProperties 	: extractFormlyExpressionProperties(configurationModel.lines[lineIndex].columns[1].control),
 				validators 						: extractFormlyValidators(configurationModel.lines[lineIndex].columns[1].control),
@@ -302,8 +427,26 @@ const addThreeColumnControl = (formlyModel, configurationModel,lineIndex) => {
 	//datepicker additionnal particular property
 	//////////////////////////////////////////////
 	if (configurationModel.lines[lineIndex].columns[1].control.type === 'datepicker') {
-		addDatepickerOptionsProperty(controlCol1, configurationModel,lineIndex);
+		addDatepickerOptionsProperty(controlCol1, configurationModel,lineIndex, 1);
 	}
+	if (configurationModel.lines[lineIndex].columns[1].control.type === 'input') {
+		switch (configurationModel.lines[lineIndex].columns[1].control.subtype) {
+			case "":
+				addMaxLengthOptionProperty(controlCol1, configurationModel,lineIndex, 1);
+				break;
+
+			case "number":
+				addMinValueOptionProperty(controlCol1, configurationModel,lineIndex, 1);
+				addMaxValueOptionProperty(controlCol1, configurationModel,lineIndex, 1);
+				addIncrementalOptionProperty(controlCol1, configurationModel,lineIndex, 1);
+				break;
+
+			case "year":
+				addCurrentYearOptionProperty(controlCol1, configurationModel,lineIndex, 1);
+				break;
+		}
+	}
+
 	let controlCol2 = {
 		className	: 'col-xs-4',
 		type			: typeof configurationModel.lines[lineIndex].columns[2].control.type !== 'undefined' ?  (configurationModel.lines[lineIndex].columns[2].control.type === 'none' ? 'blank': configurationModel.lines[lineIndex].columns[2].control.type) : 'blank',
@@ -314,7 +457,9 @@ const addThreeColumnControl = (formlyModel, configurationModel,lineIndex) => {
 				required 		: extractTemplateOptionRequired(configurationModel.lines[lineIndex].columns[2].control),
 				placeholder : extractTemplateOptionPlaceholder(configurationModel.lines[lineIndex].columns[2].control),
 				description : extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[2].control),
-				options 		: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[2].control)
+				options 		: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[2].control),
+				referenceId : extractTemplateOptionReferenceId(configurationModel.lines[lineIndex].columns[2].control),
+				parentId    : extractTemplateOptionParentId(configurationModel.lines[lineIndex].columns[2].control)
 		},
 				expressionProperties 	: extractFormlyExpressionProperties(configurationModel.lines[lineIndex].columns[2].control),
 				validators 						: extractFormlyValidators(configurationModel.lines[lineIndex].columns[2].control),
@@ -324,7 +469,24 @@ const addThreeColumnControl = (formlyModel, configurationModel,lineIndex) => {
 	//datepicker additionnal particular property
 	//////////////////////////////////////////////
 	if (configurationModel.lines[lineIndex].columns[2].control.type === 'datepicker') {
-		addDatepickerOptionsProperty(controlCol2, configurationModel,lineIndex);
+		addDatepickerOptionsProperty(controlCol2, configurationModel,lineIndex, 2);
+	}
+	if (configurationModel.lines[lineIndex].columns[2].control.type === 'input') {
+		switch (configurationModel.lines[lineIndex].columns[2].control.subtype) {
+			case "":
+				addMaxLengthOptionProperty(controlCol2, configurationModel,lineIndex, 2);
+				break;
+
+			case "number":
+				addMinValueOptionProperty(controlCol2, configurationModel,lineIndex, 2);
+				addMaxValueOptionProperty(controlCol2, configurationModel,lineIndex, 2);
+				addIncrementalOptionProperty(controlCol2, configurationModel,lineIndex, 2);
+				break;
+
+			case "year":
+				addCurrentYearOptionProperty(controlCol2, configurationModel,lineIndex, 2);
+				break;
+		}
 	}
 
 	let FieldGroup = [];
@@ -377,7 +539,14 @@ export {
 
 	isTemplateOptionDefined,
 	extractTemplateOptionLabel,
+	extractTemplateOptionReferenceId,
+	extractTemplateOptionParentId,
 	extractTemplateOptionDatepickerOptions,
+	extractTemplateOptionMaxLengthOption,
+	extractTemplateOptionMinValueOption,
+	extractTemplateOptionMaxValueOption,
+	extractTemplateOptionIncrementalOption,
+	extractTemplateOptionCurrentYearOption,
 	extractFormlyExpressionProperties,
 	extractFormlyValidators,
 	extractFormlyValidation,
@@ -388,6 +557,11 @@ export {
 	extractTemplateOptionDescription,
 
 	addDatepickerOptionsProperty,
+	addMaxLengthOptionProperty,
+	addMinValueOptionProperty,
+	addMaxValueOptionProperty,
+	addIncrementalOptionProperty,
+	addCurrentYearOptionProperty,
 	addOneColumnHeader,
 	addOneColumnControl,
 	addTwoColumnControl,

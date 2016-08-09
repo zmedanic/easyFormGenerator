@@ -15,6 +15,8 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyRequired		: false,
 				formlyDesciption	: '',
 				formlyOptions			: [] ,
+				parentId					: '',
+				referenceId				: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
 				formlyValidation	: {}
@@ -31,6 +33,8 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyRequired		: false,
 				formlyDesciption	: '',
 				formlyOptions			: [] ,
+				parentId					: '',
+				referenceId				: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
 				formlyValidation	: {}
@@ -47,6 +51,8 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyRequired		: false,
 				formlyDesciption	: '',
 				formlyOptions			: [] ,
+				parentId					: '',
+				referenceId				: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
 				formlyValidation	: {}
@@ -63,8 +69,19 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyRequired		: false,
 				formlyDesciption	: '',
 				formlyOptions			: [] ,
+				parentId					: '',
+				referenceId				: '',
+				maxLengthOption		: '',
 				formlyExpressionProperties: {},
-				formlyValidators	: {},
+				formlyValidators 						: {
+					textShape : {
+						expression : function(viewValue, modelValue, scope) {
+							var value = modelValue || viewValue;
+							return (scope.to.maxLengthOption) ? (value ? value.length : 0) <= parseInt(scope.to.maxLengthOption) : true;
+						},
+						message		: 'to.label + \' size should have max \' + to.maxLengthOption + \' characters\''
+					}
+				},
 				formlyValidation	: {
 					messages: {
 						required: function(viewValue, modelValue, scope) {
@@ -73,7 +90,87 @@ const resetNyaSelect = (nyaSelectObj) => {
 							//-> or if not exists or empty just 'this field is required'
 							var defaultReturnMsg 	= 'this Text input field is required';
 							var returnMsg 				= (typeof scope.to.label !== 'undefined') ? ((scope.to.label !== '') ? scope.to.label + ' is required' : defaultReturnMsg) : defaultReturnMsg;
-							return returnMsg;
+							if (scope.to.required) return returnMsg;
+						}
+					}
+				}
+			},
+
+			{
+				id								: 'Number',
+				name							: 'Number',
+				subtitle					: 'Number',
+				group							: 'input',
+				formlyType				: 'input',
+				formlySubtype			: 'number',
+				formlyLabel				: '',
+				formlyRequired		: false,
+				formlyDesciption	: '',
+				formlyOptions			: [] ,
+				parentId					: '',
+				referenceId				: '',
+				minValueOption		: '',
+				maxValueOption  	: '',
+				incrementalOption	: true,
+				formlyExpressionProperties: {},
+				formlyValidators 						: {
+					numberShape : {
+						expression : function(viewValue, modelValue, scope) {
+							var value = modelValue || viewValue;
+							var returnMin = (scope.to.minValueOption) ? parseInt(value) >= parseInt(scope.to.minValueOption) : true;
+							var returnMax = (scope.to.maxValueOption) ? parseInt(value) <= parseInt(scope.to.maxValueOption) : true;
+							return returnMin && returnMax;
+						},
+						message		: 'to.label + \' is limited to values (\' + to.minValueOption + \' - \' + to.maxValueOption + \')\''
+					}
+				},
+				formlyValidation	: {
+					messages: {
+						required: function(viewValue, modelValue, scope) {
+							//return a required validation message :
+							//-> '<label as name> is required '
+							//-> or if not exists or empty just 'this field is required'
+							var defaultReturnMsg 	= 'this Number field is required';
+							var returnMsg 				= (typeof scope.to.label !== 'undefined') ? ((scope.to.label !== '') ? scope.to.label + ' is required' : defaultReturnMsg) : defaultReturnMsg;
+							if (scope.to.required) return returnMsg;
+						}
+					}
+				}
+			},
+
+			{
+				id								: 'Year',
+				name							: 'Year',
+				subtitle					: 'Year',
+				group							: 'input',
+				formlyType				: 'input',
+				formlySubtype			: 'year',
+				formlyLabel				: '',
+				formlyRequired		: false,
+				formlyDesciption	: '',
+				formlyOptions			: [] ,
+				parentId					: '',
+				referenceId				: '',
+				currentYearOption	: true,
+				formlyExpressionProperties: {},
+				formlyValidators 						: {
+					yearShape : {
+						expression : function(viewValue, modelValue, scope) {
+							var value = modelValue || viewValue;
+							return /^[0-9]{1,4}$/.test(value);
+						},
+						message		: 'to.label + \' is not valid year (0 - 9999)\''
+					}
+				},
+				formlyValidation	: {
+					messages: {
+						required: function(viewValue, modelValue, scope) {
+							//return a required validation message :
+							//-> '<label as name> is required '
+							//-> or if not exists or empty just 'this field is required'
+							var defaultReturnMsg 	= 'this Year field is required';
+							var returnMsg 				= (typeof scope.to.label !== 'undefined') ? ((scope.to.label !== '') ? scope.to.label + ' is required' : defaultReturnMsg) : defaultReturnMsg;
+							if (scope.to.required) return returnMsg;
 						}
 					}
 				}
@@ -90,6 +187,8 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyRequired		: false,
 				formlyDesciption	: '',
 				formlyOptions			: [] ,
+				parentId					: '',
+				referenceId				: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
 				formlyValidation	: {
@@ -117,6 +216,8 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyRequired 							: false,
 				formlyDesciption 						: '',
 				formlyOptions 							: [],
+				parentId					: '',
+				referenceId				: '',
 				formlyExpressionProperties 	: {},
 				formlyValidators 						: {
 					emailShape : {
@@ -154,6 +255,8 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyRequired		: false,
 				formlyDesciption	: '',
 				formlyOptions			: [],
+				parentId					: '',
+				referenceId				: '',
 				datepickerOptions	: 'dd-MMMM-yyyy',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
@@ -182,6 +285,8 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyRequired		: false,
 				formlyDesciption	: '',
 				formlyOptions			: [],
+				parentId					: '',
+				referenceId				: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
 				formlyValidation	: {
@@ -209,6 +314,8 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyRequired		: false,
 				formlyDesciption	: '',
 				formlyOptions			: [],
+				parentId					: '',
+				referenceId				: '',
 				formlyExpressionProperties: {},
 				formlyValidators 					: {},
 				formlyValidation	: {
@@ -237,6 +344,8 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyRequired		: false,
 				formlyDesciption	: '' ,
 				formlyOptions			: [],
+				parentId					: '',
+				referenceId				: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
 				formlyValidation	: {
@@ -264,6 +373,8 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyRequired		: false,
 				formlyDesciption	: '',
 				formlyOptions			: [],
+				parentId					: '',
+				referenceId				: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
 				formlyValidation	: {
@@ -292,6 +403,8 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyRequired		: false,
 				formlyDesciption	: '',
 				formlyOptions			: [],
+				parentId					: '',
+				referenceId				: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
 				formlyValidation	: {
@@ -320,6 +433,8 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyRequired		: false,
 				formlyDesciption	: '',
 				formlyOptions			: [],
+				parentId					: '',
+				referenceId				: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
 				formlyValidation	: {
@@ -344,6 +459,8 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyDesciption	: '',
 				formlyPlaceholder	: '',
 				formlyOptions 		: [],
+				parentId					: '',
+				referenceId				: '',
 				//expressions/validation fields
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
@@ -365,7 +482,9 @@ const getResetConfig = () => {
 			formlyRequired		: false,
 			formlyPlaceholder	: '',
 			formlyDesciption	: '',
-			formlyOptions			: []
+			formlyOptions			: [],
+			parentId					: '',
+			referenceId				: ''
 	});
 	return emptyConfig;
 };
@@ -385,6 +504,8 @@ const returnControlFromAddCtrlModalModel = (CtrlModalModel) =>{
 		formlyDesciption: '',
 		formlyPlaceholder: '',
 		formlyOptions: [],
+		parentId					: '',
+		referenceId				: '',
 		//validation fields
 		formlyExpressionProperties: {},
 		formlyValidators: {},
@@ -402,6 +523,8 @@ const returnControlFromAddCtrlModalModel = (CtrlModalModel) =>{
 			modelToReturn.formlyDesciption 		= CtrlModalModel.controls[i].formlyDesciption;
 			modelToReturn.formlyPlaceholder 	= CtrlModalModel.controls[i].formlyPlaceholder;
 			modelToReturn.formlyOptions 			= CtrlModalModel.controls[i].formlyOptions;
+			modelToReturn.parentId 						= CtrlModalModel.controls[i].parentId;
+			modelToReturn.referenceId 				= CtrlModalModel.controls[i].referenceId;
 
 			modelToReturn.formlyExpressionProperties 	= angular.copy(CtrlModalModel.controls[i].formlyExpressionProperties);
 			modelToReturn.formlyValidators 						= angular.copy(CtrlModalModel.controls[i].formlyValidators);
@@ -411,6 +534,23 @@ const returnControlFromAddCtrlModalModel = (CtrlModalModel) =>{
 			//datetpicker format
 			if (CtrlModalModel.controls[i].formlyType === 'datepicker') {
 				modelToReturn.datepickerOptions = CtrlModalModel.controls[i].datepickerOptions;
+			}
+			if (CtrlModalModel.controls[i].formlyType === 'input') {
+				switch (CtrlModalModel.controls[i].formlySubtype) {
+					case "":
+						modelToReturn.maxLengthOption = CtrlModalModel.controls[i].maxLengthOption;
+						break;
+
+					case "number":
+						modelToReturn.minValueOption = CtrlModalModel.controls[i].minValueOption;
+						modelToReturn.maxValueOption = CtrlModalModel.controls[i].maxValueOption;
+						modelToReturn.incrementalOption = CtrlModalModel.controls[i].incrementalOption;
+						break;
+
+					case "year":
+						modelToReturn.currentYearOption = CtrlModalModel.controls[i].currentYearOption;
+						break;
+				}
 			}
 		}
 	}

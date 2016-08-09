@@ -36,6 +36,8 @@ class $modalProxy{
 			nyaSelectObj.temporyConfig.formlyDesciption 	= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.description != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.description : '';
 			nyaSelectObj.temporyConfig.formlyPlaceholder 	= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.placeholder != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.placeholder : '';
 			nyaSelectObj.temporyConfig.formlyOptions 			= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.options 		!= 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.options : '';
+			nyaSelectObj.temporyConfig.parentId 					= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.parentId 		!= 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.parentId : '';
+			nyaSelectObj.temporyConfig.referenceId 				= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.referenceId != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.referenceId : '';
 
 			nyaSelectObj.temporyConfig.formlyExpressionProperties = typeof configurationObj.lines[indexLine].columns[numcolumn].control.formlyExpressionProperties 	!= 'undefined' ? angular.copy(configurationObj.lines[indexLine].columns[numcolumn].control.formlyExpressionProperties) : {};
 			nyaSelectObj.temporyConfig.formlyValidators 	= typeof configurationObj.lines[indexLine].columns[numcolumn].control.formlyValidators 										!= 'undefined' ? angular.copy(configurationObj.lines[indexLine].columns[numcolumn].control.formlyValidators) : {};
@@ -44,6 +46,20 @@ class $modalProxy{
 			// particular case : datepicker
 			if (nyaSelectObj.temporyConfig.selectedControl === 'Date') {
 				nyaSelectObj.temporyConfig.datepickerOptions 	= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.datepickerOptions != 'undefined' ? angular.copy(configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.datepickerOptions) : '';
+			}
+
+			if (nyaSelectObj.temporyConfig.selectedControl === 'TextInput') {
+				nyaSelectObj.temporyConfig.maxLengthOption 	= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.maxLengthOption != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.maxLengthOption : '';
+			}
+
+			if (nyaSelectObj.temporyConfig.selectedControl === 'Number') {
+				nyaSelectObj.temporyConfig.minValueOption 	= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.minValueOption != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.minValueOption : '';
+				nyaSelectObj.temporyConfig.maxValueOption 	= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.maxValueOption != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.maxValueOption : '';
+				nyaSelectObj.temporyConfig.incrementalOption 	= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.incrementalOption != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.incrementalOption : '';
+			}
+
+			if (nyaSelectObj.temporyConfig.selectedControl === 'Year') {
+				nyaSelectObj.temporyConfig.currentYearOption 	= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.currentYearOption != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.currentYearOption : '';
 			}
 		}
 		return nyaSelectObj;
@@ -65,7 +81,9 @@ class $modalProxy{
 				required: false,
 				description: '',
 				placeholder: '',
-				options: []
+				options: [],
+				parentId: '',
+				referenceId: ''
 			};
 			//then bind templateOptions
 		configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.label 			 	= extractedProps.formlyLabel;
@@ -73,6 +91,8 @@ class $modalProxy{
 		configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.description 	= extractedProps.formlyDesciption;
 		configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.placeholder 	= extractedProps.formlyPlaceholder;
 		configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.options 		 	= extractedProps.formlyOptions;
+		configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.parentId 	 	= extractedProps.parentId;
+		configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.referenceId 	= extractedProps.referenceId;
 		configurationObj.lines[indexLine].columns[numcolumn].control.formlyExpressionProperties 	= angular.copy(extractedProps.formlyExpressionProperties);
 		configurationObj.lines[indexLine].columns[numcolumn].control.formlyValidators 						= angular.copy(extractedProps.formlyValidators);
 		configurationObj.lines[indexLine].columns[numcolumn].control.formlyValidation 						= angular.copy(extractedProps.formlyValidation);
@@ -84,6 +104,25 @@ class $modalProxy{
 		if (configurationObj.lines[indexLine].columns[numcolumn].control.type === 'datepicker') {
 			configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.datepickerOptions = angular.copy(extractedProps.datepickerOptions);
 		}
+
+	if (configurationObj.lines[indexLine].columns[numcolumn].control.type === 'input') {
+		switch (configurationObj.lines[indexLine].columns[numcolumn].control.subtype) {
+			case "":
+				configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.maxLengthOption = extractedProps.maxLengthOption;
+				break;
+
+			case "number":
+				configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.minValueOption = extractedProps.minValueOption;
+				configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.maxValueOption = extractedProps.maxValueOption;
+				configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.incrementalOption = extractedProps.incrementalOption;
+				break;
+
+			case "year":
+				configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.currentYearOption = extractedProps.currentYearOption;
+				break;
+		}
+	}
+
 		/**
 			* unique key (set only first time) in this model is formly control type + Date.now();
 			*/
@@ -122,11 +161,26 @@ class $modalProxy{
 					nyaSelectObj.controls[i].formlyDesciption 					= nyaSelectObj.temporyConfig.formlyDesciption;
 					nyaSelectObj.controls[i].formlyPlaceholder 					= nyaSelectObj.temporyConfig.formlyPlaceholder;
 					nyaSelectObj.controls[i].formlyOptions 							= nyaSelectObj.temporyConfig.formlyOptions;
+					nyaSelectObj.controls[i].parentId 									= nyaSelectObj.temporyConfig.parentId;
+					nyaSelectObj.controls[i].referenceId 								= nyaSelectObj.temporyConfig.referenceId;
 
 					if (nyaSelectObj.controls[i].id ==='Date' ) {
 						nyaSelectObj.controls[i].datepickerOptions 				= angular.copy(nyaSelectObj.temporyConfig.datepickerOptions);
 					}
 
+					if (nyaSelectObj.controls[i].id ==='TextInput' ) {
+						nyaSelectObj.controls[i].maxLengthOption 					= nyaSelectObj.temporyConfig.maxLengthOption;
+					}
+
+					if (nyaSelectObj.controls[i].id ==='Number' ) {
+						nyaSelectObj.controls[i].minValueOption 					= nyaSelectObj.temporyConfig.minValueOption;
+						nyaSelectObj.controls[i].maxValueOption 					= nyaSelectObj.temporyConfig.maxValueOption;
+						nyaSelectObj.controls[i].incrementalOption 				= nyaSelectObj.temporyConfig.incrementalOption;
+					}
+
+					if (nyaSelectObj.controls[i].id ==='Year' ) {
+						nyaSelectObj.controls[i].currentYearOption 				= nyaSelectObj.temporyConfig.currentYearOption;
+					}
 				}
 		}
 	}

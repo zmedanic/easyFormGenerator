@@ -7,16 +7,18 @@ class editControlModalController {
 								nyaSelect,
 								toaster,
 								selectOptionManage,
-								$modalProxy) {
+								$modalProxy,
+								columns) {
 
 		this.$modalInstance 			= $uibModalInstance;
 		this.nyaSelect 						= nyaSelect;
 		this.toaster 							= toaster;
 		this.selectOptionManage 	= selectOptionManage;
 		this.$modalProxy 					= $modalProxy;
+		columns.splice(this.nyaSelect.temporyConfig.referenceId, 1);
+		this.columns							= columns;
 
 		this.init();
-
 	}
 
 	init() {
@@ -420,12 +422,11 @@ class editControlModalController {
 			formlyRequired		: false,
 			formlyPlaceholder	: '',
 			formlyDesciption	: '',
-			formlyOptions			: []
+			formlyOptions			: [],
+			parentId					: '',
+			referenceId 			: ''
 		};
 	}
-
-
-
 }
 
 
@@ -434,7 +435,8 @@ const toInject =  [
 	'nyaSelect',
 	'toaster' ,
 	'selectOptionManage',
-	'$modalProxy'
+	'$modalProxy',
+	'columns'
 ];
 
 editControlModalController.$inject = toInject;

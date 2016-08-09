@@ -95,7 +95,12 @@
 																			<div class="col-md-12">
 																				<div class="col-md-12 well">
 																					<button class="btn btn-lg btn-block  btn-default disabled">
-																							{{line.columns[0].control.type !== 'none'  ? line.columns[0].control.type + ' ' + line.columns[0].control.subtype || '' : 'column 1'}}
+																						<div class="title">
+																							{{vm.wfFormFieldsOnlyNeededProperties[$index].templateOptions && vm.wfFormFieldsOnlyNeededProperties[$index].templateOptions.label != '' ? vm.wfFormFieldsOnlyNeededProperties[$index].templateOptions.label : 'column 1'}}
+																							<div class="type">
+																								{{line.columns[0].control.type !== 'none'  ? line.columns[0].control.type + ' ' + line.columns[0].control.subtype || '' : 'column 1'}}
+																							</div>
+																						</div>
 																					</button>
 																				</div>
 																			</div>
@@ -109,12 +114,22 @@
 																			<div class="col-md-12">
 																				<div class="col-md-6 well">
 																					<button class="btn btn-lg btn-block  btn-default disabled">
-																							{{line.columns[0].control.type !== 'none'  ? line.columns[0].control.type + ' ' + line.columns[0].control.subtype || '' : 'column 1'}}
+																						<div class="title">
+																							{{vm.wfFormFieldsOnlyNeededProperties[$index].fieldGroup[0].templateOptions && vm.wfFormFieldsOnlyNeededProperties[$index].fieldGroup[0].templateOptions.label != '' ? vm.wfFormFieldsOnlyNeededProperties[$index].fieldGroup[0].templateOptions.label : 'column 1'}}
+																							<div class="type">
+																								{{line.columns[0].control.type !== 'none'  ? line.columns[0].control.type + ' ' + line.columns[0].control.subtype || '' : 'column 1'}}
+																							</div>
+																						</div>
 																					</button>
 																				</div>
 																				<div class="col-md-6 well">
 																					<button class="btn btn-lg btn-block  btn-default disabled">
-																							{{line.columns[1].control.type !== 'none'  ? line.columns[1].control.type + ' ' + line.columns[1].control.subtype || '' : 'column 2'}}
+																						<div class="title">
+																							{{vm.wfFormFieldsOnlyNeededProperties[$index].fieldGroup[1].templateOptions && vm.wfFormFieldsOnlyNeededProperties[$index].fieldGroup[1].templateOptions.label != '' ? vm.wfFormFieldsOnlyNeededProperties[$index].fieldGroup[1].templateOptions.label : 'column 2'}}
+																							<div class="type">
+																								{{line.columns[1].control.type !== 'none'  ? line.columns[1].control.type + ' ' + line.columns[1].control.subtype || '' : 'column 2'}}
+																							</div>
+																						</div>
 																					</button>
 																				</div>
 																			</div>
@@ -128,17 +143,32 @@
 																			<div class="col-md-12">
 																				<div class="col-md-4 well">
 																					<button class="btn btn-lg btn-block  btn-default disabled">
-																							{{line.columns[0].control.type !== 'none'  ? line.columns[0].control.type + ' ' + line.columns[0].control.subtype || '' : 'column 1'}}
+																						<div class="title">
+																							{{vm.wfFormFieldsOnlyNeededProperties[$index].fieldGroup[0].templateOptions && vm.wfFormFieldsOnlyNeededProperties[$index].fieldGroup[0].templateOptions.label != '' ? vm.wfFormFieldsOnlyNeededProperties[$index].fieldGroup[0].templateOptions.label : 'column 1'}}
+																							<div class="type">
+																								{{line.columns[0].control.type !== 'none'  ? line.columns[0].control.type + ' ' + line.columns[0].control.subtype || '' : 'column 1'}}
+																							</div>
+																						</div>
 																					</button>
 																				</div>
 																				<div class="col-md-4 well">
 																					<button class="btn btn-lg btn-block  btn-default disabled">
-																							{{line.columns[1].control.type !== 'none'  ? line.columns[1].control.type + ' ' + line.columns[1].control.subtype || '' : 'column 2'}}
+																						<div class="title">
+																							{{vm.wfFormFieldsOnlyNeededProperties[$index].fieldGroup[1].templateOptions && vm.wfFormFieldsOnlyNeededProperties[$index].fieldGroup[1].templateOptions.label != '' ? vm.wfFormFieldsOnlyNeededProperties[$index].fieldGroup[1].templateOptions.label : 'column 2'}}
+																							<div class="type">
+																								{{line.columns[1].control.type !== 'none'  ? line.columns[1].control.type + ' ' + line.columns[1].control.subtype || '' : 'column 2'}}
+																							</div>
+																						</div>
 																					</button>
 																				</div>
 																				<div class="col-md-4 well">
 																					<button class="btn btn-lg btn-block  btn-default disabled">
-																							{{line.columns[2].control.type !== 'none'  ? line.columns[2].control.type + ' ' + line.columns[2].control.subtype || '' : 'column 3'}}
+																						<div class="title">
+																							{{vm.wfFormFieldsOnlyNeededProperties[$index].fieldGroup[2].templateOptions && vm.wfFormFieldsOnlyNeededProperties[$index].fieldGroup[2].templateOptions.label != '' ? vm.wfFormFieldsOnlyNeededProperties[$index].fieldGroup[2].templateOptions.label : 'column 3'}}
+																							<div class="type">
+																								{{line.columns[2].control.type !== 'none'  ? line.columns[2].control.type + ' ' + line.columns[2].control.subtype || '' : 'column 3'}}
+																							</div>
+																						</div>
 																					</button>
 																				</div>
 																			</div>
@@ -202,7 +232,12 @@
 																			<div class="col-md-12">
 																				<div class="col-md-12 well">
 																					<button class="btn btn-lg btn-block  btn-default disabled">
-																							{{line.columns[0].control.type !== 'none'  ? line.columns[0].control.type + ' ' + line.columns[0].control.subtype || '' : 'column 1'}}
+																						<div class="title">
+																							{{vm.wfFormFieldsOnlyNeededProperties[$index].templateOptions && vm.wfFormFieldsOnlyNeededProperties[$index].templateOptions.label != '' ? vm.wfFormFieldsOnlyNeededProperties[$index].templateOptions.label : 'column 1'}}
+																							<div class="type">
+																								{{line.columns[0].control.type !== 'none'  ? line.columns[0].control.type + ' ' + line.columns[0].control.subtype || '' : 'column 1'}}
+																							</div>
+																						</div>
 																					</button>
 																				</div>
 																			</div>
@@ -216,12 +251,22 @@
 																			<div class="col-md-12">
 																				<div class="col-md-6 well">
 																					<button class="btn btn-lg btn-block  btn-default disabled">
-																							{{line.columns[0].control.type !== 'none'  ? line.columns[0].control.type + ' ' + line.columns[0].control.subtype || '' : 'column 1'}}
+																						<div class="title">
+																							{{vm.wfFormFieldsOnlyNeededProperties[$index].fieldGroup[0].templateOptions && vm.wfFormFieldsOnlyNeededProperties[$index].fieldGroup[0].templateOptions.label != '' ? vm.wfFormFieldsOnlyNeededProperties[$index].fieldGroup[0].templateOptions.label : 'column 1'}}
+																							<div class="type">
+																								{{line.columns[0].control.type !== 'none'  ? line.columns[0].control.type + ' ' + line.columns[0].control.subtype || '' : 'column 1'}}
+																							</div>
+																						</div>
 																					</button>
 																				</div>
 																				<div class="col-md-6 well">
 																					<button class="btn btn-lg btn-block  btn-default disabled">
-																							{{line.columns[1].control.type !== 'none'  ? line.columns[1].control.type + ' ' + line.columns[1].control.subtype || '' : 'column 2'}}
+																						<div class="title">
+																							{{vm.wfFormFieldsOnlyNeededProperties[$index].fieldGroup[1].templateOptions && vm.wfFormFieldsOnlyNeededProperties[$index].fieldGroup[1].templateOptions.label != '' ? vm.wfFormFieldsOnlyNeededProperties[$index].fieldGroup[1].templateOptions.label : 'column 2'}}
+																							<div class="type">
+																								{{line.columns[1].control.type !== 'none'  ? line.columns[1].control.type + ' ' + line.columns[1].control.subtype || '' : 'column 2'}}
+																							</div>
+																						</div>
 																					</button>
 																				</div>
 																			</div>
@@ -235,17 +280,32 @@
 																			<div class="col-md-12">
 																				<div class="col-md-4 well">
 																					<button class="btn btn-lg btn-block  btn-default disabled">
-																							{{line.columns[0].control.type !== 'none'  ? line.columns[0].control.type + ' ' + line.columns[0].control.subtype || '' : 'column 1'}}
+																						<div class="title">
+																							{{vm.wfFormFieldsOnlyNeededProperties[$index].fieldGroup[0].templateOptions && vm.wfFormFieldsOnlyNeededProperties[$index].fieldGroup[0].templateOptions.label != '' ? vm.wfFormFieldsOnlyNeededProperties[$index].fieldGroup[0].templateOptions.label : 'column 1'}}
+																							<div class="type">
+																								{{line.columns[0].control.type !== 'none'  ? line.columns[0].control.type + ' ' + line.columns[0].control.subtype || '' : 'column 1'}}
+																							</div>
+																						</div>
 																					</button>
 																				</div>
 																				<div class="col-md-4 well">
 																					<button class="btn btn-lg btn-block  btn-default disabled">
-																							{{line.columns[1].control.type !== 'none'  ? line.columns[1].control.type + ' ' + line.columns[1].control.subtype || '' : 'column 2'}}
+																						<div class="title">
+																							{{vm.wfFormFieldsOnlyNeededProperties[$index].fieldGroup[1].templateOptions && vm.wfFormFieldsOnlyNeededProperties[$index].fieldGroup[1].templateOptions.label != '' ? vm.wfFormFieldsOnlyNeededProperties[$index].fieldGroup[1].templateOptions.label : 'column 2'}}
+																							<div class="type">
+																								{{line.columns[1].control.type !== 'none'  ? line.columns[1].control.type + ' ' + line.columns[1].control.subtype || '' : 'column 2'}}
+																							</div>
+																						</div>
 																					</button>
 																				</div>
 																				<div class="col-md-4 well">
 																					<button class="btn btn-lg btn-block  btn-default disabled">
-																							{{line.columns[2].control.type !== 'none'  ? line.columns[2].control.type + ' ' + line.columns[2].control.subtype || '' : 'column 3'}}
+																						<div class="title">
+																							{{vm.wfFormFieldsOnlyNeededProperties[$index].fieldGroup[2].templateOptions && vm.wfFormFieldsOnlyNeededProperties[$index].fieldGroup[2].templateOptions.label != '' ? vm.wfFormFieldsOnlyNeededProperties[$index].fieldGroup[2].templateOptions.label : 'column 3'}}
+																							<div class="type">
+																								{{line.columns[2].control.type !== 'none'  ? line.columns[2].control.type + ' ' + line.columns[2].control.subtype || '' : 'column 3'}}
+																							</div>
+																						</div>
 																					</button>
 																				</div>
 																			</div>
@@ -308,7 +368,12 @@
 																			<div class="col-md-12">
 																				<div class="col-md-12 well">
 																					<button class="btn btn-lg btn-block" ng-class="{'btn-primary': !line.columns[0].control.edited, 'btn-success': line.columns[0].control.edited}" ng-click="vm.showModalAddCtrlToColumn('', $index, 0)">
-																							{{line.columns[0].control.type !== 'none'  ? line.columns[0].control.type + ' ' + line.columns[0].control.subtype || '' : 'column 1'}}
+																						<div class="title">
+																							{{vm.wfFormFieldsOnlyNeededProperties[$index].templateOptions && vm.wfFormFieldsOnlyNeededProperties[$index].templateOptions.label != '' ? vm.wfFormFieldsOnlyNeededProperties[$index].templateOptions.label : 'column 1'}}
+																							<div class="type">
+																								{{line.columns[0].control.type !== 'none'  ? line.columns[0].control.type + ' ' + line.columns[0].control.subtype || '' : 'column 1'}}
+																							</div>
+																						</div>
 																					</button>
 																				</div>
 																			</div>
@@ -322,12 +387,22 @@
 																			<div class="col-md-12">
 																				<div class="col-md-6 well">
 																					<button class="btn btn-lg btn-block" ng-class="{'btn-primary': !line.columns[0].control.edited, 'btn-success': line.columns[0].control.edited}" ng-click="vm.showModalAddCtrlToColumn('', $index, 0)">
-																							{{line.columns[0].control.type !== 'none'  ? line.columns[0].control.type + ' ' + line.columns[0].control.subtype || '' : 'column 1'}}
+																						<div class="title">
+																							{{vm.wfFormFieldsOnlyNeededProperties[$index].fieldGroup[0].templateOptions && vm.wfFormFieldsOnlyNeededProperties[$index].fieldGroup[0].templateOptions.label != '' ? vm.wfFormFieldsOnlyNeededProperties[$index].fieldGroup[0].templateOptions.label : 'column 1'}}
+																							<div class="type">
+																								{{line.columns[0].control.type !== 'none'  ? line.columns[0].control.type + ' ' + line.columns[0].control.subtype || '' : 'column 1'}}
+																							</div>
+																						</div>
 																					</button>
 																				</div>
 																				<div class="col-md-6 well">
 																					<button class="btn btn-lg btn-block" ng-class="{'btn-primary': !line.columns[1].control.edited, 'btn-success': line.columns[1].control.edited}" ng-click="vm.showModalAddCtrlToColumn('', $index, 1)">
-																							{{line.columns[1].control.type !== 'none'  ? line.columns[1].control.type + ' ' + line.columns[1].control.subtype || '' : 'column 2'}}
+																						<div class="title">
+																							{{vm.wfFormFieldsOnlyNeededProperties[$index].fieldGroup[1].templateOptions && vm.wfFormFieldsOnlyNeededProperties[$index].fieldGroup[1].templateOptions.label != '' ? vm.wfFormFieldsOnlyNeededProperties[$index].fieldGroup[1].templateOptions.label : 'column 2'}}
+																							<div class="type">
+																								{{line.columns[1].control.type !== 'none'  ? line.columns[1].control.type + ' ' + line.columns[1].control.subtype || '' : 'column 2'}}
+																							</div>
+																						</div>
 																					</button>
 																				</div>
 																			</div>
@@ -341,17 +416,32 @@
 																			<div class="col-md-12">
 																				<div class="col-md-4 well">
 																					<button class="btn btn-lg btn-block" ng-class="{'btn-primary': !line.columns[0].control.edited, 'btn-success': line.columns[0].control.edited}" ng-click="vm.showModalAddCtrlToColumn('', $index, 0)">
-																							{{line.columns[0].control.type !== 'none'  ? line.columns[0].control.type + ' ' + line.columns[0].control.subtype || '' : 'column 1'}}
+																						<div class="title">
+																							{{vm.wfFormFieldsOnlyNeededProperties[$index].fieldGroup[0].templateOptions && vm.wfFormFieldsOnlyNeededProperties[$index].fieldGroup[0].templateOptions.label != '' ? vm.wfFormFieldsOnlyNeededProperties[$index].fieldGroup[0].templateOptions.label : 'column 1'}}
+																							<div class="type">
+																								{{line.columns[0].control.type !== 'none'  ? line.columns[0].control.type + ' ' + line.columns[0].control.subtype || '' : 'column 1'}}
+																							</div>
+																						</div>
 																					</button>
 																				</div>
 																				<div class="col-md-4 well">
 																					<button class="btn btn-lg btn-block" ng-class="{'btn-primary': !line.columns[1].control.edited, 'btn-success': line.columns[1].control.edited}" ng-click="vm.showModalAddCtrlToColumn('', $index, 1)">
-																							{{line.columns[1].control.type !== 'none'  ? line.columns[1].control.type + ' ' + line.columns[1].control.subtype || '' : 'column 2'}}
+																						<div class="title">
+																							{{vm.wfFormFieldsOnlyNeededProperties[$index].fieldGroup[1].templateOptions && vm.wfFormFieldsOnlyNeededProperties[$index].fieldGroup[1].templateOptions.label != '' ? vm.wfFormFieldsOnlyNeededProperties[$index].fieldGroup[1].templateOptions.label : 'column 2'}}
+																							<div class="type">
+																								{{line.columns[1].control.type !== 'none'  ? line.columns[1].control.type + ' ' + line.columns[1].control.subtype || '' : 'column 2'}}
+																							</div>
+																						</div>
 																					</button>
 																				</div>
 																				<div class="col-md-4 well">
 																					<button class="btn btn-lg btn-block" ng-class="{'btn-primary': !line.columns[2].control.edited, 'btn-success': line.columns[2].control.edited}" ng-click="vm.showModalAddCtrlToColumn('', $index, 2)">
-																							{{line.columns[2].control.type !== 'none'  ? line.columns[2].control.type + ' ' + line.columns[2].control.subtype || '' : 'column 3'}}
+																						<div class="title">
+																							{{vm.wfFormFieldsOnlyNeededProperties[$index].fieldGroup[2].templateOptions && vm.wfFormFieldsOnlyNeededProperties[$index].fieldGroup[2].templateOptions.label != '' ? vm.wfFormFieldsOnlyNeededProperties[$index].fieldGroup[2].templateOptions.label : 'column 3'}}
+																							<div class="type">
+																								{{line.columns[2].control.type !== 'none'  ? line.columns[2].control.type + ' ' + line.columns[2].control.subtype || '' : 'column 3'}}
+																							</div>
+																						</div>
 																					</button>
 																				</div>
 																			</div>

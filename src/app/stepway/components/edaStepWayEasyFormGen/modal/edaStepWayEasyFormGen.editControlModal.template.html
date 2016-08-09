@@ -112,6 +112,33 @@
           <div class="row">
             <div class="form-group">
               <label
+                for="headerParentIdUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'PARENT_ID' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <ol
+                  class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.parentId"
+                  id="headerParentIdUpdate"
+                  data-live-search="true"
+                  title="No value">
+                  <li nya-bs-option="column in editControlModCtrl.columns">
+                    <a>
+                      <span>
+                        {{ column.name }}
+                      </span>
+                      <span class="glyphicon glyphicon-ok check-mark"></span>
+                    </a>
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="form-group">
+              <label
                 for="inputTextDescriptionUpdate"
                 class="col-lg-3 control-label greyText editPropertiesLabel">
                 {{'HEADER_TEXT' | translate}} :
@@ -171,6 +198,33 @@
             </div>
           </div>
           <hr/>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="form-group">
+              <label
+                for="subtitleParentIdUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'PARENT_ID' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <ol
+                  class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.parentId"
+                  id="subtitleParentIdUpdate"
+                  data-live-search="true"
+                  title="No value">
+                  <li nya-bs-option="column in editControlModCtrl.columns">
+                    <a>
+                      <span>
+                        {{ column.name }}
+                      </span>
+                      <span class="glyphicon glyphicon-ok check-mark"></span>
+                    </a>
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
           <div class="marginTopFivepixels"></div>
           <div class="row">
             <div class="form-group">
@@ -246,6 +300,34 @@
             </div>
           </div>
           <hr/>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="form-group">
+              <label
+                for="inputTextParentIdUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'PARENT_ID' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <ol
+                  class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.parentId"
+                  id="inputTextParentIdUpdate"
+                  data-live-search="true"
+                  title="No value">
+                  <li nya-bs-option="column in editControlModCtrl.columns">
+                    <a>
+                      <span>
+                        {{ column.name }}
+                      </span>
+                      <span class="glyphicon glyphicon-ok check-mark"></span>
+                    </a>
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <div class="marginTopFivepixels"></div>
           <div class="row">
             <div class="form-group">
               <label
@@ -302,6 +384,24 @@
           <div class="row">
             <div class="form-group">
               <label
+                for="inputTextMaxLengthUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'MAX_LENGTH' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <input
+                  type="text"
+                  class="form-control"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.maxLengthOption"
+                  id="inputTextMaxLengthUpdate"
+                  placeholder="">
+              </div>
+            </div>
+          </div>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="form-group">
+              <label
                 for="inputTextDescriptionUpdate"
                 class="col-lg-3 control-label greyText editPropertiesLabel">
                 {{'DESCRIPTION' | translate}} :
@@ -312,6 +412,386 @@
                   class="form-control"
                   ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption"
                   id="inputTextDescriptionUpdate"
+                  placeholder="{{'ADDEDIT_DESCRIPTION' | translate}}">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Number -->
+    <div ng-switch-when="Number">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12">
+              <h5 class="greyText">
+                <i class="fa fa-eye"></i>
+                &nbsp;
+                {{'PREVIEW_TAB' | translate}} :
+              </h5>
+            </div>
+          </div>
+          <hr/>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label
+                  for="inputNumber"
+                  class="control-label textControlLabel">
+                  {{editControlModCtrl.nyaSelect.temporyConfig.formlyLabel}}
+                  <span
+                    ng-if="editControlModCtrl.nyaSelect.temporyConfig.formlyRequired"
+                    class="textControlLabel">
+                    *
+                  </span>
+                </label>
+                <div class="">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputNumber"
+                    placeholder="{{editControlModCtrl.nyaSelect.temporyConfig.formlyPlaceholder}}">
+                  <p class="help-block">
+                  {{editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption}}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12">
+              <h5 class="greyText">
+                <i class="fa fa-pencil-square-o"></i>
+                &nbsp;
+                {{'EDIT_PROPERTIES' | translate}} :
+              </h5>
+            </div>
+          </div>
+          <hr/>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="form-group">
+              <label
+                for="inputNumberParentIdUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'PARENT_ID' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <ol
+                  class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.parentId"
+                  id="inputNumberParentIdUpdate"
+                  data-live-search="true"
+                  title="No value">
+                  <li nya-bs-option="column in editControlModCtrl.columns">
+                    <a>
+                      <span>
+                        {{ column.name }}
+                      </span>
+                      <span class="glyphicon glyphicon-ok check-mark"></span>
+                    </a>
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="form-group">
+              <label
+                for="inputNumberLabelUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'LABEL_TEXT' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <input
+                  type="text"
+                  class="form-control"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyLabel"
+                  id="inputNumberLabelUpdate"
+                  placeholder="{{'ADD_EDIT_LABEL_HERE' | translate}}">
+              </div>
+            </div>
+          </div>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="form-group">
+              <label
+                for="inputNumberplaceholderUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'PLACEHOLDER' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <input
+                  type="text"
+                  class="form-control"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyPlaceholder"
+                  id="inputNumberplaceholderUpdate"
+                  placeholder="{{'ADD_EDIT_PLACEHOLD' | translate}}">
+              </div>
+            </div>
+          </div>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="form-group">
+              <label
+                for="inputNumberRequiredUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'REQUIRED' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <div class="checkboxCssCorrection">&nbsp;</div>
+                <input
+                  type="checkbox"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyRequired"
+                  id="inputNumberRequiredUpdate">
+              </div>
+            </div>
+          </div>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="form-group">
+              <label
+                for="inputNumberMinValueUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'MIN_VALUE' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <input
+                  type="text"
+                  class="form-control"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.minValueOption"
+                  id="inputNumberMinValueUpdate"
+                  placeholder="">
+              </div>
+            </div>
+          </div>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="form-group">
+              <label
+                for="inputNumberMaxValueUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'MAX_VALUE' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <input
+                  type="text"
+                  class="form-control"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.maxValueOption"
+                  id="inputNumberMaxValueUpdate"
+                  placeholder="">
+              </div>
+            </div>
+          </div>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="form-group">
+              <label
+                for="inputNumberIncrementalUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'INCREMENTAL' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <div class="checkboxCssCorrection">&nbsp;</div>
+                <input
+                  type="checkbox"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.incrementalOption"
+                  id="inputNumberIncrementalUpdate">
+              </div>
+            </div>
+          </div>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="form-group">
+              <label
+                for="inputNumberDescriptionUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'DESCRIPTION' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <input
+                  type="text"
+                  class="form-control"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption"
+                  id="inputNumberDescriptionUpdate"
+                  placeholder="{{'ADDEDIT_DESCRIPTION' | translate}}">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Year -->
+    <div ng-switch-when="Year">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12">
+              <h5 class="greyText">
+                <i class="fa fa-eye"></i>
+                &nbsp;
+                {{'PREVIEW_TAB' | translate}} :
+              </h5>
+            </div>
+          </div>
+          <hr/>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label
+                  for="inputYear"
+                  class="control-label textControlLabel">
+                  {{editControlModCtrl.nyaSelect.temporyConfig.formlyLabel}}
+                  <span
+                    ng-if="editControlModCtrl.nyaSelect.temporyConfig.formlyRequired"
+                    class="textControlLabel">
+                    *
+                  </span>
+                </label>
+                <div class="">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputYear"
+                    placeholder="{{editControlModCtrl.nyaSelect.temporyConfig.formlyPlaceholder}}">
+                  <p class="help-block">
+                  {{editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption}}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12">
+              <h5 class="greyText">
+                <i class="fa fa-pencil-square-o"></i>
+                &nbsp;
+                {{'EDIT_PROPERTIES' | translate}} :
+              </h5>
+            </div>
+          </div>
+          <hr/>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="form-group">
+              <label
+                for="inputYearParentIdUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'PARENT_ID' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <ol
+                  class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.parentId"
+                  id="inputYearParentIdUpdate"
+                  data-live-search="true"
+                  title="No value">
+                  <li nya-bs-option="column in editControlModCtrl.columns">
+                    <a>
+                      <span>
+                        {{ column.name }}
+                      </span>
+                      <span class="glyphicon glyphicon-ok check-mark"></span>
+                    </a>
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="form-group">
+              <label
+                for="inputYearLabelUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'LABEL_TEXT' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <input
+                  type="text"
+                  class="form-control"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyLabel"
+                  id="inputYearLabelUpdate"
+                  placeholder="{{'ADD_EDIT_LABEL_HERE' | translate}}">
+              </div>
+            </div>
+          </div>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="form-group">
+              <label
+                for="inputYearplaceholderUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'PLACEHOLDER' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <input
+                  type="text"
+                  class="form-control"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyPlaceholder"
+                  id="inputYearplaceholderUpdate"
+                  placeholder="{{'ADD_EDIT_PLACEHOLD' | translate}}">
+              </div>
+            </div>
+          </div>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="form-group">
+              <label
+                for="inputYearRequiredUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'REQUIRED' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <div class="checkboxCssCorrection">&nbsp;</div>
+                <input
+                  type="checkbox"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyRequired"
+                  id="inputYearRequiredUpdate">
+              </div>
+            </div>
+          </div>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="form-group">
+              <label
+                for="inputYearCurrentUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'CURRENT_YEAR' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <div class="checkboxCssCorrection">&nbsp;</div>
+                <input
+                  type="checkbox"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.currentYearOption"
+                  id="inputYearCurrentUpdate">
+              </div>
+            </div>
+          </div>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="form-group">
+              <label
+                for="inputYearDescriptionUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'DESCRIPTION' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <input
+                  type="text"
+                  class="form-control"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption"
+                  id="inputYearDescriptionUpdate"
                   placeholder="{{'ADDEDIT_DESCRIPTION' | translate}}">
               </div>
             </div>
@@ -373,6 +853,34 @@
             </div>
           </div>
           <hr/>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="form-group">
+              <label
+                for="inputPasswordParentIdUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'PARENT_ID' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <ol
+                  class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.parentId"
+                  id="inputPasswordParentIdUpdate"
+                  data-live-search="true"
+                  title="No value">
+                  <li nya-bs-option="column in editControlModCtrl.columns">
+                    <a>
+                      <span>
+                        {{ column.name }}
+                      </span>
+                      <span class="glyphicon glyphicon-ok check-mark"></span>
+                    </a>
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <div class="marginTopFivepixels"></div>
           <div class="row">
             <div class="form-group">
               <label
@@ -448,8 +956,8 @@
         </div>
       </div>
     </div>
+    <!-- Email -->
     <div ng-switch-when="Email">
-      <!-- password -->
       <div class="panel panel-default">
         <div class="panel-body">
           <div class="row">
@@ -502,6 +1010,34 @@
             </div>
           </div>
           <hr/>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="form-group">
+              <label
+                for="inputEmailParentIdUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'PARENT_ID' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <ol
+                  class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.parentId"
+                  id="inputEmailParentIdUpdate"
+                  data-live-search="true"
+                  title="No value">
+                  <li nya-bs-option="column in editControlModCtrl.columns">
+                    <a>
+                      <span>
+                        {{ column.name }}
+                      </span>
+                      <span class="glyphicon glyphicon-ok check-mark"></span>
+                    </a>
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <div class="marginTopFivepixels"></div>
           <div class="row">
             <div class="form-group">
               <label
@@ -577,8 +1113,8 @@
         </div>
       </div>
     </div>
+    <!-- datetimepicker (input type date not ok in all browsers) -->
     <div ng-switch-when="Date">
-      <!-- datetimepicker (input type date not ok in all browsers) -->
       <div class="panel panel-default">
         <div class="panel-body">
           <div class="row">
@@ -591,97 +1127,125 @@
             </div>
           </div>
           <hr/>
-        <div class="row">
-          <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label
+                  for="inputDate"
+                  class="control-label textControlLabel">
+                  {{editControlModCtrl.nyaSelect.temporyConfig.formlyLabel}}
+                  <span
+                    ng-if="editControlModCtrl.nyaSelect.temporyConfig.formlyRequired"
+                    class="textControlLabel">
+                    *
+                  </span>
+                </label>
+                <div class="">
+                  <div class="input-group" >
+                    <span class="input-group-addon">
+                      <i class="glyphicon glyphicon-calendar"></i>
+                    </span>
+                    <input
+                      type="text"
+                      class="form-control"
+                      uib-datepicker-popup="{{editControlModCtrl.nyaSelect.temporyConfig.datepickerOptions.format}}"
+                      ng-model="editControlModCtrl.demodt.dt"
+                      is-open="editControlModCtrl.demodt.opened"
+                      datepicker-options="editControlModCtrl.dateOptions"
+                      close-text="Close"
+                      ng-click="editControlModCtrl.open($event)"
+                    />
+                  </div>
+                  <p class="help-block">
+                    {{editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption}}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12">
+              <h5 class="greyText">
+                <i class="fa fa-pencil-square-o"></i>
+                &nbsp;
+                {{'EDIT_PROPERTIES' | translate}} :
+              </h5>
+            </div>
+          </div>
+          <hr/>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
             <div class="form-group">
               <label
-                for="inputDate"
-                class="control-label textControlLabel">
-                {{editControlModCtrl.nyaSelect.temporyConfig.formlyLabel}}
-                <span
-                  ng-if="editControlModCtrl.nyaSelect.temporyConfig.formlyRequired"
-                  class="textControlLabel">
-                  *
-                </span>
+                for="inputDateParentIdUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'PARENT_ID' | translate}} :
               </label>
-            <div class="">
-              <div class="input-group" >
-                <span class="input-group-addon">
-                  <i class="glyphicon glyphicon-calendar"></i>
-                </span>
+              <div class="col-lg-9">
+                <ol
+                  class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.parentId"
+                  id="inputDateParentIdUpdate"
+                  data-live-search="true"
+                  title="No value">
+                  <li nya-bs-option="column in editControlModCtrl.columns">
+                    <a>
+                      <span>
+                        {{ column.name }}
+                      </span>
+                      <span class="glyphicon glyphicon-ok check-mark"></span>
+                    </a>
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="form-group">
+              <label class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'DATE_FORMAT' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <ol
+                  class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.datepickerOptions.format"
+                  id="dateformatSelect">
+                  <li
+                    class="nya-bs-option"
+                    nya-bs-option="dateformat in editControlModCtrl.demodt.formats"
+                    value="dateformat">
+                    <a>
+                      {{dateformat}}
+                    </a>
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="form-group">
+              <label
+                for="inputTextLabelUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'LABEL_TEXT' | translate}} :
+              </label>
+              <div class="col-lg-9">
                 <input
                   type="text"
                   class="form-control"
-                  uib-datepicker-popup="{{editControlModCtrl.nyaSelect.temporyConfig.datepickerOptions.format}}"
-                  ng-model="editControlModCtrl.demodt.dt"
-                  is-open="editControlModCtrl.demodt.opened"
-                  datepicker-options="editControlModCtrl.dateOptions"
-                  close-text="Close"
-                  ng-click="editControlModCtrl.open($event)"
-                />
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyLabel"
+                  id="inputTextLabelUpdate"
+                  placeholder="{{'ADD_EDIT_LABEL_HERE' | translate}}">
               </div>
-              <p class="help-block">
-                {{editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption}}
-              </p>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <div class="row">
-        <div class="col-md-12">
-          <h5 class="greyText">
-            <i class="fa fa-pencil-square-o"></i>
-            &nbsp;
-            {{'EDIT_PROPERTIES' | translate}} :
-          </h5>
-        </div>
-      </div>
-      <hr/>
-      <div class="row">
-        <div class="form-group">
-          <label class="col-lg-3 control-label greyText editPropertiesLabel">
-            {{'DATE_FORMAT' | translate}} :
-          </label>
-          <div class="col-lg-9">
-            <ol
-              class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
-              ng-model="editControlModCtrl.nyaSelect.temporyConfig.datepickerOptions.format"
-              id="dateformatSelect">
-              <li
-                class="nya-bs-option"
-                nya-bs-option="dateformat in editControlModCtrl.demodt.formats"
-                value="dateformat">
-                <a>
-                  {{dateformat}}
-                </a>
-              </li>
-            </ol>
-          </div>
-        </div>
-      </div>
-      <div class="marginTopFivepixels"></div>
-        <div class="row">
-          <div class="form-group">
-            <label
-              for="inputTextLabelUpdate"
-              class="col-lg-3 control-label greyText editPropertiesLabel">
-              {{'LABEL_TEXT' | translate}} :
-            </label>
-            <div class="col-lg-9">
-              <input
-                type="text"
-                class="form-control"
-                ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyLabel"
-                id="inputTextLabelUpdate"
-                placeholder="{{'ADD_EDIT_LABEL_HERE' | translate}}">
-            </div>
-          </div>
-        </div>
-        <div class="marginTopFivepixels"></div>
+          <div class="marginTopFivepixels"></div>
           <div class="row">
             <div class="form-group">
               <label
@@ -701,105 +1265,251 @@
             </div>
           </div>
           <div class="marginTopFivepixels"></div>
-            <div class="row">
+          <div class="row">
+            <div class="form-group">
+              <label
+                for="inputTextDescriptionUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'DESCRIPTION' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <input
+                  type="text"
+                  class="form-control"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption"
+                  id="inputTextDescriptionUpdate"
+                  placeholder="{{'ADDEDIT_DESCRIPTION' | translate}}">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- textarea -->
+    <div ng-switch-when="Texarea">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12">
+              <h5 class="greyText">
+                <i class="fa fa-eye"></i>
+                &nbsp;
+                {{'PREVIEW_TAB' | translate}} :
+              </h5>
+            </div>
+          </div>
+          <hr/>
+          <div class="row">
+            <div class="col-md-12">
               <div class="form-group">
                 <label
-                  for="inputTextDescriptionUpdate"
-                  class="col-lg-3 control-label greyText editPropertiesLabel">
-                  {{'DESCRIPTION' | translate}} :
+                  for="textArea"
+                  class="control-label textControlLabel">
+                  {{editControlModCtrl.nyaSelect.temporyConfig.formlyLabel}}
+                  <span
+                    ng-if="editControlModCtrl.nyaSelect.temporyConfig.formlyRequired"
+                    class="textControlLabel">
+                    *
+                  </span>
                 </label>
-                <div class="col-lg-9">
-                  <input
-                    type="text"
+                <div class="">
+                  <textarea
                     class="form-control"
-                    ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption"
-                    id="inputTextDescriptionUpdate"
-                    placeholder="{{'ADDEDIT_DESCRIPTION' | translate}}">
+                    ng-model="model[options.key]"
+                    rows="3"
+                    id="textArea">
+                  </textarea>
+                  <p class="help-block">
+                    {{editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption}}
+                  </p>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div ng-switch-when="Texarea">
-        <!-- textarea -->
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <div class="row">
-              <div class="col-md-12">
-                <h5 class="greyText">
-                  <i class="fa fa-eye"></i>
-                  &nbsp;
-                  {{'PREVIEW_TAB' | translate}} :
-                </h5>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12">
+              <h5 class="greyText">
+                <i class="fa fa-pencil-square-o"></i>
+                &nbsp;
+                {{'EDIT_PROPERTIES' | translate}} :
+              </h5>
+            </div>
+          </div>
+          <hr/>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="form-group">
+              <label
+                for="textareaParentIdUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'PARENT_ID' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <ol
+                  class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.parentId"
+                  id="textareaParentIdUpdate"
+                  data-live-search="true"
+                  title="No value">
+                  <li nya-bs-option="column in editControlModCtrl.columns">
+                    <a>
+                      <span>
+                        {{ column.name }}
+                      </span>
+                      <span class="glyphicon glyphicon-ok check-mark"></span>
+                    </a>
+                  </li>
+                </ol>
               </div>
             </div>
-            <hr/>
-            <div class="row">
-              <div class="col-md-12">
-                <div class="form-group">
-                  <label
-                    for="textArea"
-                    class="control-label textControlLabel">
-                    {{editControlModCtrl.nyaSelect.temporyConfig.formlyLabel}}
-                    <span
-                      ng-if="editControlModCtrl.nyaSelect.temporyConfig.formlyRequired"
-                      class="textControlLabel">
-                      *
-                    </span>
-                  </label>
-                  <div class="">
-                    <textarea
-                      class="form-control"
-                      ng-model="model[options.key]"
-                      rows="3"
-                      id="textArea">
-                    </textarea>
-                    <p class="help-block">
-                      {{editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption}}
-                    </p>
-                  </div>
+          </div>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="form-group">
+              <label
+                for="inputTextLabelUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'LABEL_TEXT' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <input
+                  type="text"
+                  class="form-control"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyLabel"
+                  id="inputTextLabelUpdate"
+                  placeholder="{{'ADD_EDIT_LABEL_HERE' | translate}}">
+              </div>
+            </div>
+          </div>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="form-group">
+              <label
+                for="inputTextRequiredUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'REQUIRED' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <div class="checkboxCssCorrection">
+                  &nbsp;
+                </div>
+                <input
+                  type="checkbox"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyRequired"
+                  id="inputTextRequiredUpdate">
+              </div>
+            </div>
+          </div>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="form-group">
+              <label
+                for="inputTextDescriptionUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">{{'DESCRIPTION' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <input
+                  type="text"
+                  class="form-control"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption"
+                  id="inputTextDescriptionUpdate"
+                  placeholder="{{'ADDEDIT_DESCRIPTION' | translate}}">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- RichText -->
+    <div ng-switch-when="RichTextEditor">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12">
+              <h5 class="greyText">
+                <i class="fa fa-eye"></i>
+                &nbsp;
+                {{'PREVIEW_TAB' | translate}} :
+              </h5>
+            </div>
+          </div>
+          <hr/>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label
+                  for="RichTextEditor"
+                  class="control-label textControlLabel">
+                  {{editControlModCtrl.nyaSelect.temporyConfig.formlyLabel}}
+                  <span
+                    ng-if="editControlModCtrl.nyaSelect.temporyConfig.formlyRequired"
+                    class="textControlLabel">
+                    *
+                  </span>
+                </label>
+                <div class="">
+                  <text-angular
+                    ng-model="editControlModCtrl.model[options.key]">
+                  </text-angular>
+                  <p class="help-block">
+                    {{editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption}}
+                  </p>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <div class="row">
-              <div class="col-md-12">
-                <h5 class="greyText">
-                  <i class="fa fa-pencil-square-o"></i>
-                  &nbsp;
-                  {{'EDIT_PROPERTIES' | translate}} :
-                </h5>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12">
+              <h5 class="greyText">
+                <i class="fa fa-pencil-square-o"></i>
+                &nbsp;
+                {{'EDIT_PROPERTIES' | translate}} :
+              </h5>
+            </div>
+          </div>
+          <hr/>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="form-group">
+              <label
+                for="richTextParentIdUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'PARENT_ID' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <ol
+                  class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.parentId"
+                  id="richTextParentIdUpdate"
+                  data-live-search="true"
+                  title="No value">
+                  <li nya-bs-option="column in editControlModCtrl.columns">
+                    <a>
+                      <span>
+                        {{ column.name }}
+                      </span>
+                      <span class="glyphicon glyphicon-ok check-mark"></span>
+                    </a>
+                  </li>
+                </ol>
               </div>
             </div>
-            <hr/>
-            <div class="row">
-              <div class="form-group">
-                <label
-                  for="inputTextLabelUpdate"
-                  class="col-lg-3 control-label greyText editPropertiesLabel">
-                  {{'LABEL_TEXT' | translate}} :
-                </label>
-                <div class="col-lg-9">
-                  <input
-                    type="text"
-                    class="form-control"
-                    ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyLabel"
-                    id="inputTextLabelUpdate"
-                    placeholder="{{'ADD_EDIT_LABEL_HERE' | translate}}">
-                </div>
-              </div>
-            </div>
-            <div class="marginTopFivepixels"></div>
-              <div class="row">
+          </div>
+          <div class="marginTopFivepixels"></div>
+          <!-- required can't be applied to rich text editor (textAngular) right now -->
+          <!--<div class="row">
                 <div class="form-group">
                   <label
                     for="inputTextRequiredUpdate"
-                    class="col-lg-3 control-label greyText editPropertiesLabel">
-                    {{'REQUIRED' | translate}} :
+                    class="col-lg-3 control-label greyText editPropertiesLabel">Required :
                   </label>
                   <div class="col-lg-9">
                     <div class="checkboxCssCorrection">
@@ -807,969 +1517,991 @@
                     </div>
                     <input
                       type="checkbox"
-                      ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyRequired"
-                      id="inputTextRequiredUpdate">
+                      ng-model="nyaSelect.temporyConfig.formlyRequired" id="inputTextRequiredUpdate">
                   </div>
                 </div>
               </div>
-                <div class="marginTopFivepixels"></div>
-                  <div class="row">
-                    <div class="form-group">
-                      <label
-                        for="inputTextDescriptionUpdate"
-                        class="col-lg-3 control-label greyText editPropertiesLabel">{{'DESCRIPTION' | translate}} :
-                      </label>
-                      <div class="col-lg-9">
-                        <input
-                          type="text"
-                          class="form-control"
-                          ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption"
-                          id="inputTextDescriptionUpdate"
-                          placeholder="{{'ADDEDIT_DESCRIPTION' | translate}}">
-                      </div>
-                    </div>
+              <div class="marginTopFivepixels"></div>-->
+          <div class="row">
+            <div class="form-group">
+              <label
+                for="inputTextDescriptionUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">{{'DESCRIPTION' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <input
+                  type="text"
+                  class="form-control"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption"
+                  id="inputTextDescriptionUpdate"
+                  placeholder="{{'ADDEDIT_DESCRIPTION' | translate}}">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- radios -->
+    <div ng-switch-when="Radio">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12">
+              <h5 class="greyText">
+                <i class="fa fa-eye"></i>
+                &nbsp;
+                {{'PREVIEW_TAB' | translate}} :
+              </h5>
+            </div>
+          </div>
+          <hr/>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label
+                  for="basicSelect"
+                  class="control-label textControlLabel">
+                  {{editControlModCtrl.nyaSelect.temporyConfig.formlyLabel}}
+                  <span
+                    ng-if="editControlModCtrl.nyaSelect.temporyConfig.formlyRequired"
+                    class="textControlLabel">
+                    *
+                  </span>
+                </label>
+                <div class="">
+                  <div
+                    class="radio"
+                    ng-repeat="radioRow in editControlModCtrl.radioRowCollection.rows">
+                    <label>
+                      <input
+                        type="radio"
+                        name="optionsRadios"
+                        id="{{'optionsRadio-' + $index}}"
+                        value="$index"
+                        checked="">
+                        {{radioRow.option}}
+                    </label>
                   </div>
+                  <p class="help-block">
+                    {{editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption}}
+                  </p>
                 </div>
               </div>
             </div>
-            <div ng-switch-when="RichTextEditor">
-              <!-- TextInput -->
-              <div class="panel panel-default">
-                <div class="panel-body">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <h5 class="greyText">
-                        <i class="fa fa-eye"></i>
-                        &nbsp;
-                        {{'PREVIEW_TAB' | translate}} :
-                      </h5>
-                    </div>
-                  </div>
-                  <hr/>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label
-                          for="RichTextEditor"
-                          class="control-label textControlLabel">
-                          {{editControlModCtrl.nyaSelect.temporyConfig.formlyLabel}}
-                          <span
-                            ng-if="editControlModCtrl.nyaSelect.temporyConfig.formlyRequired"
-                            class="textControlLabel">
-                            *
-                          </span>
-                        </label>
-                        <div class="">
-                          <text-angular
-                            ng-model="editControlModCtrl.model[options.key]">
-                          </text-angular>
-                          <p class="help-block">
-                            {{editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption}}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12">
+              <h5
+                class="greyText">
+                <i class="fa fa-pencil-square-o"></i>
+                &nbsp;
+                {{'EDIT_PROPERTIES' | translate}} :
+              </h5>
+            </div>
+          </div>
+          <hr/>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="form-group">
+              <label
+                for="inputRadioParentIdUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'PARENT_ID' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <ol
+                  class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.parentId"
+                  id="inputRadioParentIdUpdate"
+                  data-live-search="true"
+                  title="No value">
+                  <li nya-bs-option="column in editControlModCtrl.columns">
+                    <a>
+                      <span>
+                        {{ column.name }}
+                      </span>
+                      <span class="glyphicon glyphicon-ok check-mark"></span>
+                    </a>
+                  </li>
+                </ol>
               </div>
-              <div class="panel panel-default">
-                <div class="panel-body">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <h5 class="greyText">
-                        <i class="fa fa-pencil-square-o"></i>
-                        &nbsp;
-                        {{'EDIT_PROPERTIES' | translate}} :
-                      </h5>
-                    </div>
-                  </div>
-                  <hr/>
-              <!-- required can't be applied to rich text editor (textAngular) right now -->
-              <!--<div class="row">
-                    <div class="form-group">
-                      <label
-                        for="inputTextRequiredUpdate"
-                        class="col-lg-3 control-label greyText editPropertiesLabel">Required :
-                      </label>
-                      <div class="col-lg-9">
-                        <div class="checkboxCssCorrection">
-                          &nbsp;
-                        </div>
-                        <input
-                          type="checkbox"
-                          ng-model="nyaSelect.temporyConfig.formlyRequired" id="inputTextRequiredUpdate">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="marginTopFivepixels"></div>-->
-                  <div class="row">
-                    <div class="form-group">
-                      <label
-                        for="inputTextDescriptionUpdate"
-                        class="col-lg-3 control-label greyText editPropertiesLabel">{{'DESCRIPTION' | translate}} :
-                      </label>
-                      <div class="col-lg-9">
-                        <input
-                          type="text"
-                          class="form-control"
-                          ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption"
-                          id="inputTextDescriptionUpdate"
-                          placeholder="{{'ADDEDIT_DESCRIPTION' | translate}}">
-                      </div>
-                    </div>
-                  </div>
+            </div>
+          </div>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="col-lg-3 col-md-3">
+              <label
+                for="radioRowCollection"
+                class=" control-label greyText editPropertiesLabel">
+                {{'ADD_NEW_RADIO' | translate}} :
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div>
+              <div class="form-group">
+                <div class="col-sm-9 col-xs-9 col-md-9 col-lg-9">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputAddNewRadioOption"
+                    placeholder="{{'ADD_RADIO_PLACEHOLD' | translate}}"
+                    ng-model="editControlModCtrl.newOptionRadio.saisie">
+                </div>
+                <div class="col-sm-3 col-xs-3 col-md-3 col-lg-3">
+                  <button
+                    class="btn btn-primary"
+                    ng-click="editControlModCtrl.addNewOptionRadio()">
+                    {{'ADD' | translate}}
+                  </button>
                 </div>
               </div>
             </div>
-            <div ng-switch-when="Radio">
-              <!-- radios -->
-              <div class="panel panel-default">
-                <div class="panel-body">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <h5 class="greyText">
-                        <i class="fa fa-eye"></i>
-                        &nbsp;
-                        {{'PREVIEW_TAB' | translate}} :
-                      </h5>
-                    </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-3 col-md-3">
+              <label
+                for="radioRowCollection"
+                class=" control-label greyText editPropertiesLabel">
+                {{'EDIT_REMOVE_RADIO' | translate}} :
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group">
+              <div class-"col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="container">
+                  <div ng-show="editControlModCtrl.radioRowCollection.rows.length === 0">
+                    <h5 class="text-center greyText">
+                      <em>
+                        - {{'NO_RADIO_ADD_NEW' | translate}} -
+                      </em>
+                    </h5>
                   </div>
-                  <hr/>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label
-                          for="basicSelect"
-                          class="control-label textControlLabel">
-                          {{editControlModCtrl.nyaSelect.temporyConfig.formlyLabel}}
-                          <span
-                            ng-if="editControlModCtrl.nyaSelect.temporyConfig.formlyRequired"
-                            class="textControlLabel">
-                            *
-                          </span>
-                        </label>
-                        <div class="">
-                          <div
-                            class="radio"
-                            ng-repeat="radioRow in editControlModCtrl.radioRowCollection.rows">
-                            <label>
-                              <input
-                                type="radio"
-                                name="optionsRadios"
-                                id="{{'optionsRadio-' + $index}}"
-                                value="$index"
-                                checked="">
-                                {{radioRow.option}}
-                            </label>
-                          </div>
-                          <p class="help-block">
-                            {{editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption}}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="panel panel-default">
-                <div class="panel-body">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <h5
-                        class="greyText">
-                        <i class="fa fa-pencil-square-o"></i>
-                        &nbsp;
-                        {{'EDIT_PROPERTIES' | translate}} :
-                      </h5>
-                    </div>
-                  </div>
-                  <hr/>
-                  <div class="row">
-                    <div class="col-lg-3 col-md-3">
-                      <label
-                        for="radioRowCollection"
-                        class=" control-label greyText editPropertiesLabel">
-                        {{'ADD_NEW_RADIO' | translate}} :
-                      </label>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div>
-                      <div class="form-group">
-                        <div class="col-sm-9 col-xs-9 col-md-9 col-lg-9">
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="inputAddNewRadioOption"
-                            placeholder="{{'ADD_RADIO_PLACEHOLD' | translate}}"
-                            ng-model="editControlModCtrl.newOptionRadio.saisie">
-                        </div>
-                        <div class="col-sm-3 col-xs-3 col-md-3 col-lg-3">
-                          <button
-                            class="btn btn-primary"
-                            ng-click="editControlModCtrl.addNewOptionRadio()">
-                            {{'ADD' | translate}}
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-lg-3 col-md-3">
-                      <label
-                        for="radioRowCollection"
-                        class=" control-label greyText editPropertiesLabel">
-                        {{'EDIT_REMOVE_RADIO' | translate}} :
-                      </label>
-                    </div>
-                  </div>
-                    <div class="row">
-                      <div class="form-group">
-                        <div class-"col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                          <div class="container">
-                            <div ng-show="editControlModCtrl.radioRowCollection.rows.length === 0">
-                              <h5 class="text-center greyText">
-                                <em>
-                                  - {{'NO_RADIO_ADD_NEW' | translate}} -
-                                </em>
-                              </h5>
-                            </div>
-                            <table
-                              ng-if="editControlModCtrl.radioRowCollection.rows.length > 0"
-                              class="table table-striped">
-                              <thead>
-                              <tr>
-                                <th st-ratio="20">
-                                  {{'ORDER' | translate}}
-                                </th>
-                                <th st-ratio="55">
-                                  {{'OPTION' | translate}}
-                                </th>
-                                <th st-ratio="25">
-                                </th>
-                              </tr>
-                              <tr>
-                                <th st-ratio="20">
-                                </th>
-                                <th st-ratio="55">
-                                  <input
-                                    ng-model="editControlModCtrl.radioFilter"
-                                    placeholder="{{'SEARCH_4_OPTION' | translate}}"
-                                    class="input-sm form-control"
-                                    type="search"
-                                  />
-                                </th>
-                                <th st-ratio="25">
-                                </th>
-                              </tr>
-                              </thead>
-                              <tbody>
-                                <tr ng-repeat="radioRow in editControlModCtrl.radioRowCollection.rows | filter:radioFilter as radioRow">
-                                  <td st-ratio="20">
-                                    {{$index}}
-                                  </td>
-                                  <td st-ratio="55">
-                                    {{radioRow.option}}
-                                  </td>
-                                  <td st-ratio="25">
-                                    <div class="pull-right">
-                                      <button
-                                        class="btn btn-primary"
-                                        ng-click="editControlModCtrl.upThisRadioRow($index)">
-                                        <i class="fa fa-arrow-up"></i>
-                                      </button>
-                                      <button
-                                        class="btn btn-primary"
-                                        ng-click="editControlModCtrl.downThisRadioRow($index)">
-                                        <i class="fa fa-arrow-down"></i>
-                                      </button>
-                                      <button
-                                        class="btn btn-danger"
-                                        ng-click="editControlModCtrl.removeRadioRow($index)">
-                                        <i class="fa fa-trash-o"></i>
-                                      </button>
-                                    </div>
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <hr/>
-                    <div class="marginTopFivepixels"></div>
-                    <div class="row">
-                      <div class="form-group">
-                        <label
-                          for="inputTextLabelUpdate"
-                          class="col-lg-3 control-label greyText editPropertiesLabel">{{'LABEL_TEXT' | translate}} :
-                        </label>
-                        <div class="col-lg-9">
-                          <input
-                            type="text"
-                            class="form-control"
-                            ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyLabel"
-                            id="inputTextLabelUpdate"
-                            placeholder="{{'ADD_EDIT_LABEL_HERE' | translate}}">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="marginTopFivepixels"></div>
-                    <div class="row">
-                      <div class="form-group">
-                        <label
-                          for="inputTextRequiredUpdate"
-                          class="col-lg-3 control-label greyText editPropertiesLabel">{{'REQUIRED' | translate}} :
-                        </label>
-                        <div class="col-lg-9">
-                          <div class="checkboxCssCorrection">
-                            &nbsp;
-                          </div>
-                          <input
-                            type="checkbox"
-                            ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyRequired"
-                            id="inputTextRequiredUpdate">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="marginTopFivepixels"></div>
-                    <div class="row">
-                      <div class="form-group">
-                        <label
-                          for="inputTextDescriptionUpdate"
-                          class="col-lg-3 control-label greyText editPropertiesLabel">{{'DESCRIPTION' | translate}} :
-                        </label>
-                        <div class="col-lg-9">
-                          <input
-                            type="text"
-                            class="form-control"
-                            ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption"
-                            id="inputTextDescriptionUpdate"
-                            placeholder="{{'ADDEDIT_DESCRIPTION' | translate}}">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div ng-switch-when="Checkbox">
-                <!-- checkbox -->
-                <div class="panel panel-default">
-                  <div class="panel-body">
-                    <div class="row">
-                      <div class="col-md-12">
-                        <h5 class="greyText">
-                          <i class="fa fa-eye"></i>
-                          &nbsp;
-                          {{'PREVIEW_TAB' | translate}} :
-                        </h5>
-                      </div>
-                    </div>
-                    <hr/>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <div class="col-md-12">
-                            <div class="checkbox">
-                              <label>
-                                <input
-                                  type="checkbox"
-                                  id="checkBox">
-                                <span class="blackText">
-                                  {{editControlModCtrl.nyaSelect.temporyConfig.formlyLabel}}
-                                </span>
-                                <span
-                                  ng-if="editControlModCtrl.nyaSelect.temporyConfig.formlyRequired"
-                                  class="textControlLabel">
-                                  *
-                                </span>
-                              </label>
-                            </div>
-                            <p class="help-block">
-                              {{editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption}}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="panel panel-default">
-                  <div class="panel-body">
-                    <div class="row">
-                      <div class="col-md-12">
-                        <h5 class="greyText">
-                          <i class="fa fa-pencil-square-o"></i>
-                          &nbsp;
-                          {{'EDIT_PROPERTIES' | translate}} :
-                        </h5>
-                      </div>
-                    </div>
-                    <hr/>
-                    <div class="row">
-                      <div class="form-group">
-                        <label
-                          for="inputTextLabelUpdate"
-                          class="col-lg-3 control-label greyText editPropertiesLabel">
-                          {{'LABEL_TEXT' | translate}} :
-                        </label>
-                        <div class="col-lg-9">
-                          <input
-                            type="text"
-                            class="form-control"
-                            ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyLabel"
-                            id="inputTextLabelUpdate"
-                            placeholder="{{'ADD_EDIT_LABEL_HERE' | translate}}">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="marginTopFivepixels"></div>
-                    <div class="row">
-                      <div class="form-group">
-                        <label
-                          for="inputTextRequiredUpdate"
-                          class="col-lg-3 control-label greyText editPropertiesLabel">
-                          {{'REQUIRED' | translate}} :
-                        </label>
-                        <div class="col-lg-9">
-                          <div class="checkboxCssCorrection">&nbsp;</div>
-                          <input
-                            type="checkbox"
-                            ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyRequired" id="inputTextRequiredUpdate">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="marginTopFivepixels"></div>
-                    <div class="row">
-                      <div class="form-group">
-                        <label
-                          for="inputTextDescriptionUpdate"
-                          class="col-lg-3 control-label greyText editPropertiesLabel">
-                          {{'DESCRIPTION' | translate}} :
-                        </label>
-                        <div class="col-lg-9">
-                          <input
-                            type="text"
-                            class="form-control"
-                            ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption"
-                            id="inputTextDescriptionUpdate"
-                            placeholder="{{'ADDEDIT_DESCRIPTION' | translate}}">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div ng-switch-when="BasicSelect">
-                <!--  basic selects -->
-                <div class="panel panel-default">
-                  <div class="panel-body">
-                    <div class="row">
-                      <div class="col-md-12">
-                        <h5 class="greyText">
-                          <i class="fa fa-eye"></i>
-                          &nbsp;
-                          {{'PREVIEW_TAB' | translate}} :
-                        </h5>
-                      </div>
-                    </div>
-                    <hr/>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <label
-                            for="basicSelect"
-                            class="control-label textControlLabel">
-                            {{editControlModCtrl.nyaSelect.temporyConfig.formlyLabel}}
-                            <span
-                              ng-if="editControlModCtrl.nyaSelect.temporyConfig.formlyRequired"
-                              class="textControlLabel">
-                              *
-                            </span>
-                          </label>
-                          <div class="">
-                            <ol
-                              class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
-                              ng-model="editControlModCtrl.modelbasicSelect"
-                              id="basicSelect"
-                              disabled="editControlModCtrl.basicSelectRowCollection.rows.length === 0">
-                              <li
-                                class="nya-bs-option"
-                                nya-bs-option="basicSelectRow in editControlModCtrl.basicSelectRowCollection.rows"
-                                value="$index">
-                                <a>
-                                  {{basicSelectRow.option}}
-                                </a>
-                              </li>
-                            </ol>
-                            <p class="help-block">
-                              {{editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption}}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="panel panel-default">
-                  <div class="panel-body">
-                    <div class="row">
-                      <div class="col-md-12">
-                        <h5 class="greyText">
-                          <i class="fa fa-pencil-square-o"></i>
-                          &nbsp;
-                          {{'EDIT_PROPERTIES' | translate}} :
-                        </h5>
-                      </div>
-                    </div>
-                    <hr/>
-                    <div class="row">
-                      <div class="col-lg-3 col-md-3">
-                        <label
-                          for="basicSelectRowCollection"
-                          class=" control-label greyText editPropertiesLabel">
-                          {{'ADD_NEW_OPTIONS' | translate}} :
-                        </label>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div>
-                        <div class="form-group">
-                          <div class="col-sm-9 col-xs-9 col-md-9 col-lg-9">
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="inputAddNewBasicOption"
-                            placeholder="{{'ADD_A_NEW_OPTION' | translate}}"
-                            ng-model="editControlModCtrl.newOptionBasicSelect.saisie">
-                          </div>
-                          <div class="col-sm-3 col-xs-3 col-md-3 col-lg-3">
+                  <table
+                    ng-if="editControlModCtrl.radioRowCollection.rows.length > 0"
+                    class="table table-striped">
+                    <thead>
+                    <tr>
+                      <th st-ratio="20">
+                        {{'ORDER' | translate}}
+                      </th>
+                      <th st-ratio="55">
+                        {{'OPTION' | translate}}
+                      </th>
+                      <th st-ratio="25">
+                      </th>
+                    </tr>
+                    <tr>
+                      <th st-ratio="20">
+                      </th>
+                      <th st-ratio="55">
+                        <input
+                          ng-model="editControlModCtrl.radioFilter"
+                          placeholder="{{'SEARCH_4_OPTION' | translate}}"
+                          class="input-sm form-control"
+                          type="search"
+                        />
+                      </th>
+                      <th st-ratio="25">
+                      </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="radioRow in editControlModCtrl.radioRowCollection.rows | filter:radioFilter as radioRow">
+                        <td st-ratio="20">
+                          {{$index}}
+                        </td>
+                        <td st-ratio="55">
+                          {{radioRow.option}}
+                        </td>
+                        <td st-ratio="25">
+                          <div class="pull-right">
                             <button
                               class="btn btn-primary"
-                              ng-click="editControlModCtrl.addNewOptionBasicSelect()">
-                              {{'ADD' | translate}}
+                              ng-click="editControlModCtrl.upThisRadioRow($index)">
+                              <i class="fa fa-arrow-up"></i>
+                            </button>
+                            <button
+                              class="btn btn-primary"
+                              ng-click="editControlModCtrl.downThisRadioRow($index)">
+                              <i class="fa fa-arrow-down"></i>
+                            </button>
+                            <button
+                              class="btn btn-danger"
+                              ng-click="editControlModCtrl.removeRadioRow($index)">
+                              <i class="fa fa-trash-o"></i>
                             </button>
                           </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-lg-3 col-md-3">
-                        <label class=" control-label greyText editPropertiesLabel">
-                          {{'EDIT_REMOVE_OPTIONS' | translate}} :
-                        </label>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="form-group">
-                        <div class-"col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                          <div class="container">
-                            <div ng-if="editControlModCtrl.basicSelectRowCollection.rows.length === 0">
-                              <h5 class="text-center greyText">
-                                <em>
-                                  - {{'NO_OPTION_ADD_NEW' | translate}} -
-                                </em>
-                              </h5>
-                            </div>
-                            <table
-                              ng-if="editControlModCtrl.basicSelectRowCollection.rows.length > 0"
-                              class="table table-striped">
-                              <thead>
-                                <tr>
-                                  <th st-ratio="20">
-                                    {{'ORDER' | translate}}
-                                  </th>
-                                  <th st-ratio="55">
-                                    {{'OPTION' | translate}}
-                                  </th>
-                                  <th st-ratio="25">
-                                  </th>
-                                </tr>
-                                <tr>
-                                  <th st-ratio="20">
-                                  </th>
-                                  <th st-ratio="55">
-                                    <input
-                                      ng-model="basicSelectFilter"
-                                      placeholder="{{'SEARCH_4_OPTION' | translate}}"
-                                      class="input-sm form-control"
-                                      type="search"
-                                    />
-                                  </th>
-                                  <th st-ratio="25">
-                                  </th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr ng-repeat="basicSelectRow in editControlModCtrl.basicSelectRowCollection.rows | filter:basicSelectFilter as basicSelectRow">
-                                    <td st-ratio="20">
-                                      {{$index}}
-                                    </td>
-                                    <td st-ratio="55">
-                                      {{basicSelectRow.option}}
-                                    </td>
-                                    <td st-ratio="25">
-                                      <div class="pull-right">
-                                        <button
-                                          class="btn btn-primary"
-                                          ng-click="editControlModCtrl.upThisRow($index)">
-                                          <i class="fa fa-arrow-up"></i>
-                                        </button>
-                                        <button
-                                          class="btn btn-primary"
-                                          ng-click="editControlModCtrl.downThisRow($index)">
-                                          <i class="fa fa-arrow-down"></i>
-                                        </button>
-                                        <button
-                                          class="btn btn-danger"
-                                          ng-click="editControlModCtrl.removeRow($index)">
-                                          <i class="fa fa-trash-o"></i>
-                                        </button>
-                                      </div>
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <hr/>
-                      <div class="row">
-                        <div class="form-group">
-                          <label
-                            for="inputTextLabelUpdate"
-                            class="col-lg-3 control-label greyText editPropertiesLabel">
-                            {{'LABEL_TEXT' | translate}} :
-                          </label>
-                          <div class="col-lg-9">
-                            <input
-                              type="text"
-                              class="form-control"
-                              ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyLabel"
-                              id="inputTextLabelUpdate"
-                              placeholder="{{'ADD_EDIT_LABEL_HERE' | translate}}">
-                          </div>
-                        </div>
-                      </div>
-                      <div class="marginTopFivepixels"></div>
-                      <div class="row">
-                        <div class="form-group">
-                          <label
-                            for="inputTextRequiredUpdate"
-                            class="col-lg-3 control-label greyText editPropertiesLabel">
-                            Required :
-                          </label>
-                          <div class="col-lg-9">
-                            <div class="checkboxCssCorrection">
-                              &nbsp;
-                            </div>
-                            <input
-                              type="checkbox"
-                              ng-model="nyaSelect.temporyConfig.formlyRequired"
-                              id="inputTextRequiredUpdate">
-                          </div>
-                        </div>
-                      </div>
-                      <div class="marginTopFivepixels"></div>
-                      <div class="row">
-                        <div class="form-group">
-                          <label
-                            for="inputTextDescriptionUpdate"
-                            class="col-lg-3 control-label greyText editPropertiesLabel">
-                            {{'DESCRIPTION' | translate}} :
-                          </label>
-                          <div class="col-lg-9">
-                            <input
-                              type="text"
-                              class="form-control"
-                              ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption" id="inputTextDescriptionUpdate"
-                              placeholder="{{'ADDEDIT_DESCRIPTION' | translate}}">
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
-                <!-- grouped selects -->
-                <div ng-switch-when="GroupedSelect">
-                  <div class="panel panel-default">
-                    <div class="panel-body">
-                      <div class="row">
-                        <div class="col-md-12">
-                          <h5
-                            class="greyText">
-                            <i class="fa fa-eye"></i>
-                            &nbsp;
-                            {{'PREVIEW_TAB' | translate}} :
-                          </h5>
-                        </div>
-                      </div>
-                      <hr/>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label
-                              for="select"
-                              class="control-label textControlLabel">
-                              {{editControlModCtrl.nyaSelect.temporyConfig.formlyLabel}}
-                              <span
-                                ng-if="editControlModCtrl.nyaSelect.temporyConfig.formlyRequired"
-                                class="textControlLabel">
-                                *
-                              </span>
-                            </label>
-                            <div class="">
-                              <ol
-                                class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
-                                ng-model="modelGroupedSelect"
-                                data-live-search="true"
-                                disabled="editControlModCtrl.groupedSelectRowCollection.rows.length === 0">
-                                <li
-                                  nya-bs-option="groupedSelectRow in editControlModCtrl.groupedSelectRowCollection.rows group by groupedSelectRow.group"
-                                  value="$index">
-                                  <span class="dropdown-header">
-                                    {{groupedSelectRow.group}}
-                                  </span>
-                                  <a>
-                                    <span>
-                                      {{groupedSelectRow.option}}
-                                    </span>
-                                    <span class="glyphicon glyphicon-ok check-mark">
-                                    </span>
-                                  </a>
+              </div>
+            </div>
+          </div>
+          <hr/>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="form-group">
+              <label
+                for="inputTextLabelUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">{{'LABEL_TEXT' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <input
+                  type="text"
+                  class="form-control"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyLabel"
+                  id="inputTextLabelUpdate"
+                  placeholder="{{'ADD_EDIT_LABEL_HERE' | translate}}">
+              </div>
+            </div>
+          </div>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="form-group">
+              <label
+                for="inputTextRequiredUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">{{'REQUIRED' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <div class="checkboxCssCorrection">
+                  &nbsp;
+                </div>
+                <input
+                  type="checkbox"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyRequired"
+                  id="inputTextRequiredUpdate">
+              </div>
+            </div>
+          </div>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="form-group">
+              <label
+                for="inputTextDescriptionUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">{{'DESCRIPTION' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <input
+                  type="text"
+                  class="form-control"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption"
+                  id="inputTextDescriptionUpdate"
+                  placeholder="{{'ADDEDIT_DESCRIPTION' | translate}}">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- checkbox -->
+    <div ng-switch-when="Checkbox">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12">
+              <h5 class="greyText">
+                <i class="fa fa-eye"></i>
+                &nbsp;
+                {{'PREVIEW_TAB' | translate}} :
+              </h5>
+            </div>
+          </div>
+          <hr/>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <div class="col-md-12">
+                  <div class="checkbox">
+                    <label>
+                      <input
+                        type="checkbox"
+                        id="checkBox">
+                      <span class="blackText">
+                        {{editControlModCtrl.nyaSelect.temporyConfig.formlyLabel}}
+                      </span>
+                      <span
+                        ng-if="editControlModCtrl.nyaSelect.temporyConfig.formlyRequired"
+                        class="textControlLabel">
+                        *
+                      </span>
+                    </label>
+                  </div>
+                  <p class="help-block">
+                    {{editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption}}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12">
+              <h5 class="greyText">
+                <i class="fa fa-pencil-square-o"></i>
+                &nbsp;
+                {{'EDIT_PROPERTIES' | translate}} :
+              </h5>
+            </div>
+          </div>
+          <hr/>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="form-group">
+              <label
+                for="inputCheckboxParentIdUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'PARENT_ID' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <ol
+                  class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.parentId"
+                  id="inputCheckboxParentIdUpdate"
+                  data-live-search="true"
+                  title="No value">
+                  <li nya-bs-option="column in editControlModCtrl.columns">
+                    <a>
+                      <span>
+                        {{ column.name }}
+                      </span>
+                      <span class="glyphicon glyphicon-ok check-mark"></span>
+                    </a>
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="form-group">
+              <label
+                for="inputTextLabelUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'LABEL_TEXT' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <input
+                  type="text"
+                  class="form-control"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyLabel"
+                  id="inputTextLabelUpdate"
+                  placeholder="{{'ADD_EDIT_LABEL_HERE' | translate}}">
+              </div>
+            </div>
+          </div>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="form-group">
+              <label
+                for="inputTextRequiredUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'REQUIRED' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <div class="checkboxCssCorrection">&nbsp;</div>
+                <input
+                  type="checkbox"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyRequired" id="inputTextRequiredUpdate">
+              </div>
+            </div>
+          </div>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="form-group">
+              <label
+                for="inputTextDescriptionUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'DESCRIPTION' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <input
+                  type="text"
+                  class="form-control"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption"
+                  id="inputTextDescriptionUpdate"
+                  placeholder="{{'ADDEDIT_DESCRIPTION' | translate}}">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--  basic selects -->
+    <div ng-switch-when="BasicSelect">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12">
+              <h5 class="greyText">
+                <i class="fa fa-eye"></i>
+                &nbsp;
+                {{'PREVIEW_TAB' | translate}} :
+              </h5>
+            </div>
+          </div>
+          <hr/>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label
+                  for="basicSelect"
+                  class="control-label textControlLabel">
+                  {{editControlModCtrl.nyaSelect.temporyConfig.formlyLabel}}
+                  <span
+                    ng-if="editControlModCtrl.nyaSelect.temporyConfig.formlyRequired"
+                    class="textControlLabel">
+                    *
+                  </span>
+                </label>
+                <div class="">
+                  <ol
+                    class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
+                    ng-model="editControlModCtrl.modelbasicSelect"
+                    id="basicSelect"
+                    disabled="editControlModCtrl.basicSelectRowCollection.rows.length === 0">
+                    <li
+                      class="nya-bs-option"
+                      nya-bs-option="basicSelectRow in editControlModCtrl.basicSelectRowCollection.rows"
+                      value="$index">
+                      <a>
+                        {{basicSelectRow.option}}
+                      </a>
+                    </li>
+                  </ol>
+                  <p class="help-block">
+                    {{editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption}}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12">
+              <h5 class="greyText">
+                <i class="fa fa-pencil-square-o"></i>
+                &nbsp;
+                {{'EDIT_PROPERTIES' | translate}} :
+              </h5>
+            </div>
+          </div>
+          <hr/>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="form-group">
+              <label
+                for="basicSelectParentIdUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'PARENT_ID' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <ol
+                  class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.parentId"
+                  id="basicSelectParentIdUpdate"
+                  data-live-search="true"
+                  title="No value">
+                  <li nya-bs-option="column in editControlModCtrl.columns">
+                    <a>
+                      <span>
+                        {{ column.name }}
+                      </span>
+                      <span class="glyphicon glyphicon-ok check-mark"></span>
+                    </a>
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="col-lg-3 col-md-3">
+              <label
+                for="basicSelectRowCollection"
+                class=" control-label greyText editPropertiesLabel">
+                {{'ADD_NEW_OPTIONS' | translate}} :
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div>
+              <div class="form-group">
+                <div class="col-sm-9 col-xs-9 col-md-9 col-lg-9">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputAddNewBasicOption"
+                  placeholder="{{'ADD_A_NEW_OPTION' | translate}}"
+                  ng-model="editControlModCtrl.newOptionBasicSelect.saisie">
+                </div>
+                <div class="col-sm-3 col-xs-3 col-md-3 col-lg-3">
+                  <button
+                    class="btn btn-primary"
+                    ng-click="editControlModCtrl.addNewOptionBasicSelect()">
+                    {{'ADD' | translate}}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-3 col-md-3">
+              <label class=" control-label greyText editPropertiesLabel">
+                {{'EDIT_REMOVE_OPTIONS' | translate}} :
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group">
+              <div class-"col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="container">
+                  <div ng-if="editControlModCtrl.basicSelectRowCollection.rows.length === 0">
+                    <h5 class="text-center greyText">
+                      <em>
+                        - {{'NO_OPTION_ADD_NEW' | translate}} -
+                      </em>
+                    </h5>
+                  </div>
+                  <table
+                    ng-if="editControlModCtrl.basicSelectRowCollection.rows.length > 0"
+                    class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th st-ratio="20">
+                          {{'ORDER' | translate}}
+                        </th>
+                        <th st-ratio="55">
+                          {{'OPTION' | translate}}
+                        </th>
+                        <th st-ratio="25">
+                        </th>
+                      </tr>
+                      <tr>
+                        <th st-ratio="20">
+                        </th>
+                        <th st-ratio="55">
+                          <input
+                            ng-model="basicSelectFilter"
+                            placeholder="{{'SEARCH_4_OPTION' | translate}}"
+                            class="input-sm form-control"
+                            type="search"
+                          />
+                        </th>
+                        <th st-ratio="25">
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="basicSelectRow in editControlModCtrl.basicSelectRowCollection.rows | filter:basicSelectFilter as basicSelectRow">
+                        <td st-ratio="20">
+                          {{$index}}
+                        </td>
+                        <td st-ratio="55">
+                          {{basicSelectRow.option}}
+                        </td>
+                        <td st-ratio="25">
+                          <div class="pull-right">
+                            <button
+                              class="btn btn-primary"
+                              ng-click="editControlModCtrl.upThisRow($index)">
+                              <i class="fa fa-arrow-up"></i>
+                            </button>
+                            <button
+                              class="btn btn-primary"
+                              ng-click="editControlModCtrl.downThisRow($index)">
+                              <i class="fa fa-arrow-down"></i>
+                            </button>
+                            <button
+                              class="btn btn-danger"
+                              ng-click="editControlModCtrl.removeRow($index)">
+                              <i class="fa fa-trash-o"></i>
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr/>
+          <div class="row">
+            <div class="form-group">
+              <label
+                for="inputTextLabelUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'LABEL_TEXT' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <input
+                  type="text"
+                  class="form-control"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyLabel"
+                  id="inputTextLabelUpdate"
+                  placeholder="{{'ADD_EDIT_LABEL_HERE' | translate}}">
+              </div>
+            </div>
+          </div>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="form-group">
+              <label
+                for="inputTextRequiredUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                Required :
+              </label>
+              <div class="col-lg-9">
+                <div class="checkboxCssCorrection">
+                  &nbsp;
+                </div>
+                <input
+                  type="checkbox"
+                  ng-model="nyaSelect.temporyConfig.formlyRequired"
+                  id="inputTextRequiredUpdate">
+              </div>
+            </div>
+          </div>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="form-group">
+              <label
+                for="inputTextDescriptionUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'DESCRIPTION' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <input
+                  type="text"
+                  class="form-control"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption" id="inputTextDescriptionUpdate"
+                  placeholder="{{'ADDEDIT_DESCRIPTION' | translate}}">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- grouped selects -->
+    <div ng-switch-when="GroupedSelect">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12">
+              <h5
+                class="greyText">
+                <i class="fa fa-eye"></i>
+                &nbsp;
+                {{'PREVIEW_TAB' | translate}} :
+              </h5>
+            </div>
+          </div>
+          <hr/>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label
+                  for="select"
+                  class="control-label textControlLabel">
+                  {{editControlModCtrl.nyaSelect.temporyConfig.formlyLabel}}
+                  <span
+                    ng-if="editControlModCtrl.nyaSelect.temporyConfig.formlyRequired"
+                    class="textControlLabel">
+                    *
+                  </span>
+                </label>
+                <div class="">
+                  <ol
+                    class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
+                    ng-model="modelGroupedSelect"
+                    data-live-search="true"
+                    disabled="editControlModCtrl.groupedSelectRowCollection.rows.length === 0">
+                    <li
+                      nya-bs-option="groupedSelectRow in editControlModCtrl.groupedSelectRowCollection.rows group by groupedSelectRow.group"
+                      value="$index">
+                      <span class="dropdown-header">
+                        {{groupedSelectRow.group}}
+                      </span>
+                      <a>
+                        <span>
+                          {{groupedSelectRow.option}}
+                        </span>
+                        <span class="glyphicon glyphicon-ok check-mark">
+                        </span>
+                      </a>
+                    </li>
+                  </ol>
+                  <p class="help-block">
+                    {{editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption}}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12">
+              <h5
+                class="greyText">
+                <i class="fa fa-pencil-square-o"></i>
+                &nbsp;
+                {{'EDIT_PROPERTIES' | translate}} :
+              </h5>
+            </div>
+          </div>
+          <hr/>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="form-group">
+              <label
+                for="groupedSelectParentIdUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'PARENT_ID' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <ol
+                  class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.parentId"
+                  id="groupedSelectParentIdUpdate"
+                  data-live-search="true"
+                  title="No value">
+                  <li nya-bs-option="column in editControlModCtrl.columns">
+                    <a>
+                      <span>
+                        {{ column.name }}
+                      </span>
+                      <span class="glyphicon glyphicon-ok check-mark"></span>
+                    </a>
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="col-lg-3 col-md-3">
+              <label
+                for="groupedSelectRowCollection"
+                class=" control-label greyText editPropertiesLabel">
+                {{'ADD_NEW_OPTIONS' | translate}} :
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div>
+              <div class="form-group">
+                <div class="col-sm-9 col-xs-9 col-md-9 col-lg-9">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputAddNewGroupedOption"
+                    placeholder="{{'ADD_A_NEW_OPTION' | translate}}"
+                    ng-model="editControlModCtrl.newOptionGroupedSelect.saisie">
+                </div>
+                <div class="col-sm-3 col-xs-3 col-md-3 col-lg-3">
+                  <button
+                    class="btn btn-primary"
+                    ng-click="editControlModCtrl.addNewOptionGroupedSelect()">
+                    {{'ADD' | translate}}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-3 col-md-3">
+              <label
+                for="groupedSelectRowCollection"
+                class=" control-label greyText editPropertiesLabel">
+                {{'ADD_NEW_GROUPS' | translate}} :
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div>
+              <div class="form-group">
+                <div class="col-sm-9 col-xs-9 col-md-9 col-lg-9">
+                  <input
+                    id="inputAddNewGroupGroupedOption"
+                    type="text"
+                    class="form-control"
+                    ng-model="editControlModCtrl.newGroupGroupedSelect.saisie" id="inputTextLabelUpdateGroupedSelect"
+                    placeholder="{{'ADD_A_NEW_GROUP' | translate}}">
+                </div>
+                <div class="col-sm-3 col-xs-3 col-md-3 col-lg-3">
+                  <button
+                    class="btn btn-primary"
+                    ng-click="editControlModCtrl.addNewGroupToGroupedSelect()">
+                    {{'ADD' | translate}}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-3 col-md-3">
+              <label  class=" control-label greyText editPropertiesLabel">
+                {{'EDIT_GROUPS_OPTIONS' | translate}} :
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="container">
+                  <div ng-if="editControlModCtrl.groupedSelectRowCollection.rows.length === 0">
+                    <h5 class="text-center greyText">
+                      <em>
+                        - {{'NO_OPTION_ADD_NEW' | translate}} -
+                      </em>
+                    </h5>
+                  </div>
+                  <table
+                    ng-if="editControlModCtrl.groupedSelectRowCollection.rows.length > 0"
+                    class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th st-ratio="20">
+                          {{'ORDER' | translate}}
+                        </th>
+                        <th st-ratio="25">
+                          {{'GROUP' | translate}}
+                        </th>
+                        <th st-ratio="30">
+                          {{'OPTION' | translate}}
+                        </th>
+                        <th st-ratio="25">
+                        </th>
+                      </tr>
+                      <tr>
+                        <th st-ratio="20">
+                        </th>
+                        <th st-ratio="25">
+                        </th>
+                        <th st-ratio="30">
+                          <input
+                            ng-model="editControlModCtrl.groupedSelectFilter"
+                            placeholder="{{'SEARCH_4_OPTION' | translate}}"
+                            class="input-sm form-control"
+                            type="search"
+                          />
+                        </th>
+                        <th st-ratio="25">
+                        </th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr ng-repeat="groupedSelectRow in editControlModCtrl.groupedSelectRowCollection.rows | filter:editControlModCtrl.groupedSelectFilter as groupedSelectRow">
+                        <td st-ratio="20">
+                          {{$index}}
+                        </td>
+                        <td st-ratio="25">
+                          <div ng-if="editControlModCtrl.groupSelectGroupClick.showList === true">
+                            <div ng-if="editControlModCtrl.GroupedSelectGroups.list.length === 0">
+                              <p class="text-left noGroupText">- {{'NO_GROUP_ADD_NEW' | translate}} -</p>
+                            </div>
+                            <div ng-if="editControlModCtrl.GroupedSelectGroups.list.length > 0">
+                              <ol class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12 editGroupedSelectnyaSelect" ng-model="groupedSelectRow.group" id="modelGroupedOptionGroupedChoose"
+                              disabled="editControlModCtrl.GroupedSelectGroups.list.length === 0">
+                                <li class="nya-bs-option" nya-bs-option="GroupedSelectGroup in editControlModCtrl.GroupedSelectGroups.list" value="GroupedSelectGroup">
+                                  <a>{{GroupedSelectGroup}}</a>
                                 </li>
                               </ol>
-                              <p class="help-block">
-                                {{editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption}}
-                              </p>
                             </div>
                           </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="panel panel-default">
-                    <div class="panel-body">
-                      <div class="row">
-                        <div class="col-md-12">
-                          <h5
-                            class="greyText">
-                            <i class="fa fa-pencil-square-o"></i>
-                            &nbsp;
-                            {{'EDIT_PROPERTIES' | translate}} :
-                          </h5>
-                        </div>
-                      </div>
-                      <hr/>
-                      <div class="row">
-                        <div class="col-lg-3 col-md-3">
-                          <label
-                            for="groupedSelectRowCollection"
-                            class=" control-label greyText editPropertiesLabel">
-                            {{'ADD_NEW_OPTIONS' | translate}} :
-                          </label>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div>
-                          <div class="form-group">
-                            <div class="col-sm-9 col-xs-9 col-md-9 col-lg-9">
-                              <input
-                                type="text"
-                                class="form-control"
-                                id="inputAddNewGroupedOption"
-                                placeholder="{{'ADD_A_NEW_OPTION' | translate}}"
-                                ng-model="editControlModCtrl.newOptionGroupedSelect.saisie">
-                            </div>
-                            <div class="col-sm-3 col-xs-3 col-md-3 col-lg-3">
-                              <button
-                                class="btn btn-primary"
-                                ng-click="editControlModCtrl.addNewOptionGroupedSelect()">
-                                {{'ADD' | translate}}
-                              </button>
-                            </div>
+                          <div ng-if="editControlModCtrl.groupSelectGroupClick.showList === false">
+                            {{groupedSelectRow.group}}
                           </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-lg-3 col-md-3">
-                          <label
-                            for="groupedSelectRowCollection"
-                            class=" control-label greyText editPropertiesLabel">
-                            {{'ADD_NEW_GROUPS' | translate}} :
-                          </label>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div>
-                          <div class="form-group">
-                            <div class="col-sm-9 col-xs-9 col-md-9 col-lg-9">
-                              <input
-                                id="inputAddNewGroupGroupedOption"
-                                type="text"
-                                class="form-control"
-                                ng-model="editControlModCtrl.newGroupGroupedSelect.saisie" id="inputTextLabelUpdateGroupedSelect"
-                                placeholder="{{'ADD_A_NEW_GROUP' | translate}}">
-                            </div>
-                            <div class="col-sm-3 col-xs-3 col-md-3 col-lg-3">
-                              <button
-                                class="btn btn-primary"
-                                ng-click="editControlModCtrl.addNewGroupToGroupedSelect()">
-                                {{'ADD' | translate}}
-                              </button>
-                            </div>
+                        </td>
+                        <td st-ratio="30">
+                          {{groupedSelectRow.option}}
+                        </td>
+                        <td st-ratio="25">
+                          <div class="pull-right">
+                            <button
+                              class="btn btn-primary"
+                              ng-click="editControlModCtrl.upThisGroupedSelectRow($index)">
+                              <i class="fa fa-arrow-up"></i>
+                            </button>
+                            <button
+                              class="btn btn-primary"
+                              ng-click="editControlModCtrl.downThisGroupedSelectRow($index)">
+                              <i class="fa fa-arrow-down"></i>
+                            </button>
+                            <button
+                              class="btn btn-warning"
+                              ng-click="editControlModCtrl.showGroupListToChoose()">
+                              <i class="fa fa-pencil-square-o"></i>
+                            </button>
+                            <button
+                              class="btn btn-danger"
+                              ng-click="editControlModCtrl.removeGroupedSelectRow($index)">
+                              <i class="fa fa-trash-o"></i>
+                            </button>
                           </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-lg-3 col-md-3">
-                          <label  class=" control-label greyText editPropertiesLabel">
-                            {{'EDIT_GROUPS_OPTIONS' | translate}} :
-                          </label>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="form-group">
-                          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="container">
-                              <div ng-if="editControlModCtrl.groupedSelectRowCollection.rows.length === 0">
-                                <h5 class="text-center greyText">
-                                  <em>
-                                    - {{'NO_OPTION_ADD_NEW' | translate}} -
-                                  </em>
-                                </h5>
-                              </div>
-                              <table
-                                ng-if="editControlModCtrl.groupedSelectRowCollection.rows.length > 0"
-                                class="table table-striped">
-                                <thead>
-                                  <tr>
-                                    <th st-ratio="20">
-                                      {{'ORDER' | translate}}
-                                    </th>
-                                    <th st-ratio="25">
-                                      {{'GROUP' | translate}}
-                                    </th>
-                                    <th st-ratio="30">
-                                      {{'OPTION' | translate}}
-                                    </th>
-                                    <th st-ratio="25">
-                                    </th>
-                                  </tr>
-                                  <tr>
-                                    <th st-ratio="20">
-                                    </th>
-                                    <th st-ratio="25">
-                                    </th>
-                                    <th st-ratio="30">
-                                      <input
-                                        ng-model="editControlModCtrl.groupedSelectFilter"
-                                        placeholder="{{'SEARCH_4_OPTION' | translate}}"
-                                        class="input-sm form-control"
-                                        type="search"
-                                      />
-                                    </th>
-                                    <th st-ratio="25">
-                                    </th>
-                                  </tr>
-                                  </thead>
-                                  <tbody>
-                                  <tr ng-repeat="groupedSelectRow in editControlModCtrl.groupedSelectRowCollection.rows | filter:editControlModCtrl.groupedSelectFilter as groupedSelectRow">
-                                    <td st-ratio="20">
-                                      {{$index}}
-                                    </td>
-                                    <td st-ratio="25">
-                                      <div ng-if="editControlModCtrl.groupSelectGroupClick.showList === true">
-                                        <div ng-if="editControlModCtrl.GroupedSelectGroups.list.length === 0">
-                                          <p class="text-left noGroupText">- {{'NO_GROUP_ADD_NEW' | translate}} -</p>
-                                        </div>
-                                        <div ng-if="editControlModCtrl.GroupedSelectGroups.list.length > 0">
-                                          <ol class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12 editGroupedSelectnyaSelect" ng-model="groupedSelectRow.group" id="modelGroupedOptionGroupedChoose"
-                                          disabled="editControlModCtrl.GroupedSelectGroups.list.length === 0">
-                                            <li class="nya-bs-option" nya-bs-option="GroupedSelectGroup in editControlModCtrl.GroupedSelectGroups.list" value="GroupedSelectGroup">
-                                              <a>{{GroupedSelectGroup}}</a>
-                                            </li>
-                                          </ol>
-                                        </div>
-                                      </div>
-                                      <div ng-if="editControlModCtrl.groupSelectGroupClick.showList === false">
-                                        {{groupedSelectRow.group}}
-                                      </div>
-                                    </td>
-                                    <td st-ratio="30">
-                                      {{groupedSelectRow.option}}
-                                    </td>
-                                    <td st-ratio="25">
-                                      <div class="pull-right">
-                                        <button
-                                          class="btn btn-primary"
-                                          ng-click="editControlModCtrl.upThisGroupedSelectRow($index)">
-                                          <i class="fa fa-arrow-up"></i>
-                                        </button>
-                                        <button
-                                          class="btn btn-primary"
-                                          ng-click="editControlModCtrl.downThisGroupedSelectRow($index)">
-                                          <i class="fa fa-arrow-down"></i>
-                                        </button>
-                                        <button
-                                          class="btn btn-warning"
-                                          ng-click="editControlModCtrl.showGroupListToChoose()">
-                                          <i class="fa fa-pencil-square-o"></i>
-                                        </button>
-                                        <button
-                                          class="btn btn-danger"
-                                          ng-click="editControlModCtrl.removeGroupedSelectRow($index)">
-                                          <i class="fa fa-trash-o"></i>
-                                        </button>
-                                      </div>
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    <hr/>
-                    <div class="row">
-                      <div class="form-group">
-                        <label
-                          for="inputTextLabelUpdate"
-                          class="col-lg-3 control-label greyText editPropertiesLabel">
-                          {{'LABEL_TEXT' | translate}} :
-                        </label>
-                        <div class="col-lg-9">
-                          <input
-                            type="text"
-                            class="form-control"
-                            ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyLabel"
-                            id="inputTextLabelUpdate"
-                            placeholder="{{'ADD_EDIT_LABEL_HERE' | translate}}">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="marginTopFivepixels"></div>
-                    <div class="marginTopFivepixels"></div>
-                    <div class="row">
-                      <div class="form-group">
-                        <label
-                          for="inputTextDescriptionUpdate"
-                          class="col-lg-3 control-label greyText editPropertiesLabel">
-                          {{'DESCRIPTION' | translate}} :
-                        </label>
-                        <div class="col-lg-9">
-                          <input
-                            type="text"
-                            class="form-control"
-                            ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption"
-                            id="inputTextDescriptionUpdate"
-                            placeholder="{{'ADDEDIT_DESCRIPTION' | translate}}">
-                      </div>
-                    </div>
-                  </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
+              </div>
+            </div>
+          </div>
+          <hr/>
+          <div class="row">
+            <div class="form-group">
+              <label
+                for="inputTextLabelUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'LABEL_TEXT' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <input
+                  type="text"
+                  class="form-control"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyLabel"
+                  id="inputTextLabelUpdate"
+                  placeholder="{{'ADD_EDIT_LABEL_HERE' | translate}}">
+              </div>
+            </div>
+          </div>
+          <div class="marginTopFivepixels"></div>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="form-group">
+              <label
+                for="inputTextDescriptionUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'DESCRIPTION' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <input
+                  type="text"
+                  class="form-control"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption"
+                  id="inputTextDescriptionUpdate"
+                  placeholder="{{'ADDEDIT_DESCRIPTION' | translate}}">
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

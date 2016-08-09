@@ -1,8 +1,7 @@
-!function(e){function r(e,r,o){return 4===arguments.length?t.apply(this,arguments):void n(e,{declarative:!0,deps:r,declare:o})}function t(e,r,t,o){n(e,{declarative:!1,deps:r,executingRequire:t,execute:o})}function n(e,r){r.name=e,e in p||(p[e]=r),r.normalizedDeps=r.deps}function o(e,r){if(r[e.groupIndex]=r[e.groupIndex]||[],-1==v.call(r[e.groupIndex],e)){r[e.groupIndex].push(e);for(var t=0,n=e.normalizedDeps.length;n>t;t++){var a=e.normalizedDeps[t],u=p[a];if(u&&!u.evaluated){var d=e.groupIndex+(u.declarative!=e.declarative);if(void 0===u.groupIndex||u.groupIndex<d){if(void 0!==u.groupIndex&&(r[u.groupIndex].splice(v.call(r[u.groupIndex],u),1),0==r[u.groupIndex].length))throw new TypeError("Mixed dependency cycle detected");u.groupIndex=d}o(u,r)}}}}function a(e){var r=p[e];r.groupIndex=0;var t=[];o(r,t);for(var n=!!r.declarative==t.length%2,a=t.length-1;a>=0;a--){for(var u=t[a],i=0;i<u.length;i++){var s=u[i];n?d(s):l(s)}n=!n}}function u(e){return x[e]||(x[e]={name:e,dependencies:[],exports:{},importers:[]})}function d(r){if(!r.module){var t=r.module=u(r.name),n=r.module.exports,o=r.declare.call(e,function(e,r){if(t.locked=!0,"object"==typeof e)for(var o in e)n[o]=e[o];else n[e]=r;for(var a=0,u=t.importers.length;u>a;a++){var d=t.importers[a];if(!d.locked)for(var i=0;i<d.dependencies.length;++i)d.dependencies[i]===t&&d.setters[i](n)}return t.locked=!1,r},r.name);t.setters=o.setters,t.execute=o.execute;for(var a=0,i=r.normalizedDeps.length;i>a;a++){var l,s=r.normalizedDeps[a],c=p[s],v=x[s];v?l=v.exports:c&&!c.declarative?l=c.esModule:c?(d(c),v=c.module,l=v.exports):l=f(s),v&&v.importers?(v.importers.push(t),t.dependencies.push(v)):t.dependencies.push(null),t.setters[a]&&t.setters[a](l)}}}function i(e){var r,t=p[e];if(t)t.declarative?c(e,[]):t.evaluated||l(t),r=t.module.exports;else if(r=f(e),!r)throw new Error("Unable to load dependency "+e+".");return(!t||t.declarative)&&r&&r.__useDefault?r["default"]:r}function l(r){if(!r.module){var t={},n=r.module={exports:t,id:r.name};if(!r.executingRequire)for(var o=0,a=r.normalizedDeps.length;a>o;o++){var u=r.normalizedDeps[o],d=p[u];d&&l(d)}r.evaluated=!0;var c=r.execute.call(e,function(e){for(var t=0,n=r.deps.length;n>t;t++)if(r.deps[t]==e)return i(r.normalizedDeps[t]);throw new TypeError("Module "+e+" not declared as a dependency.")},t,n);c&&(n.exports=c),t=n.exports,t&&t.__esModule?r.esModule=t:r.esModule=s(t)}}function s(r){if(r===e)return r;var t={};if("object"==typeof r||"function"==typeof r)if(g){var n;for(var o in r)(n=Object.getOwnPropertyDescriptor(r,o))&&h(t,o,n)}else{var a=r&&r.hasOwnProperty;for(var o in r)(!a||r.hasOwnProperty(o))&&(t[o]=r[o])}return t["default"]=r,h(t,"__useDefault",{value:!0}),t}function c(r,t){var n=p[r];if(n&&!n.evaluated&&n.declarative){t.push(r);for(var o=0,a=n.normalizedDeps.length;a>o;o++){var u=n.normalizedDeps[o];-1==v.call(t,u)&&(p[u]?c(u,t):f(u))}n.evaluated||(n.evaluated=!0,n.module.execute.call(e))}}function f(e){if(D[e])return D[e];if("@node/"==e.substr(0,6))return y(e.substr(6));var r=p[e];if(!r)throw"Module "+e+" not present.";return a(e),c(e,[]),p[e]=void 0,r.declarative&&h(r.module.exports,"__esModule",{value:!0}),D[e]=r.declarative?r.module.exports:r.esModule}var p={},v=Array.prototype.indexOf||function(e){for(var r=0,t=this.length;t>r;r++)if(this[r]===e)return r;return-1},g=!0;try{Object.getOwnPropertyDescriptor({a:0},"a")}catch(m){g=!1}var h;!function(){try{Object.defineProperty({},"a",{})&&(h=Object.defineProperty)}catch(e){h=function(e,r,t){try{e[r]=t.value||t.get.call(e)}catch(n){}}}}();var x={},y="undefined"!=typeof System&&System._nodeRequire||"undefined"!=typeof require&&require.resolve&&"undefined"!=typeof process&&require,D={"@empty":{}};return function(e,n,o){return function(a){a(function(a){for(var u={_nodeRequire:y,register:r,registerDynamic:t,get:f,set:function(e,r){D[e]=r},newModule:function(e){return e}},d=0;d<n.length;d++)(function(e,r){r&&r.__esModule?D[e]=r:D[e]=s(r)})(n[d],arguments[d]);o(u);var i=f(e[0]);if(e.length>1)for(var d=1;d<e.length;d++)f(e[d]);return i.__useDefault?i["default"]:i})}}}("undefined"!=typeof self?self:global)
+!function(e){function r(e,r,o){return 4===arguments.length?t.apply(this,arguments):void n(e,{declarative:!0,deps:r,declare:o})}function t(e,r,t,o){n(e,{declarative:!1,deps:r,executingRequire:t,execute:o})}function n(e,r){r.name=e,e in v||(v[e]=r),r.normalizedDeps=r.deps}function o(e,r){if(r[e.groupIndex]=r[e.groupIndex]||[],-1==g.call(r[e.groupIndex],e)){r[e.groupIndex].push(e);for(var t=0,n=e.normalizedDeps.length;n>t;t++){var a=e.normalizedDeps[t],u=v[a];if(u&&!u.evaluated){var d=e.groupIndex+(u.declarative!=e.declarative);if(void 0===u.groupIndex||u.groupIndex<d){if(void 0!==u.groupIndex&&(r[u.groupIndex].splice(g.call(r[u.groupIndex],u),1),0==r[u.groupIndex].length))throw new TypeError("Mixed dependency cycle detected");u.groupIndex=d}o(u,r)}}}}function a(e){var r=v[e];r.groupIndex=0;var t=[];o(r,t);for(var n=!!r.declarative==t.length%2,a=t.length-1;a>=0;a--){for(var u=t[a],i=0;i<u.length;i++){var s=u[i];n?d(s):l(s)}n=!n}}function u(e){return y[e]||(y[e]={name:e,dependencies:[],exports:{},importers:[]})}function d(r){if(!r.module){var t=r.module=u(r.name),n=r.module.exports,o=r.declare.call(e,function(e,r){if(t.locked=!0,"object"==typeof e)for(var o in e)n[o]=e[o];else n[e]=r;for(var a=0,u=t.importers.length;u>a;a++){var d=t.importers[a];if(!d.locked)for(var i=0;i<d.dependencies.length;++i)d.dependencies[i]===t&&d.setters[i](n)}return t.locked=!1,r},{id:r.name});t.setters=o.setters,t.execute=o.execute;for(var a=0,i=r.normalizedDeps.length;i>a;a++){var l,s=r.normalizedDeps[a],c=v[s],f=y[s];f?l=f.exports:c&&!c.declarative?l=c.esModule:c?(d(c),f=c.module,l=f.exports):l=p(s),f&&f.importers?(f.importers.push(t),t.dependencies.push(f)):t.dependencies.push(null),t.setters[a]&&t.setters[a](l)}}}function i(e){var r,t=v[e];if(t)t.declarative?f(e,[]):t.evaluated||l(t),r=t.module.exports;else if(r=p(e),!r)throw new Error("Unable to load dependency "+e+".");return(!t||t.declarative)&&r&&r.__useDefault?r["default"]:r}function l(r){if(!r.module){var t={},n=r.module={exports:t,id:r.name};if(!r.executingRequire)for(var o=0,a=r.normalizedDeps.length;a>o;o++){var u=r.normalizedDeps[o],d=v[u];d&&l(d)}r.evaluated=!0;var c=r.execute.call(e,function(e){for(var t=0,n=r.deps.length;n>t;t++)if(r.deps[t]==e)return i(r.normalizedDeps[t]);throw new TypeError("Module "+e+" not declared as a dependency.")},t,n);c&&(n.exports=c),t=n.exports,t&&t.__esModule?r.esModule=t:r.esModule=s(t)}}function s(r){var t={};if(("object"==typeof r||"function"==typeof r)&&r!==e)if(m)for(var n in r)"default"!==n&&c(t,r,n);else{var o=r&&r.hasOwnProperty;for(var n in r)"default"===n||o&&!r.hasOwnProperty(n)||(t[n]=r[n])}return t["default"]=r,x(t,"__useDefault",{value:!0}),t}function c(e,r,t){try{var n;(n=Object.getOwnPropertyDescriptor(r,t))&&x(e,t,n)}catch(o){return e[t]=r[t],!1}}function f(r,t){var n=v[r];if(n&&!n.evaluated&&n.declarative){t.push(r);for(var o=0,a=n.normalizedDeps.length;a>o;o++){var u=n.normalizedDeps[o];-1==g.call(t,u)&&(v[u]?f(u,t):p(u))}n.evaluated||(n.evaluated=!0,n.module.execute.call(e))}}function p(e){if(I[e])return I[e];if("@node/"==e.substr(0,6))return I[e]=s(D(e.substr(6)));var r=v[e];if(!r)throw"Module "+e+" not present.";return a(e),f(e,[]),v[e]=void 0,r.declarative&&x(r.module.exports,"__esModule",{value:!0}),I[e]=r.declarative?r.module.exports:r.esModule}var v={},g=Array.prototype.indexOf||function(e){for(var r=0,t=this.length;t>r;r++)if(this[r]===e)return r;return-1},m=!0;try{Object.getOwnPropertyDescriptor({a:0},"a")}catch(h){m=!1}var x;!function(){try{Object.defineProperty({},"a",{})&&(x=Object.defineProperty)}catch(e){x=function(e,r,t){try{e[r]=t.value||t.get.call(e)}catch(n){}}}}();var y={},D="undefined"!=typeof System&&System._nodeRequire||"undefined"!=typeof require&&require.resolve&&"undefined"!=typeof process&&require,I={"@empty":{}};return function(e,n,o,a){return function(u){u(function(u){for(var d={_nodeRequire:D,register:r,registerDynamic:t,get:p,set:function(e,r){I[e]=r},newModule:function(e){return e}},i=0;i<n.length;i++)(function(e,r){r&&r.__esModule?I[e]=r:I[e]=s(r)})(n[i],arguments[i]);a(d);var l=p(e[0]);if(e.length>1)for(var i=1;i<e.length;i++)p(e[i]);return o?l["default"]:l})}}}("undefined"!=typeof self?self:global)
 
-(["1"], [], function($__System) {
-
-!function(){var t=$__System;if("undefined"!=typeof window&&"undefined"!=typeof document&&window.location)var s=location.protocol+"//"+location.hostname+(location.port?":"+location.port:"");t.set("@@cjs-helpers",t.newModule({getPathVars:function(t){var n,o=t.lastIndexOf("!");n=-1!=o?t.substr(0,o):t;var e=n.split("/");return e.pop(),e=e.join("/"),"file:///"==n.substr(0,8)?(n=n.substr(7),e=e.substr(7),isWindows&&(n=n.substr(1),e=e.substr(1))):s&&n.substr(0,s.length)===s&&(n=n.substr(s.length),e=e.substr(s.length)),{filename:n,dirname:e}}}))}();
+(["1"], [], false, function($__System) {
+var require = this.require, exports = this.exports, module = this.module;
 $__System.register("2", [], function (_export) {
   "use strict";
 
@@ -15,11 +14,10 @@ $__System.register("2", [], function (_export) {
 });
 $__System.registerDynamic("3", [], true, function($__require, exports, module) {
   ;
-  var global = this,
-      __define = global.define;
-  global.define = undefined;
+  var define,
+      global = this || self,
+      GLOBAL = global;
   module.exports = "<div class=\"easyFormViewer\">\n\t\n\t<form \tng-submit=\"vm.onSubmit()\"\n\t\t\t\t\tname=\"vm.form\"> \n\t\t<formly-form \tmodel=\"vm.model\" \n\t\t\t\t\t\t\t\t\tfields=\"vm.fields\" \n\t\t\t\t\t\t\t\t\tform=\"vm.form\"> \n\t\t\t\n\t\t\t<div class=\"pull-right\">\n\t\t\t\t<button type=\"submit\" class=\"btn btn-primary\" \n\t\t\t\t\t\t\t\tng-disabled=\"vm.form.$invalid\"\n\t\t\t\t\t\t\t\tng-click=\"vm.edaSubmitThisDataModel();\">{{vm.submitText}}</button>\n\t\t\t\t<button type=\"button\" class=\"btn btn-primary\" \n\t\t\t\t\t\t\t\tng-click=\"vm.edaCancelEvent();\">{{vm.cancelText}}</button>\t\t\t\t\n\t\t\t</div>\t\t\t\t\t\t\n\n\t\t</formly-form> \n\t</form>\n\n</div>";
-  global.define = __define;
   return module.exports;
 });
 
@@ -330,9 +328,9 @@ $__System.register('a', [], function (_export) {
 });
 $__System.registerDynamic("b", [], true, function($__require, exports, module) {
   ;
-  var global = this,
-      __define = global.define;
-  global.define = undefined;
+  var define,
+      global = this || self,
+      GLOBAL = global;
   var $Object = Object;
   module.exports = {
     create: $Object.create,
@@ -346,42 +344,39 @@ $__System.registerDynamic("b", [], true, function($__require, exports, module) {
     getSymbols: $Object.getOwnPropertySymbols,
     each: [].forEach
   };
-  global.define = __define;
   return module.exports;
 });
 
 $__System.registerDynamic("c", ["b"], true, function($__require, exports, module) {
   ;
-  var global = this,
-      __define = global.define;
-  global.define = undefined;
+  var define,
+      global = this || self,
+      GLOBAL = global;
   var $ = $__require('b');
   module.exports = function defineProperty(it, key, desc) {
     return $.setDesc(it, key, desc);
   };
-  global.define = __define;
   return module.exports;
 });
 
 $__System.registerDynamic("d", ["c"], true, function($__require, exports, module) {
   ;
-  var global = this,
-      __define = global.define;
-  global.define = undefined;
+  var define,
+      global = this || self,
+      GLOBAL = global;
   module.exports = {
     "default": $__require('c'),
     __esModule: true
   };
-  global.define = __define;
   return module.exports;
 });
 
 $__System.registerDynamic("7", ["d"], true, function($__require, exports, module) {
   "use strict";
   ;
-  var global = this,
-      __define = global.define;
-  global.define = undefined;
+  var define,
+      global = this || self,
+      GLOBAL = global;
   var _Object$defineProperty = $__require('d')["default"];
   exports["default"] = (function() {
     function defineProperties(target, props) {
@@ -403,23 +398,21 @@ $__System.registerDynamic("7", ["d"], true, function($__require, exports, module
     };
   })();
   exports.__esModule = true;
-  global.define = __define;
   return module.exports;
 });
 
 $__System.registerDynamic("8", [], true, function($__require, exports, module) {
   "use strict";
   ;
-  var global = this,
-      __define = global.define;
-  global.define = undefined;
+  var define,
+      global = this || self,
+      GLOBAL = global;
   exports["default"] = function(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
       throw new TypeError("Cannot call a class as a function");
     }
   };
   exports.__esModule = true;
-  global.define = __define;
   return module.exports;
 });
 
@@ -428,7 +421,7 @@ $__System.register('e', [], function (_export) {
 
 	'use strict';
 
-	var resetNyaSelect, getConfigurationModelInit, getEmptyConfigModelResult, resetDataModel, getErrorObject, getMessageObject, resetFormlyModel, extractTemplateOptionDescription, extractTemplateOptionPlaceholder, extractTemplateOptionType, extractTemplateOptionLabel, extractTemplateOptionDatepickerOptions, extractFormlyExpressionProperties, extractFormlyValidators, extractFormlyValidation, extractTemplateOptionRequired, extractTemplateOptionOptions, addDatepickerOptionsProperty, addOneColumnHeader, addOneColumnControl, addTwoColumnControl, addThreeColumnControl;
+	var resetNyaSelect, getConfigurationModelInit, getEmptyConfigModelResult, resetDataModel, getErrorObject, getMessageObject, resetFormlyModel, extractTemplateOptionDescription, extractTemplateOptionPlaceholder, extractTemplateOptionType, extractTemplateOptionLabel, extractTemplateOptionParentId, extractTemplateOptionReferenceId, extractTemplateOptionDatepickerOptions, extractTemplateOptionMaxLengthOption, extractTemplateOptionMinValueOption, extractTemplateOptionMaxValueOption, extractTemplateOptionIncrementalOption, extractTemplateOptionCurrentYearOption, extractFormlyExpressionProperties, extractFormlyValidators, extractFormlyValidation, extractTemplateOptionRequired, extractTemplateOptionOptions, addDatepickerOptionsProperty, addMaxLengthOptionProperty, addMinValueOptionProperty, addMaxValueOptionProperty, addIncrementalOptionProperty, addCurrentYearOptionProperty, addOneColumnHeader, addOneColumnControl, addTwoColumnControl, addThreeColumnControl;
 	return {
 		setters: [],
 		execute: function () {
@@ -446,6 +439,8 @@ $__System.register('e', [], function (_export) {
 						formlyRequired: false,
 						formlyDesciption: '',
 						formlyOptions: [],
+						parentId: '',
+						referenceId: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {},
 						formlyValidation: {}
@@ -460,6 +455,8 @@ $__System.register('e', [], function (_export) {
 						formlyRequired: false,
 						formlyDesciption: '',
 						formlyOptions: [],
+						parentId: '',
+						referenceId: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {},
 						formlyValidation: {}
@@ -474,6 +471,8 @@ $__System.register('e', [], function (_export) {
 						formlyRequired: false,
 						formlyDesciption: '',
 						formlyOptions: [],
+						parentId: '',
+						referenceId: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {},
 						formlyValidation: {}
@@ -488,8 +487,19 @@ $__System.register('e', [], function (_export) {
 						formlyRequired: false,
 						formlyDesciption: '',
 						formlyOptions: [],
+						parentId: '',
+						referenceId: '',
+						maxLengthOption: '',
 						formlyExpressionProperties: {},
-						formlyValidators: {},
+						formlyValidators: {
+							textShape: {
+								expression: function expression(viewValue, modelValue, scope) {
+									var value = modelValue || viewValue;
+									return scope.to.maxLengthOption ? (value ? value.length : 0) <= parseInt(scope.to.maxLengthOption) : true;
+								},
+								message: 'to.label + \' size should have max \' + to.maxLengthOption + \' characters\''
+							}
+						},
 						formlyValidation: {
 							messages: {
 								required: function required(viewValue, modelValue, scope) {
@@ -498,7 +508,85 @@ $__System.register('e', [], function (_export) {
 									//-> or if not exists or empty just 'this field is required'
 									var defaultReturnMsg = 'this Text input field is required';
 									var returnMsg = typeof scope.to.label !== 'undefined' ? scope.to.label !== '' ? scope.to.label + ' is required' : defaultReturnMsg : defaultReturnMsg;
-									return returnMsg;
+									if (scope.to.required) return returnMsg;
+								}
+							}
+						}
+					}, {
+						id: 'Number',
+						name: 'Number',
+						subtitle: 'Number',
+						group: 'input',
+						formlyType: 'input',
+						formlySubtype: 'number',
+						formlyLabel: '',
+						formlyRequired: false,
+						formlyDesciption: '',
+						formlyOptions: [],
+						parentId: '',
+						referenceId: '',
+						minValueOption: '',
+						maxValueOption: '',
+						incrementalOption: true,
+						formlyExpressionProperties: {},
+						formlyValidators: {
+							numberShape: {
+								expression: function expression(viewValue, modelValue, scope) {
+									var value = modelValue || viewValue;
+									var returnMin = scope.to.minValueOption ? parseInt(value) >= parseInt(scope.to.minValueOption) : true;
+									var returnMax = scope.to.maxValueOption ? parseInt(value) <= parseInt(scope.to.maxValueOption) : true;
+									return returnMin && returnMax;
+								},
+								message: 'to.label + \' is limited to values (\' + to.minValueOption + \' - \' + to.maxValueOption + \')\''
+							}
+						},
+						formlyValidation: {
+							messages: {
+								required: function required(viewValue, modelValue, scope) {
+									//return a required validation message :
+									//-> '<label as name> is required '
+									//-> or if not exists or empty just 'this field is required'
+									var defaultReturnMsg = 'this Number field is required';
+									var returnMsg = typeof scope.to.label !== 'undefined' ? scope.to.label !== '' ? scope.to.label + ' is required' : defaultReturnMsg : defaultReturnMsg;
+									if (scope.to.required) return returnMsg;
+								}
+							}
+						}
+					}, {
+						id: 'Year',
+						name: 'Year',
+						subtitle: 'Year',
+						group: 'input',
+						formlyType: 'input',
+						formlySubtype: 'year',
+						formlyLabel: '',
+						formlyRequired: false,
+						formlyDesciption: '',
+						formlyOptions: [],
+						parentId: '',
+						referenceId: '',
+						currentYearOption: true,
+						formlyExpressionProperties: {},
+						formlyValidators: {
+							yearShape: {
+								expression: function expression(viewValue, modelValue) {
+									var value = modelValue || viewValue;
+									return true;
+									return (/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/.test(value)
+									);
+								},
+								message: 'to.label + \' is not valid year (0 - 9999)\''
+							}
+						},
+						formlyValidation: {
+							messages: {
+								required: function required(viewValue, modelValue, scope) {
+									//return a required validation message :
+									//-> '<label as name> is required '
+									//-> or if not exists or empty just 'this field is required'
+									var defaultReturnMsg = 'this Year field is required';
+									var returnMsg = typeof scope.to.label !== 'undefined' ? scope.to.label !== '' ? scope.to.label + ' is required' : defaultReturnMsg : defaultReturnMsg;
+									if (scope.to.required) return returnMsg;
 								}
 							}
 						}
@@ -513,6 +601,8 @@ $__System.register('e', [], function (_export) {
 						formlyRequired: false,
 						formlyDesciption: '',
 						formlyOptions: [],
+						parentId: '',
+						referenceId: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {},
 						formlyValidation: {
@@ -538,6 +628,8 @@ $__System.register('e', [], function (_export) {
 						formlyRequired: false,
 						formlyDesciption: '',
 						formlyOptions: [],
+						parentId: '',
+						referenceId: '',
 						formlyExpressionProperties: {},
 
 						formlyValidators: {
@@ -575,6 +667,8 @@ $__System.register('e', [], function (_export) {
 						formlyRequired: false,
 						formlyDesciption: '',
 						formlyOptions: [],
+						parentId: '',
+						referenceId: '',
 						datepickerOptions: { format: 'dd-MMMM-yyyy' },
 						formlyExpressionProperties: {},
 						formlyValidators: {},
@@ -601,6 +695,8 @@ $__System.register('e', [], function (_export) {
 						formlyRequired: false,
 						formlyDesciption: '',
 						formlyOptions: [],
+						parentId: '',
+						referenceId: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {},
 						formlyValidation: {
@@ -626,6 +722,8 @@ $__System.register('e', [], function (_export) {
 						formlyRequired: false,
 						formlyDesciption: '',
 						formlyOptions: [],
+						parentId: '',
+						referenceId: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {},
 						formlyValidation: {
@@ -652,6 +750,8 @@ $__System.register('e', [], function (_export) {
 						formlyRequired: false,
 						formlyDesciption: '',
 						formlyOptions: [],
+						parentId: '',
+						referenceId: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {},
 						formlyValidation: {
@@ -677,6 +777,8 @@ $__System.register('e', [], function (_export) {
 						formlyRequired: false,
 						formlyDesciption: '',
 						formlyOptions: [],
+						parentId: '',
+						referenceId: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {},
 						formlyValidation: {
@@ -703,6 +805,8 @@ $__System.register('e', [], function (_export) {
 						formlyRequired: false,
 						formlyDesciption: '',
 						formlyOptions: [],
+						parentId: '',
+						referenceId: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {},
 						formlyValidation: {
@@ -729,6 +833,8 @@ $__System.register('e', [], function (_export) {
 						formlyRequired: false,
 						formlyDesciption: '',
 						formlyOptions: [],
+						parentId: '',
+						referenceId: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {},
 						formlyValidation: {
@@ -752,6 +858,8 @@ $__System.register('e', [], function (_export) {
 						formlyDesciption: '',
 						formlyPlaceholder: '',
 						formlyOptions: [],
+						parentId: '',
+						referenceId: '',
 						//expressions/validation fields
 						formlyExpressionProperties: {},
 						formlyValidators: {},
@@ -865,8 +973,36 @@ $__System.register('e', [], function (_export) {
 				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.label !== 'undefined' ? obj.templateOptions.label : '' : '';
 			};
 
+			extractTemplateOptionParentId = function extractTemplateOptionParentId(obj) {
+				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.parentId !== 'undefined' ? obj.templateOptions.parentId : '' : '';
+			};
+
+			extractTemplateOptionReferenceId = function extractTemplateOptionReferenceId(obj) {
+				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.referenceId !== 'undefined' ? obj.templateOptions.referenceId : '' : '';
+			};
+
 			extractTemplateOptionDatepickerOptions = function extractTemplateOptionDatepickerOptions(obj) {
 				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.datepickerOptions !== 'undefined' ? angular.copy(obj.templateOptions.datepickerOptions) : '' : '';
+			};
+
+			extractTemplateOptionMaxLengthOption = function extractTemplateOptionMaxLengthOption(obj) {
+				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.maxLengthOption !== 'undefined' ? obj.templateOptions.maxLengthOption : '' : '';
+			};
+
+			extractTemplateOptionMinValueOption = function extractTemplateOptionMinValueOption(obj) {
+				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.minValueOption !== 'undefined' ? obj.templateOptions.minValueOption : '' : '';
+			};
+
+			extractTemplateOptionMaxValueOption = function extractTemplateOptionMaxValueOption(obj) {
+				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.maxValueOption !== 'undefined' ? obj.templateOptions.maxValueOption : '' : '';
+			};
+
+			extractTemplateOptionIncrementalOption = function extractTemplateOptionIncrementalOption(obj) {
+				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.incrementalOption !== 'undefined' ? obj.templateOptions.incrementalOption : '' : '';
+			};
+
+			extractTemplateOptionCurrentYearOption = function extractTemplateOptionCurrentYearOption(obj) {
+				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.currentYearOption !== 'undefined' ? obj.templateOptions.currentYearOption : '' : '';
 			};
 
 			extractFormlyExpressionProperties = function extractFormlyExpressionProperties(obj) {
@@ -889,8 +1025,28 @@ $__System.register('e', [], function (_export) {
 				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.options !== 'undefined' ? obj.templateOptions.options : '' : '';
 			};
 
-			addDatepickerOptionsProperty = function addDatepickerOptionsProperty(fieldToPush, configurationModel, lineIndex) {
-				return fieldToPush.templateOptions.datepickerOptions = extractTemplateOptionDatepickerOptions(configurationModel.lines[lineIndex].columns[0].control);
+			addDatepickerOptionsProperty = function addDatepickerOptionsProperty(fieldToPush, configurationModel, lineIndex, position) {
+				return fieldToPush.templateOptions.datepickerOptions = extractTemplateOptionDatepickerOptions(configurationModel.lines[lineIndex].columns[position].control);
+			};
+
+			addMaxLengthOptionProperty = function addMaxLengthOptionProperty(fieldToPush, configurationModel, lineIndex, position) {
+				return fieldToPush.templateOptions.maxLengthOption = extractTemplateOptionMaxLengthOption(configurationModel.lines[lineIndex].columns[position].control);
+			};
+
+			addMinValueOptionProperty = function addMinValueOptionProperty(fieldToPush, configurationModel, lineIndex, position) {
+				return fieldToPush.templateOptions.minValueOption = extractTemplateOptionMinValueOption(configurationModel.lines[lineIndex].columns[position].control);
+			};
+
+			addMaxValueOptionProperty = function addMaxValueOptionProperty(fieldToPush, configurationModel, lineIndex, position) {
+				return fieldToPush.templateOptions.maxValueOption = extractTemplateOptionMaxValueOption(configurationModel.lines[lineIndex].columns[position].control);
+			};
+
+			addIncrementalOptionProperty = function addIncrementalOptionProperty(fieldToPush, configurationModel, lineIndex, position) {
+				return fieldToPush.templateOptions.incrementalOption = extractTemplateOptionIncrementalOption(configurationModel.lines[lineIndex].columns[position].control);
+			};
+
+			addCurrentYearOptionProperty = function addCurrentYearOptionProperty(fieldToPush, configurationModel, lineIndex, position) {
+				return fieldToPush.templateOptions.currentYearOption = extractTemplateOptionCurrentYearOption(configurationModel.lines[lineIndex].columns[position].control);
 			};
 
 			addOneColumnHeader = function addOneColumnHeader(formlyModel, configurationModel, lineIndex) {
@@ -914,7 +1070,9 @@ $__System.register('e', [], function (_export) {
 						required: extractTemplateOptionRequired(configurationModel.lines[lineIndex].columns[0].control),
 						placeholder: extractTemplateOptionPlaceholder(configurationModel.lines[lineIndex].columns[0].control),
 						description: extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[0].control),
-						options: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[0].control)
+						options: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[0].control),
+						referenceId: extractTemplateOptionReferenceId(configurationModel.lines[lineIndex].columns[0].control),
+						parentId: extractTemplateOptionParentId(configurationModel.lines[lineIndex].columns[0].control)
 					},
 					expressionProperties: extractFormlyExpressionProperties(configurationModel.lines[lineIndex].columns[0].control),
 					validators: extractFormlyValidators(configurationModel.lines[lineIndex].columns[0].control),
@@ -923,7 +1081,24 @@ $__System.register('e', [], function (_export) {
 				//////////////////////////////////////////////
 				//datepicker additionnal particular property
 				//////////////////////////////////////////////
-				if (configurationModel.lines[lineIndex].columns[0].control.type === 'datepicker') addDatepickerOptionsProperty(fieldToPush, configurationModel, lineIndex);
+				if (configurationModel.lines[lineIndex].columns[0].control.type === 'datepicker') addDatepickerOptionsProperty(fieldToPush, configurationModel, lineIndex, 0);
+				if (configurationModel.lines[lineIndex].columns[0].control.type === 'input') {
+					switch (configurationModel.lines[lineIndex].columns[0].control.subtype) {
+						case "":
+							addMaxLengthOptionProperty(fieldToPush, configurationModel, lineIndex, 0);
+							break;
+
+						case "number":
+							addMinValueOptionProperty(fieldToPush, configurationModel, lineIndex, 0);
+							addMaxValueOptionProperty(fieldToPush, configurationModel, lineIndex, 0);
+							addIncrementalOptionProperty(fieldToPush, configurationModel, lineIndex, 0);
+							break;
+
+						case "year":
+							addCurrentYearOptionProperty(fieldToPush, configurationModel, lineIndex, 0);
+							break;
+					}
+				}
 
 				formlyModel.push(fieldToPush);
 			};
@@ -951,7 +1126,9 @@ $__System.register('e', [], function (_export) {
 						required: extractTemplateOptionRequired(configurationModel.lines[lineIndex].columns[0].control),
 						placeholder: extractTemplateOptionPlaceholder(configurationModel.lines[lineIndex].columns[0].control),
 						description: extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[0].control),
-						options: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[0].control)
+						options: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[0].control),
+						referenceId: extractTemplateOptionReferenceId(configurationModel.lines[lineIndex].columns[0].control),
+						parentId: extractTemplateOptionParentId(configurationModel.lines[lineIndex].columns[0].control)
 					},
 					expressionProperties: extractFormlyExpressionProperties(configurationModel.lines[lineIndex].columns[0].control),
 					validators: extractFormlyValidators(configurationModel.lines[lineIndex].columns[0].control),
@@ -960,7 +1137,24 @@ $__System.register('e', [], function (_export) {
 				//////////////////////////////////////////////
 				//datepicker additionnal particular property
 				//////////////////////////////////////////////
-				if (configurationModel.lines[lineIndex].columns[0].control.type === 'datepicker') addDatepickerOptionsProperty(controlCol0, configurationModel, lineIndex);
+				if (configurationModel.lines[lineIndex].columns[0].control.type === 'datepicker') addDatepickerOptionsProperty(controlCol0, configurationModel, lineIndex, 0);
+				if (configurationModel.lines[lineIndex].columns[0].control.type === 'input') {
+					switch (configurationModel.lines[lineIndex].columns[0].control.subtype) {
+						case "":
+							addMaxLengthOptionProperty(controlCol0, configurationModel, lineIndex, 0);
+							break;
+
+						case "number":
+							addMinValueOptionProperty(controlCol0, configurationModel, lineIndex, 0);
+							addMaxValueOptionProperty(controlCol0, configurationModel, lineIndex, 0);
+							addIncrementalOptionProperty(controlCol0, configurationModel, lineIndex, 0);
+							break;
+
+						case "year":
+							addCurrentYearOptionProperty(controlCol0, configurationModel, lineIndex, 0);
+							break;
+					}
+				}
 
 				var controlCol1 = {
 					className: 'col-xs-6',
@@ -972,7 +1166,9 @@ $__System.register('e', [], function (_export) {
 						required: extractTemplateOptionRequired(configurationModel.lines[lineIndex].columns[1].control),
 						placeholder: extractTemplateOptionPlaceholder(configurationModel.lines[lineIndex].columns[1].control),
 						description: extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[1].control),
-						options: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[1].control)
+						options: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[1].control),
+						referenceId: extractTemplateOptionReferenceId(configurationModel.lines[lineIndex].columns[1].control),
+						parentId: extractTemplateOptionParentId(configurationModel.lines[lineIndex].columns[1].control)
 					},
 					expressionProperties: extractFormlyExpressionProperties(configurationModel.lines[lineIndex].columns[1].control),
 					validators: extractFormlyValidators(configurationModel.lines[lineIndex].columns[1].control),
@@ -982,7 +1178,24 @@ $__System.register('e', [], function (_export) {
 				//////////////////////////////////////////////
 				//datepicker additionnal particular property
 				//////////////////////////////////////////////
-				if (configurationModel.lines[lineIndex].columns[1].control.type === 'datepicker') addDatepickerOptionsProperty(controlCol1, configurationModel, lineIndex);
+				if (configurationModel.lines[lineIndex].columns[1].control.type === 'datepicker') addDatepickerOptionsProperty(controlCol1, configurationModel, lineIndex, 1);
+				if (configurationModel.lines[lineIndex].columns[1].control.type === 'input') {
+					switch (configurationModel.lines[lineIndex].columns[1].control.subtype) {
+						case "":
+							addMaxLengthOptionProperty(controlCol1, configurationModel, lineIndex, 1);
+							break;
+
+						case "number":
+							addMinValueOptionProperty(controlCol1, configurationModel, lineIndex, 1);
+							addMaxValueOptionProperty(controlCol1, configurationModel, lineIndex, 1);
+							addIncrementalOptionProperty(controlCol1, configurationModel, lineIndex, 1);
+							break;
+
+						case "year":
+							addCurrentYearOptionProperty(controlCol1, configurationModel, lineIndex, 1);
+							break;
+					}
+				}
 
 				var FieldGroup = [];
 
@@ -1031,7 +1244,9 @@ $__System.register('e', [], function (_export) {
 						required: extractTemplateOptionRequired(configurationModel.lines[lineIndex].columns[0].control),
 						placeholder: extractTemplateOptionPlaceholder(configurationModel.lines[lineIndex].columns[0].control),
 						description: extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[0].control),
-						options: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[0].control)
+						options: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[0].control),
+						referenceId: extractTemplateOptionReferenceId(configurationModel.lines[lineIndex].columns[0].control),
+						parentId: extractTemplateOptionParentId(configurationModel.lines[lineIndex].columns[0].control)
 					},
 					expressionProperties: extractFormlyExpressionProperties(configurationModel.lines[lineIndex].columns[0].control),
 					validators: extractFormlyValidators(configurationModel.lines[lineIndex].columns[0].control),
@@ -1040,7 +1255,24 @@ $__System.register('e', [], function (_export) {
 				//////////////////////////////////////////////
 				//datepicker additionnal particular property
 				//////////////////////////////////////////////
-				if (configurationModel.lines[lineIndex].columns[0].control.type === 'datepicker') addDatepickerOptionsProperty(controlCol0, configurationModel, lineIndex);
+				if (configurationModel.lines[lineIndex].columns[0].control.type === 'datepicker') addDatepickerOptionsProperty(controlCol0, configurationModel, lineIndex, 0);
+				if (configurationModel.lines[lineIndex].columns[0].control.type === 'input') {
+					switch (configurationModel.lines[lineIndex].columns[0].control.subtype) {
+						case "":
+							addMaxLengthOptionProperty(controlCol0, configurationModel, lineIndex, 0);
+							break;
+
+						case "number":
+							addMinValueOptionProperty(controlCol0, configurationModel, lineIndex, 0);
+							addMaxValueOptionProperty(controlCol0, configurationModel, lineIndex, 0);
+							addIncrementalOptionProperty(controlCol0, configurationModel, lineIndex, 0);
+							break;
+
+						case "year":
+							addCurrentYearOptionProperty(controlCol0, configurationModel, lineIndex, 0);
+							break;
+					}
+				}
 
 				var controlCol1 = {
 					className: 'col-xs-4',
@@ -1052,7 +1284,9 @@ $__System.register('e', [], function (_export) {
 						required: extractTemplateOptionRequired(configurationModel.lines[lineIndex].columns[1].control),
 						placeholder: extractTemplateOptionPlaceholder(configurationModel.lines[lineIndex].columns[1].control),
 						description: extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[1].control),
-						options: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[1].control)
+						options: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[1].control),
+						referenceId: extractTemplateOptionReferenceId(configurationModel.lines[lineIndex].columns[1].control),
+						parentId: extractTemplateOptionParentId(configurationModel.lines[lineIndex].columns[1].control)
 					},
 					expressionProperties: extractFormlyExpressionProperties(configurationModel.lines[lineIndex].columns[1].control),
 					validators: extractFormlyValidators(configurationModel.lines[lineIndex].columns[1].control),
@@ -1061,7 +1295,24 @@ $__System.register('e', [], function (_export) {
 				//////////////////////////////////////////////
 				//datepicker additionnal particular property
 				//////////////////////////////////////////////
-				if (configurationModel.lines[lineIndex].columns[1].control.type === 'datepicker') addDatepickerOptionsProperty(controlCol1, configurationModel, lineIndex);
+				if (configurationModel.lines[lineIndex].columns[1].control.type === 'datepicker') addDatepickerOptionsProperty(controlCol1, configurationModel, lineIndex, 1);
+				if (configurationModel.lines[lineIndex].columns[1].control.type === 'input') {
+					switch (configurationModel.lines[lineIndex].columns[1].control.subtype) {
+						case "":
+							addMaxLengthOptionProperty(controlCol1, configurationModel, lineIndex, 1);
+							break;
+
+						case "number":
+							addMinValueOptionProperty(controlCol1, configurationModel, lineIndex, 1);
+							addMaxValueOptionProperty(controlCol1, configurationModel, lineIndex, 1);
+							addIncrementalOptionProperty(controlCol1, configurationModel, lineIndex, 1);
+							break;
+
+						case "year":
+							addCurrentYearOptionProperty(controlCol1, configurationModel, lineIndex, 1);
+							break;
+					}
+				}
 
 				var controlCol2 = {
 					className: 'col-xs-4',
@@ -1073,7 +1324,9 @@ $__System.register('e', [], function (_export) {
 						required: extractTemplateOptionRequired(configurationModel.lines[lineIndex].columns[2].control),
 						placeholder: extractTemplateOptionPlaceholder(configurationModel.lines[lineIndex].columns[2].control),
 						description: extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[2].control),
-						options: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[2].control)
+						options: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[2].control),
+						referenceId: extractTemplateOptionReferenceId(configurationModel.lines[lineIndex].columns[2].control),
+						parentId: extractTemplateOptionParentId(configurationModel.lines[lineIndex].columns[2].control)
 					},
 					expressionProperties: extractFormlyExpressionProperties(configurationModel.lines[lineIndex].columns[2].control),
 					validators: extractFormlyValidators(configurationModel.lines[lineIndex].columns[2].control),
@@ -1082,7 +1335,24 @@ $__System.register('e', [], function (_export) {
 				//////////////////////////////////////////////
 				//datepicker additionnal particular property
 				//////////////////////////////////////////////
-				if (configurationModel.lines[lineIndex].columns[2].control.type === 'datepicker') addDatepickerOptionsProperty(controlCol2, configurationModel, lineIndex);
+				if (configurationModel.lines[lineIndex].columns[2].control.type === 'datepicker') addDatepickerOptionsProperty(controlCol2, configurationModel, lineIndex, 2);
+				if (configurationModel.lines[lineIndex].columns[2].control.type === 'input') {
+					switch (configurationModel.lines[lineIndex].columns[2].control.subtype) {
+						case "":
+							addMaxLengthOptionProperty(controlCol2, configurationModel, lineIndex, 2);
+							break;
+
+						case "number":
+							addMinValueOptionProperty(controlCol2, configurationModel, lineIndex, 2);
+							addMaxValueOptionProperty(controlCol2, configurationModel, lineIndex, 2);
+							addIncrementalOptionProperty(controlCol2, configurationModel, lineIndex, 2);
+							break;
+
+						case "year":
+							addCurrentYearOptionProperty(controlCol2, configurationModel, lineIndex, 2);
+							break;
+					}
+				}
 
 				var FieldGroup = [];
 
@@ -1173,12 +1443,12 @@ $__System.register('f', ['7', '8', 'e'], function (_export) {
 
 					/**
      	* get all controls definition (nyaSelectObj)
-     	* 
+     	*
      	* needed to bind these properties :
-     	* 
-     	* formlyExpressionProperties: {}, 
+     	*
+     	* formlyExpressionProperties: {},
      	* formlyValidators: {},
-     	* formlyValidation                       		
+     	* formlyValidation
      	*/
 				}, {
 					key: 'getControlsDefinition',
@@ -1204,7 +1474,7 @@ $__System.register('f', ['7', '8', 'e'], function (_export) {
 									var _controlsDefinition = _this.getControlsDefinition();
 									angular.forEach(_controlsDefinition.controls, function (aControl) {
 										if (column.control.type === aControl.formlyType && column.control.subtype === aControl.formlySubtype) {
-											//----> update control formlyExpressionProperties property											
+											//----> update control formlyExpressionProperties property
 											column.control.formlyExpressionProperties = aControl.formlyExpressionProperties;
 										}
 									});
@@ -1229,7 +1499,7 @@ $__System.register('f', ['7', '8', 'e'], function (_export) {
 									var _controlsDefinition = _this2.getControlsDefinition();
 									angular.forEach(_controlsDefinition.controls, function (aControl) {
 										if (column.control.type === aControl.formlyType && column.control.subtype === aControl.formlySubtype) {
-											//----> update control formlyValidators property											
+											//----> update control formlyValidators property
 											column.control.formlyValidators = aControl.formlyValidators;
 										}
 									});
@@ -1254,7 +1524,7 @@ $__System.register('f', ['7', '8', 'e'], function (_export) {
 									var _controlsDefinition = _this3.getControlsDefinition();
 									angular.forEach(_controlsDefinition.controls, function (aControl) {
 										if (column.control.type === aControl.formlyType && column.control.subtype === aControl.formlySubtype) {
-											//----> update control formlyValidation property											
+											//----> update control formlyValidation property
 											column.control.formlyValidation = aControl.formlyValidation;
 										}
 									});
@@ -1265,7 +1535,7 @@ $__System.register('f', ['7', '8', 'e'], function (_export) {
 
 					// initConfigurationEditFromScratch(configurationModel) {
 					// 	configurationModel = angular.copy(getConfigurationModelInit());
-					// }	
+					// }
 
 				}, {
 					key: 'bindConfigurationLines',
@@ -1285,7 +1555,7 @@ $__System.register('f', ['7', '8', 'e'], function (_export) {
 						resetFormlyModel(formlyModel);
 						resetDataModel(formlyDataModel);
 						/**
-      	* manage header here line0 
+      	* manage header here line0
       	*/
 						var lineNumber = configurationModel.lines.length;
 						for (var i = 0; i < lineNumber; i++) {
@@ -1496,15 +1766,14 @@ $__System.register('12', ['11'], function (_export) {
 });
 $__System.registerDynamic("13", [], true, function($__require, exports, module) {
   ;
-  var global = this,
-      __define = global.define;
-  global.define = undefined;
+  var define,
+      global = this || self,
+      GLOBAL = global;
   module.exports = {
     "stepway": {"version": "1.2.0"},
     "dragdropway": {"version": "1.2.0"},
     "formviewer": {"version": "1.2.0"}
   };
-  global.define = __define;
   return module.exports;
 });
 

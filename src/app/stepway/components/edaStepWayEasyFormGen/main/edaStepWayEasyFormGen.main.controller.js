@@ -237,6 +237,24 @@ class edaStepWayEasyFormGenController {
 		}
 	}
 
+	prepareExistingColumns() {
+		var columns = [{
+			id: null,
+			name: 'No value'
+		}];
+		for (var i in this.configuration.lines) {
+			for (var j in this.configuration.lines[i].columns) {
+				columns[this.configuration.lines[i].columns[j].control.templateOptions.referenceId] = {
+					id: this.configuration.lines[i].columns[j].control.templateOptions.referenceId,
+					name: (this.configuration.lines[i].columns[j].control.templateOptions.label ? this.configuration.lines[i].columns[j].control.templateOptions.label : 'Field ' + i + ',' + j) +
+								' - ' + this.configuration.lines[i].columns[j].control.type + ' ' + this.configuration.lines[i].columns[j].control.subtype
+				};
+			}
+		}
+
+		return columns;
+	}
+
 	showModalAddCtrlToColumn(size, indexLine, numcolumn) {
 		let editControlModal = {};
 		angular.extend(editControlModal, {
@@ -246,6 +264,7 @@ class edaStepWayEasyFormGenController {
 			controllerAs: EDIT_MODAL_CONTROLLERAS_NAME,
 			size				: this.editControlModalSize,
 			resolve			: {
+				columns 	:  () => this.prepareExistingColumns(),
 				nyaSelect :  () => this.$modalProxy.getNyASelectFromSelectedLineColumn(this.nyaSelect, this.configuration,indexLine, numcolumn)
 			}
 		});
