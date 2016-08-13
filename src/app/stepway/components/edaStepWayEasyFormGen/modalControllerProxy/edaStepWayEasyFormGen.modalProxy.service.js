@@ -100,7 +100,7 @@ class $modalProxy{
 		configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.labelShort 				= extractedProps.formlyLabelShort;
 		configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.required 					= extractedProps.formlyRequired;
 		configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.unique 						= extractedProps.formlyUnique;
-		configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.defaultValue 			= extractedProps.formlyDefaultValue;
+		configurationObj.lines[indexLine].columns[numcolumn].control.defaultValue 											= extractedProps.formlyDefaultValue;
 		configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.displayAddOption 	= extractedProps.displayAddOption;
 		configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.displayEditOption 	= extractedProps.displayEditOption;
 		configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.description 				= extractedProps.formlyDesciption;

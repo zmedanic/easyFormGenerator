@@ -53,7 +53,7 @@ class edaStepWayEasyFormGenController {
 		this.tab                      = initTabModel(this.easyFormSteWayConfig.isPreviewPanelVisible(), this.easyFormSteWayConfig.arePreviewModelsVisible());
 		this.configuration            = {}; //configuration model (contains array of lines which contains array of columns)
 		this.numberOfColumns          = 1;
-		this.MaxNumberOfColumns       = 3;
+		this.MaxNumberOfColumns       = 4;
 		this.MinNumberOfColumns       = 1;
 		this.columnTemplate           = initColumnTemplate(0, 0); //TODO : check is really needed
 		this.lineTemplate             = initLineTemplate(0);   //TODO : check if really needed
@@ -248,12 +248,14 @@ class edaStepWayEasyFormGenController {
 
 		for (var i in this.configuration.lines) {
 			for (var j in this.configuration.lines[i].columns) {
-				if (this.configuration.lines[i].columns[j].control.templateOptions.referenceId !== currentReferenceId) {
-					columns.push({
-						id: this.configuration.lines[i].columns[j].control.templateOptions.referenceId,
-						name: (this.configuration.lines[i].columns[j].control.templateOptions.label ? this.configuration.lines[i].columns[j].control.templateOptions.label : 'Field ' + i + ',' + j) +
-									' - ' + this.configuration.lines[i].columns[j].control.type + ' ' + this.configuration.lines[i].columns[j].control.subtype
-					});
+				if (this.configuration.lines[i].columns[j].control.templateOptions) {
+					if (this.configuration.lines[i].columns[j].control.templateOptions.referenceId !== currentReferenceId) {
+						columns.push({
+							id: this.configuration.lines[i].columns[j].control.templateOptions.referenceId,
+							name: (this.configuration.lines[i].columns[j].control.templateOptions.label ? this.configuration.lines[i].columns[j].control.templateOptions.label : 'Field') +
+								' ' + i + ',' + j + ' - ' + this.configuration.lines[i].columns[j].control.type + ' ' + this.configuration.lines[i].columns[j].control.subtype
+						});
+					}
 				}
 			}
 		}

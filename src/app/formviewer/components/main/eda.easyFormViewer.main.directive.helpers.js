@@ -11,6 +11,7 @@ const EMPTY_FIELD_MODEL = [
 				'control': {
 					'type': 'none',
 					'key': 'none',
+					'defaultValue': '',
 					'templateOptions': {
 						'referenceId': 0
 					}

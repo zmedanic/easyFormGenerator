@@ -27,7 +27,9 @@ const configurationModelInit = {
 			exist:true,
 			control: {
 				type:'none',
-				key: 'none' // ,
+				key: 'none',
+				defaultValue: '',
+				new: true
 				// templateOptions: {
 				//                     label: 'none',
 				//                     placeholder: 'none',
@@ -127,8 +129,8 @@ const extractTemplateOptionUnique = (obj)=>{
 	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.unique !== 'undefined'? obj.templateOptions.unique: false) : false;
 };
 
-const extractTemplateOptionDefaultValue = (obj)=>{
-	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.defaultValue !== 'undefined'? obj.templateOptions.defaultValue: (obj.type == 'checkbox' ? false : '')) : (obj.type == 'checkbox' ? false : '');
+const extractDefaultValue = (obj)=>{
+	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.defaultValue !== 'undefined'? obj.defaultValue: (obj.type == 'checkbox' ? false : '')) : (obj.type == 'checkbox' ? false : '');
 };
 
 const extractTemplateOptionDisplayAddOption = (obj)=>{
@@ -195,371 +197,79 @@ const addOneColumnHeader = (formlyModel, configurationModel,lineIndex) => {
 	});
 };
 
+function addColumnControl(formlyModel, configurationModel,lineIndex, numberOfColumns, columnIndex, FieldGroup) {
+	let headerTemplateCol = {
+		className: 'col-xs-' + (12 / numberOfColumns),
+		template : `<div class="row"><div class=""><h2 class="text-center">${extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[columnIndex].control)}<h2><hr/></div></div>`
+	};
 
-
-const addOneColumnControl = (formlyModel, configurationModel,lineIndex) => {
-	let fieldToPush = {
-		className	: 'col-xs-12',
-		type			: typeof configurationModel.lines[lineIndex].columns[0].control.type !== 'undefined' ? (configurationModel.lines[lineIndex].columns[0].control.type === 'none' ? 'blank': configurationModel.lines[lineIndex].columns[0].control.type): 'blank',
-		key				: typeof configurationModel.lines[lineIndex].columns[0].control.key !== 'undefined' ?  configurationModel.lines[lineIndex].columns[0].control.key : 'blank' + Date.now(),
+	let controlCol = {
+		className			: 'col-xs-' + (12 / numberOfColumns),
+		type					: typeof configurationModel.lines[lineIndex].columns[columnIndex].control.type !== 'undefined' ? (configurationModel.lines[lineIndex].columns[columnIndex].control.type === 'none' ? 'blank': configurationModel.lines[lineIndex].columns[columnIndex].control.type): 'blank',
+		key						: typeof configurationModel.lines[lineIndex].columns[columnIndex].control.key !== 'undefined' ?  configurationModel.lines[lineIndex].columns[columnIndex].control.key : 'blank' + Date.now(),
+		defaultValue 	: extractDefaultValue(configurationModel.lines[lineIndex].columns[columnIndex].control),
 		templateOptions: {
-			type                  : extractTemplateOptionType(configurationModel.lines[lineIndex].columns[0].control),
-			label                 : extractTemplateOptionLabel(configurationModel.lines[lineIndex].columns[0].control),
-			labelShort            : extractTemplateOptionLabelShort(configurationModel.lines[lineIndex].columns[0].control),
-			required              : extractTemplateOptionRequired(configurationModel.lines[lineIndex].columns[0].control),
-			unique                : extractTemplateOptionUnique(configurationModel.lines[lineIndex].columns[0].control),
-			defaultValue          : extractTemplateOptionDefaultValue(configurationModel.lines[lineIndex].columns[0].control),
-			displayAddOption      : extractTemplateOptionDisplayAddOption(configurationModel.lines[lineIndex].columns[0].control),
-			displayEditOption     : extractTemplateOptionDisplayEditOption(configurationModel.lines[lineIndex].columns[0].control),
-			placeholder           : extractTemplateOptionPlaceholder(configurationModel.lines[lineIndex].columns[0].control),
-			description           : extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[0].control),
-			options               : extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[0].control),
-			referenceId           : extractTemplateOptionReferenceId(configurationModel.lines[lineIndex].columns[0].control),
-			parentId     		      : extractTemplateOptionParentId(configurationModel.lines[lineIndex].columns[0].control)
+			type							: extractTemplateOptionType(configurationModel.lines[lineIndex].columns[columnIndex].control),
+			label							: extractTemplateOptionLabel(configurationModel.lines[lineIndex].columns[columnIndex].control),
+			required 					: extractTemplateOptionRequired(configurationModel.lines[lineIndex].columns[columnIndex].control),
+			unique 						: extractTemplateOptionUnique(configurationModel.lines[lineIndex].columns[columnIndex].control),
+			displayAddOption 	: extractTemplateOptionDisplayAddOption(configurationModel.lines[lineIndex].columns[columnIndex].control),
+			displayEditOption : extractTemplateOptionDisplayEditOption(configurationModel.lines[lineIndex].columns[columnIndex].control),
+			placeholder 			: extractTemplateOptionPlaceholder(configurationModel.lines[lineIndex].columns[columnIndex].control),
+			description 			: extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[columnIndex].control),
+			options 					: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[columnIndex].control),
+			referenceId 			: extractTemplateOptionReferenceId(configurationModel.lines[lineIndex].columns[columnIndex].control),
+			parentId    			: extractTemplateOptionParentId(configurationModel.lines[lineIndex].columns[columnIndex].control)
 		},
-		expressionProperties  : extractFormlyExpressionProperties(configurationModel.lines[lineIndex].columns[0].control),
-		validators            : extractFormlyValidators(configurationModel.lines[lineIndex].columns[0].control),
-		validation            : extractFormlyValidation(configurationModel.lines[lineIndex].columns[0].control)
+		expressionProperties : extractFormlyExpressionProperties(configurationModel.lines[lineIndex].columns[columnIndex].control),
+		validators : extractFormlyValidators(configurationModel.lines[lineIndex].columns[columnIndex].control),
+		validation : extractFormlyValidation(configurationModel.lines[lineIndex].columns[columnIndex].control)
 	};
 	//////////////////////////////////////////////
 	//datepicker additionnal particular property
 	//////////////////////////////////////////////
-	if (configurationModel.lines[lineIndex].columns[0].control.type === 'datepicker') {
-		addDatepickerOptionsProperty(fieldToPush, configurationModel,lineIndex, 0);
+	if (configurationModel.lines[lineIndex].columns[columnIndex].control.type === 'datepicker') {
+		addDatepickerOptionsProperty(controlCol, configurationModel,lineIndex, 0);
 	}
-	if (configurationModel.lines[lineIndex].columns[0].control.type === 'input') {
-		switch (configurationModel.lines[lineIndex].columns[0].control.subtype) {
+	if (configurationModel.lines[lineIndex].columns[columnIndex].control.type === 'input') {
+		switch (configurationModel.lines[lineIndex].columns[columnIndex].control.subtype) {
 			case "":
-				addMaxLengthOptionProperty(fieldToPush, configurationModel,lineIndex, 0);
+				addMaxLengthOptionProperty(controlCol, configurationModel,lineIndex, columnIndex);
 				break;
 
 			case "number":
-				addMinValueOptionProperty(fieldToPush, configurationModel,lineIndex, 0);
-				addMaxValueOptionProperty(fieldToPush, configurationModel,lineIndex, 0);
-				addIncrementalOptionProperty(fieldToPush, configurationModel,lineIndex, 0);
+				addMinValueOptionProperty(controlCol, configurationModel,lineIndex, columnIndex);
+				addMaxValueOptionProperty(controlCol, configurationModel,lineIndex, columnIndex);
+				addIncrementalOptionProperty(controlCol, configurationModel,lineIndex, columnIndex);
 				break;
 
 			case "year":
-				addCurrentYearOptionProperty(fieldToPush, configurationModel,lineIndex, 0);
+				addCurrentYearOptionProperty(controlCol, configurationModel,lineIndex, columnIndex);
 				break;
 		}
 	}
 
-
-	formlyModel.push(fieldToPush);
-};
-
-
-
-const addTwoColumnControl = (formlyModel, configurationModel,lineIndex) => {
-
-	//text header is stored in "description" in templateOtion model
-	const headerTemplateCol0 =  {
-				className: 'col-xs-6',
-				template : `<div class="row"><div class=""><h2 class="text-center">${extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[0].control)}<h2><hr/></div></div>`
-			};
-
-	const headerTemplateCol1 =  {
-				className: 'col-xs-6',
-				template:`<div class="row"><div class=""><h2 class="text-center">${extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[1].control)}<h2><hr/></div></div>`
-			};
-
-	let controlCol0 =     {
-			className: 'col-xs-6',
-			type: typeof configurationModel.lines[lineIndex].columns[0].control.type !== 'undefined' ? (configurationModel.lines[lineIndex].columns[0].control.type === 'none' ? 'blank': configurationModel.lines[lineIndex].columns[0].control.type): 'blank',
-			key	: typeof configurationModel.lines[lineIndex].columns[0].control.key !== 'undefined' ?  configurationModel.lines[lineIndex].columns[0].control.key : 'blank' + Date.now(),
-			templateOptions: {
-					type							: extractTemplateOptionType(configurationModel.lines[lineIndex].columns[0].control),
-					label							: extractTemplateOptionLabel(configurationModel.lines[lineIndex].columns[0].control),
-					required 					: extractTemplateOptionRequired(configurationModel.lines[lineIndex].columns[0].control),
-					unique 						: extractTemplateOptionUnique(configurationModel.lines[lineIndex].columns[0].control),
-					defaultValue 			: extractTemplateOptionDefaultValue(configurationModel.lines[lineIndex].columns[0].control),
-					displayAddOption 	: extractTemplateOptionDisplayAddOption(configurationModel.lines[lineIndex].columns[0].control),
-					displayEditOption : extractTemplateOptionDisplayEditOption(configurationModel.lines[lineIndex].columns[0].control),
-					placeholder 			: extractTemplateOptionPlaceholder(configurationModel.lines[lineIndex].columns[0].control),
-					description 			: extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[0].control),
-					options 					: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[0].control),
-					referenceId 		  : extractTemplateOptionReferenceId(configurationModel.lines[lineIndex].columns[0].control),
-					parentId      		: extractTemplateOptionParentId(configurationModel.lines[lineIndex].columns[0].control)
-			},
-					expressionProperties 	: extractFormlyExpressionProperties(configurationModel.lines[lineIndex].columns[0].control),
-					validators 						: extractFormlyValidators(configurationModel.lines[lineIndex].columns[0].control),
-					validation 						: extractFormlyValidation(configurationModel.lines[lineIndex].columns[0].control)
-		};
-	//////////////////////////////////////////////
-	//datepicker additionnal particular property
-	//////////////////////////////////////////////
-	if (configurationModel.lines[lineIndex].columns[0].control.type === 'datepicker') {
-		addDatepickerOptionsProperty(controlCol0, configurationModel,lineIndex, 0);
-	}
-	if (configurationModel.lines[lineIndex].columns[0].control.type === 'input') {
-		switch (configurationModel.lines[lineIndex].columns[0].control.subtype) {
-			case "":
-				addMaxLengthOptionProperty(controlCol0, configurationModel,lineIndex, 0);
-				break;
-
-			case "number":
-				addMinValueOptionProperty(controlCol0, configurationModel,lineIndex, 0);
-				addMaxValueOptionProperty(controlCol0, configurationModel,lineIndex, 0);
-				addIncrementalOptionProperty(controlCol0, configurationModel,lineIndex, 0);
-				break;
-
-			case "year":
-				addCurrentYearOptionProperty(controlCol0, configurationModel,lineIndex, 0);
-				break;
-		}
+	if (configurationModel.lines[lineIndex].columns[columnIndex].control.type === 'header') {
+		FieldGroup.push(headerTemplateCol);
+	} else {
+		FieldGroup.push(controlCol);
 	}
 
-	let controlCol1 =  {
-		className: 'col-xs-6',
-		type			: typeof configurationModel.lines[lineIndex].columns[1].control.type !== 'undefined' ?  (configurationModel.lines[lineIndex].columns[1].control.type === 'none' ? 'blank': configurationModel.lines[lineIndex].columns[1].control.type) : 'blank',
-		key				: typeof configurationModel.lines[lineIndex].columns[1].control.key !== 'undefined' ?  configurationModel.lines[lineIndex].columns[1].control.key : 'blank' + Date.now(),
-		templateOptions	: {
-				type							: extractTemplateOptionType(configurationModel.lines[lineIndex].columns[1].control),
-				label							: extractTemplateOptionLabel(configurationModel.lines[lineIndex].columns[1].control),
-				required 					: extractTemplateOptionRequired(configurationModel.lines[lineIndex].columns[1].control),
-				unique 						: extractTemplateOptionUnique(configurationModel.lines[lineIndex].columns[1].control),
-				defaultValue 			: extractTemplateOptionDefaultValue(configurationModel.lines[lineIndex].columns[1].control),
-				displayAddOption 	: extractTemplateOptionDisplayAddOption(configurationModel.lines[lineIndex].columns[1].control),
-				displayEditOption : extractTemplateOptionDisplayEditOption(configurationModel.lines[lineIndex].columns[1].control),
-				placeholder 			: extractTemplateOptionPlaceholder(configurationModel.lines[lineIndex].columns[1].control),
-				description 			: extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[1].control),
-				options 					: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[1].control),
-				referenceId 			: extractTemplateOptionReferenceId(configurationModel.lines[lineIndex].columns[1].control),
-				parentId    			: extractTemplateOptionParentId(configurationModel.lines[lineIndex].columns[1].control)
-		},
-				expressionProperties 	: extractFormlyExpressionProperties(configurationModel.lines[lineIndex].columns[1].control),
-				validators 						: extractFormlyValidators(configurationModel.lines[lineIndex].columns[1].control),
-				validation 						: extractFormlyValidation(configurationModel.lines[lineIndex].columns[1].control)
-		};
+	return FieldGroup;
+}
 
-	//////////////////////////////////////////////
-	//datepicker additionnal particular property
-	//////////////////////////////////////////////
-	if (configurationModel.lines[lineIndex].columns[1].control.type === 'datepicker') {
-		addDatepickerOptionsProperty(controlCol1, configurationModel,lineIndex, 1);
-	}
-	if (configurationModel.lines[lineIndex].columns[1].control.type === 'input') {
-		switch (configurationModel.lines[lineIndex].columns[1].control.subtype) {
-			case "":
-				addMaxLengthOptionProperty(controlCol1, configurationModel,lineIndex, 1);
-				break;
-
-			case "number":
-				addMinValueOptionProperty(controlCol1, configurationModel,lineIndex, 1);
-				addMaxValueOptionProperty(controlCol1, configurationModel,lineIndex, 1);
-				addIncrementalOptionProperty(controlCol1, configurationModel,lineIndex, 1);
-				break;
-
-			case "year":
-				addCurrentYearOptionProperty(controlCol1, configurationModel,lineIndex, 1);
-				break;
-		}
-	}
-
+const addColumns = (formlyModel, configurationModel,lineIndex, numberOfColumns) => {
 	let FieldGroup = [];
 
-	if (configurationModel.lines[lineIndex].columns[0].control.type === 'header') {
-		FieldGroup.push(headerTemplateCol0);
-	}else{
-		FieldGroup.push(controlCol0);
-	}
-
-	if (configurationModel.lines[lineIndex].columns[1].control.type === 'header') {
-		FieldGroup.push(headerTemplateCol1);
-	}else{
-		FieldGroup.push(controlCol1);
+	for (var i = 0; i < numberOfColumns; i++) {
+		FieldGroup = addColumnControl(formlyModel, configurationModel,lineIndex, numberOfColumns, i, FieldGroup);
 	}
 
 	formlyModel.push({
-		className: 'row',
+		className	: 'row',
 		fieldGroup: FieldGroup
 	});
-};
-
-
-
-
-const addThreeColumnControl = (formlyModel, configurationModel,lineIndex) => {
-	//text header is stored in "description" in templateOtion model
-	const headerTemplateCol0 =  {
-					className: 'col-xs-4',
-					template : `<div class="row"><div class=""><h2 class="text-center">${extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[0].control)}<h2><hr/></div></div>`
-				};
-
-	const headerTemplateCol1 =  {
-					className: 'col-xs-4',
-					template:`<div class="row"><div class=""><h2 class="text-center">${extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[1].control)}<h2><hr/></div></div>`
-				};
-
-	const headerTemplateCol2 =  {
-					className: 'col-xs-4',
-					template:`<div class="row"><div class=""><h2 class="text-center">${extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[2].control)}<h2><hr/></div></div>`
-				};
-
-	let controlCol0 =  {
-		className	: 'col-xs-4',
-		type			: typeof configurationModel.lines[lineIndex].columns[0].control.type 	!== 'undefined' ? (configurationModel.lines[lineIndex].columns[0].control.type === 'none' ? 'blank': configurationModel.lines[lineIndex].columns[0].control.type): 'blank',
-		key				: typeof configurationModel.lines[lineIndex].columns[0].control.key 	!== 'undefined' ?  configurationModel.lines[lineIndex].columns[0].control.key : 'blank' + Date.now(),
-		templateOptions: {
-				type							: extractTemplateOptionType(configurationModel.lines[lineIndex].columns[0].control),
-				label							: extractTemplateOptionLabel(configurationModel.lines[lineIndex].columns[0].control),
-				required 					: extractTemplateOptionRequired(configurationModel.lines[lineIndex].columns[0].control),
-				unique 						: extractTemplateOptionUnique(configurationModel.lines[lineIndex].columns[0].control),
-				defaultValue 			: extractTemplateOptionDefaultValue(configurationModel.lines[lineIndex].columns[0].control),
-				displayAddOption 	: extractTemplateOptionDisplayAddOption(configurationModel.lines[lineIndex].columns[0].control),
-				displayEditOption : extractTemplateOptionDisplayEditOption(configurationModel.lines[lineIndex].columns[0].control),
-				placeholder 			: extractTemplateOptionPlaceholder(configurationModel.lines[lineIndex].columns[0].control),
-				description 			: extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[0].control),
-				options 					: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[0].control),
-				referenceId 			: extractTemplateOptionReferenceId(configurationModel.lines[lineIndex].columns[0].control),
-				parentId    			: extractTemplateOptionParentId(configurationModel.lines[lineIndex].columns[0].control)
-		},
-				expressionProperties 	: extractFormlyExpressionProperties(configurationModel.lines[lineIndex].columns[0].control),
-				validators 						: extractFormlyValidators(configurationModel.lines[lineIndex].columns[0].control),
-				validation 						: extractFormlyValidation(configurationModel.lines[lineIndex].columns[0].control)
-		};
-	//////////////////////////////////////////////
-	//datepicker additionnal particular property
-	//////////////////////////////////////////////
-	if (configurationModel.lines[lineIndex].columns[0].control.type === 'datepicker') {
-		addDatepickerOptionsProperty(controlCol0, configurationModel,lineIndex, 0);
-	}
-	if (configurationModel.lines[lineIndex].columns[0].control.type === 'input') {
-		switch (configurationModel.lines[lineIndex].columns[0].control.subtype) {
-			case "":
-				addMaxLengthOptionProperty(controlCol0, configurationModel,lineIndex, 0);
-				break;
-
-			case "number":
-				addMinValueOptionProperty(controlCol0, configurationModel,lineIndex, 0);
-				addMaxValueOptionProperty(controlCol0, configurationModel,lineIndex, 0);
-				addIncrementalOptionProperty(controlCol0, configurationModel,lineIndex, 0);
-				break;
-
-			case "year":
-				addCurrentYearOptionProperty(controlCol0, configurationModel,lineIndex, 0);
-				break;
-		}
-	}
-
-	let controlCol1 = {
-		className	: 'col-xs-4',
-		type			: typeof configurationModel.lines[lineIndex].columns[1].control.type !== 'undefined' ?  (configurationModel.lines[lineIndex].columns[1].control.type === 'none' ? 'blank': configurationModel.lines[lineIndex].columns[1].control.type) : 'blank',
-		key				: typeof configurationModel.lines[lineIndex].columns[1].control.key !== 'undefined' ?  configurationModel.lines[lineIndex].columns[1].control.key : 'blank' + Date.now(),
-		templateOptions: {
-				type							: extractTemplateOptionType(configurationModel.lines[lineIndex].columns[1].control),
-				label							: extractTemplateOptionLabel(configurationModel.lines[lineIndex].columns[1].control),
-				required 					: extractTemplateOptionRequired(configurationModel.lines[lineIndex].columns[1].control),
-				unique 						: extractTemplateOptionUnique(configurationModel.lines[lineIndex].columns[1].control),
-				defaultValue 			: extractTemplateOptionDefaultValue(configurationModel.lines[lineIndex].columns[1].control),
-				displayAddOption 	: extractTemplateOptionDisplayAddOption(configurationModel.lines[lineIndex].columns[1].control),
-				displayEditOption : extractTemplateOptionDisplayEditOption(configurationModel.lines[lineIndex].columns[1].control),
-				placeholder 			: extractTemplateOptionPlaceholder(configurationModel.lines[lineIndex].columns[1].control),
-				description 			: extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[1].control),
-				options 					: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[1].control),
-				referenceId 			: extractTemplateOptionReferenceId(configurationModel.lines[lineIndex].columns[1].control),
-				parentId    			: extractTemplateOptionParentId(configurationModel.lines[lineIndex].columns[1].control)
-		},
-				expressionProperties 	: extractFormlyExpressionProperties(configurationModel.lines[lineIndex].columns[1].control),
-				validators 						: extractFormlyValidators(configurationModel.lines[lineIndex].columns[1].control),
-				validation 						: extractFormlyValidation(configurationModel.lines[lineIndex].columns[1].control)
-	};
-	//////////////////////////////////////////////
-	//datepicker additionnal particular property
-	//////////////////////////////////////////////
-	if (configurationModel.lines[lineIndex].columns[1].control.type === 'datepicker') {
-		addDatepickerOptionsProperty(controlCol1, configurationModel,lineIndex, 1);
-	}
-	if (configurationModel.lines[lineIndex].columns[1].control.type === 'input') {
-		switch (configurationModel.lines[lineIndex].columns[1].control.subtype) {
-			case "":
-				addMaxLengthOptionProperty(controlCol1, configurationModel,lineIndex, 1);
-				break;
-
-			case "number":
-				addMinValueOptionProperty(controlCol1, configurationModel,lineIndex, 1);
-				addMaxValueOptionProperty(controlCol1, configurationModel,lineIndex, 1);
-				addIncrementalOptionProperty(controlCol1, configurationModel,lineIndex, 1);
-				break;
-
-			case "year":
-				addCurrentYearOptionProperty(controlCol1, configurationModel,lineIndex, 1);
-				break;
-		}
-	}
-
-	let controlCol2 = {
-		className	: 'col-xs-4',
-		type			: typeof configurationModel.lines[lineIndex].columns[2].control.type !== 'undefined' ?  (configurationModel.lines[lineIndex].columns[2].control.type === 'none' ? 'blank': configurationModel.lines[lineIndex].columns[2].control.type) : 'blank',
-		key				: typeof configurationModel.lines[lineIndex].columns[2].control.key !== 'undefined' ?  configurationModel.lines[lineIndex].columns[2].control.key : 'blank' + Date.now(),
-		templateOptions: {
-				type							: extractTemplateOptionType(configurationModel.lines[lineIndex].columns[2].control),
-				label							: extractTemplateOptionLabel(configurationModel.lines[lineIndex].columns[2].control),
-				required 					: extractTemplateOptionRequired(configurationModel.lines[lineIndex].columns[2].control),
-				unique 						: extractTemplateOptionUnique(configurationModel.lines[lineIndex].columns[1].control),
-				defaultValue 			: extractTemplateOptionDefaultValue(configurationModel.lines[lineIndex].columns[1].control),
-				displayAddOption 	: extractTemplateOptionDisplayAddOption(configurationModel.lines[lineIndex].columns[1].control),
-				displayEditOption : extractTemplateOptionDisplayEditOption(configurationModel.lines[lineIndex].columns[1].control),
-				placeholder 			: extractTemplateOptionPlaceholder(configurationModel.lines[lineIndex].columns[2].control),
-				description 			: extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[2].control),
-				options 					: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[2].control),
-				referenceId 			: extractTemplateOptionReferenceId(configurationModel.lines[lineIndex].columns[2].control),
-				parentId    			: extractTemplateOptionParentId(configurationModel.lines[lineIndex].columns[2].control)
-		},
-				expressionProperties 	: extractFormlyExpressionProperties(configurationModel.lines[lineIndex].columns[2].control),
-				validators 						: extractFormlyValidators(configurationModel.lines[lineIndex].columns[2].control),
-				validation 						: extractFormlyValidation(configurationModel.lines[lineIndex].columns[2].control)
-	};
-	//////////////////////////////////////////////
-	//datepicker additionnal particular property
-	//////////////////////////////////////////////
-	if (configurationModel.lines[lineIndex].columns[2].control.type === 'datepicker') {
-		addDatepickerOptionsProperty(controlCol2, configurationModel,lineIndex, 2);
-	}
-	if (configurationModel.lines[lineIndex].columns[2].control.type === 'input') {
-		switch (configurationModel.lines[lineIndex].columns[2].control.subtype) {
-			case "":
-				addMaxLengthOptionProperty(controlCol2, configurationModel,lineIndex, 2);
-				break;
-
-			case "number":
-				addMinValueOptionProperty(controlCol2, configurationModel,lineIndex, 2);
-				addMaxValueOptionProperty(controlCol2, configurationModel,lineIndex, 2);
-				addIncrementalOptionProperty(controlCol2, configurationModel,lineIndex, 2);
-				break;
-
-			case "year":
-				addCurrentYearOptionProperty(controlCol2, configurationModel,lineIndex, 2);
-				break;
-		}
-	}
-
-	let FieldGroup = [];
-
-	if (configurationModel.lines[lineIndex].columns[0].control.type === 'header') {
-		FieldGroup.push(headerTemplateCol0);
-	}else{
-		FieldGroup.push(controlCol0);
-	}
-
-	if (configurationModel.lines[lineIndex].columns[1].control.type === 'header') {
-		FieldGroup.push(headerTemplateCol1);
-	}else{
-		FieldGroup.push(controlCol1);
-	}
-
-	if (configurationModel.lines[lineIndex].columns[2].control.type === 'header') {
-		FieldGroup.push(headerTemplateCol2);
-	}else{
-		FieldGroup.push(controlCol2);
-	}
-
-	formlyModel.push({
-		className: 'row',
-		fieldGroup: FieldGroup
-	});
-};
+}
 
 
 const resetDataModel = (obj) => {
@@ -599,7 +309,7 @@ export {
 	extractFormlyValidation,
 	extractTemplateOptionRequired,
 	extractTemplateOptionUnique,
-	extractTemplateOptionDefaultValue,
+	extractDefaultValue,
 	extractTemplateOptionDisplayAddOption,
 	extractTemplateOptionDisplayEditOption,
 	extractTemplateOptionOptions,
@@ -614,8 +324,5 @@ export {
 	addIncrementalOptionProperty,
 	addCurrentYearOptionProperty,
 	addOneColumnHeader,
-	addOneColumnControl,
-	addTwoColumnControl,
-	addThreeColumnControl
-
+	addColumns
 };

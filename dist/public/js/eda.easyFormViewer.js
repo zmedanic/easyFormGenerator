@@ -39,6 +39,7 @@ $__System.register('4', [], function (_export) {
 					'control': {
 						'type': 'none',
 						'key': 'none',
+						'defaultValue': '',
 						'templateOptions': {
 							'referenceId': 0
 						}
@@ -424,7 +425,69 @@ $__System.register('e', [], function (_export) {
 
 	'use strict';
 
-	var resetNyaSelect, getConfigurationModelInit, getEmptyConfigModelResult, resetDataModel, getErrorObject, getMessageObject, resetFormlyModel, extractTemplateOptionDescription, extractTemplateOptionPlaceholder, extractTemplateOptionType, extractTemplateOptionLabel, extractTemplateOptionLabelShort, extractTemplateOptionParentId, extractTemplateOptionReferenceId, extractTemplateOptionDatepickerOptions, extractTemplateOptionMaxLengthOption, extractTemplateOptionMinValueOption, extractTemplateOptionMaxValueOption, extractTemplateOptionIncrementalOption, extractTemplateOptionCurrentYearOption, extractFormlyExpressionProperties, extractFormlyValidators, extractFormlyValidation, extractTemplateOptionRequired, extractTemplateOptionUnique, extractTemplateOptionDefaultValue, extractTemplateOptionDisplayAddOption, extractTemplateOptionDisplayEditOption, extractTemplateOptionOptions, addDatepickerOptionsProperty, addMaxLengthOptionProperty, addMinValueOptionProperty, addMaxValueOptionProperty, addIncrementalOptionProperty, addCurrentYearOptionProperty, addOneColumnHeader, addOneColumnControl, addTwoColumnControl, addThreeColumnControl;
+	var resetNyaSelect, getConfigurationModelInit, getEmptyConfigModelResult, resetDataModel, getErrorObject, getMessageObject, resetFormlyModel, extractTemplateOptionDescription, extractTemplateOptionPlaceholder, extractTemplateOptionType, extractTemplateOptionLabel, extractTemplateOptionLabelShort, extractTemplateOptionParentId, extractTemplateOptionReferenceId, extractTemplateOptionDatepickerOptions, extractTemplateOptionMaxLengthOption, extractTemplateOptionMinValueOption, extractTemplateOptionMaxValueOption, extractTemplateOptionIncrementalOption, extractTemplateOptionCurrentYearOption, extractFormlyExpressionProperties, extractFormlyValidators, extractFormlyValidation, extractTemplateOptionRequired, extractTemplateOptionUnique, extractDefaultValue, extractTemplateOptionDisplayAddOption, extractTemplateOptionDisplayEditOption, extractTemplateOptionOptions, addDatepickerOptionsProperty, addMaxLengthOptionProperty, addMinValueOptionProperty, addMaxValueOptionProperty, addIncrementalOptionProperty, addCurrentYearOptionProperty, addOneColumnHeader, addColumns;
+
+	function addColumnControl(formlyModel, configurationModel, lineIndex, numberOfColumns, columnIndex, FieldGroup) {
+		var headerTemplateCol = {
+			className: 'col-xs-' + 12 / numberOfColumns,
+			template: '<div class="row"><div class=""><h2 class="text-center">' + extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[columnIndex].control) + '<h2><hr/></div></div>'
+		};
+
+		var controlCol = {
+			className: 'col-xs-' + 12 / numberOfColumns,
+			type: typeof configurationModel.lines[lineIndex].columns[columnIndex].control.type !== 'undefined' ? configurationModel.lines[lineIndex].columns[columnIndex].control.type === 'none' ? 'blank' : configurationModel.lines[lineIndex].columns[columnIndex].control.type : 'blank',
+			key: typeof configurationModel.lines[lineIndex].columns[columnIndex].control.key !== 'undefined' ? configurationModel.lines[lineIndex].columns[columnIndex].control.key : 'blank' + Date.now(),
+			defaultValue: extractDefaultValue(configurationModel.lines[lineIndex].columns[columnIndex].control),
+			templateOptions: {
+				type: extractTemplateOptionType(configurationModel.lines[lineIndex].columns[columnIndex].control),
+				label: extractTemplateOptionLabel(configurationModel.lines[lineIndex].columns[columnIndex].control),
+				required: extractTemplateOptionRequired(configurationModel.lines[lineIndex].columns[columnIndex].control),
+				unique: extractTemplateOptionUnique(configurationModel.lines[lineIndex].columns[columnIndex].control),
+				displayAddOption: extractTemplateOptionDisplayAddOption(configurationModel.lines[lineIndex].columns[columnIndex].control),
+				displayEditOption: extractTemplateOptionDisplayEditOption(configurationModel.lines[lineIndex].columns[columnIndex].control),
+				placeholder: extractTemplateOptionPlaceholder(configurationModel.lines[lineIndex].columns[columnIndex].control),
+				description: extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[columnIndex].control),
+				options: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[columnIndex].control),
+				referenceId: extractTemplateOptionReferenceId(configurationModel.lines[lineIndex].columns[columnIndex].control),
+				parentId: extractTemplateOptionParentId(configurationModel.lines[lineIndex].columns[columnIndex].control)
+			},
+			expressionProperties: extractFormlyExpressionProperties(configurationModel.lines[lineIndex].columns[columnIndex].control),
+			validators: extractFormlyValidators(configurationModel.lines[lineIndex].columns[columnIndex].control),
+			validation: extractFormlyValidation(configurationModel.lines[lineIndex].columns[columnIndex].control)
+		};
+		//////////////////////////////////////////////
+		//datepicker additionnal particular property
+		//////////////////////////////////////////////
+		if (configurationModel.lines[lineIndex].columns[columnIndex].control.type === 'datepicker') {
+			addDatepickerOptionsProperty(controlCol, configurationModel, lineIndex, 0);
+		}
+		if (configurationModel.lines[lineIndex].columns[columnIndex].control.type === 'input') {
+			switch (configurationModel.lines[lineIndex].columns[columnIndex].control.subtype) {
+				case "":
+					addMaxLengthOptionProperty(controlCol, configurationModel, lineIndex, columnIndex);
+					break;
+
+				case "number":
+					addMinValueOptionProperty(controlCol, configurationModel, lineIndex, columnIndex);
+					addMaxValueOptionProperty(controlCol, configurationModel, lineIndex, columnIndex);
+					addIncrementalOptionProperty(controlCol, configurationModel, lineIndex, columnIndex);
+					break;
+
+				case "year":
+					addCurrentYearOptionProperty(controlCol, configurationModel, lineIndex, columnIndex);
+					break;
+			}
+		}
+
+		if (configurationModel.lines[lineIndex].columns[columnIndex].control.type === 'header') {
+			FieldGroup.push(headerTemplateCol);
+		} else {
+			FieldGroup.push(controlCol);
+		}
+
+		return FieldGroup;
+	}
+
 	return {
 		setters: [],
 		execute: function () {
@@ -439,7 +502,11 @@ $__System.register('e', [], function (_export) {
 						formlyType: 'blank',
 						formlySubtype: '',
 						formlyLabel: '',
+						formlyLabelShort: '',
 						formlyRequired: false,
+						formlyUnique: false,
+						displayAddOption: true,
+						displayEditOption: true,
 						formlyDesciption: '',
 						formlyOptions: [],
 						parentId: '',
@@ -455,7 +522,11 @@ $__System.register('e', [], function (_export) {
 						formlyType: 'header',
 						formlySubtype: '',
 						formlyLabel: '',
+						formlyLabelShort: '',
 						formlyRequired: false,
+						formlyUnique: false,
+						displayAddOption: true,
+						displayEditOption: true,
 						formlyDesciption: '',
 						formlyOptions: [],
 						parentId: '',
@@ -471,7 +542,11 @@ $__System.register('e', [], function (_export) {
 						formlyType: 'subTitle',
 						formlySubtype: '',
 						formlyLabel: '',
+						formlyLabelShort: '',
 						formlyRequired: false,
+						formlyUnique: false,
+						displayAddOption: true,
+						displayEditOption: true,
 						formlyDesciption: '',
 						formlyOptions: [],
 						parentId: '',
@@ -487,7 +562,11 @@ $__System.register('e', [], function (_export) {
 						formlyType: 'input',
 						formlySubtype: '',
 						formlyLabel: '',
+						formlyLabelShort: '',
 						formlyRequired: false,
+						formlyUnique: false,
+						displayAddOption: true,
+						displayEditOption: true,
 						formlyDesciption: '',
 						formlyOptions: [],
 						parentId: '',
@@ -523,7 +602,11 @@ $__System.register('e', [], function (_export) {
 						formlyType: 'input',
 						formlySubtype: 'number',
 						formlyLabel: '',
+						formlyLabelShort: '',
 						formlyRequired: false,
+						formlyUnique: false,
+						displayAddOption: true,
+						displayEditOption: true,
 						formlyDesciption: '',
 						formlyOptions: [],
 						parentId: '',
@@ -563,7 +646,11 @@ $__System.register('e', [], function (_export) {
 						formlyType: 'input',
 						formlySubtype: 'year',
 						formlyLabel: '',
+						formlyLabelShort: '',
 						formlyRequired: false,
+						formlyUnique: false,
+						displayAddOption: true,
+						displayEditOption: true,
 						formlyDesciption: '',
 						formlyOptions: [],
 						parentId: '',
@@ -601,7 +688,11 @@ $__System.register('e', [], function (_export) {
 						formlyType: 'input',
 						formlySubtype: 'password',
 						formlyLabel: '',
+						formlyLabelShort: '',
 						formlyRequired: false,
+						formlyUnique: false,
+						displayAddOption: true,
+						displayEditOption: true,
 						formlyDesciption: '',
 						formlyOptions: [],
 						parentId: '',
@@ -628,7 +719,11 @@ $__System.register('e', [], function (_export) {
 						formlyType: 'input',
 						formlySubtype: 'email',
 						formlyLabel: '',
+						formlyLabelShort: '',
 						formlyRequired: false,
+						formlyUnique: false,
+						displayAddOption: true,
+						displayEditOption: true,
 						formlyDesciption: '',
 						formlyOptions: [],
 						parentId: '',
@@ -667,7 +762,11 @@ $__System.register('e', [], function (_export) {
 						formlyType: 'datepicker',
 						formlySubtype: '',
 						formlyLabel: '',
+						formlyLabelShort: '',
 						formlyRequired: false,
+						formlyUnique: false,
+						displayAddOption: true,
+						displayEditOption: true,
 						formlyDesciption: '',
 						formlyOptions: [],
 						parentId: '',
@@ -695,7 +794,11 @@ $__System.register('e', [], function (_export) {
 						formlyType: 'textarea',
 						formlySubtype: '',
 						formlyLabel: '',
+						formlyLabelShort: '',
 						formlyRequired: false,
+						formlyUnique: false,
+						displayAddOption: true,
+						displayEditOption: true,
 						formlyDesciption: '',
 						formlyOptions: [],
 						parentId: '',
@@ -722,7 +825,11 @@ $__System.register('e', [], function (_export) {
 						formlyType: 'richEditor',
 						formlySubtype: '',
 						formlyLabel: '',
+						formlyLabelShort: '',
 						formlyRequired: false,
+						formlyUnique: false,
+						displayAddOption: true,
+						displayEditOption: true,
 						formlyDesciption: '',
 						formlyOptions: [],
 						parentId: '',
@@ -750,7 +857,11 @@ $__System.register('e', [], function (_export) {
 						formlyType: 'radio',
 						formlySubtype: '',
 						formlyLabel: '',
+						formlyLabelShort: '',
 						formlyRequired: false,
+						formlyUnique: false,
+						displayAddOption: true,
+						displayEditOption: true,
 						formlyDesciption: '',
 						formlyOptions: [],
 						parentId: '',
@@ -777,7 +888,11 @@ $__System.register('e', [], function (_export) {
 						formlyType: 'checkbox',
 						formlySubtype: '',
 						formlyLabel: '',
+						formlyLabelShort: '',
 						formlyRequired: false,
+						formlyUnique: false,
+						displayAddOption: true,
+						displayEditOption: true,
 						formlyDesciption: '',
 						formlyOptions: [],
 						parentId: '',
@@ -805,7 +920,11 @@ $__System.register('e', [], function (_export) {
 						formlyType: 'basicSelect',
 						formlySubtype: '',
 						formlyLabel: '',
+						formlyLabelShort: '',
 						formlyRequired: false,
+						formlyUnique: false,
+						displayAddOption: true,
+						displayEditOption: true,
 						formlyDesciption: '',
 						formlyOptions: [],
 						parentId: '',
@@ -833,7 +952,11 @@ $__System.register('e', [], function (_export) {
 						formlyType: 'groupedSelect',
 						formlySubtype: '',
 						formlyLabel: '',
+						formlyLabelShort: '',
 						formlyRequired: false,
+						formlyUnique: false,
+						displayAddOption: true,
+						displayEditOption: true,
 						formlyDesciption: '',
 						formlyOptions: [],
 						parentId: '',
@@ -857,7 +980,11 @@ $__System.register('e', [], function (_export) {
 					temporyConfig: {
 						selectedControl: 'none',
 						formlyLabel: 'label',
+						formlyLabelShort: '',
 						formlyRequired: false,
+						formlyUnique: false,
+						displayAddOption: true,
+						displayEditOption: true,
 						formlyDesciption: '',
 						formlyPlaceholder: '',
 						formlyOptions: [],
@@ -896,7 +1023,8 @@ $__System.register('e', [], function (_export) {
 							exist: true,
 							control: {
 								type: 'none',
-								key: 'none'
+								key: 'none',
+								defaultValue: ''
 								// templateOptions: {
 								//                     label: 'none',
 								//                     placeholder: 'none',
@@ -1032,8 +1160,8 @@ $__System.register('e', [], function (_export) {
 				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.unique !== 'undefined' ? obj.templateOptions.unique : false : false;
 			};
 
-			extractTemplateOptionDefaultValue = function extractTemplateOptionDefaultValue(obj) {
-				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.unique !== 'undefined' ? obj.templateOptions.defaultValue : obj.type == 'checkbox' ? false : '' : obj.type == 'checkbox' ? false : '';
+			extractDefaultValue = function extractDefaultValue(obj) {
+				return typeof obj.defaultValue !== 'undefined' ? obj.defaultValue : obj.type == 'checkbox' ? false : '';
 			};
 
 			extractTemplateOptionDisplayAddOption = function extractTemplateOptionDisplayAddOption(obj) {
@@ -1082,319 +1210,11 @@ $__System.register('e', [], function (_export) {
 				});
 			};
 
-			addOneColumnControl = function addOneColumnControl(formlyModel, configurationModel, lineIndex) {
-				var fieldToPush = {
-					className: 'col-xs-12',
-					type: typeof configurationModel.lines[lineIndex].columns[0].control.type !== 'undefined' ? configurationModel.lines[lineIndex].columns[0].control.type === 'none' ? 'blank' : configurationModel.lines[lineIndex].columns[0].control.type : 'blank',
-					key: typeof configurationModel.lines[lineIndex].columns[0].control.key !== 'undefined' ? configurationModel.lines[lineIndex].columns[0].control.key : 'blank' + Date.now(),
-					templateOptions: {
-						type: extractTemplateOptionType(configurationModel.lines[lineIndex].columns[0].control),
-						label: extractTemplateOptionLabel(configurationModel.lines[lineIndex].columns[0].control),
-						required: extractTemplateOptionRequired(configurationModel.lines[lineIndex].columns[0].control),
-						placeholder: extractTemplateOptionPlaceholder(configurationModel.lines[lineIndex].columns[0].control),
-						description: extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[0].control),
-						options: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[0].control),
-						referenceId: extractTemplateOptionReferenceId(configurationModel.lines[lineIndex].columns[0].control),
-						parentId: extractTemplateOptionParentId(configurationModel.lines[lineIndex].columns[0].control)
-					},
-					expressionProperties: extractFormlyExpressionProperties(configurationModel.lines[lineIndex].columns[0].control),
-					validators: extractFormlyValidators(configurationModel.lines[lineIndex].columns[0].control),
-					validation: extractFormlyValidation(configurationModel.lines[lineIndex].columns[0].control)
-				};
-				//////////////////////////////////////////////
-				//datepicker additionnal particular property
-				//////////////////////////////////////////////
-				if (configurationModel.lines[lineIndex].columns[0].control.type === 'datepicker') addDatepickerOptionsProperty(fieldToPush, configurationModel, lineIndex, 0);
-				if (configurationModel.lines[lineIndex].columns[0].control.type === 'input') {
-					switch (configurationModel.lines[lineIndex].columns[0].control.subtype) {
-						case "":
-							addMaxLengthOptionProperty(fieldToPush, configurationModel, lineIndex, 0);
-							break;
-
-						case "number":
-							addMinValueOptionProperty(fieldToPush, configurationModel, lineIndex, 0);
-							addMaxValueOptionProperty(fieldToPush, configurationModel, lineIndex, 0);
-							addIncrementalOptionProperty(fieldToPush, configurationModel, lineIndex, 0);
-							break;
-
-						case "year":
-							addCurrentYearOptionProperty(fieldToPush, configurationModel, lineIndex, 0);
-							break;
-					}
-				}
-
-				formlyModel.push(fieldToPush);
-			};
-
-			addTwoColumnControl = function addTwoColumnControl(formlyModel, configurationModel, lineIndex) {
-
-				//text header is stored in "description" in templateOtion model
-				var headerTemplateCol0 = {
-					className: 'col-xs-6',
-					template: '<div class="row"><div class=""><h2 class="text-center">' + extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[0].control) + '<h2><hr/></div></div>'
-				};
-
-				var headerTemplateCol1 = {
-					className: 'col-xs-6',
-					template: '<div class="row"><div class=""><h2 class="text-center">' + extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[1].control) + '<h2><hr/></div></div>'
-				};
-
-				var controlCol0 = {
-					className: 'col-xs-6',
-					type: typeof configurationModel.lines[lineIndex].columns[0].control.type !== 'undefined' ? configurationModel.lines[lineIndex].columns[0].control.type === 'none' ? 'blank' : configurationModel.lines[lineIndex].columns[0].control.type : 'blank',
-					key: typeof configurationModel.lines[lineIndex].columns[0].control.key !== 'undefined' ? configurationModel.lines[lineIndex].columns[0].control.key : 'blank' + Date.now(),
-					templateOptions: {
-						type: extractTemplateOptionType(configurationModel.lines[lineIndex].columns[0].control),
-						label: extractTemplateOptionLabel(configurationModel.lines[lineIndex].columns[0].control),
-						required: extractTemplateOptionRequired(configurationModel.lines[lineIndex].columns[0].control),
-						placeholder: extractTemplateOptionPlaceholder(configurationModel.lines[lineIndex].columns[0].control),
-						description: extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[0].control),
-						options: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[0].control),
-						referenceId: extractTemplateOptionReferenceId(configurationModel.lines[lineIndex].columns[0].control),
-						parentId: extractTemplateOptionParentId(configurationModel.lines[lineIndex].columns[0].control)
-					},
-					expressionProperties: extractFormlyExpressionProperties(configurationModel.lines[lineIndex].columns[0].control),
-					validators: extractFormlyValidators(configurationModel.lines[lineIndex].columns[0].control),
-					validation: extractFormlyValidation(configurationModel.lines[lineIndex].columns[0].control)
-				};
-				//////////////////////////////////////////////
-				//datepicker additionnal particular property
-				//////////////////////////////////////////////
-				if (configurationModel.lines[lineIndex].columns[0].control.type === 'datepicker') addDatepickerOptionsProperty(controlCol0, configurationModel, lineIndex, 0);
-				if (configurationModel.lines[lineIndex].columns[0].control.type === 'input') {
-					switch (configurationModel.lines[lineIndex].columns[0].control.subtype) {
-						case "":
-							addMaxLengthOptionProperty(controlCol0, configurationModel, lineIndex, 0);
-							break;
-
-						case "number":
-							addMinValueOptionProperty(controlCol0, configurationModel, lineIndex, 0);
-							addMaxValueOptionProperty(controlCol0, configurationModel, lineIndex, 0);
-							addIncrementalOptionProperty(controlCol0, configurationModel, lineIndex, 0);
-							break;
-
-						case "year":
-							addCurrentYearOptionProperty(controlCol0, configurationModel, lineIndex, 0);
-							break;
-					}
-				}
-
-				var controlCol1 = {
-					className: 'col-xs-6',
-					type: typeof configurationModel.lines[lineIndex].columns[1].control.type !== 'undefined' ? configurationModel.lines[lineIndex].columns[1].control.type === 'none' ? 'blank' : configurationModel.lines[lineIndex].columns[1].control.type : 'blank',
-					key: typeof configurationModel.lines[lineIndex].columns[1].control.key !== 'undefined' ? configurationModel.lines[lineIndex].columns[1].control.key : 'blank' + Date.now(),
-					templateOptions: {
-						type: extractTemplateOptionType(configurationModel.lines[lineIndex].columns[1].control),
-						label: extractTemplateOptionLabel(configurationModel.lines[lineIndex].columns[1].control),
-						required: extractTemplateOptionRequired(configurationModel.lines[lineIndex].columns[1].control),
-						placeholder: extractTemplateOptionPlaceholder(configurationModel.lines[lineIndex].columns[1].control),
-						description: extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[1].control),
-						options: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[1].control),
-						referenceId: extractTemplateOptionReferenceId(configurationModel.lines[lineIndex].columns[1].control),
-						parentId: extractTemplateOptionParentId(configurationModel.lines[lineIndex].columns[1].control)
-					},
-					expressionProperties: extractFormlyExpressionProperties(configurationModel.lines[lineIndex].columns[1].control),
-					validators: extractFormlyValidators(configurationModel.lines[lineIndex].columns[1].control),
-					validation: extractFormlyValidation(configurationModel.lines[lineIndex].columns[1].control)
-				};
-
-				//////////////////////////////////////////////
-				//datepicker additionnal particular property
-				//////////////////////////////////////////////
-				if (configurationModel.lines[lineIndex].columns[1].control.type === 'datepicker') addDatepickerOptionsProperty(controlCol1, configurationModel, lineIndex, 1);
-				if (configurationModel.lines[lineIndex].columns[1].control.type === 'input') {
-					switch (configurationModel.lines[lineIndex].columns[1].control.subtype) {
-						case "":
-							addMaxLengthOptionProperty(controlCol1, configurationModel, lineIndex, 1);
-							break;
-
-						case "number":
-							addMinValueOptionProperty(controlCol1, configurationModel, lineIndex, 1);
-							addMaxValueOptionProperty(controlCol1, configurationModel, lineIndex, 1);
-							addIncrementalOptionProperty(controlCol1, configurationModel, lineIndex, 1);
-							break;
-
-						case "year":
-							addCurrentYearOptionProperty(controlCol1, configurationModel, lineIndex, 1);
-							break;
-					}
-				}
-
+			addColumns = function addColumns(formlyModel, configurationModel, lineIndex, numberOfColumns) {
 				var FieldGroup = [];
 
-				if (configurationModel.lines[lineIndex].columns[0].control.type === 'header') {
-					FieldGroup.push(headerTemplateCol0);
-				} else {
-					FieldGroup.push(controlCol0);
-				}
-
-				if (configurationModel.lines[lineIndex].columns[1].control.type === 'header') {
-					FieldGroup.push(headerTemplateCol1);
-				} else {
-					FieldGroup.push(controlCol1);
-				}
-
-				formlyModel.push({
-					className: 'row',
-					fieldGroup: FieldGroup
-				});
-			};
-
-			addThreeColumnControl = function addThreeColumnControl(formlyModel, configurationModel, lineIndex) {
-				//text header is stored in "description" in templateOtion model
-				var headerTemplateCol0 = {
-					className: 'col-xs-4',
-					template: '<div class="row"><div class=""><h2 class="text-center">' + extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[0].control) + '<h2><hr/></div></div>'
-				};
-
-				var headerTemplateCol1 = {
-					className: 'col-xs-4',
-					template: '<div class="row"><div class=""><h2 class="text-center">' + extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[1].control) + '<h2><hr/></div></div>'
-				};
-
-				var headerTemplateCol2 = {
-					className: 'col-xs-4',
-					template: '<div class="row"><div class=""><h2 class="text-center">' + extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[2].control) + '<h2><hr/></div></div>'
-				};
-
-				var controlCol0 = {
-					className: 'col-xs-4',
-					type: typeof configurationModel.lines[lineIndex].columns[0].control.type !== 'undefined' ? configurationModel.lines[lineIndex].columns[0].control.type === 'none' ? 'blank' : configurationModel.lines[lineIndex].columns[0].control.type : 'blank',
-					key: typeof configurationModel.lines[lineIndex].columns[0].control.key !== 'undefined' ? configurationModel.lines[lineIndex].columns[0].control.key : 'blank' + Date.now(),
-					templateOptions: {
-						type: extractTemplateOptionType(configurationModel.lines[lineIndex].columns[0].control),
-						label: extractTemplateOptionLabel(configurationModel.lines[lineIndex].columns[0].control),
-						required: extractTemplateOptionRequired(configurationModel.lines[lineIndex].columns[0].control),
-						placeholder: extractTemplateOptionPlaceholder(configurationModel.lines[lineIndex].columns[0].control),
-						description: extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[0].control),
-						options: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[0].control),
-						referenceId: extractTemplateOptionReferenceId(configurationModel.lines[lineIndex].columns[0].control),
-						parentId: extractTemplateOptionParentId(configurationModel.lines[lineIndex].columns[0].control)
-					},
-					expressionProperties: extractFormlyExpressionProperties(configurationModel.lines[lineIndex].columns[0].control),
-					validators: extractFormlyValidators(configurationModel.lines[lineIndex].columns[0].control),
-					validation: extractFormlyValidation(configurationModel.lines[lineIndex].columns[0].control)
-				};
-				//////////////////////////////////////////////
-				//datepicker additionnal particular property
-				//////////////////////////////////////////////
-				if (configurationModel.lines[lineIndex].columns[0].control.type === 'datepicker') addDatepickerOptionsProperty(controlCol0, configurationModel, lineIndex, 0);
-				if (configurationModel.lines[lineIndex].columns[0].control.type === 'input') {
-					switch (configurationModel.lines[lineIndex].columns[0].control.subtype) {
-						case "":
-							addMaxLengthOptionProperty(controlCol0, configurationModel, lineIndex, 0);
-							break;
-
-						case "number":
-							addMinValueOptionProperty(controlCol0, configurationModel, lineIndex, 0);
-							addMaxValueOptionProperty(controlCol0, configurationModel, lineIndex, 0);
-							addIncrementalOptionProperty(controlCol0, configurationModel, lineIndex, 0);
-							break;
-
-						case "year":
-							addCurrentYearOptionProperty(controlCol0, configurationModel, lineIndex, 0);
-							break;
-					}
-				}
-
-				var controlCol1 = {
-					className: 'col-xs-4',
-					type: typeof configurationModel.lines[lineIndex].columns[1].control.type !== 'undefined' ? configurationModel.lines[lineIndex].columns[1].control.type === 'none' ? 'blank' : configurationModel.lines[lineIndex].columns[1].control.type : 'blank',
-					key: typeof configurationModel.lines[lineIndex].columns[1].control.key !== 'undefined' ? configurationModel.lines[lineIndex].columns[1].control.key : 'blank' + Date.now(),
-					templateOptions: {
-						type: extractTemplateOptionType(configurationModel.lines[lineIndex].columns[1].control),
-						label: extractTemplateOptionLabel(configurationModel.lines[lineIndex].columns[1].control),
-						required: extractTemplateOptionRequired(configurationModel.lines[lineIndex].columns[1].control),
-						placeholder: extractTemplateOptionPlaceholder(configurationModel.lines[lineIndex].columns[1].control),
-						description: extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[1].control),
-						options: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[1].control),
-						referenceId: extractTemplateOptionReferenceId(configurationModel.lines[lineIndex].columns[1].control),
-						parentId: extractTemplateOptionParentId(configurationModel.lines[lineIndex].columns[1].control)
-					},
-					expressionProperties: extractFormlyExpressionProperties(configurationModel.lines[lineIndex].columns[1].control),
-					validators: extractFormlyValidators(configurationModel.lines[lineIndex].columns[1].control),
-					validation: extractFormlyValidation(configurationModel.lines[lineIndex].columns[1].control)
-				};
-				//////////////////////////////////////////////
-				//datepicker additionnal particular property
-				//////////////////////////////////////////////
-				if (configurationModel.lines[lineIndex].columns[1].control.type === 'datepicker') addDatepickerOptionsProperty(controlCol1, configurationModel, lineIndex, 1);
-				if (configurationModel.lines[lineIndex].columns[1].control.type === 'input') {
-					switch (configurationModel.lines[lineIndex].columns[1].control.subtype) {
-						case "":
-							addMaxLengthOptionProperty(controlCol1, configurationModel, lineIndex, 1);
-							break;
-
-						case "number":
-							addMinValueOptionProperty(controlCol1, configurationModel, lineIndex, 1);
-							addMaxValueOptionProperty(controlCol1, configurationModel, lineIndex, 1);
-							addIncrementalOptionProperty(controlCol1, configurationModel, lineIndex, 1);
-							break;
-
-						case "year":
-							addCurrentYearOptionProperty(controlCol1, configurationModel, lineIndex, 1);
-							break;
-					}
-				}
-
-				var controlCol2 = {
-					className: 'col-xs-4',
-					type: typeof configurationModel.lines[lineIndex].columns[2].control.type !== 'undefined' ? configurationModel.lines[lineIndex].columns[2].control.type === 'none' ? 'blank' : configurationModel.lines[lineIndex].columns[2].control.type : 'blank',
-					key: typeof configurationModel.lines[lineIndex].columns[2].control.key !== 'undefined' ? configurationModel.lines[lineIndex].columns[2].control.key : 'blank' + Date.now(),
-					templateOptions: {
-						type: extractTemplateOptionType(configurationModel.lines[lineIndex].columns[2].control),
-						label: extractTemplateOptionLabel(configurationModel.lines[lineIndex].columns[2].control),
-						required: extractTemplateOptionRequired(configurationModel.lines[lineIndex].columns[2].control),
-						placeholder: extractTemplateOptionPlaceholder(configurationModel.lines[lineIndex].columns[2].control),
-						description: extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[2].control),
-						options: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[2].control),
-						referenceId: extractTemplateOptionReferenceId(configurationModel.lines[lineIndex].columns[2].control),
-						parentId: extractTemplateOptionParentId(configurationModel.lines[lineIndex].columns[2].control)
-					},
-					expressionProperties: extractFormlyExpressionProperties(configurationModel.lines[lineIndex].columns[2].control),
-					validators: extractFormlyValidators(configurationModel.lines[lineIndex].columns[2].control),
-					validation: extractFormlyValidation(configurationModel.lines[lineIndex].columns[2].control)
-				};
-				//////////////////////////////////////////////
-				//datepicker additionnal particular property
-				//////////////////////////////////////////////
-				if (configurationModel.lines[lineIndex].columns[2].control.type === 'datepicker') addDatepickerOptionsProperty(controlCol2, configurationModel, lineIndex, 2);
-				if (configurationModel.lines[lineIndex].columns[2].control.type === 'input') {
-					switch (configurationModel.lines[lineIndex].columns[2].control.subtype) {
-						case "":
-							addMaxLengthOptionProperty(controlCol2, configurationModel, lineIndex, 2);
-							break;
-
-						case "number":
-							addMinValueOptionProperty(controlCol2, configurationModel, lineIndex, 2);
-							addMaxValueOptionProperty(controlCol2, configurationModel, lineIndex, 2);
-							addIncrementalOptionProperty(controlCol2, configurationModel, lineIndex, 2);
-							break;
-
-						case "year":
-							addCurrentYearOptionProperty(controlCol2, configurationModel, lineIndex, 2);
-							break;
-					}
-				}
-
-				var FieldGroup = [];
-
-				if (configurationModel.lines[lineIndex].columns[0].control.type === 'header') {
-					FieldGroup.push(headerTemplateCol0);
-				} else {
-					FieldGroup.push(controlCol0);
-				}
-
-				if (configurationModel.lines[lineIndex].columns[1].control.type === 'header') {
-					FieldGroup.push(headerTemplateCol1);
-				} else {
-					FieldGroup.push(controlCol1);
-				}
-
-				if (configurationModel.lines[lineIndex].columns[2].control.type === 'header') {
-					FieldGroup.push(headerTemplateCol2);
-				} else {
-					FieldGroup.push(controlCol2);
+				for (var i = 0; i < numberOfColumns; i++) {
+					FieldGroup = addColumnControl(formlyModel, configurationModel, lineIndex, numberOfColumns, i, FieldGroup);
 				}
 
 				formlyModel.push({
@@ -1419,16 +1239,12 @@ $__System.register('e', [], function (_export) {
 
 			_export('addOneColumnHeader', addOneColumnHeader);
 
-			_export('addOneColumnControl', addOneColumnControl);
-
-			_export('addTwoColumnControl', addTwoColumnControl);
-
-			_export('addThreeColumnControl', addThreeColumnControl);
+			_export('addColumns', addColumns);
 		}
 	};
 });
 $__System.register('f', ['7', '8', 'e'], function (_export) {
-	var _createClass, _classCallCheck, resetNyaSelect, getEmptyConfigModelResult, resetDataModel, getErrorObject, getMessageObject, resetFormlyModel, addOneColumnHeader, addOneColumnControl, addTwoColumnControl, addThreeColumnControl, MODEL_TRANSLATOR_SERVICE, $modelsTranslator;
+	var _createClass, _classCallCheck, resetNyaSelect, getEmptyConfigModelResult, resetDataModel, getErrorObject, getMessageObject, resetFormlyModel, addOneColumnHeader, addColumns, MODEL_TRANSLATOR_SERVICE, $modelsTranslator;
 
 	return {
 		setters: [function (_) {
@@ -1443,9 +1259,7 @@ $__System.register('f', ['7', '8', 'e'], function (_export) {
 			getMessageObject = _e.getMessageObject;
 			resetFormlyModel = _e.resetFormlyModel;
 			addOneColumnHeader = _e.addOneColumnHeader;
-			addOneColumnControl = _e.addOneColumnControl;
-			addTwoColumnControl = _e.addTwoColumnControl;
-			addThreeColumnControl = _e.addThreeColumnControl;
+			addColumns = _e.addColumns;
 		}],
 		execute: function () {
 			/* global angular */
@@ -1581,21 +1395,13 @@ $__System.register('f', ['7', '8', 'e'], function (_export) {
       	* manage header here line0
       	*/
 						var lineNumber = configurationModel.lines.length;
+						var columnsCount = 0;
 						for (var i = 0; i < lineNumber; i++) {
-							//1 column line control
-							if (configurationModel.lines[i].columns.length === 1) {
-								//test if template control = header
-								if (configurationModel.lines[i].columns[0].control.type === 'header') {
-									addOneColumnHeader(formlyModel, configurationModel, i);
-								} else {
-									addOneColumnControl(formlyModel, configurationModel, i);
-								}
-							}
-							if (configurationModel.lines[i].columns.length === 2) {
-								addTwoColumnControl(formlyModel, configurationModel, i);
-							}
-							if (configurationModel.lines[i].columns.length === 3) {
-								addThreeColumnControl(formlyModel, configurationModel, i);
+							columnsCount = configurationModel.lines[i].columns.length;
+							if (columnsCount === 1 && configurationModel.lines[i].columns[0].control.type === 'header') {
+								addOneColumnHeader(formlyModel, configurationModel, i);
+							} else {
+								addColumns(formlyModel, configurationModel, i, columnsCount);
 							}
 						}
 					}

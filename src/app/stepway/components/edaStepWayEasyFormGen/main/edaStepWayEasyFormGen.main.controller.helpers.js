@@ -36,6 +36,7 @@ const initColumnTemplate = (newReferenceId) => {
 			key			: 'none',
 			subtype	: 'none',
 			new: true,
+			defaultValue: '',
 			templateOptions: {
 				referenceId: newReferenceId
 			//                     label: 'none',
@@ -58,6 +59,7 @@ const initLineTemplate = (newReferenceId) => {
 				type:'none',
 				key: 'none',
 				new: true,
+				defaultValue: '',
 				templateOptions: {
 					referenceId: newReferenceId
 				//                     label: 'none',

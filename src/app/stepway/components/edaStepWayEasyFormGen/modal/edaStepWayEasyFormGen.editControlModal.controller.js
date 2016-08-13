@@ -421,7 +421,12 @@ class editControlModalController {
 	resetTemporyConfig(){
 		this.nyaSelectFiltered.temporyConfig = {
 			formlyLabel				: '',
+			formlyLabelShort	: '',
 			formlyRequired		: false,
+			formlyUnique			: false,
+			formlyDefaultValue: '',
+			displayAddOption	: true,
+			displayEditOption	: true,
 			formlyPlaceholder	: '',
 			formlyDesciption	: '',
 			formlyOptions			: [],
