@@ -15,7 +15,6 @@ class editControlModalController {
 		this.toaster 							= toaster;
 		this.selectOptionManage 	= selectOptionManage;
 		this.$modalProxy 					= $modalProxy;
-		columns.splice(this.nyaSelect.temporyConfig.referenceId, 1);
 		this.columns							= columns;
 
 		this.init();
@@ -36,6 +35,7 @@ class editControlModalController {
 		this.demodt         						= {};
 		this.dateOptions    						= this.dateOptionsInit();
 		this.demodt.formats 						= ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+		this.defaultdt         					= {};
 		this.nyaSelect.selectedControl  = this.nyaSelect.temporyConfig.selectedControl;
 		this.nyaSelectFiltered 					= {};
 		this.modelNyaSelect							= {};
@@ -320,16 +320,18 @@ class editControlModalController {
 
 	today() {
 		this.demodt.dt = new Date();
+		this.defaultdt.dt = new Date();
 	}
 
 	clear() {
 		this.demodt.dt = null;
+		this.defaultdt.dt = null;
 	}
 
-	open($event){
+	open($event, position){
 		$event.preventDefault();
 		$event.stopPropagation();
-		this.demodt.opened = true;
+		this[position].opened = true;
 	}
 
 	dateOptionsInit(){

@@ -10,7 +10,10 @@ const EMPTY_FIELD_MODEL = [
 				'exist': true,
 				'control': {
 					'type': 'none',
-					'key': 'none'
+					'key': 'none',
+					'templateOptions': {
+						'referenceId': 0
+					}
 				}
 			}
 		]
@@ -29,28 +32,28 @@ const emptyEdaFieldsModel = ()=>{
 
 const returnAttributeDataModelIfNotEmpty = (edaEasyFormGeneratorModel)=>{
 	let dataModelToReturn = (
-			angular.isArray(edaEasyFormGeneratorModel.dataModel)   ?  ( 
-					edaEasyFormGeneratorModel.dataModel.length > 0 ? 
-					edaEasyFormGeneratorModel.dataModel 
+			angular.isArray(edaEasyFormGeneratorModel.dataModel)   ?  (
+					edaEasyFormGeneratorModel.dataModel.length > 0 ?
+					edaEasyFormGeneratorModel.dataModel
 					: []
-					) 
+					)
 			: []
 	);
-		return dataModelToReturn;  
+		return dataModelToReturn;
 };
 
 
 const returnAttributeConfigurationLinesIfNotEmpty = (loadedFieldModel)=>{
 	let edaEasyFormGeneratorModelToReturn = (
-			angular.isArray(loadedFieldModel) ?  ( 
-					loadedFieldModel.length > 0 ? 
-						loadedFieldModel 
+			angular.isArray(loadedFieldModel) ?  (
+					loadedFieldModel.length > 0 ?
+						loadedFieldModel
 					: emptyEdaFieldsModel()
-					) 
+					)
 			: emptyEdaFieldsModel()
 	);
-		return edaEasyFormGeneratorModelToReturn;  
-}; 
+		return edaEasyFormGeneratorModelToReturn;
+};
 
 
 export {

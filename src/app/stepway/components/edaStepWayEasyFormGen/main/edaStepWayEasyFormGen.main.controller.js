@@ -55,8 +55,8 @@ class edaStepWayEasyFormGenController {
 		this.numberOfColumns          = 1;
 		this.MaxNumberOfColumns       = 3;
 		this.MinNumberOfColumns       = 1;
-		this.columnTemplate           = initColumnTemplate(); //TODO : check is really needed
-		this.lineTemplate             = initLineTemplate();   //TODO : check if really needed
+		this.columnTemplate           = initColumnTemplate(0, 0); //TODO : check is really needed
+		this.lineTemplate             = initLineTemplate(0);   //TODO : check if really needed
 		this.nyaSelect              	= {};
 		this.animationsEnabled        = this.easyFormSteWayConfig.getModalAnimationValue();  //-> disabling animation untill correction in angular bootstrap
 		this.editControlModalSize			= 'lg';
@@ -126,7 +126,8 @@ class edaStepWayEasyFormGenController {
 	}
 
 	addNewline() {
-		this.configuration.lines.push(initLineTemplate());
+		this.debug.numberOfNewFields++;
+		this.configuration.lines.push(initLineTemplate(this.debug.numberOfNewFields * -1));
 			//re-render formfield
 		this.$formlyProxy.applyConfigurationToformlyModel(this.configuration, this.wfFormFields, this.dataModel);
 		this.wfFormFieldsOnlyNeededProperties = angular.copy(this.wfFormFields);
@@ -157,6 +158,8 @@ class edaStepWayEasyFormGenController {
 
 	increaseNumberOfColumns() {
 		let lineIndex = this.configuration.activeLine -1;
+		this.debug.numberOfNewFields++;
+
 		if (this
 					.configuration
 					.lines[lineIndex]
@@ -166,7 +169,7 @@ class edaStepWayEasyFormGenController {
 																	.configuration
 																	.lines[lineIndex]
 																	.columns
-																	.push(angular.copy(initColumnTemplate()));
+																	.push(angular.copy(initColumnTemplate(this.debug.numberOfNewFields * -1)));
 			this
 					.configuration
 					.lines[lineIndex]
@@ -237,18 +240,21 @@ class edaStepWayEasyFormGenController {
 		}
 	}
 
-	prepareExistingColumns() {
-		var columns = [{
+	prepareExistingColumns(currentReferenceId) {
+		let columns = [{
 			id: null,
 			name: 'No value'
 		}];
+
 		for (var i in this.configuration.lines) {
 			for (var j in this.configuration.lines[i].columns) {
-				columns[this.configuration.lines[i].columns[j].control.templateOptions.referenceId] = {
-					id: this.configuration.lines[i].columns[j].control.templateOptions.referenceId,
-					name: (this.configuration.lines[i].columns[j].control.templateOptions.label ? this.configuration.lines[i].columns[j].control.templateOptions.label : 'Field ' + i + ',' + j) +
-								' - ' + this.configuration.lines[i].columns[j].control.type + ' ' + this.configuration.lines[i].columns[j].control.subtype
-				};
+				if (this.configuration.lines[i].columns[j].control.templateOptions.referenceId !== currentReferenceId) {
+					columns.push({
+						id: this.configuration.lines[i].columns[j].control.templateOptions.referenceId,
+						name: (this.configuration.lines[i].columns[j].control.templateOptions.label ? this.configuration.lines[i].columns[j].control.templateOptions.label : 'Field ' + i + ',' + j) +
+									' - ' + this.configuration.lines[i].columns[j].control.type + ' ' + this.configuration.lines[i].columns[j].control.subtype
+					});
+				}
 			}
 		}
 
@@ -257,6 +263,8 @@ class edaStepWayEasyFormGenController {
 
 	showModalAddCtrlToColumn(size, indexLine, numcolumn) {
 		let editControlModal = {};
+		let nyaSelect = this.$modalProxy.getNyASelectFromSelectedLineColumn(this.nyaSelect, this.configuration,indexLine, numcolumn);
+
 		angular.extend(editControlModal, {
 			animation		: this.animationsEnabled,
 			template		: editControlModalTemplate,
@@ -264,8 +272,8 @@ class edaStepWayEasyFormGenController {
 			controllerAs: EDIT_MODAL_CONTROLLERAS_NAME,
 			size				: this.editControlModalSize,
 			resolve			: {
-				columns 	:  () => this.prepareExistingColumns(),
-				nyaSelect :  () => this.$modalProxy.getNyASelectFromSelectedLineColumn(this.nyaSelect, this.configuration,indexLine, numcolumn)
+				columns 	: () => this.prepareExistingColumns(nyaSelect.temporyConfig.referenceId),
+				nyaSelect : () => nyaSelect
 			}
 		});
 

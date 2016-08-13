@@ -1,7 +1,8 @@
 /* global angular */
 const DEBUG_MODEL = {
 	showDebug : false,
-	configurationModelNumberofLines : 1
+	configurationModelNumberofLines : 1,
+	numberOfNewFields : 0
 };
 
 const initDebugModel = () => angular.copy(DEBUG_MODEL);
@@ -26,45 +27,48 @@ const initTabModel = (isPreviewPanelVisible, arePreviewModelsVisible) => {
 	return _tabModel;
 };
 
-const COLUMN_TEMPLATE =  {
-	numColumn		: -1,
-	exist				:true,
-	control			: {
-		type		:'none',
-		key			: 'none',
-		subtype	: 'none'
-		// templateOptions: {
-		//                     label: 'none',
-		//                     placeholder: 'none',
-		//                     required: false,
-		//                     description: 'Descriptive text'
-		//                   }
+const initColumnTemplate = (newReferenceId) => {
+	return {
+		numColumn		: -1,
+		exist				:true,
+		control			: {
+			type		:'none',
+			key			: 'none',
+			subtype	: 'none',
+			new: true,
+			templateOptions: {
+				referenceId: newReferenceId
+			//                     label: 'none',
+			//                     placeholder: 'none',
+			//                     required: false,
+			//                     description: 'Descriptive text'
+	    }
+		}
 	}
 };
 
-const initColumnTemplate = () => angular.copy(COLUMN_TEMPLATE);
-
-const LINE_TEMPLATE = {
-	line:-1,
-	activeColumn : 1,
-	columns: [
-		{
+const initLineTemplate = (newReferenceId) => {
+	return {
+		line:-1,
+		activeColumn : 1,
+		columns: [{
 			numColumn: 1,
 			exist:true,
 			control: {
 				type:'none',
-				key: 'none'
-				// templateOptions: {
+				key: 'none',
+				new: true,
+				templateOptions: {
+					referenceId: newReferenceId
 				//                     label: 'none',
 				//                     placeholder: 'none',
 				//                     required: false,
 				//                     description: 'Descriptive text'
-				//                   }
-				}
+	      }
 			}
-		]
+		}]
+	}
 };
-const initLineTemplate = () => angular.copy(LINE_TEMPLATE);
 
 export {
 	initDebugModel,

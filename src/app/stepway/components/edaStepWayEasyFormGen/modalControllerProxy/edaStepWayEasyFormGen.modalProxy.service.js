@@ -30,14 +30,19 @@ class $modalProxy{
 			*/
 		if (typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions != 'undefined') {
 
-			nyaSelectObj.temporyConfig.selectedControl 		= typeof configurationObj.lines[indexLine].columns[numcolumn].control.selectedControl 						!= 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.selectedControl : 'none';
-			nyaSelectObj.temporyConfig.formlyLabel 				= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.label 			!= 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.label : '';
-			nyaSelectObj.temporyConfig.formlyRequired 		= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.required 		!= 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.required : '';
-			nyaSelectObj.temporyConfig.formlyDesciption 	= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.description != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.description : '';
-			nyaSelectObj.temporyConfig.formlyPlaceholder 	= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.placeholder != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.placeholder : '';
-			nyaSelectObj.temporyConfig.formlyOptions 			= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.options 		!= 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.options : '';
-			nyaSelectObj.temporyConfig.parentId 					= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.parentId 		!= 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.parentId : '';
-			nyaSelectObj.temporyConfig.referenceId 				= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.referenceId != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.referenceId : '';
+			nyaSelectObj.temporyConfig.selectedControl 		= typeof configurationObj.lines[indexLine].columns[numcolumn].control.selectedControl 									!= 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.selectedControl : 'none';
+			nyaSelectObj.temporyConfig.formlyLabel 				= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.label 						!= 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.label : '';
+			nyaSelectObj.temporyConfig.formlyLabelShort 	= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.labelShort 				!= 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.labelShort : '';
+			nyaSelectObj.temporyConfig.formlyRequired 		= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.required 					!= 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.required : false;
+			nyaSelectObj.temporyConfig.formlyUnique				= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.unique 						!= 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.unique : false;
+			nyaSelectObj.temporyConfig.formlyDefaultValue	= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.defaultValue 			!= 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.defaultValue : (nyaSelectObj.temporyConfig.selectedControl === 'Checkbox' ? true : '');
+			nyaSelectObj.temporyConfig.displayAddOption		= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.displayAddOption 	!= 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.displayAddOption : true;
+			nyaSelectObj.temporyConfig.displayEditOption	= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.displayEditOption != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.displayEditOption : true;
+			nyaSelectObj.temporyConfig.formlyDesciption 	= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.description 			!= 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.description : '';
+			nyaSelectObj.temporyConfig.formlyPlaceholder 	= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.placeholder 			!= 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.placeholder : '';
+			nyaSelectObj.temporyConfig.formlyOptions 			= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.options 					!= 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.options : '';
+			nyaSelectObj.temporyConfig.parentId 					= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.parentId 					!= 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.parentId : '';
+			nyaSelectObj.temporyConfig.referenceId 				= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.referenceId 			!= 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.referenceId : '';
 
 			nyaSelectObj.temporyConfig.formlyExpressionProperties = typeof configurationObj.lines[indexLine].columns[numcolumn].control.formlyExpressionProperties 	!= 'undefined' ? angular.copy(configurationObj.lines[indexLine].columns[numcolumn].control.formlyExpressionProperties) : {};
 			nyaSelectObj.temporyConfig.formlyValidators 	= typeof configurationObj.lines[indexLine].columns[numcolumn].control.formlyValidators 										!= 'undefined' ? angular.copy(configurationObj.lines[indexLine].columns[numcolumn].control.formlyValidators) : {};
@@ -78,7 +83,12 @@ class $modalProxy{
 			.columns[numcolumn]
 			.control.templateOptions 	= {
 				label: '',
+				labelShort: '',
 				required: false,
+				unique: false,
+				defaultValue: '',
+				displayAddOption: true,
+				displayEditOption: true,
 				description: '',
 				placeholder: '',
 				options: [],
@@ -86,16 +96,21 @@ class $modalProxy{
 				referenceId: ''
 			};
 			//then bind templateOptions
-		configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.label 			 	= extractedProps.formlyLabel;
-		configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.required 	 	= extractedProps.formlyRequired;
-		configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.description 	= extractedProps.formlyDesciption;
-		configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.placeholder 	= extractedProps.formlyPlaceholder;
-		configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.options 		 	= extractedProps.formlyOptions;
-		configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.parentId 	 	= extractedProps.parentId;
-		configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.referenceId 	= extractedProps.referenceId;
-		configurationObj.lines[indexLine].columns[numcolumn].control.formlyExpressionProperties 	= angular.copy(extractedProps.formlyExpressionProperties);
-		configurationObj.lines[indexLine].columns[numcolumn].control.formlyValidators 						= angular.copy(extractedProps.formlyValidators);
-		configurationObj.lines[indexLine].columns[numcolumn].control.formlyValidation 						= angular.copy(extractedProps.formlyValidation);
+		configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.label 							= extractedProps.formlyLabel;
+		configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.labelShort 				= extractedProps.formlyLabelShort;
+		configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.required 					= extractedProps.formlyRequired;
+		configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.unique 						= extractedProps.formlyUnique;
+		configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.defaultValue 			= extractedProps.formlyDefaultValue;
+		configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.displayAddOption 	= extractedProps.displayAddOption;
+		configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.displayEditOption 	= extractedProps.displayEditOption;
+		configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.description 				= extractedProps.formlyDesciption;
+		configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.placeholder 				= extractedProps.formlyPlaceholder;
+		configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.options 						= extractedProps.formlyOptions;
+		configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.parentId 					= extractedProps.parentId;
+		configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.referenceId 				= extractedProps.referenceId;
+		configurationObj.lines[indexLine].columns[numcolumn].control.formlyExpressionProperties 				= angular.copy(extractedProps.formlyExpressionProperties);
+		configurationObj.lines[indexLine].columns[numcolumn].control.formlyValidators 									= angular.copy(extractedProps.formlyValidators);
+		configurationObj.lines[indexLine].columns[numcolumn].control.formlyValidation 									= angular.copy(extractedProps.formlyValidation);
 
 		//////////////////////////////////////////
 		// add additionnal particular properties
@@ -157,7 +172,12 @@ class $modalProxy{
 			if (nyaSelectObj.controls[i].id === nyaSelectObj.selectedControl) {
 
 					nyaSelectObj.controls[i].formlyLabel 								= nyaSelectObj.temporyConfig.formlyLabel;
+					nyaSelectObj.controls[i].formlyLabelShort 					= nyaSelectObj.temporyConfig.formlyLabelShort;
 					nyaSelectObj.controls[i].formlyRequired 						= nyaSelectObj.temporyConfig.formlyRequired;
+					nyaSelectObj.controls[i].formlyUnique 							= nyaSelectObj.temporyConfig.formlyUnique;
+					nyaSelectObj.controls[i].formlyDefaultValue 				= nyaSelectObj.temporyConfig.formlyDefaultValue;
+					nyaSelectObj.controls[i].displayAddOption 					= nyaSelectObj.temporyConfig.displayAddOption;
+					nyaSelectObj.controls[i].displayEditOption 					= nyaSelectObj.temporyConfig.displayEditOption;
 					nyaSelectObj.controls[i].formlyDesciption 					= nyaSelectObj.temporyConfig.formlyDesciption;
 					nyaSelectObj.controls[i].formlyPlaceholder 					= nyaSelectObj.temporyConfig.formlyPlaceholder;
 					nyaSelectObj.controls[i].formlyOptions 							= nyaSelectObj.temporyConfig.formlyOptions;

@@ -91,5 +91,14 @@
     "INCREMENTAL"         : "Incremental value",
     "MAX_LENGTH"          : "Maximum length",
     "CURRENT_YEAR"        : "Current year as default value",
-    "PARENT_ID"           : "Parent field"
+    "PARENT_ID"           : "Parent field",
+    "LABEL_TEXT_SHORT"    : "Label short text",
+    "UNIQUE"              : "Unique",
+    "DEFAULT_VALUE"       : "Default value",
+    "DISPLAY_ADD"         : "Display at input form",
+    "DISPLAY_EDIT"        : "Display at edit form",
+    "NOTHING_SELECTED"    : "Nothing selected",
+    "NO_VALUE"            : "No value",
+    "ADD_DEFAUT_VALUE_HERE": "Add default value here",
+    "ADD_EDIT_SHORT_LABEL_HERE" : "Add / edit short label here"
 }

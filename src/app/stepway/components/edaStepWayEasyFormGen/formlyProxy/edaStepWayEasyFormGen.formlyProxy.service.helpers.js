@@ -71,6 +71,10 @@ const extractTemplateOptionLabel = (obj)=>{
 	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.label !== 'undefined'? obj.templateOptions.label: '') : '';
 };
 
+const extractTemplateOptionLabelShort = (obj)=>{
+	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.labelShort !== 'undefined'? obj.templateOptions.labelShort: '') : '';
+};
+
 const extractTemplateOptionParentId = (obj)=>{
 	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.parentId !== 'undefined'? obj.templateOptions.parentId: '') : '';
 };
@@ -116,7 +120,23 @@ const extractFormlyValidation = (obj)=>{
 };
 
 const extractTemplateOptionRequired = (obj)=>{
-	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.required !== 'undefined'? obj.templateOptions.required: '') : '';
+	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.required !== 'undefined'? obj.templateOptions.required: false) : false;
+};
+
+const extractTemplateOptionUnique = (obj)=>{
+	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.unique !== 'undefined'? obj.templateOptions.unique: false) : false;
+};
+
+const extractTemplateOptionDefaultValue = (obj)=>{
+	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.defaultValue !== 'undefined'? obj.templateOptions.defaultValue: (obj.type == 'checkbox' ? false : '')) : (obj.type == 'checkbox' ? false : '');
+};
+
+const extractTemplateOptionDisplayAddOption = (obj)=>{
+	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.displayAddOption !== 'undefined'? obj.templateOptions.displayAddOption: true) : true;
+};
+
+const extractTemplateOptionDisplayEditOption = (obj)=>{
+	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.displayEditOption !== 'undefined'? obj.templateOptions.displayEditOption: true) : true;
 };
 
 const extractTemplateOptionOptions = (obj)=>{
@@ -185,7 +205,12 @@ const addOneColumnControl = (formlyModel, configurationModel,lineIndex) => {
 		templateOptions: {
 			type                  : extractTemplateOptionType(configurationModel.lines[lineIndex].columns[0].control),
 			label                 : extractTemplateOptionLabel(configurationModel.lines[lineIndex].columns[0].control),
+			labelShort            : extractTemplateOptionLabelShort(configurationModel.lines[lineIndex].columns[0].control),
 			required              : extractTemplateOptionRequired(configurationModel.lines[lineIndex].columns[0].control),
+			unique                : extractTemplateOptionUnique(configurationModel.lines[lineIndex].columns[0].control),
+			defaultValue          : extractTemplateOptionDefaultValue(configurationModel.lines[lineIndex].columns[0].control),
+			displayAddOption      : extractTemplateOptionDisplayAddOption(configurationModel.lines[lineIndex].columns[0].control),
+			displayEditOption     : extractTemplateOptionDisplayEditOption(configurationModel.lines[lineIndex].columns[0].control),
 			placeholder           : extractTemplateOptionPlaceholder(configurationModel.lines[lineIndex].columns[0].control),
 			description           : extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[0].control),
 			options               : extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[0].control),
@@ -220,6 +245,7 @@ const addOneColumnControl = (formlyModel, configurationModel,lineIndex) => {
 		}
 	}
 
+
 	formlyModel.push(fieldToPush);
 };
 
@@ -243,14 +269,18 @@ const addTwoColumnControl = (formlyModel, configurationModel,lineIndex) => {
 			type: typeof configurationModel.lines[lineIndex].columns[0].control.type !== 'undefined' ? (configurationModel.lines[lineIndex].columns[0].control.type === 'none' ? 'blank': configurationModel.lines[lineIndex].columns[0].control.type): 'blank',
 			key	: typeof configurationModel.lines[lineIndex].columns[0].control.key !== 'undefined' ?  configurationModel.lines[lineIndex].columns[0].control.key : 'blank' + Date.now(),
 			templateOptions: {
-					type					: extractTemplateOptionType(configurationModel.lines[lineIndex].columns[0].control),
-					label					: extractTemplateOptionLabel(configurationModel.lines[lineIndex].columns[0].control),
-					required 			: extractTemplateOptionRequired(configurationModel.lines[lineIndex].columns[0].control),
-					placeholder 	: extractTemplateOptionPlaceholder(configurationModel.lines[lineIndex].columns[0].control),
-					description 	: extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[0].control),
-					options 			: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[0].control),
-					referenceId   : extractTemplateOptionReferenceId(configurationModel.lines[lineIndex].columns[0].control),
-					parentId      : extractTemplateOptionParentId(configurationModel.lines[lineIndex].columns[0].control)
+					type							: extractTemplateOptionType(configurationModel.lines[lineIndex].columns[0].control),
+					label							: extractTemplateOptionLabel(configurationModel.lines[lineIndex].columns[0].control),
+					required 					: extractTemplateOptionRequired(configurationModel.lines[lineIndex].columns[0].control),
+					unique 						: extractTemplateOptionUnique(configurationModel.lines[lineIndex].columns[0].control),
+					defaultValue 			: extractTemplateOptionDefaultValue(configurationModel.lines[lineIndex].columns[0].control),
+					displayAddOption 	: extractTemplateOptionDisplayAddOption(configurationModel.lines[lineIndex].columns[0].control),
+					displayEditOption : extractTemplateOptionDisplayEditOption(configurationModel.lines[lineIndex].columns[0].control),
+					placeholder 			: extractTemplateOptionPlaceholder(configurationModel.lines[lineIndex].columns[0].control),
+					description 			: extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[0].control),
+					options 					: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[0].control),
+					referenceId 		  : extractTemplateOptionReferenceId(configurationModel.lines[lineIndex].columns[0].control),
+					parentId      		: extractTemplateOptionParentId(configurationModel.lines[lineIndex].columns[0].control)
 			},
 					expressionProperties 	: extractFormlyExpressionProperties(configurationModel.lines[lineIndex].columns[0].control),
 					validators 						: extractFormlyValidators(configurationModel.lines[lineIndex].columns[0].control),
@@ -285,14 +315,18 @@ const addTwoColumnControl = (formlyModel, configurationModel,lineIndex) => {
 		type			: typeof configurationModel.lines[lineIndex].columns[1].control.type !== 'undefined' ?  (configurationModel.lines[lineIndex].columns[1].control.type === 'none' ? 'blank': configurationModel.lines[lineIndex].columns[1].control.type) : 'blank',
 		key				: typeof configurationModel.lines[lineIndex].columns[1].control.key !== 'undefined' ?  configurationModel.lines[lineIndex].columns[1].control.key : 'blank' + Date.now(),
 		templateOptions	: {
-				type				: extractTemplateOptionType(configurationModel.lines[lineIndex].columns[1].control),
-				label				: extractTemplateOptionLabel(configurationModel.lines[lineIndex].columns[1].control),
-				required 		: extractTemplateOptionRequired(configurationModel.lines[lineIndex].columns[1].control),
-				placeholder : extractTemplateOptionPlaceholder(configurationModel.lines[lineIndex].columns[1].control),
-				description : extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[1].control),
-				options 		: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[1].control),
-				referenceId : extractTemplateOptionReferenceId(configurationModel.lines[lineIndex].columns[1].control),
-				parentId    : extractTemplateOptionParentId(configurationModel.lines[lineIndex].columns[1].control)
+				type							: extractTemplateOptionType(configurationModel.lines[lineIndex].columns[1].control),
+				label							: extractTemplateOptionLabel(configurationModel.lines[lineIndex].columns[1].control),
+				required 					: extractTemplateOptionRequired(configurationModel.lines[lineIndex].columns[1].control),
+				unique 						: extractTemplateOptionUnique(configurationModel.lines[lineIndex].columns[1].control),
+				defaultValue 			: extractTemplateOptionDefaultValue(configurationModel.lines[lineIndex].columns[1].control),
+				displayAddOption 	: extractTemplateOptionDisplayAddOption(configurationModel.lines[lineIndex].columns[1].control),
+				displayEditOption : extractTemplateOptionDisplayEditOption(configurationModel.lines[lineIndex].columns[1].control),
+				placeholder 			: extractTemplateOptionPlaceholder(configurationModel.lines[lineIndex].columns[1].control),
+				description 			: extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[1].control),
+				options 					: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[1].control),
+				referenceId 			: extractTemplateOptionReferenceId(configurationModel.lines[lineIndex].columns[1].control),
+				parentId    			: extractTemplateOptionParentId(configurationModel.lines[lineIndex].columns[1].control)
 		},
 				expressionProperties 	: extractFormlyExpressionProperties(configurationModel.lines[lineIndex].columns[1].control),
 				validators 						: extractFormlyValidators(configurationModel.lines[lineIndex].columns[1].control),
@@ -368,14 +402,18 @@ const addThreeColumnControl = (formlyModel, configurationModel,lineIndex) => {
 		type			: typeof configurationModel.lines[lineIndex].columns[0].control.type 	!== 'undefined' ? (configurationModel.lines[lineIndex].columns[0].control.type === 'none' ? 'blank': configurationModel.lines[lineIndex].columns[0].control.type): 'blank',
 		key				: typeof configurationModel.lines[lineIndex].columns[0].control.key 	!== 'undefined' ?  configurationModel.lines[lineIndex].columns[0].control.key : 'blank' + Date.now(),
 		templateOptions: {
-				type				: extractTemplateOptionType(configurationModel.lines[lineIndex].columns[0].control),
-				label				: extractTemplateOptionLabel(configurationModel.lines[lineIndex].columns[0].control),
-				required 		: extractTemplateOptionRequired(configurationModel.lines[lineIndex].columns[0].control),
-				placeholder : extractTemplateOptionPlaceholder(configurationModel.lines[lineIndex].columns[0].control),
-				description : extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[0].control),
-				options 		: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[0].control),
-				referenceId : extractTemplateOptionReferenceId(configurationModel.lines[lineIndex].columns[0].control),
-				parentId    : extractTemplateOptionParentId(configurationModel.lines[lineIndex].columns[0].control)
+				type							: extractTemplateOptionType(configurationModel.lines[lineIndex].columns[0].control),
+				label							: extractTemplateOptionLabel(configurationModel.lines[lineIndex].columns[0].control),
+				required 					: extractTemplateOptionRequired(configurationModel.lines[lineIndex].columns[0].control),
+				unique 						: extractTemplateOptionUnique(configurationModel.lines[lineIndex].columns[0].control),
+				defaultValue 			: extractTemplateOptionDefaultValue(configurationModel.lines[lineIndex].columns[0].control),
+				displayAddOption 	: extractTemplateOptionDisplayAddOption(configurationModel.lines[lineIndex].columns[0].control),
+				displayEditOption : extractTemplateOptionDisplayEditOption(configurationModel.lines[lineIndex].columns[0].control),
+				placeholder 			: extractTemplateOptionPlaceholder(configurationModel.lines[lineIndex].columns[0].control),
+				description 			: extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[0].control),
+				options 					: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[0].control),
+				referenceId 			: extractTemplateOptionReferenceId(configurationModel.lines[lineIndex].columns[0].control),
+				parentId    			: extractTemplateOptionParentId(configurationModel.lines[lineIndex].columns[0].control)
 		},
 				expressionProperties 	: extractFormlyExpressionProperties(configurationModel.lines[lineIndex].columns[0].control),
 				validators 						: extractFormlyValidators(configurationModel.lines[lineIndex].columns[0].control),
@@ -410,14 +448,18 @@ const addThreeColumnControl = (formlyModel, configurationModel,lineIndex) => {
 		type			: typeof configurationModel.lines[lineIndex].columns[1].control.type !== 'undefined' ?  (configurationModel.lines[lineIndex].columns[1].control.type === 'none' ? 'blank': configurationModel.lines[lineIndex].columns[1].control.type) : 'blank',
 		key				: typeof configurationModel.lines[lineIndex].columns[1].control.key !== 'undefined' ?  configurationModel.lines[lineIndex].columns[1].control.key : 'blank' + Date.now(),
 		templateOptions: {
-				type				: extractTemplateOptionType(configurationModel.lines[lineIndex].columns[1].control),
-				label				: extractTemplateOptionLabel(configurationModel.lines[lineIndex].columns[1].control),
-				required 		: extractTemplateOptionRequired(configurationModel.lines[lineIndex].columns[1].control),
-				placeholder : extractTemplateOptionPlaceholder(configurationModel.lines[lineIndex].columns[1].control),
-				description : extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[1].control),
-				options 		: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[1].control),
-				referenceId : extractTemplateOptionReferenceId(configurationModel.lines[lineIndex].columns[1].control),
-				parentId    : extractTemplateOptionParentId(configurationModel.lines[lineIndex].columns[1].control)
+				type							: extractTemplateOptionType(configurationModel.lines[lineIndex].columns[1].control),
+				label							: extractTemplateOptionLabel(configurationModel.lines[lineIndex].columns[1].control),
+				required 					: extractTemplateOptionRequired(configurationModel.lines[lineIndex].columns[1].control),
+				unique 						: extractTemplateOptionUnique(configurationModel.lines[lineIndex].columns[1].control),
+				defaultValue 			: extractTemplateOptionDefaultValue(configurationModel.lines[lineIndex].columns[1].control),
+				displayAddOption 	: extractTemplateOptionDisplayAddOption(configurationModel.lines[lineIndex].columns[1].control),
+				displayEditOption : extractTemplateOptionDisplayEditOption(configurationModel.lines[lineIndex].columns[1].control),
+				placeholder 			: extractTemplateOptionPlaceholder(configurationModel.lines[lineIndex].columns[1].control),
+				description 			: extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[1].control),
+				options 					: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[1].control),
+				referenceId 			: extractTemplateOptionReferenceId(configurationModel.lines[lineIndex].columns[1].control),
+				parentId    			: extractTemplateOptionParentId(configurationModel.lines[lineIndex].columns[1].control)
 		},
 				expressionProperties 	: extractFormlyExpressionProperties(configurationModel.lines[lineIndex].columns[1].control),
 				validators 						: extractFormlyValidators(configurationModel.lines[lineIndex].columns[1].control),
@@ -452,14 +494,18 @@ const addThreeColumnControl = (formlyModel, configurationModel,lineIndex) => {
 		type			: typeof configurationModel.lines[lineIndex].columns[2].control.type !== 'undefined' ?  (configurationModel.lines[lineIndex].columns[2].control.type === 'none' ? 'blank': configurationModel.lines[lineIndex].columns[2].control.type) : 'blank',
 		key				: typeof configurationModel.lines[lineIndex].columns[2].control.key !== 'undefined' ?  configurationModel.lines[lineIndex].columns[2].control.key : 'blank' + Date.now(),
 		templateOptions: {
-				type				: extractTemplateOptionType(configurationModel.lines[lineIndex].columns[2].control),
-				label				: extractTemplateOptionLabel(configurationModel.lines[lineIndex].columns[2].control),
-				required 		: extractTemplateOptionRequired(configurationModel.lines[lineIndex].columns[2].control),
-				placeholder : extractTemplateOptionPlaceholder(configurationModel.lines[lineIndex].columns[2].control),
-				description : extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[2].control),
-				options 		: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[2].control),
-				referenceId : extractTemplateOptionReferenceId(configurationModel.lines[lineIndex].columns[2].control),
-				parentId    : extractTemplateOptionParentId(configurationModel.lines[lineIndex].columns[2].control)
+				type							: extractTemplateOptionType(configurationModel.lines[lineIndex].columns[2].control),
+				label							: extractTemplateOptionLabel(configurationModel.lines[lineIndex].columns[2].control),
+				required 					: extractTemplateOptionRequired(configurationModel.lines[lineIndex].columns[2].control),
+				unique 						: extractTemplateOptionUnique(configurationModel.lines[lineIndex].columns[1].control),
+				defaultValue 			: extractTemplateOptionDefaultValue(configurationModel.lines[lineIndex].columns[1].control),
+				displayAddOption 	: extractTemplateOptionDisplayAddOption(configurationModel.lines[lineIndex].columns[1].control),
+				displayEditOption : extractTemplateOptionDisplayEditOption(configurationModel.lines[lineIndex].columns[1].control),
+				placeholder 			: extractTemplateOptionPlaceholder(configurationModel.lines[lineIndex].columns[2].control),
+				description 			: extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[2].control),
+				options 					: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[2].control),
+				referenceId 			: extractTemplateOptionReferenceId(configurationModel.lines[lineIndex].columns[2].control),
+				parentId    			: extractTemplateOptionParentId(configurationModel.lines[lineIndex].columns[2].control)
 		},
 				expressionProperties 	: extractFormlyExpressionProperties(configurationModel.lines[lineIndex].columns[2].control),
 				validators 						: extractFormlyValidators(configurationModel.lines[lineIndex].columns[2].control),
@@ -539,6 +585,7 @@ export {
 
 	isTemplateOptionDefined,
 	extractTemplateOptionLabel,
+	extractTemplateOptionLabelShort,
 	extractTemplateOptionReferenceId,
 	extractTemplateOptionParentId,
 	extractTemplateOptionDatepickerOptions,
@@ -551,6 +598,10 @@ export {
 	extractFormlyValidators,
 	extractFormlyValidation,
 	extractTemplateOptionRequired,
+	extractTemplateOptionUnique,
+	extractTemplateOptionDefaultValue,
+	extractTemplateOptionDisplayAddOption,
+	extractTemplateOptionDisplayEditOption,
 	extractTemplateOptionOptions,
 	extractTemplateOptionType,
 	extractTemplateOptionPlaceholder,

@@ -38,7 +38,10 @@ $__System.register('4', [], function (_export) {
 					'exist': true,
 					'control': {
 						'type': 'none',
-						'key': 'none'
+						'key': 'none',
+						'templateOptions': {
+							'referenceId': 0
+						}
 					}
 				}]
 			}];
@@ -421,7 +424,7 @@ $__System.register('e', [], function (_export) {
 
 	'use strict';
 
-	var resetNyaSelect, getConfigurationModelInit, getEmptyConfigModelResult, resetDataModel, getErrorObject, getMessageObject, resetFormlyModel, extractTemplateOptionDescription, extractTemplateOptionPlaceholder, extractTemplateOptionType, extractTemplateOptionLabel, extractTemplateOptionParentId, extractTemplateOptionReferenceId, extractTemplateOptionDatepickerOptions, extractTemplateOptionMaxLengthOption, extractTemplateOptionMinValueOption, extractTemplateOptionMaxValueOption, extractTemplateOptionIncrementalOption, extractTemplateOptionCurrentYearOption, extractFormlyExpressionProperties, extractFormlyValidators, extractFormlyValidation, extractTemplateOptionRequired, extractTemplateOptionOptions, addDatepickerOptionsProperty, addMaxLengthOptionProperty, addMinValueOptionProperty, addMaxValueOptionProperty, addIncrementalOptionProperty, addCurrentYearOptionProperty, addOneColumnHeader, addOneColumnControl, addTwoColumnControl, addThreeColumnControl;
+	var resetNyaSelect, getConfigurationModelInit, getEmptyConfigModelResult, resetDataModel, getErrorObject, getMessageObject, resetFormlyModel, extractTemplateOptionDescription, extractTemplateOptionPlaceholder, extractTemplateOptionType, extractTemplateOptionLabel, extractTemplateOptionLabelShort, extractTemplateOptionParentId, extractTemplateOptionReferenceId, extractTemplateOptionDatepickerOptions, extractTemplateOptionMaxLengthOption, extractTemplateOptionMinValueOption, extractTemplateOptionMaxValueOption, extractTemplateOptionIncrementalOption, extractTemplateOptionCurrentYearOption, extractFormlyExpressionProperties, extractFormlyValidators, extractFormlyValidation, extractTemplateOptionRequired, extractTemplateOptionUnique, extractTemplateOptionDefaultValue, extractTemplateOptionDisplayAddOption, extractTemplateOptionDisplayEditOption, extractTemplateOptionOptions, addDatepickerOptionsProperty, addMaxLengthOptionProperty, addMinValueOptionProperty, addMaxValueOptionProperty, addIncrementalOptionProperty, addCurrentYearOptionProperty, addOneColumnHeader, addOneColumnControl, addTwoColumnControl, addThreeColumnControl;
 	return {
 		setters: [],
 		execute: function () {
@@ -973,6 +976,10 @@ $__System.register('e', [], function (_export) {
 				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.label !== 'undefined' ? obj.templateOptions.label : '' : '';
 			};
 
+			extractTemplateOptionLabelShort = function extractTemplateOptionLabelShort(obj) {
+				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.labelShort !== 'undefined' ? obj.templateOptions.labelShort : '' : '';
+			};
+
 			extractTemplateOptionParentId = function extractTemplateOptionParentId(obj) {
 				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.parentId !== 'undefined' ? obj.templateOptions.parentId : '' : '';
 			};
@@ -1018,7 +1025,23 @@ $__System.register('e', [], function (_export) {
 			};
 
 			extractTemplateOptionRequired = function extractTemplateOptionRequired(obj) {
-				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.required !== 'undefined' ? obj.templateOptions.required : '' : '';
+				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.required !== 'undefined' ? obj.templateOptions.required : false : false;
+			};
+
+			extractTemplateOptionUnique = function extractTemplateOptionUnique(obj) {
+				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.unique !== 'undefined' ? obj.templateOptions.unique : false : false;
+			};
+
+			extractTemplateOptionDefaultValue = function extractTemplateOptionDefaultValue(obj) {
+				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.unique !== 'undefined' ? obj.templateOptions.defaultValue : obj.type == 'checkbox' ? false : '' : obj.type == 'checkbox' ? false : '';
+			};
+
+			extractTemplateOptionDisplayAddOption = function extractTemplateOptionDisplayAddOption(obj) {
+				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.displayAddOption !== 'undefined' ? obj.templateOptions.displayAddOption : true : true;
+			};
+
+			extractTemplateOptionDisplayEditOption = function extractTemplateOptionDisplayEditOption(obj) {
+				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.displayEditOption !== 'undefined' ? obj.templateOptions.displayEditOption : true : true;
 			};
 
 			extractTemplateOptionOptions = function extractTemplateOptionOptions(obj) {
