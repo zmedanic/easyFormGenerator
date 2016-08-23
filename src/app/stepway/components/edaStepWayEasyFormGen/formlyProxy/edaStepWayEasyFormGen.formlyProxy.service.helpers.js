@@ -101,6 +101,10 @@ const extractTemplateOptionMaxValueOption= (obj)=>{
 	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.maxValueOption !== 'undefined'? obj.templateOptions.maxValueOption: '') : '';
 };
 
+const extractTemplateOptionNumberType= (obj)=>{
+	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.numberType !== 'undefined'? angular.copy(obj.templateOptions.numberType) : '') : '';
+};
+
 const extractTemplateOptionIncrementalOption= (obj)=>{
 	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.incrementalOption !== 'undefined'? obj.templateOptions.incrementalOption: '') : '';
 };
@@ -166,6 +170,10 @@ const addMaxLengthOptionProperty = (fieldToPush, configurationModel,lineIndex, p
 		fieldToPush.templateOptions.maxLengthOption = extractTemplateOptionMaxLengthOption(configurationModel.lines[lineIndex].columns[position].control);
 };
 
+const addNumberTypeProperty = (fieldToPush, configurationModel,lineIndex, position) => {
+		fieldToPush.templateOptions.minValueOption = extractTemplateOptionNumberType(configurationModel.lines[lineIndex].columns[position].control);
+};
+
 const addMinValueOptionProperty = (fieldToPush, configurationModel,lineIndex, position) => {
 		fieldToPush.templateOptions.minValueOption = extractTemplateOptionMinValueOption(configurationModel.lines[lineIndex].columns[position].control);
 };
@@ -183,7 +191,7 @@ const addCurrentYearOptionProperty = (fieldToPush, configurationModel,lineIndex,
 };
 
 const addOneColumnHeader = (formlyModel, configurationModel,lineIndex) => {
-	const headerTemplateCol0 = `<div class="row"><div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h2 class="text-center">${extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[0].control)}<h2></div></div><hr/>`;
+	const headerTemplateCol = `<div class="row"><div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h2 class="text-center">${extractTemplateOptionLabel(configurationModel.lines[lineIndex].columns[0].control)}</h2></div></div><div class="row"><div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">${extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[0].control)}</div></div><hr/>`;
 	formlyModel.push({
 		template: typeof configurationModel
 												.lines[lineIndex]
@@ -191,7 +199,7 @@ const addOneColumnHeader = (formlyModel, configurationModel,lineIndex) => {
 												.control
 												.type !== 'undefined' ?
 													(configurationModel.lines[lineIndex].columns[0].control.type === 'header' ?
-														headerTemplateCol0
+														headerTemplateCol
 														: '<div></div>')
 													: '<div></div>'
 	});
@@ -200,7 +208,7 @@ const addOneColumnHeader = (formlyModel, configurationModel,lineIndex) => {
 function addColumnControl(formlyModel, configurationModel,lineIndex, numberOfColumns, columnIndex, FieldGroup) {
 	let headerTemplateCol = {
 		className: 'col-xs-' + (12 / numberOfColumns),
-		template : `<div class="row"><div class=""><h2 class="text-center">${extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[columnIndex].control)}<h2><hr/></div></div>`
+		template : `<div class="row"><div class=""><h2 class="text-center">${extractTemplateOptionLabel(configurationModel.lines[lineIndex].columns[columnIndex].control)}</h2></div></div><div class="row"><div class="">${extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[columnIndex].control)}</div></div><hr/>`
 	};
 
 	let controlCol = {
@@ -238,12 +246,10 @@ function addColumnControl(formlyModel, configurationModel,lineIndex, numberOfCol
 				break;
 
 			case "number":
+				addNumberTypeProperty(controlCol, configurationModel,lineIndex, columnIndex);
 				addMinValueOptionProperty(controlCol, configurationModel,lineIndex, columnIndex);
 				addMaxValueOptionProperty(controlCol, configurationModel,lineIndex, columnIndex);
 				addIncrementalOptionProperty(controlCol, configurationModel,lineIndex, columnIndex);
-				break;
-
-			case "year":
 				addCurrentYearOptionProperty(controlCol, configurationModel,lineIndex, columnIndex);
 				break;
 		}
@@ -300,6 +306,7 @@ export {
 	extractTemplateOptionParentId,
 	extractTemplateOptionDatepickerOptions,
 	extractTemplateOptionMaxLengthOption,
+	extractTemplateOptionNumberType,
 	extractTemplateOptionMinValueOption,
 	extractTemplateOptionMaxValueOption,
 	extractTemplateOptionIncrementalOption,
@@ -318,6 +325,7 @@ export {
 	extractTemplateOptionDescription,
 
 	addDatepickerOptionsProperty,
+	addNumberTypeProperty,
 	addMaxLengthOptionProperty,
 	addMinValueOptionProperty,
 	addMaxValueOptionProperty,

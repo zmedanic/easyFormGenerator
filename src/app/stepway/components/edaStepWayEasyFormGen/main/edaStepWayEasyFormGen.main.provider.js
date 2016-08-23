@@ -4,6 +4,7 @@ const EASY_FORM_STEP_WAY_CONFIG_NAME = 'easyFormSteWayConfig';
 function easyFormSteWayConfig($translateProvider) {
 	let _configuration 			= defaultConfig();
 	let _controlsList				= controlsList();
+	let _numberTypesList		= numberTypesList();
 	let _defaultLanguage		= getDefaultLanguage();
 	let _currentLanguage		= initDefaultLanguage();
 	let _showPreviewPanel		= getDefaultshowPreviewPanel();
@@ -54,7 +55,6 @@ function easyFormSteWayConfig($translateProvider) {
 			{name: 'Subtitle', 				enabled: true},
 			{name: 'TextInput', 			enabled: true},
       {name: 'Number',          enabled: true},
-      {name: 'Year',            enabled: true},
 			{name: 'Password', 				enabled: true},
 			{name: 'Email', 					enabled: true},
 			{name: 'Date', 						enabled: true},
@@ -66,6 +66,17 @@ function easyFormSteWayConfig($translateProvider) {
 			{name: 'GroupedSelect', 	enabled: true}
 		];
 		return controls;
+	}
+
+	//list of number types
+	function numberTypesList() {
+		let numberTypes = [
+			'integer',
+			'decimal',
+			'currency',
+			'year'
+		];
+		return numberTypes;
 	}
 
 	function showPreviewPanel(wantToShow){
@@ -153,6 +164,7 @@ function easyFormSteWayConfig($translateProvider) {
 			setModalAnimation 			: setModalAnimationFct,
 			getModalAnimationValue 	: getModalAnimationValue,
 			getListEnabledControl		: getListEnabledControl,
+			getNumberTypesList			: getNumberTypesList,
 			setLanguage 						: switchLanguage,
 			getCurrentLanguage			: getCurrentLanguage,
 			isPreviewPanelVisible		: isPreviewPanelVisible,
@@ -171,6 +183,10 @@ function easyFormSteWayConfig($translateProvider) {
 
 		function getListEnabledControl(){
 			return angular.copy(_controlsList);
+		}
+
+		function getNumberTypesList(){
+			return _numberTypesList;
 		}
 
 		function switchLanguage(language){

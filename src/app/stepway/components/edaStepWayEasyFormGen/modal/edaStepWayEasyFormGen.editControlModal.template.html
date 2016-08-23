@@ -139,7 +139,25 @@
           <div class="row">
             <div class="form-group">
               <label
-                for="inputTextDescriptionUpdate"
+                for="headerTitleUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'HEADER_TITLE' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <input
+                  type="text"
+                  class="form-control"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyLabel"
+                  id="headerTitleUpdate"
+                  placeholder="{{'ADD_EDIT_HEADER_TITLE_HERE' | translate}}">
+              </div>
+            </div>
+          </div>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="form-group">
+              <label
+                for="headerTextUpdate"
                 class="col-lg-3 control-label greyText editPropertiesLabel">
                 {{'HEADER_TEXT' | translate}} :
               </label>
@@ -148,7 +166,7 @@
                   type="text"
                   class="form-control"
                   ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption"
-                  id="inputHeaderTextUpdate"
+                  id="headerTextUpdate"
                   placeholder="{{'ADD_EDIT_HEADER_HERE' | translate}}">
               </div>
             </div>
@@ -229,7 +247,25 @@
           <div class="row">
             <div class="form-group">
               <label
-                for="inputSubTitleTextUpdate"
+                for="subtitleTitleUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'SUBTITLE_TITLE' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <input
+                  type="text"
+                  class="form-control"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyLabel"
+                  id="subtitleTitleUpdate"
+                  placeholder="{{'ADD_EDIT_SUBTIL_TITLE_HERE' | translate}}">
+              </div>
+            </div>
+          </div>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="form-group">
+              <label
+                for="subtitleTextUpdate"
                 class="col-lg-3 control-label greyText editPropertiesLabel">
                 {{'SUBTITLE_TEXT' | translate}} :
               </label>
@@ -237,8 +273,8 @@
                 <input
                   type="text"
                   class="form-control"
-                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyPlaceholder"
-                  id="inputSubTitleTextUpdate"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption"
+                  id="subtitleTextUpdate"
                   placeholder="{{'ADD_EDIT_SUBTIL_HERE' | translate}}">
               </div>
             </div>
@@ -679,6 +715,95 @@
           <div class="row">
             <div class="form-group">
               <label
+                for="inputNumberParentIdUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'NUMBER_TYPE' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <ol
+                  class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.numberType"
+                  ng-change="editControlModCtrl.nyaSelect.temporyConfig.incrementalOption=false;editControlModCtrl.nyaSelect.temporyConfig.currentYearOption=false"
+                  id="inputNumberTypeUpdate"
+                  ng-init="editControlModCtrl.nyaSelect.temporyConfig.numberType='integer'"
+                  title="No value">
+                  <li nya-bs-option="type in editControlModCtrl.$modalProxy.easyFormSteWayConfig.getNumberTypesList()">
+                    <a>
+                      <span>
+                        {{ type }}
+                      </span>
+                      <span class="glyphicon glyphicon-ok check-mark"></span>
+                    </a>
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <div class="marginTopFivepixels"></div>
+          <div ng-switch on="editControlModCtrl.nyaSelect.temporyConfig.numberType">
+            <!--no control selected-->
+            <div ng-switch-when="integer">
+              <div class="row">
+                <div class="form-group">
+                  <label
+                    for="inputNumberIncrementalUpdate"
+                    class="col-lg-3 control-label greyText editPropertiesLabel">
+                    {{'INCREMENTAL' | translate}} :
+                  </label>
+                  <div class="col-lg-9">
+                    <div class="checkboxCssCorrection">&nbsp;</div>
+                    <input
+                      type="checkbox"
+                      ng-model="editControlModCtrl.nyaSelect.temporyConfig.incrementalOption"
+                      id="inputNumberIncrementalUpdate">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div ng-switch-when="year">
+              <div class="row">
+                <div class="form-group">
+                  <label
+                    for="inputYearCurrentUpdate"
+                    class="col-lg-3 control-label greyText editPropertiesLabel">
+                    {{'CURRENT_YEAR' | translate}} :
+                  </label>
+                  <div class="col-lg-9">
+                    <div class="checkboxCssCorrection">&nbsp;</div>
+                    <input
+                      type="checkbox"
+                      ng-model="editControlModCtrl.nyaSelect.temporyConfig.currentYearOption"
+                      id="inputYearCurrentUpdate">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="marginTopFivepixels"></div>
+          <div
+            class="row"
+            ng-if="(editControlModCtrl.nyaSelect.temporyConfig.currentYearOption==true || editControlModCtrl.nyaSelect.temporyConfig.incrementalOption==true) === false">
+            <div class="form-group">
+              <label
+                for="inputNumberDefaultValueUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'DEFAULT_VALUE' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <input
+                  type="number"
+                  class="form-control"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyDefaultValue"
+                  id="inputNumberDefaultValueUpdate"
+                  min="{{editControlModCtrl.nyaSelect.temporyConfig.minValueOption}}"
+                  max="{{editControlModCtrl.nyaSelect.temporyConfig.maxValueOption}}"
+                  placeholder="{{'ADD_DEFAUT_VALUE_HERE' | translate}}">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group">
+              <label
                 for="inputNumberMinValueUpdate"
                 class="col-lg-3 control-label greyText editPropertiesLabel">
                 {{'MIN_VALUE' | translate}} :
@@ -708,43 +833,6 @@
                   ng-model="editControlModCtrl.nyaSelect.temporyConfig.maxValueOption"
                   id="inputNumberMaxValueUpdate"
                   placeholder="">
-              </div>
-            </div>
-          </div>
-          <div class="marginTopFivepixels"></div>
-          <div class="row">
-            <div class="form-group">
-              <label
-                for="inputNumberIncrementalUpdate"
-                class="col-lg-3 control-label greyText editPropertiesLabel">
-                {{'INCREMENTAL' | translate}} :
-              </label>
-              <div class="col-lg-9">
-                <div class="checkboxCssCorrection">&nbsp;</div>
-                <input
-                  type="checkbox"
-                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.incrementalOption"
-                  id="inputNumberIncrementalUpdate">
-              </div>
-            </div>
-          </div>
-          <div class="marginTopFivepixels"></div>
-          <div class="row">
-            <div class="form-group">
-              <label
-                for="inputNumberDefaultValueUpdate"
-                class="col-lg-3 control-label greyText editPropertiesLabel">
-                {{'DEFAULT_VALUE' | translate}} :
-              </label>
-              <div class="col-lg-9">
-                <input
-                  type="number"
-                  class="form-control"
-                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyDefaultValue"
-                  id="inputNumberDefaultValueUpdate"
-                  min="{{editControlModCtrl.nyaSelect.temporyConfig.minValueOption}}"
-                  max="{{editControlModCtrl.nyaSelect.temporyConfig.maxValueOption}}"
-                  placeholder="{{'ADD_DEFAUT_VALUE_HERE' | translate}}">
               </div>
             </div>
           </div>
@@ -796,266 +884,6 @@
                   class="form-control"
                   ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption"
                   id="inputNumberDescriptionUpdate"
-                  placeholder="{{'ADDEDIT_DESCRIPTION' | translate}}">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Year -->
-    <div ng-switch-when="Year">
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <div class="row">
-            <div class="col-md-12">
-              <h5 class="greyText">
-                <i class="fa fa-eye"></i>
-                &nbsp;
-                {{'PREVIEW_TAB' | translate}} :
-              </h5>
-            </div>
-          </div>
-          <hr/>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="form-group">
-                <label
-                  for="inputYear"
-                  class="control-label textControlLabel">
-                  {{editControlModCtrl.nyaSelect.temporyConfig.formlyLabel}}
-                  <span
-                    ng-if="editControlModCtrl.nyaSelect.temporyConfig.formlyRequired"
-                    class="textControlLabel">
-                    *
-                  </span>
-                </label>
-                <div class="">
-                  <input
-                    type="number"
-                    class="form-control"
-                    id="inputYear"
-                    placeholder="{{editControlModCtrl.nyaSelect.temporyConfig.formlyPlaceholder}}">
-                  <p class="help-block">
-                  {{editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption}}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <div class="row">
-            <div class="col-md-12">
-              <h5 class="greyText">
-                <i class="fa fa-pencil-square-o"></i>
-                &nbsp;
-                {{'EDIT_PROPERTIES' | translate}} :
-              </h5>
-            </div>
-          </div>
-          <hr/>
-          <div class="marginTopFivepixels"></div>
-          <div class="row">
-            <div class="form-group">
-              <label
-                for="inputYearParentIdUpdate"
-                class="col-lg-3 control-label greyText editPropertiesLabel">
-                {{'PARENT_ID' | translate}} :
-              </label>
-              <div class="col-lg-9">
-                <ol
-                  class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
-                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.parentId"
-                  id="inputYearParentIdUpdate"
-                  data-live-search="true"
-                  title="No value">
-                  <li nya-bs-option="column in editControlModCtrl.columns">
-                    <a>
-                      <span>
-                        {{ column.name }}
-                      </span>
-                      <span class="glyphicon glyphicon-ok check-mark"></span>
-                    </a>
-                  </li>
-                </ol>
-              </div>
-            </div>
-          </div>
-          <div class="marginTopFivepixels"></div>
-          <div class="row">
-            <div class="form-group">
-              <label
-                for="inputYearLabelUpdate"
-                class="col-lg-3 control-label greyText editPropertiesLabel">
-                {{'LABEL_TEXT' | translate}} :
-              </label>
-              <div class="col-lg-9">
-                <input
-                  type="text"
-                  class="form-control"
-                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyLabel"
-                  id="inputYearLabelUpdate"
-                  placeholder="{{'ADD_EDIT_LABEL_HERE' | translate}}">
-              </div>
-            </div>
-          </div>
-          <div class="marginTopFivepixels"></div>
-          <div class="row">
-            <div class="form-group">
-              <label
-                for="inputYearLabelShortUpdate"
-                class="col-lg-3 control-label greyText editPropertiesLabel">
-                {{'LABEL_TEXT_SHORT' | translate}} :
-              </label>
-              <div class="col-lg-9">
-                <input
-                  type="text"
-                  class="form-control"
-                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyLabelShort"
-                  id="inputYearLabelShortUpdate"
-                  placeholder="{{'ADD_EDIT_SHORT_LABEL_HERE' | translate}}">
-              </div>
-            </div>
-          </div>
-          <div class="marginTopFivepixels"></div>
-          <div class="row">
-            <div class="form-group">
-              <label
-                for="inputYearplaceholderUpdate"
-                class="col-lg-3 control-label greyText editPropertiesLabel">
-                {{'PLACEHOLDER' | translate}} :
-              </label>
-              <div class="col-lg-9">
-                <input
-                  type="text"
-                  class="form-control"
-                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyPlaceholder"
-                  id="inputYearplaceholderUpdate"
-                  placeholder="{{'ADD_EDIT_PLACEHOLD' | translate}}">
-              </div>
-            </div>
-          </div>
-          <div class="marginTopFivepixels"></div>
-          <div class="row">
-            <div class="form-group">
-              <label
-                for="inputYearRequiredUpdate"
-                class="col-lg-3 control-label greyText editPropertiesLabel">
-                {{'REQUIRED' | translate}} :
-              </label>
-              <div class="col-lg-9">
-                <div class="checkboxCssCorrection">&nbsp;</div>
-                <input
-                  type="checkbox"
-                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyRequired"
-                  id="inputYearRequiredUpdate">
-              </div>
-            </div>
-          </div>
-          <div class="marginTopFivepixels"></div>
-          <div class="row">
-            <div class="form-group">
-              <label
-                for="inputYearUniqueUpdate"
-                class="col-lg-3 control-label greyText editPropertiesLabel">
-                {{'UNIQUE' | translate}} :
-              </label>
-              <div class="col-lg-9">
-                <div class="checkboxCssCorrection">&nbsp;</div>
-                <input
-                  type="checkbox"
-                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyUnique"
-                  id="inputYearUniqueUpdate">
-              </div>
-            </div>
-          </div>
-          <div class="marginTopFivepixels"></div>
-          <div class="row">
-            <div class="form-group">
-              <label
-                for="inputYearCurrentUpdate"
-                class="col-lg-3 control-label greyText editPropertiesLabel">
-                {{'CURRENT_YEAR' | translate}} :
-              </label>
-              <div class="col-lg-9">
-                <div class="checkboxCssCorrection">&nbsp;</div>
-                <input
-                  type="checkbox"
-                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.currentYearOption"
-                  id="inputYearCurrentUpdate">
-              </div>
-            </div>
-          </div>
-          <div class="marginTopFivepixels"></div>
-          <div class="row">
-            <div class="form-group">
-              <label
-                for="inputYearDefaultValueUpdate"
-                class="col-lg-3 control-label greyText editPropertiesLabel">
-                {{'DEFAULT_VALUE' | translate}} :
-              </label>
-              <div class="col-lg-9">
-                <input
-                  type="number"
-                  class="form-control"
-                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyDefaultValue"
-                  id="inputYearDefaultValueUpdate"
-                  maxlength="4"
-                  placeholder="{{'ADD_DEFAUT_VALUE_HERE' | translate}}">
-              </div>
-            </div>
-          </div>
-          <div class="marginTopFivepixels"></div>
-          <div class="row">
-            <div class="form-group">
-              <label
-                for="inputYearDisplayAddUpdate"
-                class="col-lg-3 control-label greyText editPropertiesLabel">
-                {{'DISPLAY_ADD' | translate}} :
-              </label>
-              <div class="col-lg-9">
-                <div class="checkboxCssCorrection">&nbsp;</div>
-                <input
-                  type="checkbox"
-                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.displayAddOption"
-                  id="inputYearDisplayAddUpdate">
-              </div>
-            </div>
-          </div>
-          <div class="marginTopFivepixels"></div>
-          <div class="row">
-            <div class="form-group">
-              <label
-                for="inputYearDisplayEditUpdate"
-                class="col-lg-3 control-label greyText editPropertiesLabel">
-                {{'DISPLAY_EDIT' | translate}} :
-              </label>
-              <div class="col-lg-9">
-                <div class="checkboxCssCorrection">&nbsp;</div>
-                <input
-                  type="checkbox"
-                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.displayEditOption"
-                  id="inputYearDisplayEditUpdate">
-              </div>
-            </div>
-          </div>
-          <div class="marginTopFivepixels"></div>
-          <div class="row">
-            <div class="form-group">
-              <label
-                for="inputYearDescriptionUpdate"
-                class="col-lg-3 control-label greyText editPropertiesLabel">
-                {{'DESCRIPTION' | translate}} :
-              </label>
-              <div class="col-lg-9">
-                <input
-                  type="text"
-                  class="form-control"
-                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption"
-                  id="inputYearDescriptionUpdate"
                   placeholder="{{'ADDEDIT_DESCRIPTION' | translate}}">
               </div>
             </div>

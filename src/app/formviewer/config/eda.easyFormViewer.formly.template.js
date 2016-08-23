@@ -10,13 +10,19 @@ const blankTemplate = `<div></div>`;
 
 
 const subTitleTemplate = `
-	<div class="row">
-		<div class="">
-			<h4 class="text-center">
-			{{options.templateOptions.placeholder}}
-			<h4><hr/>
-		</div>
-	</div>`;
+  <div class="row">
+    <div class="">
+      <h4 class="text-center">
+        {{options.templateOptions.label}}
+      </h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="">
+      {{options.templateOptions.description}}
+    </div>
+  </div>
+  <hr/>`;
 
 const basicSelectTemplate = `
 <ol

@@ -58,12 +58,10 @@ class $modalProxy{
 			}
 
 			if (nyaSelectObj.temporyConfig.selectedControl === 'Number') {
+				nyaSelectObj.temporyConfig.numberType 			= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.numberType != 'undefined' ? angular.copy(configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.numberType) : '';
 				nyaSelectObj.temporyConfig.minValueOption 	= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.minValueOption != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.minValueOption : '';
 				nyaSelectObj.temporyConfig.maxValueOption 	= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.maxValueOption != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.maxValueOption : '';
 				nyaSelectObj.temporyConfig.incrementalOption 	= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.incrementalOption != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.incrementalOption : '';
-			}
-
-			if (nyaSelectObj.temporyConfig.selectedControl === 'Year') {
 				nyaSelectObj.temporyConfig.currentYearOption 	= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.currentYearOption != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.currentYearOption : '';
 			}
 		}
@@ -127,12 +125,10 @@ class $modalProxy{
 				break;
 
 			case "number":
+				configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.numberType = extractedProps.numberType;
 				configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.minValueOption = extractedProps.minValueOption;
 				configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.maxValueOption = extractedProps.maxValueOption;
 				configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.incrementalOption = extractedProps.incrementalOption;
-				break;
-
-			case "year":
 				configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.currentYearOption = extractedProps.currentYearOption;
 				break;
 		}
@@ -193,12 +189,10 @@ class $modalProxy{
 					}
 
 					if (nyaSelectObj.controls[i].id ==='Number' ) {
+						nyaSelectObj.controls[i].numberType 							= nyaSelectObj.temporyConfig.numberType;
 						nyaSelectObj.controls[i].minValueOption 					= nyaSelectObj.temporyConfig.minValueOption;
 						nyaSelectObj.controls[i].maxValueOption 					= nyaSelectObj.temporyConfig.maxValueOption;
 						nyaSelectObj.controls[i].incrementalOption 				= nyaSelectObj.temporyConfig.incrementalOption;
-					}
-
-					if (nyaSelectObj.controls[i].id ==='Year' ) {
 						nyaSelectObj.controls[i].currentYearOption 				= nyaSelectObj.temporyConfig.currentYearOption;
 					}
 				}

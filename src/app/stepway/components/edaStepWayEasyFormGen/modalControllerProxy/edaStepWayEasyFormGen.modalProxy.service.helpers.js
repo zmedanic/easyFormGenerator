@@ -133,9 +133,11 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyOptions			: [] ,
 				parentId					: '',
 				referenceId				: '',
+				numberType				: 'integer',
 				minValueOption		: '',
 				maxValueOption  	: '',
-				incrementalOption	: true,
+				incrementalOption	: false,
+				currentYearOption	: false,
 				formlyExpressionProperties: {},
 				formlyValidators 						: {
 					numberShape : {
@@ -145,9 +147,24 @@ const resetNyaSelect = (nyaSelectObj) => {
 							var returnMax = (scope.to.maxValueOption) ? parseInt(value) <= parseInt(scope.to.maxValueOption) : true;
 							return returnMin && returnMax;
 						},
-						message		: 'to.label + \' is limited to values (\' + to.minValueOption + \' - \' + to.maxValueOption + \')\''
+						message	: 'to.label + \' is limited to values (\' + to.minValueOption + \' - \' + to.maxValueOption + \')\''
+					},
+					yearShape : {
+						expression : function(viewValue, modelValue, scope) {
+							if (scope.to.numberType == "year") {
+								var value = modelValue || viewValue;
+								return /^[0-9]{1,4}$/.test(value);
+							}
+							return true;
+						},
+						message	: 'to.label + \' is not valid year (0 - 9999)\''
 					}
 				},
+		    formlyAsyncValidators: {
+		      unique: {
+		        message: 'to.label + \" value $value already exists\"'
+		      }
+		    },
 				formlyValidation	: {
 					messages: {
 						required: function(viewValue, modelValue, scope) {
@@ -155,49 +172,6 @@ const resetNyaSelect = (nyaSelectObj) => {
 							//-> '<label as name> is required '
 							//-> or if not exists or empty just 'this field is required'
 							var defaultReturnMsg 	= 'this Number field is required';
-							var returnMsg 				= (typeof scope.to.label !== 'undefined') ? ((scope.to.label !== '') ? scope.to.label + ' is required' : defaultReturnMsg) : defaultReturnMsg;
-							if (scope.to.required) return returnMsg;
-						}
-					}
-				}
-			},
-
-			{
-				id								: 'Year',
-				name							: 'Year',
-				subtitle					: 'Year',
-				group							: 'input',
-				formlyType				: 'input',
-				formlySubtype			: 'year',
-				formlyLabel				: '',
-				formlyLabelShort	: '',
-				formlyRequired		: false,
-				formlyUnique			: false,
-				formlyDefaultValue: '',
-				displayAddOption	: true,
-				displayEditOption	: true,
-				formlyDesciption	: '',
-				formlyOptions			: [] ,
-				parentId					: '',
-				referenceId				: '',
-				currentYearOption	: true,
-				formlyExpressionProperties: {},
-				formlyValidators 						: {
-					yearShape : {
-						expression : function(viewValue, modelValue, scope) {
-							var value = modelValue || viewValue;
-							return /^[0-9]{1,4}$/.test(value);
-						},
-						message		: 'to.label + \' is not valid year (0 - 9999)\''
-					}
-				},
-				formlyValidation	: {
-					messages: {
-						required: function(viewValue, modelValue, scope) {
-							//return a required validation message :
-							//-> '<label as name> is required '
-							//-> or if not exists or empty just 'this field is required'
-							var defaultReturnMsg 	= 'this Year field is required';
 							var returnMsg 				= (typeof scope.to.label !== 'undefined') ? ((scope.to.label !== '') ? scope.to.label + ' is required' : defaultReturnMsg) : defaultReturnMsg;
 							if (scope.to.required) return returnMsg;
 						}
@@ -636,12 +610,10 @@ const returnControlFromAddCtrlModalModel = (CtrlModalModel) =>{
 						break;
 
 					case "number":
+						modelToReturn.numberType = CtrlModalModel.controls[i].numberType;
 						modelToReturn.minValueOption = CtrlModalModel.controls[i].minValueOption;
 						modelToReturn.maxValueOption = CtrlModalModel.controls[i].maxValueOption;
 						modelToReturn.incrementalOption = CtrlModalModel.controls[i].incrementalOption;
-						break;
-
-					case "year":
 						modelToReturn.currentYearOption = CtrlModalModel.controls[i].currentYearOption;
 						break;
 				}

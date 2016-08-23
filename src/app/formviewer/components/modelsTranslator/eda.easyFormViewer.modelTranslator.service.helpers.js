@@ -129,6 +129,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyOptions			: [] ,
 				parentId					: '',
 				referenceId				: '',
+				numberType				: 'integer',
 				minValueOption		: '',
 				maxValueOption  	: '',
 				incrementalOption	: true,
@@ -141,7 +142,17 @@ const resetNyaSelect = (nyaSelectObj) => {
 							var returnMax = (scope.to.maxValueOption) ? parseInt(value) <= parseInt(scope.to.maxValueOption) : true;
 							return returnMin && returnMax;
 						},
-						message		: 'to.label + \' is limited to values (\' + to.minValueOption + \' - \' + to.maxValueOption + \')\''
+						message	: 'to.label + \' is limited to values (\' + to.minValueOption + \' - \' + to.maxValueOption + \')\''
+					},
+					yearShape : {
+						expression : function(viewValue, modelValue, scope) {
+							if (scope.to.numberType == "year") {
+								var value = modelValue || viewValue;
+								return /^[0-9]{1,4}$/.test(value);
+							}
+							return true;
+						},
+						message	: 'to.label + \' is not valid year (0 - 9999)\''
 					}
 				},
 				formlyValidation	: {
@@ -151,49 +162,6 @@ const resetNyaSelect = (nyaSelectObj) => {
 							//-> '<label as name> is required '
 							//-> or if not exists or empty just 'this field is required'
 							var defaultReturnMsg 	= 'this Number field is required';
-							var returnMsg 				= (typeof scope.to.label !== 'undefined') ? ((scope.to.label !== '') ? scope.to.label + ' is required' : defaultReturnMsg) : defaultReturnMsg;
-							if (scope.to.required) return returnMsg;
-						}
-					}
-				}
-			},
-
-			{
-				id								: 'Year',
-				name							: 'Year',
-				subtitle					: 'Year',
-				group							: 'input',
-				formlyType				: 'input',
-				formlySubtype			: 'year',
-				formlyLabel				: '',
-				formlyLabelShort	: '',
-				formlyRequired		: false,
-				formlyUnique			: false,
-				displayAddOption	: true,
-				displayEditOption	: true,
-				formlyDesciption	: '',
-				formlyOptions			: [] ,
-				parentId					: '',
-				referenceId				: '',
-				currentYearOption	: true,
-				formlyExpressionProperties: {},
-				formlyValidators 						: {
-					yearShape : {
-						expression : function(viewValue, modelValue) {
-							var value = modelValue || viewValue;
-							return true;
-							return /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/.test(value);
-						},
-						message		: 'to.label + \' is not valid year (0 - 9999)\''
-					}
-				},
-				formlyValidation	: {
-					messages: {
-						required: function(viewValue, modelValue, scope) {
-							//return a required validation message :
-							//-> '<label as name> is required '
-							//-> or if not exists or empty just 'this field is required'
-							var defaultReturnMsg 	= 'this Year field is required';
 							var returnMsg 				= (typeof scope.to.label !== 'undefined') ? ((scope.to.label !== '') ? scope.to.label + ' is required' : defaultReturnMsg) : defaultReturnMsg;
 							if (scope.to.required) return returnMsg;
 						}
@@ -252,7 +220,6 @@ const resetNyaSelect = (nyaSelectObj) => {
 				parentId										: '',
 				referenceId									: '',
 				formlyExpressionProperties 	: {},
-
 				formlyValidators 						: {
 					emailShape : {
 						expression : function(viewValue, modelValue) {
@@ -668,6 +635,7 @@ const extractTemplateOptionReferenceId = (obj) => typeof obj.templateOptions !==
 const extractTemplateOptionDatepickerOptions = (obj) => typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.datepickerOptions !== 'undefined'? angular.copy(obj.templateOptions.datepickerOptions) : '') : '';
 
 const extractTemplateOptionMaxLengthOption = (obj) => typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.maxLengthOption !== 'undefined'? obj.templateOptions.maxLengthOption : '') : '';
+const extractTemplateOptionNumberType = (obj)=> typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.numberType !== 'undefined'? angular.copy(obj.templateOptions.numberType) : '') : '';
 const extractTemplateOptionMinValueOption = (obj) => typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.minValueOption !== 'undefined'? obj.templateOptions.minValueOption : '') : '';
 const extractTemplateOptionMaxValueOption = (obj) => typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.maxValueOption !== 'undefined'? obj.templateOptions.maxValueOption : '') : '';
 const extractTemplateOptionIncrementalOption = (obj) => typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.incrementalOption !== 'undefined'? obj.templateOptions.incrementalOption : '') : '';
@@ -694,6 +662,7 @@ const extractTemplateOptionOptions = (obj) => typeof obj.templateOptions !== 'un
 const addDatepickerOptionsProperty = (fieldToPush, configurationModel,lineIndex, position) => fieldToPush.templateOptions.datepickerOptions = extractTemplateOptionDatepickerOptions(configurationModel.lines[lineIndex].columns[position].control);
 
 const addMaxLengthOptionProperty = (fieldToPush, configurationModel,lineIndex, position) => fieldToPush.templateOptions.maxLengthOption = extractTemplateOptionMaxLengthOption(configurationModel.lines[lineIndex].columns[position].control);
+const addNumberTypeProperty = (fieldToPush, configurationModel,lineIndex, position) => fieldToPush.templateOptions.numberType = extractTemplateOptionNumberType(configurationModel.lines[lineIndex].columns[position].control);
 const addMinValueOptionProperty = (fieldToPush, configurationModel,lineIndex, position) => fieldToPush.templateOptions.minValueOption = extractTemplateOptionMinValueOption(configurationModel.lines[lineIndex].columns[position].control);
 const addMaxValueOptionProperty = (fieldToPush, configurationModel,lineIndex, position) => fieldToPush.templateOptions.maxValueOption = extractTemplateOptionMaxValueOption(configurationModel.lines[lineIndex].columns[position].control);
 const addIncrementalOptionProperty = (fieldToPush, configurationModel,lineIndex, position) => fieldToPush.templateOptions.incrementalOption = extractTemplateOptionIncrementalOption(configurationModel.lines[lineIndex].columns[position].control);
@@ -703,7 +672,7 @@ const addOneColumnHeader = (formlyModel, configurationModel,lineIndex) => {
 	/**
 		* text header is stored in "description" in templateOtion model
 		*/
-	let headerTemplateCol0 = `<div class="row"><div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h2 class="text-center">${extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[0].control)}<h2></div></div><hr/>`;
+	let headerTemplateCol = `<div class="row"><div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h2 class="text-center">${extractTemplateOptionLabel(configurationModel.lines[lineIndex].columns[0].control)}</h2></div></div><div class="row"><div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">${extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[0].control)}</div></div><hr/>`;
 	formlyModel.push(
 		{
 			template: typeof configurationModel
@@ -712,7 +681,7 @@ const addOneColumnHeader = (formlyModel, configurationModel,lineIndex) => {
 													.control
 													.type !== 'undefined' ?
 														(configurationModel.lines[lineIndex].columns[0].control.type === 'header' ?
-															headerTemplateCol0
+															headerTemplateCol
 															: '<div></div>')
 														: '<div></div>'
 		}
@@ -722,7 +691,7 @@ const addOneColumnHeader = (formlyModel, configurationModel,lineIndex) => {
 function addColumnControl(formlyModel, configurationModel,lineIndex, numberOfColumns, columnIndex, FieldGroup) {
 	let headerTemplateCol = {
 		className: 'col-xs-' + (12 / numberOfColumns),
-		template : `<div class="row"><div class=""><h2 class="text-center">${extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[columnIndex].control)}<h2><hr/></div></div>`
+		template : `<div class="row"><div class=""><h2 class="text-center">${extractTemplateOptionLabel(configurationModel.lines[lineIndex].columns[columnIndex].control)}</h2></div></div><div class="row"><div class="">${extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[columnIndex].control)}</div></div><hr/>`
 	};
 
 	let controlCol = {
@@ -760,12 +729,10 @@ function addColumnControl(formlyModel, configurationModel,lineIndex, numberOfCol
 				break;
 
 			case "number":
+				addNumberTypeProperty(controlCol, configurationModel,lineIndex, columnIndex);
 				addMinValueOptionProperty(controlCol, configurationModel,lineIndex, columnIndex);
 				addMaxValueOptionProperty(controlCol, configurationModel,lineIndex, columnIndex);
 				addIncrementalOptionProperty(controlCol, configurationModel,lineIndex, columnIndex);
-				break;
-
-			case "year":
 				addCurrentYearOptionProperty(controlCol, configurationModel,lineIndex, columnIndex);
 				break;
 		}

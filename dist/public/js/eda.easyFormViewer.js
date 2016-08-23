@@ -425,12 +425,12 @@ $__System.register('e', [], function (_export) {
 
 	'use strict';
 
-	var resetNyaSelect, getConfigurationModelInit, getEmptyConfigModelResult, resetDataModel, getErrorObject, getMessageObject, resetFormlyModel, extractTemplateOptionDescription, extractTemplateOptionPlaceholder, extractTemplateOptionType, extractTemplateOptionLabel, extractTemplateOptionLabelShort, extractTemplateOptionParentId, extractTemplateOptionReferenceId, extractTemplateOptionDatepickerOptions, extractTemplateOptionMaxLengthOption, extractTemplateOptionMinValueOption, extractTemplateOptionMaxValueOption, extractTemplateOptionIncrementalOption, extractTemplateOptionCurrentYearOption, extractFormlyExpressionProperties, extractFormlyValidators, extractFormlyValidation, extractTemplateOptionRequired, extractTemplateOptionUnique, extractDefaultValue, extractTemplateOptionDisplayAddOption, extractTemplateOptionDisplayEditOption, extractTemplateOptionOptions, addDatepickerOptionsProperty, addMaxLengthOptionProperty, addMinValueOptionProperty, addMaxValueOptionProperty, addIncrementalOptionProperty, addCurrentYearOptionProperty, addOneColumnHeader, addColumns;
+	var resetNyaSelect, getConfigurationModelInit, getEmptyConfigModelResult, resetDataModel, getErrorObject, getMessageObject, resetFormlyModel, extractTemplateOptionDescription, extractTemplateOptionPlaceholder, extractTemplateOptionType, extractTemplateOptionLabel, extractTemplateOptionLabelShort, extractTemplateOptionParentId, extractTemplateOptionReferenceId, extractTemplateOptionDatepickerOptions, extractTemplateOptionMaxLengthOption, extractTemplateOptionNumberType, extractTemplateOptionMinValueOption, extractTemplateOptionMaxValueOption, extractTemplateOptionIncrementalOption, extractTemplateOptionCurrentYearOption, extractFormlyExpressionProperties, extractFormlyValidators, extractFormlyValidation, extractTemplateOptionRequired, extractTemplateOptionUnique, extractDefaultValue, extractTemplateOptionDisplayAddOption, extractTemplateOptionDisplayEditOption, extractTemplateOptionOptions, addDatepickerOptionsProperty, addMaxLengthOptionProperty, addNumberTypeProperty, addMinValueOptionProperty, addMaxValueOptionProperty, addIncrementalOptionProperty, addCurrentYearOptionProperty, addOneColumnHeader, addColumns;
 
 	function addColumnControl(formlyModel, configurationModel, lineIndex, numberOfColumns, columnIndex, FieldGroup) {
 		var headerTemplateCol = {
 			className: 'col-xs-' + 12 / numberOfColumns,
-			template: '<div class="row"><div class=""><h2 class="text-center">' + extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[columnIndex].control) + '<h2><hr/></div></div>'
+			template: '<div class="row"><div class=""><h2 class="text-center">' + extractTemplateOptionLabel(configurationModel.lines[lineIndex].columns[columnIndex].control) + '</h2></div></div><div class="row"><div class="">' + extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[columnIndex].control) + '</div></div><hr/>'
 		};
 
 		var controlCol = {
@@ -468,12 +468,10 @@ $__System.register('e', [], function (_export) {
 					break;
 
 				case "number":
+					addNumberTypeProperty(controlCol, configurationModel, lineIndex, columnIndex);
 					addMinValueOptionProperty(controlCol, configurationModel, lineIndex, columnIndex);
 					addMaxValueOptionProperty(controlCol, configurationModel, lineIndex, columnIndex);
 					addIncrementalOptionProperty(controlCol, configurationModel, lineIndex, columnIndex);
-					break;
-
-				case "year":
 					addCurrentYearOptionProperty(controlCol, configurationModel, lineIndex, columnIndex);
 					break;
 			}
@@ -611,6 +609,7 @@ $__System.register('e', [], function (_export) {
 						formlyOptions: [],
 						parentId: '',
 						referenceId: '',
+						numberType: 'integer',
 						minValueOption: '',
 						maxValueOption: '',
 						incrementalOption: true,
@@ -624,6 +623,17 @@ $__System.register('e', [], function (_export) {
 									return returnMin && returnMax;
 								},
 								message: 'to.label + \' is limited to values (\' + to.minValueOption + \' - \' + to.maxValueOption + \')\''
+							},
+							yearShape: {
+								expression: function expression(viewValue, modelValue, scope) {
+									if (scope.to.numberType == "year") {
+										var value = modelValue || viewValue;
+										return (/^[0-9]{1,4}$/.test(value)
+										);
+									}
+									return true;
+								},
+								message: 'to.label + \' is not valid year (0 - 9999)\''
 							}
 						},
 						formlyValidation: {
@@ -661,8 +671,7 @@ $__System.register('e', [], function (_export) {
 							yearShape: {
 								expression: function expression(viewValue, modelValue) {
 									var value = modelValue || viewValue;
-									return true;
-									return (/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/.test(value)
+									return (/^[0-9]{1,4}$/.test(value)
 									);
 								},
 								message: 'to.label + \' is not valid year (0 - 9999)\''
@@ -729,7 +738,6 @@ $__System.register('e', [], function (_export) {
 						parentId: '',
 						referenceId: '',
 						formlyExpressionProperties: {},
-
 						formlyValidators: {
 							emailShape: {
 								expression: function expression(viewValue, modelValue) {
@@ -1124,6 +1132,10 @@ $__System.register('e', [], function (_export) {
 				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.maxLengthOption !== 'undefined' ? obj.templateOptions.maxLengthOption : '' : '';
 			};
 
+			extractTemplateOptionNumberType = function extractTemplateOptionNumberType(obj) {
+				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.numberType !== 'undefined' ? angular.copy(obj.templateOptions.numberType) : '' : '';
+			};
+
 			extractTemplateOptionMinValueOption = function extractTemplateOptionMinValueOption(obj) {
 				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.minValueOption !== 'undefined' ? obj.templateOptions.minValueOption : '' : '';
 			};
@@ -1184,6 +1196,10 @@ $__System.register('e', [], function (_export) {
 				return fieldToPush.templateOptions.maxLengthOption = extractTemplateOptionMaxLengthOption(configurationModel.lines[lineIndex].columns[position].control);
 			};
 
+			addNumberTypeProperty = function addNumberTypeProperty(fieldToPush, configurationModel, lineIndex, position) {
+				return fieldToPush.templateOptions.numberType = extractTemplateOptionNumberType(configurationModel.lines[lineIndex].columns[position].control);
+			};
+
 			addMinValueOptionProperty = function addMinValueOptionProperty(fieldToPush, configurationModel, lineIndex, position) {
 				return fieldToPush.templateOptions.minValueOption = extractTemplateOptionMinValueOption(configurationModel.lines[lineIndex].columns[position].control);
 			};
@@ -1204,7 +1220,7 @@ $__System.register('e', [], function (_export) {
 				/**
     	* text header is stored in "description" in templateOtion model
     	*/
-				var headerTemplateCol0 = '<div class="row"><div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h2 class="text-center">' + extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[0].control) + '<h2></div></div><hr/>';
+				var headerTemplateCol0 = '<div class="row"><div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h2 class="text-center">' + extractTemplateOptionLabel(configurationModel.lines[lineIndex].columns[0].control) + '</h2></div></div><div class="row"><div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">' + extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[0].control) + '</div></div><hr/>';
 				formlyModel.push({
 					template: typeof configurationModel.lines[lineIndex].columns[0].control.type !== 'undefined' ? configurationModel.lines[lineIndex].columns[0].control.type === 'header' ? headerTemplateCol0 : '<div></div>' : '<div></div>'
 				});
@@ -1446,7 +1462,7 @@ $__System.register("11", [], function (_export) {
 		execute: function () {
 			richTextTemplate = "\n\t<text-angular name=\"{{id}}\"\n\t\tclass=\"richTextAngular\"\n\t\tng-model=\"model[options.key || index]\">\n\t</text-angular>";
 			blankTemplate = "<div></div>";
-			subTitleTemplate = "\n\t<div class=\"row\">\n\t\t<div class=\"\">\n\t\t\t<h4 class=\"text-center\">\n\t\t\t{{options.templateOptions.placeholder}}\n\t\t\t<h4><hr/>\n\t\t</div>\n\t</div>";
+			subTitleTemplate = "\n  <div class=\"row\">\n    <div class=\"\">\n      <h4 class=\"text-center\">\n        {{options.templateOptions.label}}\n      </h4>\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"\">\n      {{options.templateOptions.description}}\n    </div>\n  </div>\n  <hr/>";
 			basicSelectTemplate = "\n<ol\n\tclass=\"nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12\"\n\tng-model=\"model[options.key || index]\"\n\tid=\"{{id}}\"\n\tdisabled=\"options.templateOptions.options.length === 0\">\n\t<li class=\"nya-bs-option\" nya-bs-option=\"option in options.templateOptions.options\">\n\t\t<a>{{option.name}}</a>\n\t</li>\n</ol>";
 			groupedSelectTemplate = "\n\t<ol class=\"nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12\"\n\t\tng-model=\"model[options.key || index]\"\n\t\tdata-live-search=\"true\"\n\t\tdisabled=\"options.templateOptions.options.length === 0\">\n\t\t<li nya-bs-option=\"option in  options.templateOptions.options group by option.group\">\n\t\t\t<span class=\"dropdown-header\">{{$group}}</span>\n\t\t\t<a>\n\t\t\t\t<span>{{option.name}}</span>\n\t\t\t\t<span class=\"glyphicon glyphicon-ok check-mark\"></span>\n\t\t\t</a>\n\t\t</li>\n\t</ol>";
 			datepickerTemplate = "\n  <p class=\"input-group\">\n    <span class=\"input-group-btn\">\n        <button\n          type=\"button\"\n          class=\"btn btn-default\"\n          ng-click=\"formlyDatePicker.open($event)\">\n          <i class=\"glyphicon glyphicon-calendar\"></i>\n        </button>\n    </span>\n    <input  type=\"text\"\n            id=\"{{::id}}\"\n            name=\"{{::id}}\"\n            ng-model=\"model[options.key]\"\n            class=\"form-control\"\n            ng-click=\"datepicker.open($event)\"\n            uib-datepicker-popup=\"{{to.datepickerOptions.format}}\"\n            is-open=\"datepicker.opened\"\n            datepicker-options=\"to.datepickerOptions\"\n    />\n  </p>\n  ";

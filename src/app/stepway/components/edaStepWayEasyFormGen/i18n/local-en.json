@@ -42,9 +42,13 @@
 
     "EDIT_PROPERTIES"     : "Edit properties",
 
+    "HEADER_TITLE"        : "Header title",
+    "ADD_EDIT_HEADER_TITLE_HERE": "Add / edit header title here",
     "HEADER_TEXT"         : "Header text",
     "ADD_EDIT_HEADER_HERE": "Add / edit header text here",
 
+    "SUBTITLE_TITLE"      : "Subtitle title",
+    "ADD_EDIT_SUBTIL_TITLE_HERE": "Add / edit subtitle title here",
     "SUBTITLE_TEXT"       : "Subtitle text",
     "ADD_EDIT_SUBTIL_HERE": "Add / edit subtitle text here",
 
@@ -100,5 +104,6 @@
     "NOTHING_SELECTED"    : "Nothing selected",
     "NO_VALUE"            : "No value",
     "ADD_DEFAUT_VALUE_HERE": "Add default value here",
-    "ADD_EDIT_SHORT_LABEL_HERE" : "Add / edit short label here"
+    "ADD_EDIT_SHORT_LABEL_HERE" : "Add / edit short label here",
+    "NUMBER_TYPE"         : "Number type"
 }
