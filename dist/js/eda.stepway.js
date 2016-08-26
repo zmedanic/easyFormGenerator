@@ -301,7 +301,7 @@ $__System.registerDynamic("7", [], true, function($__require, exports, module) {
     "ADD_EDIT_SUBTIL_HERE": "Add / edit subtitle text here",
     "LABEL_TEXT": "Label text",
     "ADD_EDIT_LABEL_HERE": "Add / edit control label here",
-    "PLACEHOLDER": "placeholder",
+    "PLACEHOLDER": "Placeholder",
     "ADD_EDIT_PLACEHOLD": "Add / edit placeholder text here",
     "REQUIRED": "Required",
     "DESCRIPTION": "Description",
@@ -3269,9 +3269,9 @@ $__System.register('1e', [], function (_export) {
 			};
 
 			addOneColumnHeader = function addOneColumnHeader(formlyModel, configurationModel, lineIndex) {
-				var headerTemplateCol0 = '<div class="row"><div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h2 class="text-center">' + extractTemplateOptionLabel(configurationModel.lines[lineIndex].columns[0].control) + '</h2></div></div><div class="row"><div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">' + extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[0].control) + '</div></div><hr/>';
+				var headerTemplateCol = '<div class="row"><div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h2 class="text-center">' + extractTemplateOptionLabel(configurationModel.lines[lineIndex].columns[0].control) + '</h2></div></div><div class="row"><div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">' + extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[0].control) + '</div></div><hr/>';
 				formlyModel.push({
-					template: typeof configurationModel.lines[lineIndex].columns[0].control.type !== 'undefined' ? configurationModel.lines[lineIndex].columns[0].control.type === 'header' ? headerTemplateCol0 : '<div></div>' : '<div></div>'
+					template: typeof configurationModel.lines[lineIndex].columns[0].control.type !== 'undefined' ? configurationModel.lines[lineIndex].columns[0].control.type === 'header' ? headerTemplateCol : '<div></div>' : '<div></div>'
 				});
 			};
 

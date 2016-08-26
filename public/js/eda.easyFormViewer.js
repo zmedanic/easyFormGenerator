@@ -649,47 +649,6 @@ $__System.register('e', [], function (_export) {
 							}
 						}
 					}, {
-						id: 'Year',
-						name: 'Year',
-						subtitle: 'Year',
-						group: 'input',
-						formlyType: 'input',
-						formlySubtype: 'year',
-						formlyLabel: '',
-						formlyLabelShort: '',
-						formlyRequired: false,
-						formlyUnique: false,
-						displayAddOption: true,
-						displayEditOption: true,
-						formlyDesciption: '',
-						formlyOptions: [],
-						parentId: '',
-						referenceId: '',
-						currentYearOption: true,
-						formlyExpressionProperties: {},
-						formlyValidators: {
-							yearShape: {
-								expression: function expression(viewValue, modelValue) {
-									var value = modelValue || viewValue;
-									return (/^[0-9]{1,4}$/.test(value)
-									);
-								},
-								message: 'to.label + \' is not valid year (0 - 9999)\''
-							}
-						},
-						formlyValidation: {
-							messages: {
-								required: function required(viewValue, modelValue, scope) {
-									//return a required validation message :
-									//-> '<label as name> is required '
-									//-> or if not exists or empty just 'this field is required'
-									var defaultReturnMsg = 'this Year field is required';
-									var returnMsg = typeof scope.to.label !== 'undefined' ? scope.to.label !== '' ? scope.to.label + ' is required' : defaultReturnMsg : defaultReturnMsg;
-									if (scope.to.required) return returnMsg;
-								}
-							}
-						}
-					}, {
 						id: 'Password',
 						name: 'Password',
 						subtitle: 'Password',
@@ -1220,9 +1179,9 @@ $__System.register('e', [], function (_export) {
 				/**
     	* text header is stored in "description" in templateOtion model
     	*/
-				var headerTemplateCol0 = '<div class="row"><div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h2 class="text-center">' + extractTemplateOptionLabel(configurationModel.lines[lineIndex].columns[0].control) + '</h2></div></div><div class="row"><div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">' + extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[0].control) + '</div></div><hr/>';
+				var headerTemplateCol = '<div class="row"><div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h2 class="text-center">' + extractTemplateOptionLabel(configurationModel.lines[lineIndex].columns[0].control) + '</h2></div></div><div class="row"><div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">' + extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[0].control) + '</div></div><hr/>';
 				formlyModel.push({
-					template: typeof configurationModel.lines[lineIndex].columns[0].control.type !== 'undefined' ? configurationModel.lines[lineIndex].columns[0].control.type === 'header' ? headerTemplateCol0 : '<div></div>' : '<div></div>'
+					template: typeof configurationModel.lines[lineIndex].columns[0].control.type !== 'undefined' ? configurationModel.lines[lineIndex].columns[0].control.type === 'header' ? headerTemplateCol : '<div></div>' : '<div></div>'
 				});
 			};
 
