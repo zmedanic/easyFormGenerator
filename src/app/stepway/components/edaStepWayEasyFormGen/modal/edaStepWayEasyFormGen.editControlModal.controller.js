@@ -76,9 +76,11 @@ class editControlModalController {
 		if (this.nyaSelect.temporyConfig.formlyOptions.length > 0) {
 			for (let i = 0; i <= this.nyaSelect.temporyConfig.formlyOptions.length-1; i++){
 				let newOption = {
-					'option'	: this.nyaSelect.temporyConfig.formlyOptions[i].name,
-					'order'		: i,
-					'group'		: ''
+					'option'			: this.nyaSelect.temporyConfig.formlyOptions[i].name,
+					'order'				: i,
+					'group'				: '',
+					'parentId' 		: this.nyaSelect.temporyConfig.formlyOptions[i].parentId,
+					'referenceId'	:	this.nyaSelect.temporyConfig.formlyOptions[i].referenceId
 				};
 				this.basicSelectRowCollection.rows.push(newOption);
 			}
@@ -89,9 +91,11 @@ class editControlModalController {
 		if (this.nyaSelect.temporyConfig.formlyOptions.length > 0) {
 			for (let i = 0; i <= this.nyaSelect.temporyConfig.formlyOptions.length-1; i++){
 				let newOption = {
-						'option'	: this.nyaSelect.temporyConfig.formlyOptions[i].name,
-						'order'		: i,
-						'group'		: ''
+						'option'			: this.nyaSelect.temporyConfig.formlyOptions[i].name,
+						'order'				: i,
+						'group'				: '',
+						'parentId' 		: this.nyaSelect.temporyConfig.formlyOptions[i].parentId,
+						'referenceId'	:	this.nyaSelect.temporyConfig.formlyOptions[i].referenceId
 				};
 				this.radioRowCollection.rows.push(newOption);
 			}
@@ -104,9 +108,11 @@ class editControlModalController {
 		if (this.nyaSelect.temporyConfig.formlyOptions.length > 0) {
 			for (let i = 0; i <= this.nyaSelect.temporyConfig.formlyOptions.length-1; i++){
 				var newOption = {
-					'option'	: this.nyaSelect.temporyConfig.formlyOptions[i].name,
-					'order'		: i,
-					'group'		: this.nyaSelect.temporyConfig.formlyOptions[i].group
+					'option'			: this.nyaSelect.temporyConfig.formlyOptions[i].name,
+					'order'				: i,
+					'group'				: this.nyaSelect.temporyConfig.formlyOptions[i].group,
+					'parentId' 		: this.nyaSelect.temporyConfig.formlyOptions[i].parentId,
+					'referenceId'	:	this.nyaSelect.temporyConfig.formlyOptions[i].referenceId
 				};
 				this.groupedSelectRowCollection.rows.push(newOption);
 			}
@@ -374,9 +380,11 @@ class editControlModalController {
 		if (this.basicSelectRowCollection.rows.length > 0) {
 			for (let i = 0; i <= this.basicSelectRowCollection.rows.length - 1; i++){
 				let newOption = {
-					'name'	: this.basicSelectRowCollection.rows[i].option,
-					'value'	: i,
-					'group'	: ''
+					'name'				: this.basicSelectRowCollection.rows[i].option,
+					'value'				: i,
+					'group'				: '',
+					'parentId' 		: this.groupedSelectRowCollection.rows[i].parentId,
+					'referenceId'	:	this.groupedSelectRowCollection.rows[i].referenceId
 				};
 				this.nyaSelect.temporyConfig.formlyOptions.push(newOption);
 			}
@@ -387,9 +395,11 @@ class editControlModalController {
 		this.nyaSelect.temporyConfig.formlyOptions = [];
 		for (let i = 0; i <= this.groupedSelectRowCollection.rows.length - 1; i++){
 			let newOption = {
-				'name'	: this.groupedSelectRowCollection.rows[i].option,
-				'value'	: i,
-				'group'	: this.groupedSelectRowCollection.rows[i].group
+				'name'				: this.groupedSelectRowCollection.rows[i].option,
+				'value'				: i,
+				'group'				: this.groupedSelectRowCollection.rows[i].group,
+				'parentId' 		: this.groupedSelectRowCollection.rows[i].parentId,
+				'referenceId'	:	this.groupedSelectRowCollection.rows[i].referenceId
 			};
 			this.nyaSelect.temporyConfig.formlyOptions.push(newOption);
 		}
@@ -401,9 +411,11 @@ class editControlModalController {
 		if (this.radioRowCollection.rows.length > 0) {
 			for (let i = 0; i <= this.radioRowCollection.rows.length - 1; i++){
 						let newOption = {
-							'name'	: this.radioRowCollection.rows[i].option,
-							'value'	: i,
-							'group'	: ''
+							'name'				: this.radioRowCollection.rows[i].option,
+							'value'				: i,
+							'group'				: '',
+							'parentId' 		: this.groupedSelectRowCollection.rows[i].parentId,
+							'referenceId'	:	this.groupedSelectRowCollection.rows[i].referenceId
 						};
 						this.nyaSelect.temporyConfig.formlyOptions.push(newOption);
 				}

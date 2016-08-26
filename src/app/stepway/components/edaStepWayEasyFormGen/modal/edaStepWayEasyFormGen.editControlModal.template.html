@@ -2091,33 +2091,6 @@
           <hr/>
           <div class="marginTopFivepixels"></div>
           <div class="row">
-            <div class="form-group">
-              <label
-                for="inputRadioParentIdUpdate"
-                class="col-lg-3 control-label greyText editPropertiesLabel">
-                {{'PARENT_ID' | translate}} :
-              </label>
-              <div class="col-lg-9">
-                <ol
-                  class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
-                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.parentId"
-                  id="inputRadioParentIdUpdate"
-                  data-live-search="true"
-                  title="No value">
-                  <li nya-bs-option="column in editControlModCtrl.columns">
-                    <a>
-                      <span>
-                        {{ column.name }}
-                      </span>
-                      <span class="glyphicon glyphicon-ok check-mark"></span>
-                    </a>
-                  </li>
-                </ol>
-              </div>
-            </div>
-          </div>
-          <div class="marginTopFivepixels"></div>
-          <div class="row">
             <div class="col-lg-3 col-md-3">
               <label
                 for="radioRowCollection"
@@ -2231,6 +2204,33 @@
             </div>
           </div>
           <hr/>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="form-group">
+              <label
+                for="inputRadioParentIdUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'PARENT_ID' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <ol
+                  class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.parentId"
+                  id="inputRadioParentIdUpdate"
+                  data-live-search="true"
+                  title="No value">
+                  <li nya-bs-option="column in editControlModCtrl.columns">
+                    <a>
+                      <span>
+                        {{ column.name }}
+                      </span>
+                      <span class="glyphicon glyphicon-ok check-mark"></span>
+                    </a>
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
           <div class="marginTopFivepixels"></div>
           <div class="row">
             <div class="form-group">
@@ -2655,33 +2655,6 @@
           <hr/>
           <div class="marginTopFivepixels"></div>
           <div class="row">
-            <div class="form-group">
-              <label
-                for="basicSelectParentIdUpdate"
-                class="col-lg-3 control-label greyText editPropertiesLabel">
-                {{'PARENT_ID' | translate}} :
-              </label>
-              <div class="col-lg-9">
-                <ol
-                  class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
-                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.parentId"
-                  id="basicSelectParentIdUpdate"
-                  data-live-search="true"
-                  title="No value">
-                  <li nya-bs-option="column in editControlModCtrl.columns">
-                    <a>
-                      <span>
-                        {{ column.name }}
-                      </span>
-                      <span class="glyphicon glyphicon-ok check-mark"></span>
-                    </a>
-                  </li>
-                </ol>
-              </div>
-            </div>
-          </div>
-          <div class="marginTopFivepixels"></div>
-          <div class="row">
             <div class="col-lg-3 col-md-3">
               <label
                 for="basicSelectRowCollection"
@@ -2737,7 +2710,10 @@
                         <th st-ratio="20">
                           {{'ORDER' | translate}}
                         </th>
-                        <th st-ratio="55">
+                        <th st-ratio="30">
+                          {{'PARENT_ID' | translate}}
+                        </th>
+                        <th st-ratio="25">
                           {{'OPTION' | translate}}
                         </th>
                         <th st-ratio="25">
@@ -2746,7 +2722,9 @@
                       <tr>
                         <th st-ratio="20">
                         </th>
-                        <th st-ratio="55">
+                        <th st-ratio="30">
+                        </th>
+                        <th st-ratio="25">
                           <input
                             ng-model="basicSelectFilter"
                             placeholder="{{'SEARCH_4_OPTION' | translate}}"
@@ -2763,7 +2741,25 @@
                         <td st-ratio="20">
                           {{$index}}
                         </td>
-                        <td st-ratio="55">
+                        <td st-ratio="30">
+                          <div ng-if="editControlModCtrl.groupSelectGroupClick.showList === true">
+                            <div ng-if="editControlModCtrl.basicSelectRowCollection.rows.length === 0">
+                              <p class="text-left noGroupText">- {{'NO_GROUP_ADD_NEW' | translate}} -</p>
+                            </div>
+                            <div ng-if="editControlModCtrl.basicSelectRowCollection.rows.length > 0">
+                              <ol class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12 editGroupedSelectnyaSelect" ng-model="basicSelectRow.parentId" id="modelBasicOptionParentChoose"
+                              disabled="editControlModCtrl.basicSelectRowCollection.rows.length === 0">
+                                <li class="nya-bs-option" nya-bs-option="parent in editControlModCtrl.basicSelectRowCollection.rows" ng-if="parent.option!=basicSelectRow.option" value="parent">
+                                  <a>{{parent.option}}</a>
+                                </li>
+                              </ol>
+                            </div>
+                          </div>
+                          <div ng-if="editControlModCtrl.groupSelectGroupClick.showList === false">
+                            {{basicSelectRow.parentId.option}}
+                          </div>
+                        </td>
+                        <td st-ratio="25">
                           {{basicSelectRow.option}}
                         </td>
                         <td st-ratio="25">
@@ -2777,6 +2773,11 @@
                               class="btn btn-primary"
                               ng-click="editControlModCtrl.downThisRow($index)">
                               <i class="fa fa-arrow-down"></i>
+                            </button>
+                            <button
+                              class="btn btn-warning"
+                              ng-click="editControlModCtrl.showGroupListToChoose()">
+                              <i class="fa fa-pencil-square-o"></i>
                             </button>
                             <button
                               class="btn btn-danger"
@@ -2793,6 +2794,33 @@
             </div>
           </div>
           <hr/>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="form-group">
+              <label
+                for="basicSelectParentIdUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'PARENT_ID' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <ol
+                  class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.parentId"
+                  id="basicSelectParentIdUpdate"
+                  data-live-search="true"
+                  title="No value">
+                  <li nya-bs-option="column in editControlModCtrl.columns">
+                    <a>
+                      <span>
+                        {{ column.name }}
+                      </span>
+                      <span class="glyphicon glyphicon-ok check-mark"></span>
+                    </a>
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
           <div class="row">
             <div class="form-group">
               <label
@@ -3009,33 +3037,6 @@
           <hr/>
           <div class="marginTopFivepixels"></div>
           <div class="row">
-            <div class="form-group">
-              <label
-                for="groupedSelectParentIdUpdate"
-                class="col-lg-3 control-label greyText editPropertiesLabel">
-                {{'PARENT_ID' | translate}} :
-              </label>
-              <div class="col-lg-9">
-                <ol
-                  class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
-                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.parentId"
-                  id="groupedSelectParentIdUpdate"
-                  data-live-search="true"
-                  title="No value">
-                  <li nya-bs-option="column in editControlModCtrl.columns">
-                    <a>
-                      <span>
-                        {{ column.name }}
-                      </span>
-                      <span class="glyphicon glyphicon-ok check-mark"></span>
-                    </a>
-                  </li>
-                </ol>
-              </div>
-            </div>
-          </div>
-          <div class="marginTopFivepixels"></div>
-          <div class="row">
             <div class="col-lg-3 col-md-3">
               <label
                 for="groupedSelectRowCollection"
@@ -3118,24 +3119,29 @@
                     class="table table-striped">
                     <thead>
                       <tr>
-                        <th st-ratio="20">
+                        <th st-ratio="15">
                           {{'ORDER' | translate}}
                         </th>
-                        <th st-ratio="25">
+                        <th st-ratio="20">
+                          {{'PARENT_ID' | translate}}
+                        </th>
+                        <th st-ratio="20">
                           {{'GROUP' | translate}}
                         </th>
-                        <th st-ratio="30">
+                        <th st-ratio="20">
                           {{'OPTION' | translate}}
                         </th>
                         <th st-ratio="25">
                         </th>
                       </tr>
                       <tr>
+                        <th st-ratio="15">
+                        </th>
                         <th st-ratio="20">
                         </th>
-                        <th st-ratio="25">
+                        <th st-ratio="20">
                         </th>
-                        <th st-ratio="30">
+                        <th st-ratio="20">
                           <input
                             ng-model="editControlModCtrl.groupedSelectFilter"
                             placeholder="{{'SEARCH_4_OPTION' | translate}}"
@@ -3149,10 +3155,28 @@
                       </thead>
                       <tbody>
                       <tr ng-repeat="groupedSelectRow in editControlModCtrl.groupedSelectRowCollection.rows | filter:editControlModCtrl.groupedSelectFilter as groupedSelectRow">
-                        <td st-ratio="20">
+                        <td st-ratio="15">
                           {{$index}}
                         </td>
-                        <td st-ratio="25">
+                        <td st-ratio="20">
+                          <div ng-if="editControlModCtrl.groupSelectGroupClick.showList === true">
+                            <div ng-if="editControlModCtrl.groupedSelectRowCollection.rows.length === 0">
+                              <p class="text-left noGroupText">- {{'NO_GROUP_ADD_NEW' | translate}} -</p>
+                            </div>
+                            <div ng-if="editControlModCtrl.groupedSelectRowCollection.rows.length > 0">
+                              <ol class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12 editGroupedSelectnyaSelect" ng-model="groupedSelectRow.parentId" id="modelGroupedOptionParentChoose"
+                              disabled="editControlModCtrl.groupedSelectRowCollection.rows.length === 0">
+                                <li class="nya-bs-option" nya-bs-option="parent in editControlModCtrl.groupedSelectRowCollection.rows" ng-if="parent.option!=groupedSelectRow.option" value="parent">
+                                  <a>{{parent.option}}</a>
+                                </li>
+                              </ol>
+                            </div>
+                          </div>
+                          <div ng-if="editControlModCtrl.groupSelectGroupClick.showList === false">
+                            {{groupedSelectRow.parentId.option}}
+                          </div>
+                        </td>
+                        <td st-ratio="20">
                           <div ng-if="editControlModCtrl.groupSelectGroupClick.showList === true">
                             <div ng-if="editControlModCtrl.GroupedSelectGroups.list.length === 0">
                               <p class="text-left noGroupText">- {{'NO_GROUP_ADD_NEW' | translate}} -</p>
@@ -3170,7 +3194,7 @@
                             {{groupedSelectRow.group}}
                           </div>
                         </td>
-                        <td st-ratio="30">
+                        <td st-ratio="20">
                           {{groupedSelectRow.option}}
                         </td>
                         <td st-ratio="25">
@@ -3205,6 +3229,33 @@
             </div>
           </div>
           <hr/>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="form-group">
+              <label
+                for="groupedSelectParentIdUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'PARENT_ID' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <ol
+                  class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.parentId"
+                  id="groupedSelectParentIdUpdate"
+                  data-live-search="true"
+                  title="No value">
+                  <li nya-bs-option="column in editControlModCtrl.columns">
+                    <a>
+                      <span>
+                        {{ column.name }}
+                      </span>
+                      <span class="glyphicon glyphicon-ok check-mark"></span>
+                    </a>
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
           <div class="row">
             <div class="form-group">
               <label
