@@ -2742,21 +2742,28 @@
                           {{$index}}
                         </td>
                         <td st-ratio="30">
-                          <div ng-if="editControlModCtrl.groupSelectGroupClick.showList === true">
-                            <div ng-if="editControlModCtrl.basicSelectRowCollection.rows.length === 0">
-                              <p class="text-left noGroupText">- {{'NO_GROUP_ADD_NEW' | translate}} -</p>
+                          <div ng-if="editControlModCtrl.basicSelectGroupClick.showList === true">
+                            <div ng-if="editControlModCtrl.basicSelectRowCollection.parents.length === 0">
+                              <p class="text-left noGroupText">-</p>
                             </div>
-                            <div ng-if="editControlModCtrl.basicSelectRowCollection.rows.length > 0">
-                              <ol class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12 editGroupedSelectnyaSelect" ng-model="basicSelectRow.parentId" id="modelBasicOptionParentChoose"
-                              disabled="editControlModCtrl.basicSelectRowCollection.rows.length === 0">
-                                <li class="nya-bs-option" nya-bs-option="parent in editControlModCtrl.basicSelectRowCollection.rows" ng-if="parent.option!=basicSelectRow.option" value="parent">
+                            <div ng-if="editControlModCtrl.basicSelectRowCollection.parents.length > 0">
+                              <ol
+                                class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12 editGroupedSelectnyaSelect"
+                                ng-model="basicSelectRow.parentId"
+                                id="modelBasicOptionParentChoose"
+                                title="No value">
+                                <li
+                                  class="nya-bs-option"
+                                  nya-bs-option="parent in editControlModCtrl.basicSelectRowCollection.parents"
+                                  ng-if="parent.option!=basicSelectRow.option"
+                                  value="{id: parent.referenceId, name: parent.option, value: parent.order}">
                                   <a>{{parent.option}}</a>
                                 </li>
                               </ol>
                             </div>
                           </div>
-                          <div ng-if="editControlModCtrl.groupSelectGroupClick.showList === false">
-                            {{basicSelectRow.parentId.option}}
+                          <div ng-if="editControlModCtrl.basicSelectGroupClick.showList === false">
+                            {{basicSelectRow.parentId.name}}
                           </div>
                         </td>
                         <td st-ratio="25">
@@ -2776,7 +2783,7 @@
                             </button>
                             <button
                               class="btn btn-warning"
-                              ng-click="editControlModCtrl.showGroupListToChoose()">
+                              ng-click="editControlModCtrl.showBasicListToChoose()">
                               <i class="fa fa-pencil-square-o"></i>
                             </button>
                             <button
@@ -3160,20 +3167,27 @@
                         </td>
                         <td st-ratio="20">
                           <div ng-if="editControlModCtrl.groupSelectGroupClick.showList === true">
-                            <div ng-if="editControlModCtrl.groupedSelectRowCollection.rows.length === 0">
-                              <p class="text-left noGroupText">- {{'NO_GROUP_ADD_NEW' | translate}} -</p>
+                            <div ng-if="editControlModCtrl.groupedSelectRowCollection.parents.length === 0">
+                              <p class="text-left noGroupText">-</p>
                             </div>
-                            <div ng-if="editControlModCtrl.groupedSelectRowCollection.rows.length > 0">
-                              <ol class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12 editGroupedSelectnyaSelect" ng-model="groupedSelectRow.parentId" id="modelGroupedOptionParentChoose"
-                              disabled="editControlModCtrl.groupedSelectRowCollection.rows.length === 0">
-                                <li class="nya-bs-option" nya-bs-option="parent in editControlModCtrl.groupedSelectRowCollection.rows" ng-if="parent.option!=groupedSelectRow.option" value="parent">
+                            <div ng-if="editControlModCtrl.groupedSelectRowCollection.parents.length > 0">
+                              <ol
+                                class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12 editGroupedSelectnyaSelect"
+                                ng-model="groupedSelectRow.parentId"
+                                id="modelGroupedOptionParentChoose"
+                                title="No value">
+                                <li
+                                  class="nya-bs-option"
+                                  nya-bs-option="parent in editControlModCtrl.groupedSelectRowCollection.parents"
+                                  ng-if="parent.option!=groupedSelectRow.option"
+                                  value="{id: parent.referenceId, name: parent.option, value: parent.order}">
                                   <a>{{parent.option}}</a>
                                 </li>
                               </ol>
                             </div>
                           </div>
                           <div ng-if="editControlModCtrl.groupSelectGroupClick.showList === false">
-                            {{groupedSelectRow.parentId.option}}
+                            {{groupedSelectRow.parentId.name}}
                           </div>
                         </td>
                         <td st-ratio="20">

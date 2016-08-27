@@ -13,7 +13,7 @@ class selectOptionManage {
 	}
 
 	resetModel(selectObj) {
-		let zeroModel = { rows:[] };
+		let zeroModel = { rows:[], parents: [] };
 		angular.copy(zeroModel, selectObj);
 	}
 
@@ -29,7 +29,7 @@ class selectOptionManage {
 		return false;
 	}
 
-	addNewOptionRadio(selectObj, newOptionText){
+	addNewOptionRadio(selectObj, newOptionText, parentsBasic){
 		let fullResponse = {
 			resultFlag 	: false,
 			details 		: ''
@@ -40,11 +40,18 @@ class selectOptionManage {
 			let newOption = {
 				option			: newOptionText,
 				order				: selectObj.rows.length,
-				parentId 		: '',
-				referenceId : ''
+				parentId 		: {
+												id: '',
+												name: 'No value',
+												value: ''
+											},
+				referenceId : '',
+				new 				: true
 			};
 
 			selectObj.rows.push(newOption);
+			selectObj.parents = parentsBasic.concat(selectObj.rows);
+
 			fullResponse.resultFlag = true;
 			fullResponse.details = '';
 			return fullResponse;
@@ -55,7 +62,7 @@ class selectOptionManage {
 		}
 	}
 
-	addNewOptionBasicSelect(selectObj, newOptionText){
+	addNewOptionBasicSelect(selectObj, newOptionText, parentsBasic){
 		let fullResponse = {
 			resultFlag 	: false,
 			details 		: ''
@@ -67,11 +74,18 @@ class selectOptionManage {
 			let newOption = {
 				option			: newOptionText,
 				order				: selectObj.rows.length,
-				parentId 		: '',
-				referenceId : ''
+				parentId 		: {
+												id: '',
+												name: 'No value',
+												value: ''
+											},
+				referenceId : '',
+				new 				: true
 			};
 
 			selectObj.rows.push(newOption);
+			selectObj.parents = parentsBasic.concat(selectObj.rows);
+
 			fullResponse.resultFlag = true;
 			fullResponse.details 		= '';
 
@@ -82,7 +96,7 @@ class selectOptionManage {
 		}
 	}
 
-	addNewOptionGroupedSelect(selectObj, newOptionText, newOptionGroup){
+	addNewOptionGroupedSelect(selectObj, newOptionText, newOptionGroup, parentsBasic){
 		let fullResponse = {
 					resultFlag 	: false,
 					details 		: ''
@@ -96,11 +110,18 @@ class selectOptionManage {
 				option			: newOptionText,
 				group				: newOptionGroup,
 				order				: selectObj.rows.length,
-				parentId 		: '',
-				referenceId : ''
+				parentId 		: {
+												id: '',
+												name: 'No value',
+												value: ''
+											},
+				referenceId : '',
+				new 				: true
 			};
 
 			selectObj.rows.push(newOption);
+			selectObj.parents = parentsBasic.concat(selectObj.rows);
+
 			fullResponse.resultFlag = true;
 			fullResponse.details = '';
 			return fullResponse;
@@ -112,7 +133,7 @@ class selectOptionManage {
 	}
 
 
-	removeOption(selectObj, AtIndex) {
+	removeOption(selectObj, AtIndex, parentsBasic) {
 		let fullResponse = {
 			resultFlag : false,
 			details : ''
@@ -120,6 +141,8 @@ class selectOptionManage {
 
 		if (AtIndex !== -1) {
 			selectObj.rows.splice(AtIndex, 1);
+			selectObj.parents = parentsBasic.concat(selectObj.rows);
+
 			fullResponse.resultFlag = true;
 			fullResponse.details= '';
 			return fullResponse;
@@ -132,7 +155,7 @@ class selectOptionManage {
 
 
 
-	upthisOption(selectObj, indexOption){
+	upthisOption(selectObj, indexOption, parentsBasic){
 		var fullResponse = {
 			resultFlag : false,
 			details : ''
@@ -144,6 +167,8 @@ class selectOptionManage {
 					let currentOption = selectObj.rows[indexOption];
 					selectObj.rows.splice(indexOption , 1);
 					selectObj.rows.splice((indexOption - 1), 0, currentOption);
+					selectObj.parents = parentsBasic.concat(selectObj.rows);
+
 					fullResponse.resultFlag = true;
 					fullResponse.details 		= '';
 					return fullResponse;
@@ -165,7 +190,7 @@ class selectOptionManage {
 	}
 
 
-	downthisOption(selectObj, indexOption){
+	downthisOption(selectObj, indexOption, parentsBasic){
 		let fullResponse = {
 			resultFlag : false,
 			details : ''
@@ -177,6 +202,8 @@ class selectOptionManage {
 					let currentOption = selectObj.rows[indexOption];
 					selectObj.rows.splice(indexOption , 1);
 					selectObj.rows.splice((indexOption + 1), 0, currentOption);
+					selectObj.parents = parentsBasic.concat(selectObj.rows);
+
 					fullResponse.resultFlag = true;
 					fullResponse.details 		= '';
 					return fullResponse;

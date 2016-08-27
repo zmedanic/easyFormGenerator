@@ -21,8 +21,14 @@ class editControlModalController {
 	}
 
 	init() {
-		const initOptionModel 					= { rows:[] };
+		const initOptionModel 					= { rows:[], parents:[] };
 
+		this.parentsBasic = [{
+			option			: 'No value',
+			parentId 		: '',
+			referenceId : '',
+			order 			: -1
+		}];
 		this.radioRowCollection 				= initOptionModel;
 		this.newOptionRadio     				= {saisie: ''};
 		this.basicSelectRowCollection 	= initOptionModel;
@@ -31,6 +37,7 @@ class editControlModalController {
 		this.newOptionGroupedSelect     = {saisie: ''};
 		this.GroupedSelectGroups        = { list:[] };
 		this.newGroupGroupedSelect      = {saisie: ''};
+		this.basicSelectGroupClick      = {showList : false};
 		this.groupSelectGroupClick      = {showList : false};
 		this.demodt         						= {};
 		this.dateOptions    						= this.dateOptionsInit();
@@ -79,11 +86,12 @@ class editControlModalController {
 					'option'			: this.nyaSelect.temporyConfig.formlyOptions[i].name,
 					'order'				: i,
 					'group'				: '',
-					'parentId' 		: this.nyaSelect.temporyConfig.formlyOptions[i].parentId,
+					'parentId' 		: angular.copy(this.nyaSelect.temporyConfig.formlyOptions[i].parentId),
 					'referenceId'	:	this.nyaSelect.temporyConfig.formlyOptions[i].referenceId
 				};
 				this.basicSelectRowCollection.rows.push(newOption);
 			}
+			this.basicSelectRowCollection.parents = this.parentsBasic.concat(this.basicSelectRowCollection.rows);
 		}
 	}
 
@@ -94,11 +102,12 @@ class editControlModalController {
 						'option'			: this.nyaSelect.temporyConfig.formlyOptions[i].name,
 						'order'				: i,
 						'group'				: '',
-						'parentId' 		: this.nyaSelect.temporyConfig.formlyOptions[i].parentId,
+						'parentId' 		: angular.copy(this.nyaSelect.temporyConfig.formlyOptions[i].parentId),
 						'referenceId'	:	this.nyaSelect.temporyConfig.formlyOptions[i].referenceId
 				};
 				this.radioRowCollection.rows.push(newOption);
 			}
+			this.radioRowCollection.parents = this.parentsBasic.concat(this.radioRowCollection.rows);
 		}
 	}
 
@@ -111,20 +120,21 @@ class editControlModalController {
 					'option'			: this.nyaSelect.temporyConfig.formlyOptions[i].name,
 					'order'				: i,
 					'group'				: this.nyaSelect.temporyConfig.formlyOptions[i].group,
-					'parentId' 		: this.nyaSelect.temporyConfig.formlyOptions[i].parentId,
+					'parentId' 		: angular.copy(this.nyaSelect.temporyConfig.formlyOptions[i].parentId),
 					'referenceId'	:	this.nyaSelect.temporyConfig.formlyOptions[i].referenceId
 				};
 				this.groupedSelectRowCollection.rows.push(newOption);
 			}
 			var filteredgroup = _.uniq(_.pluck(this.groupedSelectRowCollection.rows, 'group'));
 			angular.copy(filteredgroup, this.GroupedSelectGroups.list);
+			this.groupedSelectRowCollection.parents = this.parentsBasic.concat(this.groupedSelectRowCollection.rows);
 		}
 	}
 
 
 
 	addNewOptionRadio() {
-		let result = this.selectOptionManage.addNewOptionRadio(this.radioRowCollection, this.newOptionRadio.saisie);
+		let result = this.selectOptionManage.addNewOptionRadio(this.radioRowCollection, this.newOptionRadio.saisie, this.parentsBasic);
 		if (result.resultFlag === false) {
 			this.toaster.pop({
 				type		: 'warning',
@@ -140,7 +150,7 @@ class editControlModalController {
 
 
 	removeRadioRow(index) {
-		let result = this.selectOptionManage.removeOption(this.radioRowCollection, index);
+		let result = this.selectOptionManage.removeOption(this.radioRowCollection, index, this.parentsBasic);
 			if (result.resultFlag === false) {
 				this.toaster.pop({
 					type			: 'warning',
@@ -153,7 +163,7 @@ class editControlModalController {
 	}
 
 	upThisRadioRow(index) {
-		let result = this.selectOptionManage.upthisOption(this.radioRowCollection, index);
+		let result = this.selectOptionManage.upthisOption(this.radioRowCollection, index, this.parentsBasic);
 		if (result.resultFlag === false) {
 			this.toaster.pop({
 				type		: 'warning',
@@ -167,7 +177,7 @@ class editControlModalController {
 
 
 	downThisRadioRow(index) {
-		let result = this.selectOptionManage.downthisOption(this.radioRowCollection, index);
+		let result = this.selectOptionManage.downthisOption(this.radioRowCollection, index, this.parentsBasic);
 		if (result.resultFlag === false) {
 			this.toaster.pop({
 				type		: 'warning',
@@ -181,7 +191,7 @@ class editControlModalController {
 
 
 	addNewOptionBasicSelect() {
-		let result = this.selectOptionManage.addNewOptionBasicSelect(this.basicSelectRowCollection, this.newOptionBasicSelect.saisie);
+		let result = this.selectOptionManage.addNewOptionBasicSelect(this.basicSelectRowCollection, this.newOptionBasicSelect.saisie, this.parentsBasic);
 		if (result.resultFlag === false) {
 			this.toaster.pop({
 				type		: 'warning',
@@ -195,7 +205,7 @@ class editControlModalController {
 	}
 
 	removeRow(index) {
-		let result = this.selectOptionManage.removeOption(this.basicSelectRowCollection, index);
+		let result = this.selectOptionManage.removeOption(this.basicSelectRowCollection, index, this.parentsBasic);
 		if (result.resultFlag === false) {
 			this.toaster.pop({
 				type		: 'warning',
@@ -208,7 +218,7 @@ class editControlModalController {
 	}
 
 	upThisRow(index) {
-		let result = this.selectOptionManage.upthisOption(this.basicSelectRowCollection, index);
+		let result = this.selectOptionManage.upthisOption(this.basicSelectRowCollection, index, this.parentsBasic);
 		if (result.resultFlag === false) {
 			this.toaster.pop({
 				type		: 'warning',
@@ -221,7 +231,7 @@ class editControlModalController {
 	}
 
 	downThisRow(index) {
-		let result = this.selectOptionManage.downthisOption(this.basicSelectRowCollection, index);
+		let result = this.selectOptionManage.downthisOption(this.basicSelectRowCollection, index, this.parentsBasic);
 		if (result.resultFlag === false) {
 			this.toaster.pop({
 				type		: 'warning',
@@ -233,10 +243,13 @@ class editControlModalController {
 		}
 	}
 
+	showBasicListToChoose() {
+		this.basicSelectGroupClick.showList = !this.basicSelectGroupClick.showList;
+	}
+
 	showGroupListToChoose() {
 		this.groupSelectGroupClick.showList = !this.groupSelectGroupClick.showList;
 	}
-
 
 	addNewGroupToGroupedSelect(){
 		if (this.newGroupGroupedSelect.saisie !== '') {
@@ -267,7 +280,7 @@ class editControlModalController {
 
 
 	addNewOptionGroupedSelect() {
-		let result = this.selectOptionManage.addNewOptionGroupedSelect(this.groupedSelectRowCollection, this.newOptionGroupedSelect.saisie, '');
+		let result = this.selectOptionManage.addNewOptionGroupedSelect(this.groupedSelectRowCollection, this.newOptionGroupedSelect.saisie, '', this.parentsBasic);
 		if (result.resultFlag === false) {
 			this.toaster.pop({
 				type		: 'warning',
@@ -285,7 +298,7 @@ class editControlModalController {
 
 
 	removeGroupedSelectRow(index) {
-		let result = this.selectOptionManage.removeOption(this.groupedSelectRowCollection, index);
+		let result = this.selectOptionManage.removeOption(this.groupedSelectRowCollection, index, this.parentsBasic);
 		if (result.resultFlag === false) {
 			this.toaster.pop({
 				type		: 'warning',
@@ -299,7 +312,7 @@ class editControlModalController {
 
 
 	upThisGroupedSelectRow(index){
-		let result = this.selectOptionManage.upthisOption(this.groupedSelectRowCollection, index);
+		let result = this.selectOptionManage.upthisOption(this.groupedSelectRowCollection, index, this.parentsBasic);
 		if (result.resultFlag === false) {
 			this.toaster.pop({
 				type		: 'warning',
@@ -312,7 +325,7 @@ class editControlModalController {
 	}
 
 	downThisGroupedSelectRow(index){
-		let result = this.selectOptionManage.downthisOption(this.groupedSelectRowCollection, index);
+		let result = this.selectOptionManage.downthisOption(this.groupedSelectRowCollection, index, this.parentsBasic);
 		if (result.resultFlag === false) {
 			this.toaster.pop({
 				type		: 'warning',
@@ -382,10 +395,14 @@ class editControlModalController {
 				let newOption = {
 					'name'				: this.basicSelectRowCollection.rows[i].option,
 					'value'				: i,
+					'uniqueValue' : this.basicSelectRowCollection.rows[i].order,
 					'group'				: '',
-					'parentId' 		: this.groupedSelectRowCollection.rows[i].parentId,
-					'referenceId'	:	this.groupedSelectRowCollection.rows[i].referenceId
+					'parentId' 		: angular.copy(this.basicSelectRowCollection.rows[i].parentId),
+					'referenceId'	:	this.basicSelectRowCollection.rows[i].referenceId
 				};
+				if (this.basicSelectRowCollection.rows[i].new) {
+					newOption.new = this.basicSelectRowCollection.rows[i].new;
+				}
 				this.nyaSelect.temporyConfig.formlyOptions.push(newOption);
 			}
 		}
@@ -397,10 +414,14 @@ class editControlModalController {
 			let newOption = {
 				'name'				: this.groupedSelectRowCollection.rows[i].option,
 				'value'				: i,
+				'uniqueValue' : this.basicSelectRowCollection.rows[i].order,
 				'group'				: this.groupedSelectRowCollection.rows[i].group,
-				'parentId' 		: this.groupedSelectRowCollection.rows[i].parentId,
+				'parentId' 		: angular.copy(this.groupedSelectRowCollection.rows[i].parentId),
 				'referenceId'	:	this.groupedSelectRowCollection.rows[i].referenceId
 			};
+			if (this.groupedSelectRowCollection.rows[i].new) {
+				newOption.new = this.groupedSelectRowCollection.rows[i].new;
+			}
 			this.nyaSelect.temporyConfig.formlyOptions.push(newOption);
 		}
 	}
@@ -410,15 +431,19 @@ class editControlModalController {
 		this.nyaSelect.temporyConfig.formlyOptions = resetNyASelectOptions;
 		if (this.radioRowCollection.rows.length > 0) {
 			for (let i = 0; i <= this.radioRowCollection.rows.length - 1; i++){
-						let newOption = {
-							'name'				: this.radioRowCollection.rows[i].option,
-							'value'				: i,
-							'group'				: '',
-							'parentId' 		: this.groupedSelectRowCollection.rows[i].parentId,
-							'referenceId'	:	this.groupedSelectRowCollection.rows[i].referenceId
-						};
-						this.nyaSelect.temporyConfig.formlyOptions.push(newOption);
+				let newOption = {
+					'name'				: this.radioRowCollection.rows[i].option,
+					'value'				: i,
+					'uniqueValue' : this.basicSelectRowCollection.rows[i].order,
+					'group'				: '',
+					'parentId' 		: angular.copy(this.radioRowCollection.rows[i].parentId),
+					'referenceId'	:	this.radioRowCollection.rows[i].referenceId
+				};
+				if (this.radioRowCollection.rows[i].new) {
+					newOption.new = this.radioRowCollection.rows[i].new;
 				}
+				this.nyaSelect.temporyConfig.formlyOptions.push(newOption);
+			}
 		}
 	}
 
