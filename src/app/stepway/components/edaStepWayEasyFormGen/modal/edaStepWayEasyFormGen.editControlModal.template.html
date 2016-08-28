@@ -2065,6 +2065,11 @@
                         value="$index"
                         checked="">
                         {{radioRow.option}}
+                      <p
+                        ng-if="radioRow.description.length > 0"
+                        class="help-block help-inline">
+                        ({{radioRow.description}})
+                      </p>
                     </label>
                   </div>
                   <p class="help-block">
@@ -2099,16 +2104,26 @@
               </label>
             </div>
           </div>
-          <div class="row">
+          <div class="form-group">
             <div>
-              <div class="form-group">
+              <div class="row">
                 <div class="col-sm-9 col-xs-9 col-md-9 col-lg-9">
                   <input
                     type="text"
                     class="form-control"
                     id="inputAddNewRadioOption"
-                    placeholder="{{'ADD_RADIO_PLACEHOLD' | translate}}"
+                    placeholder="{{'ADD_A_NEW_OPTION' | translate}}"
                     ng-model="editControlModCtrl.newOptionRadio.saisie">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-9">
+                  <input
+                    type="text"
+                    class="form-control"
+                    ng-model="editControlModCtrl.newOptionRadio.description"
+                    id="inputAddNewRadioOptionDescription"
+                    placeholder="{{'ADDEDIT_DESCRIPTION' | translate}}">
                 </div>
                 <div class="col-sm-3 col-xs-3 col-md-3 col-lg-3">
                   <button
@@ -2629,6 +2644,11 @@
                       value="$index">
                       <a>
                         {{basicSelectRow.option}}
+                        <p
+                          ng-if="basicSelectRow.description.length > 0"
+                          class="help-block help-inline">
+                          ({{basicSelectRow.description}})
+                        </p>
                       </a>
                     </li>
                   </ol>
@@ -2663,16 +2683,26 @@
               </label>
             </div>
           </div>
-          <div class="row">
+          <div class="form-group">
             <div>
-              <div class="form-group">
+              <div class="row">
                 <div class="col-sm-9 col-xs-9 col-md-9 col-lg-9">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="inputAddNewBasicOption"
-                  placeholder="{{'ADD_A_NEW_OPTION' | translate}}"
-                  ng-model="editControlModCtrl.newOptionBasicSelect.saisie">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputAddNewBasicOption"
+                    placeholder="{{'ADD_A_NEW_OPTION' | translate}}"
+                    ng-model="editControlModCtrl.newOptionBasicSelect.saisie">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-9">
+                  <input
+                    type="text"
+                    class="form-control"
+                    ng-model="editControlModCtrl.newOptionBasicSelect.description"
+                    id="inputAddNewBasicOptionDescription"
+                    placeholder="{{'ADDEDIT_DESCRIPTION' | translate}}">
                 </div>
                 <div class="col-sm-3 col-xs-3 col-md-3 col-lg-3">
                   <button
@@ -3015,6 +3045,11 @@
                         <span>
                           {{groupedSelectRow.option}}
                         </span>
+                        <p
+                          ng-if="groupedSelectRow.description.length > 0"
+                          class="help-block help-inline">
+                          ({{groupedSelectRow.description}})
+                        </p>
                         <span class="glyphicon glyphicon-ok check-mark">
                         </span>
                       </a>
@@ -3052,9 +3087,9 @@
               </label>
             </div>
           </div>
-          <div class="row">
+          <div class="form-group">
             <div>
-              <div class="form-group">
+              <div class="row">
                 <div class="col-sm-9 col-xs-9 col-md-9 col-lg-9">
                   <input
                     type="text"
@@ -3062,6 +3097,16 @@
                     id="inputAddNewGroupedOption"
                     placeholder="{{'ADD_A_NEW_OPTION' | translate}}"
                     ng-model="editControlModCtrl.newOptionGroupedSelect.saisie">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-9">
+                  <input
+                    type="text"
+                    class="form-control"
+                    ng-model="editControlModCtrl.newOptionGroupedSelect.description"
+                    id="inputAddNewGroupedOptionDescription"
+                    placeholder="{{'ADDEDIT_DESCRIPTION' | translate}}">
                 </div>
                 <div class="col-sm-3 col-xs-3 col-md-3 col-lg-3">
                   <button

@@ -25,16 +25,17 @@ class editControlModalController {
 
 		this.parentsBasic = [{
 			option			: 'No value',
+			description : '',
 			parentId 		: '',
 			referenceId : '',
 			order 			: -1
 		}];
 		this.radioRowCollection 				= initOptionModel;
-		this.newOptionRadio     				= {saisie: ''};
+		this.newOptionRadio     				= {saisie: '', description: ''};
 		this.basicSelectRowCollection 	= initOptionModel;
-		this.newOptionBasicSelect     	= {saisie: ''};
+		this.newOptionBasicSelect     	= {saisie: '', description: ''};
 		this.groupedSelectRowCollection = initOptionModel;
-		this.newOptionGroupedSelect     = {saisie: ''};
+		this.newOptionGroupedSelect     = {saisie: '', description: ''};
 		this.GroupedSelectGroups        = { list:[] };
 		this.newGroupGroupedSelect      = {saisie: ''};
 		this.basicSelectGroupClick      = {showList : false};
@@ -84,6 +85,7 @@ class editControlModalController {
 			for (let i = 0; i <= this.nyaSelect.temporyConfig.formlyOptions.length-1; i++){
 				let newOption = {
 					'option'			: this.nyaSelect.temporyConfig.formlyOptions[i].name,
+					'description' : this.nyaSelect.temporyConfig.formlyOptions[i].description,
 					'order'				: i,
 					'group'				: '',
 					'parentId' 		: angular.copy(this.nyaSelect.temporyConfig.formlyOptions[i].parentId),
@@ -100,6 +102,7 @@ class editControlModalController {
 			for (let i = 0; i <= this.nyaSelect.temporyConfig.formlyOptions.length-1; i++){
 				let newOption = {
 						'option'			: this.nyaSelect.temporyConfig.formlyOptions[i].name,
+						'description' : this.nyaSelect.temporyConfig.formlyOptions[i].description,
 						'order'				: i,
 						'group'				: '',
 						'parentId' 		: angular.copy(this.nyaSelect.temporyConfig.formlyOptions[i].parentId),
@@ -118,6 +121,7 @@ class editControlModalController {
 			for (let i = 0; i <= this.nyaSelect.temporyConfig.formlyOptions.length-1; i++){
 				var newOption = {
 					'option'			: this.nyaSelect.temporyConfig.formlyOptions[i].name,
+					'description' : this.nyaSelect.temporyConfig.formlyOptions[i].description,
 					'order'				: i,
 					'group'				: this.nyaSelect.temporyConfig.formlyOptions[i].group,
 					'parentId' 		: angular.copy(this.nyaSelect.temporyConfig.formlyOptions[i].parentId),
@@ -134,7 +138,7 @@ class editControlModalController {
 
 
 	addNewOptionRadio() {
-		let result = this.selectOptionManage.addNewOptionRadio(this.radioRowCollection, this.newOptionRadio.saisie, this.parentsBasic);
+		let result = this.selectOptionManage.addNewOptionRadio(this.radioRowCollection, this.newOptionRadio, this.parentsBasic);
 		if (result.resultFlag === false) {
 			this.toaster.pop({
 				type		: 'warning',
@@ -144,7 +148,7 @@ class editControlModalController {
 				showCloseButton: true
 			});
 		}
-		this.newOptionRadio = {saisie: ''}; //reset input
+		this.newOptionRadio = {saisie: '', description: ''}; //reset input
 	}
 
 
@@ -191,7 +195,7 @@ class editControlModalController {
 
 
 	addNewOptionBasicSelect() {
-		let result = this.selectOptionManage.addNewOptionBasicSelect(this.basicSelectRowCollection, this.newOptionBasicSelect.saisie, this.parentsBasic);
+		let result = this.selectOptionManage.addNewOptionBasicSelect(this.basicSelectRowCollection, this.newOptionBasicSelect, this.parentsBasic);
 		if (result.resultFlag === false) {
 			this.toaster.pop({
 				type		: 'warning',
@@ -201,7 +205,7 @@ class editControlModalController {
 				showCloseButton: true
 			});
 		}
-		this.newOptionBasicSelect = {saisie: ''}; //reset input
+		this.newOptionBasicSelect = {saisie: '', description: ''}; //reset input
 	}
 
 	removeRow(index) {
@@ -280,7 +284,7 @@ class editControlModalController {
 
 
 	addNewOptionGroupedSelect() {
-		let result = this.selectOptionManage.addNewOptionGroupedSelect(this.groupedSelectRowCollection, this.newOptionGroupedSelect.saisie, '', this.parentsBasic);
+		let result = this.selectOptionManage.addNewOptionGroupedSelect(this.groupedSelectRowCollection, this.newOptionGroupedSelect, '', this.parentsBasic);
 		if (result.resultFlag === false) {
 			this.toaster.pop({
 				type		: 'warning',
@@ -293,7 +297,7 @@ class editControlModalController {
 		//bind nya : dont bind here $apply is not done fast enough
 		//bindGroupedSelectToNya();
 		//reset input
-		this.newOptionGroupedSelect = {saisie: ''};
+		this.newOptionGroupedSelect = {saisie: '', description: ''};
 	}
 
 
@@ -394,6 +398,7 @@ class editControlModalController {
 			for (let i = 0; i <= this.basicSelectRowCollection.rows.length - 1; i++){
 				let newOption = {
 					'name'				: this.basicSelectRowCollection.rows[i].option,
+					'description' : this.basicSelectRowCollection.rows[i].description,
 					'value'				: i,
 					'uniqueValue' : this.basicSelectRowCollection.rows[i].order,
 					'group'				: '',
@@ -413,6 +418,7 @@ class editControlModalController {
 		for (let i = 0; i <= this.groupedSelectRowCollection.rows.length - 1; i++){
 			let newOption = {
 				'name'				: this.groupedSelectRowCollection.rows[i].option,
+				'description' : this.basicSelectRowCollection.rows[i].description,
 				'value'				: i,
 				'uniqueValue' : this.basicSelectRowCollection.rows[i].order,
 				'group'				: this.groupedSelectRowCollection.rows[i].group,
@@ -433,6 +439,7 @@ class editControlModalController {
 			for (let i = 0; i <= this.radioRowCollection.rows.length - 1; i++){
 				let newOption = {
 					'name'				: this.radioRowCollection.rows[i].option,
+					'description' : this.basicSelectRowCollection.rows[i].description,
 					'value'				: i,
 					'uniqueValue' : this.basicSelectRowCollection.rows[i].order,
 					'group'				: '',

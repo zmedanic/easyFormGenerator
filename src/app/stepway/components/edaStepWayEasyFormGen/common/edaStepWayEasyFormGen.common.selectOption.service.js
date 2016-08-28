@@ -29,16 +29,17 @@ class selectOptionManage {
 		return false;
 	}
 
-	addNewOptionRadio(selectObj, newOptionText, parentsBasic){
+	addNewOptionRadio(selectObj, newOptionOptions, parentsBasic){
 		let fullResponse = {
 			resultFlag 	: false,
 			details 		: ''
 		};
-		let checkResult = this.validOption(selectObj, newOptionText);
+		let checkResult = this.validOption(selectObj, newOptionOptions.saisie);
 		if (checkResult.resultFlag === true){
 
 			let newOption = {
-				option			: newOptionText,
+				option			: newOptionOptions.saisie,
+				description	: newOptionOptions.description,
 				order				: selectObj.rows.length,
 				parentId 		: {
 												id: '',
@@ -62,17 +63,18 @@ class selectOptionManage {
 		}
 	}
 
-	addNewOptionBasicSelect(selectObj, newOptionText, parentsBasic){
+	addNewOptionBasicSelect(selectObj, newOptionOptions, parentsBasic){
 		let fullResponse = {
 			resultFlag 	: false,
 			details 		: ''
 		};
 
-		let checkResult = this.validOption(selectObj, newOptionText);
+		let checkResult = this.validOption(selectObj, newOptionOptions.saisie);
 		if (checkResult.resultFlag === true){
 
 			let newOption = {
-				option			: newOptionText,
+				option			: newOptionOptions.saisie,
+				description	: newOptionOptions.description,
 				order				: selectObj.rows.length,
 				parentId 		: {
 												id: '',
@@ -96,18 +98,19 @@ class selectOptionManage {
 		}
 	}
 
-	addNewOptionGroupedSelect(selectObj, newOptionText, newOptionGroup, parentsBasic){
+	addNewOptionGroupedSelect(selectObj, newOptionOptions, newOptionGroup, parentsBasic){
 		let fullResponse = {
 					resultFlag 	: false,
 					details 		: ''
 				};
 
-		let checkResult = this.validOption(selectObj, newOptionText);
+		let checkResult = this.validOption(selectObj, newOptionOptions.saisie);
 
 		if (checkResult.resultFlag === true){
 
 			let newOption = {
-				option			: newOptionText,
+				option			: newOptionOptions.saisie,
+				description	: newOptionOptions.description,
 				group				: newOptionGroup,
 				order				: selectObj.rows.length,
 				parentId 		: {

@@ -264,7 +264,7 @@
 								]
 							},
 							{
-								"line": -1,
+								"line": 3,
 								"activeColumn": 1,
 								"columns": [
 									{
@@ -307,7 +307,8 @@
 												"placeholder": "password",
 												"minValueOption": 1,
 												"maxValueOption": 550,
-												"incrementalOption": false,
+												"numberType": "integer",
+												"incrementalOption": true,
 												"options": [],
 												"referenceId": 3
 											},
@@ -325,14 +326,15 @@
 										"control": {
 											"type": "input",
 											"key": "input-1441426313388",
-											"selectedControl": "Year",
-											"subtype": "year",
+											"selectedControl": "Number",
+											"subtype": "number",
 											"templateOptions": {
 												"label": "email",
 												"required": true,
 												"description": "email",
 												"placeholder": "email",
-												"currentYearOption": false,
+												"numberType": "year",
+												"currentYearOption": true,
 												"options": [],
 												"referenceId": 4
 											},
@@ -351,7 +353,7 @@
 								]
 							},
 							{
-								"line": -1,
+								"line": 2,
 								"activeColumn": 1,
 								"columns": [
 									{
@@ -396,17 +398,32 @@
 													{
 														"name": "opt1",
 														"value": 0,
-														"group": ""
+														"group": "",
+														"referenceId": 1,
+														"parentId": {
+															"id": "",
+															"name": "No title",
+															"value": "",
+														}
 													},
 													{
-														"name": "opt2",
+														"name": "fff",
 														"value": 1,
-														"group": ""
+														"group": "",
+														"referenceId": 2,
+														"parentId": {
+															"id": 1,
+															"name": "opt1",
+															"value": 0
+														}
 													},
 													{
 														"name": "opt3",
 														"value": 2,
-														"group": ""
+														"group": "",
+														"referenceId": 3,
+														"description": "Option 3",
+														"parentId": ""
 													}
 												],
 												"referenceId": 6

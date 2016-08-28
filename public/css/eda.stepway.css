@@ -586,6 +586,9 @@ easy customize animation from here : http://www.nganimate.org/angularjs/ng-repea
 .validation.ng-leave-active {
   opacity: 0; }
 
+.help-block.help-inline {
+  display: inline-block; }
+
 
 /*=========================================================
     colors const
