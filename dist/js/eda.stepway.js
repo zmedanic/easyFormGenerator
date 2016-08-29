@@ -3781,6 +3781,16 @@ $__System.register('24', ['15', '16'], function (_export) {
 						};
 
 						if (AtIndex !== -1) {
+							for (var i = 0; i < selectObj.rows.length; i++) {
+								if (selectObj.rows[i].parentId.id === selectObj.rows[AtIndex].referenceId) {
+									selectObj.rows[i].parentId = {
+										id: '',
+										name: 'No value',
+										value: ''
+									};
+								}
+							}
+
 							selectObj.rows.splice(AtIndex, 1);
 							selectObj.parents = parentsBasic.concat(selectObj.rows);
 
