@@ -129,7 +129,7 @@
 															</div>
 															<div class="row">
 																<div class="col-xs-2 col-xs-offset-3 col-sm-2 col-sm-offset-3 col-md-2 col-md-offset-3">
-																	<button class="btn btn-primary pull-right btnMinusColumns" ng-click="vm.decreaseNumberOfColumns()"><i class="fa fa-minus fa-1x"></i></button>
+																	<button class="btn btn-primary pull-right btnMinusColumns" ng-click="vm.decreaseNumberOfColumns(vm.configuration.activeLine -1, vm.configuration.lines[vm.configuration.activeLine - 1].columns.length - 1)"><i class="fa fa-minus fa-1x"></i></button>
 																</div>
 																<div class="col-xs-2 col-sm-2 col-md-2 text-center">
 																	<span class="numberOfColumnsLabel ">{{vm.configuration.lines[vm.configuration.activeLine -1].columns.length}}</span>

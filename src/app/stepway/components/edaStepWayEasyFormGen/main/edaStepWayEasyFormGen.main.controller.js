@@ -181,16 +181,19 @@ class edaStepWayEasyFormGenController {
 			this.wfFormFieldsOnlyNeededProperties = angular.copy(this.wfFormFields);
 	}
 
-
-	decreaseNumberOfColumns() {
-		if (this
+	decreaseNumberOfColumns(row, column) {
+		let currentColumnLength = this
 					.configuration
-					.lines[this.configuration.activeLine -1]
-					.columns.length > 1) {
-			this.configuration
-				.lines[this.configuration.activeLine -1]
-				.columns
-				.splice(this.configuration.lines[this.configuration.activeLine -1].columns.length -1, 1);
+					.lines[row]
+					.columns
+					.length;
+
+		if (currentColumnLength > 1 && column !== -1 && column < currentColumnLength) {
+			this
+					.configuration
+					.lines[row]
+					.columns
+					.splice(column, 1);
 		}
 		this.$formlyProxy.applyConfigurationToformlyModel(this.configuration, this.wfFormFields, this.dataModel);
 		this.wfFormFieldsOnlyNeededProperties = angular.copy(this.wfFormFields);
@@ -274,8 +277,9 @@ class edaStepWayEasyFormGenController {
 			controllerAs: EDIT_MODAL_CONTROLLERAS_NAME,
 			size				: this.editControlModalSize,
 			resolve			: {
-				columns 	: () => this.prepareExistingColumns(nyaSelect.temporyConfig.referenceId),
-				nyaSelect : () => nyaSelect
+				columns 								: () => this.prepareExistingColumns(nyaSelect.temporyConfig.referenceId),
+				activeLineColumnsCount 	: () => this.configuration.lines[indexLine].columns.length,
+				nyaSelect 							: () => nyaSelect
 			}
 		});
 
@@ -285,6 +289,11 @@ class edaStepWayEasyFormGenController {
 				this.$modalProxy.bindConfigurationModelFromModalReturn(indexLine, numcolumn, modalAddCtrlModel, this.configuration);
 				this.$formlyProxy.applyConfigurationToformlyModel(this.configuration, this.wfFormFields, this.dataModel);
 				this.wfFormFieldsOnlyNeededProperties = angular.copy(this.wfFormFields);
+
+				if (this.$modalProxy.columnRemoved) {
+					this.decreaseNumberOfColumns(indexLine, numcolumn);
+					this.$modalProxy.columnRemoved = false;
+				}
 			},
 			() => {
 				//$log.info('Modal dismissed at: ' + new Date());

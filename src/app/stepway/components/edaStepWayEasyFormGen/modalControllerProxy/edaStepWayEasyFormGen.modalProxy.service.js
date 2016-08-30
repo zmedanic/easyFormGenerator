@@ -11,6 +11,7 @@ class $modalProxy{
 
 	constructor(easyFormSteWayConfig) {
 		this.easyFormSteWayConfig	=	easyFormSteWayConfig;
+		this.columnRemoved = false;
 	}
 
 	initNyaSelect(nyaSelectObj) {
@@ -292,7 +293,6 @@ class $modalProxy{
 		return angular.copy(this.filterDisabledControl(angular.copy(newNyaSelectObj)));
 		//return angular.copy(angular.copy(newNyaSelectObj));
 	}
-
 }
 
 $modalProxy.$inject= ['easyFormSteWayConfig'];

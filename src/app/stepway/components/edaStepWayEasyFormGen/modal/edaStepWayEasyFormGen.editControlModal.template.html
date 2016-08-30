@@ -3470,15 +3470,27 @@
   </div>
 </div>
 <div class="modal-footer">
-  <button
-    class="btn btn-primary"
-    ng-class="{'disabled': editControlModCtrl.nyaSelect.selectedControl === 'none'}"
-    ng-click="editControlModCtrl.ok()">
-    {{'OK' | translate}}
-  </button>
-  <button
-    class="btn btn-warning"
-    ng-click="editControlModCtrl.cancel()">
-    {{'CANCEL' | translate}}
-  </button>
+  <div class="row">
+    <div class="col-lg-6 text-left">
+      <button
+        class="btn btn-danger pull-left"
+        ng-if="editControlModCtrl.activeLineColumnsCount > 1"
+        ng-click="editControlModCtrl.removeColumn()">
+        <i class="fa fa-trash-o"></i>
+      </button>
+    </div>
+    <div class="col-lg-6">
+      <button
+        class="btn btn-primary"
+        ng-class="{'disabled': editControlModCtrl.nyaSelect.selectedControl === 'none'}"
+        ng-click="editControlModCtrl.ok()">
+        {{'OK' | translate}}
+      </button>
+      <button
+        class="btn btn-warning"
+        ng-click="editControlModCtrl.cancel()">
+        {{'CANCEL' | translate}}
+      </button>
+    </div>
+  </div>
 </div>

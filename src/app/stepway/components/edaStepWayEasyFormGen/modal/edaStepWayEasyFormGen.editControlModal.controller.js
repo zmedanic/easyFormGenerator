@@ -8,14 +8,16 @@ class editControlModalController {
 								toaster,
 								selectOptionManage,
 								$modalProxy,
-								columns) {
+								columns,
+								activeLineColumnsCount) {
 
-		this.$modalInstance 			= $uibModalInstance;
-		this.nyaSelect 						= nyaSelect;
-		this.toaster 							= toaster;
-		this.selectOptionManage 	= selectOptionManage;
-		this.$modalProxy 					= $modalProxy;
-		this.columns							= columns;
+		this.$modalInstance 					= $uibModalInstance;
+		this.nyaSelect 								= nyaSelect;
+		this.toaster 									= toaster;
+		this.selectOptionManage 			= selectOptionManage;
+		this.$modalProxy 							= $modalProxy;
+		this.columns									= columns;
+		this.activeLineColumnsCount 	= activeLineColumnsCount;
 
 		this.init();
 	}
@@ -390,6 +392,10 @@ class editControlModalController {
 		this.$modalInstance.dismiss('cancel');
 	}
 
+	removeColumn() {
+		this.$modalProxy.columnRemoved = true;
+		this.$modalInstance.close(this.nyaSelect);
+	}
 
 	bindBasicSelectToNya() {
 		let resetNyASelectOptions = [];
@@ -487,7 +493,8 @@ const toInject =  [
 	'toaster' ,
 	'selectOptionManage',
 	'$modalProxy',
-	'columns'
+	'columns',
+	'activeLineColumnsCount'
 ];
 
 editControlModalController.$inject = toInject;
