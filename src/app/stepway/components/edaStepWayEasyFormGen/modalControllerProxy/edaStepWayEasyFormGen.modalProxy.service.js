@@ -12,6 +12,7 @@ class $modalProxy{
 	constructor(easyFormSteWayConfig) {
 		this.easyFormSteWayConfig	=	easyFormSteWayConfig;
 		this.columnRemoved = false;
+		this.columnUpdated = false;
 	}
 
 	initNyaSelect(nyaSelectObj) {

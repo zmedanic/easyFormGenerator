@@ -8,6 +8,7 @@ class editControlModalController {
 								toaster,
 								selectOptionManage,
 								$modalProxy,
+								titleColumns,
 								columns,
 								activeLineColumnsCount) {
 
@@ -16,6 +17,7 @@ class editControlModalController {
 		this.toaster 									= toaster;
 		this.selectOptionManage 			= selectOptionManage;
 		this.$modalProxy 							= $modalProxy;
+		this.titleColumns							= titleColumns;
 		this.columns									= columns;
 		this.activeLineColumnsCount 	= activeLineColumnsCount;
 
@@ -384,6 +386,7 @@ class editControlModalController {
 		if (this.nyaSelect.selectedControl === 'Radio') 				this.bindRadioToNya();
 		//save config to control
 		this.$modalProxy.applyConfigToSelectedControl(this.nyaSelect);
+		this.$modalProxy.columnUpdated = true;
 		//return current model to parent controller :
 		this.$modalInstance.close(this.nyaSelect);
 	}
@@ -493,6 +496,7 @@ const toInject =  [
 	'toaster' ,
 	'selectOptionManage',
 	'$modalProxy',
+	'titleColumns',
 	'columns',
 	'activeLineColumnsCount'
 ];

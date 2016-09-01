@@ -98,6 +98,10 @@ class edaStepWayEasyFormGenController {
 	upThisLine(indexLine) {
 		if (indexLine > -1) {
 			if (this.configuration.lines[indexLine - 1]) {
+
+				// update parent fields
+				this.updateParents(indexLine, -1, 'upLine');
+
 				var currentLineObj = this.configuration.lines[indexLine];
 				this.configuration.lines.splice(indexLine , 1);
 				this.configuration.lines.splice((indexLine - 1), 0, currentLineObj);
@@ -113,6 +117,10 @@ class edaStepWayEasyFormGenController {
 	downThisLine(indexLine) {
 		if (indexLine > -1) {
 			if (this.configuration.lines[indexLine + 1]) {
+
+				// update parent fields
+				this.updateParents(indexLine, -1, 'downLine');
+
 				var currentLineObj = this.configuration.lines[indexLine];
 				this.configuration.lines.splice(indexLine , 1);
 				this.configuration.lines.splice((indexLine + 1), 0, currentLineObj);
@@ -136,9 +144,13 @@ class edaStepWayEasyFormGenController {
 	removeThisLine(index) {
 		if (index > -1) {
 			if (this.configuration.lines.length > 1) {
-					//manage selected aciveLine
-					if (this.configuration.activeLine === index + 1) this.configuration.activeLine = 1;
-					this.configuration.lines.splice(index, 1);
+
+				// update parent fields
+				this.updateParents(index, -1, 'removeLine');
+
+				//manage selected aciveLine
+				if (this.configuration.activeLine === index + 1) this.configuration.activeLine = 1;
+				this.configuration.lines.splice(index, 1);
 			}else{
 				this.$timeout(function(){
 						this.toaster.pop({
@@ -188,7 +200,13 @@ class edaStepWayEasyFormGenController {
 					.columns
 					.length;
 
+
+		// update parent fields
+		this.updateParents(row, column, 'removeColumn');
+
+		// Remove parent connections if column removed
 		if (currentColumnLength > 1 && column !== -1 && column < currentColumnLength) {
+
 			this
 					.configuration
 					.lines[row]
@@ -198,6 +216,110 @@ class edaStepWayEasyFormGenController {
 		this.$formlyProxy.applyConfigurationToformlyModel(this.configuration, this.wfFormFields, this.dataModel);
 		this.wfFormFieldsOnlyNeededProperties = angular.copy(this.wfFormFields);
 	}
+
+
+	// Remove parent connections if line or column removed, nestings updated
+	updateParents(row, column, switchType) {
+		let newRow, newColumn;
+		let pos1, pos2;
+		let updatePositions = true;
+
+		for (let i = 0; i < this.configuration.lines.length; i++) {
+			for (let j = 0; j < this.configuration.lines[i].columns.length; j++) {
+				if (typeof(this.configuration.lines[i].columns[j].control.templateOptions.parentId) === 'object') {
+					let position = this.configuration.lines[i].columns[j].control.templateOptions.parentId.name.match(/([0-9]+)\,([0-9]+)/);
+					if (typeof(position) === 'object' && position[1] && position[2]) {
+						pos1 = parseInt(position[1]);
+						pos2 = parseInt(position[2]);
+						updatePositions = true;
+
+            switch (switchType) {
+              case 'removeLine':
+                if (pos1 === row) {
+                  updatePositions = false;
+                  this.configuration.lines[i].columns[j].control.templateOptions.parentId = "";
+                } else {
+                  newRow = (pos1 > row) ? pos1 - 1 : pos1;
+                  newColumn = pos2;
+                }
+                break;
+
+              case 'upLine':
+                newRow = pos1;
+								if (pos1 === row) newRow = pos1 - 1;
+								if (pos1 === row - 1) newRow = pos1 + 1;
+                newColumn = pos2;
+                break;
+
+              case 'downLine':
+                newRow = pos1;
+								if (pos1 === row) newRow = pos1 + 1;
+								if (pos1 === row + 1) newRow = pos1 - 1;
+                newColumn = pos2;
+                break;
+
+              case 'removeColumn':
+                if (pos2 === column) {
+                  updatePositions = false;
+                  this.configuration.lines[i].columns[j].control.templateOptions.parentId = "";
+                } else {
+                  newRow = pos1;
+                  newColumn = (pos2 > column) ? pos2 - 1 : pos2;
+                }
+                break;
+
+               default:
+                newRow = pos1;
+                newColumn = pos2;
+            }
+
+            if (updatePositions) {
+              this.configuration.lines[i].columns[j].control.templateOptions.parentId.name =
+                (this.configuration.lines[pos1].columns[pos2].control.templateOptions.label ?
+                  this.configuration.lines[pos1].columns[pos2].control.templateOptions.label :
+                  'Field'
+                ) +
+                ' ' + newRow + ',' + newColumn + ' - ' + this.configuration.lines[pos1].columns[pos2].control.type + ' ' +
+                this.configuration.lines[pos1].columns[pos2].control.subtype;
+            }
+					}
+				}
+			}
+		}
+	}
+
+
+	removeOption(selectObj, AtIndex, parentsBasic) {
+		let fullResponse = {
+			resultFlag : false,
+			details : ''
+		};
+
+		if (AtIndex !== -1) {
+			for (let i = 0; i < selectObj.rows.length; i++) {
+				if (selectObj.rows[i].parentId.id === selectObj.rows[AtIndex].referenceId) {
+					selectObj.rows[i].parentId = {
+						id: '',
+						name: 'No value',
+						value: ''
+					};
+				}
+			}
+
+			selectObj.rows.splice(AtIndex, 1);
+			selectObj.parents = parentsBasic.concat(selectObj.rows);
+
+			fullResponse.resultFlag = true;
+			fullResponse.details= '';
+			return fullResponse;
+		}else{
+			fullResponse.resultFlag = false;
+			fullResponse.details= 'Option index not valid';
+			return fullResponse;
+		}
+	}
+
+
 
 
 	resetStepCounter() {
@@ -244,31 +366,43 @@ class edaStepWayEasyFormGenController {
 	}
 
 	prepareExistingColumns(currentReferenceId) {
-		let columns = [{
+		let field = '';
+		let titleColumns = [{
 			id: null,
 			name: 'No value'
 		}];
+		let columns = angular.copy(titleColumns);
 
 		for (var i in this.configuration.lines) {
 			for (var j in this.configuration.lines[i].columns) {
 				if (this.configuration.lines[i].columns[j].control.templateOptions) {
 					if (this.configuration.lines[i].columns[j].control.templateOptions.referenceId !== currentReferenceId) {
-						columns.push({
+						field = {
 							id: this.configuration.lines[i].columns[j].control.templateOptions.referenceId,
 							name: (this.configuration.lines[i].columns[j].control.templateOptions.label ? this.configuration.lines[i].columns[j].control.templateOptions.label : 'Field') +
 								' ' + i + ',' + j + ' - ' + this.configuration.lines[i].columns[j].control.type + ' ' + this.configuration.lines[i].columns[j].control.subtype
-						});
+						}
+						if (this.configuration.lines[i].columns[j].control.type == 'header' || this.configuration.lines[i].columns[j].control.type == 'subTitle') {
+							titleColumns.push(field);
+						} else {
+							columns.push(field);
+						}
 					}
 				}
 			}
 		}
 
-		return columns;
+		return {
+			titleColumns: titleColumns,
+			columns 		: columns
+		};
 	}
 
 	showModalAddCtrlToColumn(size, indexLine, numcolumn) {
 		let editControlModal = {};
 		let nyaSelect = this.$modalProxy.getNyASelectFromSelectedLineColumn(this.nyaSelect, this.configuration,indexLine, numcolumn);
+
+		let columns = this.prepareExistingColumns(nyaSelect.temporyConfig.referenceId);
 
 		angular.extend(editControlModal, {
 			animation		: this.animationsEnabled,
@@ -277,7 +411,8 @@ class edaStepWayEasyFormGenController {
 			controllerAs: EDIT_MODAL_CONTROLLERAS_NAME,
 			size				: this.editControlModalSize,
 			resolve			: {
-				columns 								: () => this.prepareExistingColumns(nyaSelect.temporyConfig.referenceId),
+				titleColumns 						: () => columns.titleColumns,
+				columns 								: () => columns.columns,
 				activeLineColumnsCount 	: () => this.configuration.lines[indexLine].columns.length,
 				nyaSelect 							: () => nyaSelect
 			}
@@ -293,6 +428,10 @@ class edaStepWayEasyFormGenController {
 				if (this.$modalProxy.columnRemoved) {
 					this.decreaseNumberOfColumns(indexLine, numcolumn);
 					this.$modalProxy.columnRemoved = false;
+				}
+				if (this.$modalProxy.columnUpdated) {
+					this.updateParents(indexLine, numcolumn, '');
+					this.$modalProxy.columnUpdated = false;
 				}
 			},
 			() => {
