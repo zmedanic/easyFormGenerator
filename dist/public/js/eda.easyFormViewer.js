@@ -425,7 +425,7 @@ $__System.register('e', [], function (_export) {
 
 	'use strict';
 
-	var resetNyaSelect, getConfigurationModelInit, getEmptyConfigModelResult, resetDataModel, getErrorObject, getMessageObject, resetFormlyModel, extractTemplateOptionDescription, extractTemplateOptionPlaceholder, extractTemplateOptionType, extractTemplateOptionLabel, extractTemplateOptionLabelShort, extractTemplateOptionParentId, extractTemplateOptionReferenceId, extractTemplateOptionDatepickerOptions, extractTemplateOptionMaxLengthOption, extractTemplateOptionNumberType, extractTemplateOptionMinValueOption, extractTemplateOptionMaxValueOption, extractTemplateOptionIncrementalOption, extractTemplateOptionCurrentYearOption, extractFormlyExpressionProperties, extractFormlyValidators, extractFormlyValidation, extractTemplateOptionRequired, extractTemplateOptionUnique, extractDefaultValue, extractTemplateOptionDisplayAddOption, extractTemplateOptionDisplayEditOption, extractTemplateOptionOptions, addDatepickerOptionsProperty, addMaxLengthOptionProperty, addNumberTypeProperty, addMinValueOptionProperty, addMaxValueOptionProperty, addIncrementalOptionProperty, addCurrentYearOptionProperty, addOneColumnHeader, addColumns;
+	var resetNyaSelect, getConfigurationModelInit, getEmptyConfigModelResult, resetDataModel, getErrorObject, getMessageObject, resetFormlyModel, extractTemplateOptionDescription, extractTemplateOptionPlaceholder, extractTemplateOptionType, extractTemplateOptionLabel, extractTemplateOptionLabelShort, extractTemplateOptionParentId, extractTemplateOptionReferenceId, extractTemplateOptionDatepickerOptions, extractTemplateOptionMaxLengthOption, extractTemplateOptionNumberType, extractTemplateOptionMinValueOption, extractTemplateOptionMaxValueOption, extractTemplateOptionIncrementalOption, extractTemplateOptionCurrentYearOption, extractFormlyExpressionProperties, extractFormlyValidators, extractFormlyValidation, extractTemplateOptionRequired, extractTemplateOptionUnique, extractDefaultValue, extractTemplateOptionDisplayAddOption, extractTemplateOptionDisplayEditOption, extractTemplateOptionAllowMultiple, extractTemplateOptionOptions, addDatepickerOptionsProperty, addMaxLengthOptionProperty, addNumberTypeProperty, addMinValueOptionProperty, addMaxValueOptionProperty, addIncrementalOptionProperty, addCurrentYearOptionProperty, addOneColumnHeader, addColumns;
 
 	function addColumnControl(formlyModel, configurationModel, lineIndex, numberOfColumns, columnIndex, FieldGroup) {
 		var headerTemplateCol = {
@@ -445,6 +445,7 @@ $__System.register('e', [], function (_export) {
 				unique: extractTemplateOptionUnique(configurationModel.lines[lineIndex].columns[columnIndex].control),
 				displayAddOption: extractTemplateOptionDisplayAddOption(configurationModel.lines[lineIndex].columns[columnIndex].control),
 				displayEditOption: extractTemplateOptionDisplayEditOption(configurationModel.lines[lineIndex].columns[columnIndex].control),
+				allowMultiple: extractTemplateOptionAllowMultiple(configurationModel.lines[lineIndex].columns[columnIndex].control),
 				placeholder: extractTemplateOptionPlaceholder(configurationModel.lines[lineIndex].columns[columnIndex].control),
 				description: extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[columnIndex].control),
 				options: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[columnIndex].control),
@@ -505,6 +506,7 @@ $__System.register('e', [], function (_export) {
 						formlyUnique: false,
 						displayAddOption: true,
 						displayEditOption: true,
+						allowMultiple: false,
 						formlyDesciption: '',
 						formlyOptions: [],
 						parentId: '',
@@ -525,6 +527,7 @@ $__System.register('e', [], function (_export) {
 						formlyUnique: false,
 						displayAddOption: true,
 						displayEditOption: true,
+						allowMultiple: false,
 						formlyDesciption: '',
 						formlyOptions: [],
 						parentId: '',
@@ -545,6 +548,7 @@ $__System.register('e', [], function (_export) {
 						formlyUnique: false,
 						displayAddOption: true,
 						displayEditOption: true,
+						allowMultiple: false,
 						formlyDesciption: '',
 						formlyOptions: [],
 						parentId: '',
@@ -565,6 +569,7 @@ $__System.register('e', [], function (_export) {
 						formlyUnique: false,
 						displayAddOption: true,
 						displayEditOption: true,
+						allowMultiple: false,
 						formlyDesciption: '',
 						formlyOptions: [],
 						parentId: '',
@@ -605,6 +610,7 @@ $__System.register('e', [], function (_export) {
 						formlyUnique: false,
 						displayAddOption: true,
 						displayEditOption: true,
+						allowMultiple: false,
 						formlyDesciption: '',
 						formlyOptions: [],
 						parentId: '',
@@ -661,6 +667,7 @@ $__System.register('e', [], function (_export) {
 						formlyUnique: false,
 						displayAddOption: true,
 						displayEditOption: true,
+						allowMultiple: false,
 						formlyDesciption: '',
 						formlyOptions: [],
 						parentId: '',
@@ -692,6 +699,7 @@ $__System.register('e', [], function (_export) {
 						formlyUnique: false,
 						displayAddOption: true,
 						displayEditOption: true,
+						allowMultiple: false,
 						formlyDesciption: '',
 						formlyOptions: [],
 						parentId: '',
@@ -734,6 +742,7 @@ $__System.register('e', [], function (_export) {
 						formlyUnique: false,
 						displayAddOption: true,
 						displayEditOption: true,
+						allowMultiple: false,
 						formlyDesciption: '',
 						formlyOptions: [],
 						parentId: '',
@@ -766,6 +775,7 @@ $__System.register('e', [], function (_export) {
 						formlyUnique: false,
 						displayAddOption: true,
 						displayEditOption: true,
+						allowMultiple: false,
 						formlyDesciption: '',
 						formlyOptions: [],
 						parentId: '',
@@ -797,6 +807,7 @@ $__System.register('e', [], function (_export) {
 						formlyUnique: false,
 						displayAddOption: true,
 						displayEditOption: true,
+						allowMultiple: false,
 						formlyDesciption: '',
 						formlyOptions: [],
 						parentId: '',
@@ -829,6 +840,7 @@ $__System.register('e', [], function (_export) {
 						formlyUnique: false,
 						displayAddOption: true,
 						displayEditOption: true,
+						allowMultiple: false,
 						formlyDesciption: '',
 						formlyOptions: [],
 						parentId: '',
@@ -860,6 +872,7 @@ $__System.register('e', [], function (_export) {
 						formlyUnique: false,
 						displayAddOption: true,
 						displayEditOption: true,
+						allowMultiple: false,
 						formlyDesciption: '',
 						formlyOptions: [],
 						parentId: '',
@@ -892,6 +905,7 @@ $__System.register('e', [], function (_export) {
 						formlyUnique: false,
 						displayAddOption: true,
 						displayEditOption: true,
+						allowMultiple: false,
 						formlyDesciption: '',
 						formlyOptions: [],
 						parentId: '',
@@ -924,6 +938,7 @@ $__System.register('e', [], function (_export) {
 						formlyUnique: false,
 						displayAddOption: true,
 						displayEditOption: true,
+						allowMultiple: false,
 						formlyDesciption: '',
 						formlyOptions: [],
 						parentId: '',
@@ -942,6 +957,39 @@ $__System.register('e', [], function (_export) {
 								}
 							}
 						}
+					}, {
+						id: 'Upload',
+						name: 'Upload',
+						subtitle: 'Upload',
+						group: 'upload',
+						formlyType: 'upload',
+						formlySubtype: 'file',
+						formlyLabel: '',
+						formlyRequired: false,
+						formlyUnique: false,
+						formlyDefaultValue: '',
+						displayAddOption: true,
+						displayEditOption: true,
+						allowMultiple: false,
+						formlyDesciption: '',
+						formlyOptions: [],
+						parentId: '',
+						referenceId: '',
+						maxLengthOption: '',
+						formlyExpressionProperties: {},
+						formlyValidators: {},
+						formlyValidation: {
+							messages: {
+								required: function required(viewValue, modelValue, scope) {
+									//return a required validation message :
+									//-> '<label as name> is required '
+									//-> or if not exists or empty just 'this field is required'
+									var defaultReturnMsg = 'this Text input field is required';
+									var returnMsg = typeof scope.to.label !== 'undefined' ? scope.to.label !== '' ? scope.to.label + ' is required' : defaultReturnMsg : defaultReturnMsg;
+									if (scope.to.required) return returnMsg;
+								}
+							}
+						}
 					}],
 					selectedControl: 'none',
 					temporyConfig: {
@@ -952,6 +1000,7 @@ $__System.register('e', [], function (_export) {
 						formlyUnique: false,
 						displayAddOption: true,
 						displayEditOption: true,
+						allowMultiple: false,
 						formlyDesciption: '',
 						formlyPlaceholder: '',
 						formlyOptions: [],
@@ -1141,6 +1190,10 @@ $__System.register('e', [], function (_export) {
 
 			extractTemplateOptionDisplayEditOption = function extractTemplateOptionDisplayEditOption(obj) {
 				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.displayEditOption !== 'undefined' ? obj.templateOptions.displayEditOption : true : true;
+			};
+
+			extractTemplateOptionAllowMultiple = function extractTemplateOptionAllowMultiple(obj) {
+				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.allowMultiple !== 'undefined' ? obj.templateOptions.allowMultiple : false : false;
 			};
 
 			extractTemplateOptionOptions = function extractTemplateOptionOptions(obj) {
@@ -1449,6 +1502,8 @@ $__System.register('12', ['11'], function (_export) {
   var richTextTemplate, blankTemplate, subTitleTemplate, basicSelectTemplate, groupedSelectTemplate, datepickerTemplate, validationTemplate;
 
   function edaEasyFormViewerConfig(formlyConfigProvider) {
+    var initInjector = angular.injector(['ng']);
+    var $window = initInjector.get('$window');
 
     formlyConfigProvider.setType({
       name: 'richEditor',
@@ -1476,6 +1531,51 @@ $__System.register('12', ['11'], function (_export) {
       name: 'groupedSelect',
       template: groupedSelectTemplate,
       wrapper: ['bootstrapLabel', 'bootstrapHasError']
+    });
+
+    // impplement from : http://jsbin.com/koredu/edit?js,output
+    formlyConfigProvider.setType({
+      name: 'upload',
+      'extends': 'input',
+      wrapper: ['bootstrapLabel', 'bootstrapHasError'],
+      link: function link(scope, el, attrs) {
+        el.on("change", function (changeEvent) {
+          var file = changeEvent.target.files[0];
+          if (file) {
+            // console.log('scope.id', scope.id);
+            var fd = new FormData();
+            // use key on backEnd
+            fd.append('uploadFile', file);
+            scope.$emit('fileToUpload', fd);
+            var fileProp = {};
+            for (var properties in file) {
+              if (!angular.isFunction(file[properties])) {
+                fileProp[properties] = file[properties];
+              }
+            }
+            scope.fc.$setViewValue(fileProp);
+          } else {
+            scope.fc.$setViewValue(undefined);
+          }
+        });
+        el.on("focusout", function (focusoutEvent) {
+          // dont run validation , user still opening pop up file dialog
+          if ($window.document.activeElement.id === scope.id) {
+            // so we set it untouched
+            scope.$apply(function (scope) {
+              scope.fc.$setUntouched();
+            });
+          } else {
+            // element losing focus so we trigger validation
+            scope.fc.$validate();
+          }
+        });
+      },
+      defaultOptions: {
+        templateOptions: {
+          type: 'file'
+        }
+      }
     });
 
     ////////////////////////////

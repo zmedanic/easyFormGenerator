@@ -10,6 +10,8 @@ import {
 
 
 function edaEasyFormViewerConfig(formlyConfigProvider) {
+  var initInjector = angular.injector(['ng']);
+  var $window = initInjector.get('$window');
 
   formlyConfigProvider.setType(
     {
@@ -48,6 +50,51 @@ function edaEasyFormViewerConfig(formlyConfigProvider) {
       wrapper   : ['bootstrapLabel', 'bootstrapHasError']
     }
   );
+
+  // impplement from : http://jsbin.com/koredu/edit?js,output
+  formlyConfigProvider.setType({
+    name: 'upload',
+    extends: 'input',
+    wrapper: ['bootstrapLabel', 'bootstrapHasError'],
+    link: function(scope, el, attrs) {
+      el.on("change", function(changeEvent) {
+        var file = changeEvent.target.files[0];
+        if (file) {
+          // console.log('scope.id', scope.id);
+          var fd = new FormData();
+          // use key on backEnd
+          fd.append('uploadFile', file);
+          scope.$emit('fileToUpload', fd);
+          var fileProp = {};
+          for (var properties in file) {
+            if (!angular.isFunction(file[properties])) {
+              fileProp[properties] = file[properties];
+            }
+          }
+          scope.fc.$setViewValue(fileProp);
+        } else {
+          scope.fc.$setViewValue(undefined);
+        }
+      });
+      el.on("focusout", (focusoutEvent) => {
+        // dont run validation , user still opening pop up file dialog
+        if ($window.document.activeElement.id === scope.id) {
+          // so we set it untouched
+          scope.$apply(function(scope) {
+            scope.fc.$setUntouched();
+          });
+        } else {
+          // element losing focus so we trigger validation
+          scope.fc.$validate();
+        }
+      });
+    },
+    defaultOptions: {
+      templateOptions: {
+        type: 'file'
+      }
+    }
+  });
 
   ////////////////////////////
   // angular UI date picker

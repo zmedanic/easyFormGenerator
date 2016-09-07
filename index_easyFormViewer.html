@@ -99,6 +99,7 @@
 					function submitFormEvent(dataModelSubmitted){
 						console.info('-> Submit Event (in your controller) : you can save form data entered by user.');
 						console.dir( {'dataModel' : dataModelSubmitted} );
+
 					/**
 					 *
 					 * MORE DETAILS ON 'easyFormGeneratorModel'
@@ -158,7 +159,7 @@
 											"selectedControl": "Header",
 											"subtype": "",
 											"templateOptions": {
-												"label": "",
+												"label": "lalala",
 												"required": false,
 												"description": "EasyFormViewer : Loaded Form",
 												"placeholder": "",
@@ -180,10 +181,11 @@
 										"numColumn": 1,
 										"exist": true,
 										"control": {
-											"type": "input",
+											"type": "upload",
 											"key": "input-1441426278314",
 											"selectedControl": "TextInput",
-											"subtype": "",
+											"subtype": "file",
+											"defaultValue": "",
 											"templateOptions": {
 												"label": "text input",
 												"required": true,
@@ -208,6 +210,7 @@
 											"key": "input-1441426295927",
 											"selectedControl": "Number",
 											"subtype": "number",
+											"defaultValue": 222,
 											"templateOptions": {
 												"label": "password",
 												"required": true,
@@ -263,20 +266,22 @@
 										"numColumn": 1,
 										"exist": true,
 										"control": {
-											"type": "datepicker",
+											"type": "input",
 											"key": "datepicker-1441426325143",
 											"selectedControl": "Date",
-											"subtype": "",
+											"subtype": "number",
 											"templateOptions": {
 												"label": "date",
-												"required": true,
+												"required": false,
 												"description": "date",
 												"placeholder": "",
-												"options": [],
+												"options": []
+												/*
                         "datepickerOptions": {
                           "format": "dd.MM.yyyy"
                         },
 												"datepickerPopup": "dd-MMMM-yyyy"
+												*/
 											},
 											"formlyExpressionProperties": {},
 											"formlyValidators": {},

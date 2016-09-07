@@ -18,6 +18,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyDefaultValue: '',
 				displayAddOption	: true,
 				displayEditOption	: true,
+				allowMultiple			: false,
 				formlyDesciption	: '',
 				formlyOptions			: [] ,
 				parentId					: '',
@@ -41,6 +42,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyDefaultValue: '',
 				displayAddOption	: true,
 				displayEditOption	: true,
+				allowMultiple			: false,
 				formlyDesciption	: '',
 				formlyOptions			: [] ,
 				parentId					: '',
@@ -64,6 +66,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyDefaultValue: '',
 				displayAddOption	: true,
 				displayEditOption	: true,
+				allowMultiple			: false,
 				formlyDesciption	: '',
 				formlyOptions			: [] ,
 				parentId					: '',
@@ -86,6 +89,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyDefaultValue: '',
 				displayAddOption	: true,
 				displayEditOption	: true,
+				allowMultiple			: false,
 				formlyDesciption	: '',
 				formlyOptions			: [] ,
 				parentId					: '',
@@ -129,6 +133,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyDefaultValue: '',
 				displayAddOption	: true,
 				displayEditOption	: true,
+				allowMultiple			: false,
 				formlyDesciption	: '',
 				formlyOptions			: [] ,
 				parentId					: '',
@@ -193,6 +198,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyDefaultValue: '',
 				displayAddOption	: true,
 				displayEditOption	: true,
+				allowMultiple			: false,
 				formlyDesciption	: '',
 				formlyOptions			: [] ,
 				parentId					: '',
@@ -227,6 +233,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyDefaultValue					: '',
 				displayAddOption						: true,
 				displayEditOption						: true,
+				allowMultiple								: false,
 				formlyDesciption 						: '',
 				formlyOptions 							: [],
 				parentId										: '',
@@ -271,6 +278,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyDefaultValue: '',
 				displayAddOption	: true,
 				displayEditOption	: true,
+				allowMultiple			: false,
 				formlyDesciption	: '',
 				formlyOptions			: [],
 				parentId					: '',
@@ -306,6 +314,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyDefaultValue: '',
 				displayAddOption	: true,
 				displayEditOption	: true,
+				allowMultiple			: false,
 				formlyDesciption	: '',
 				formlyOptions			: [],
 				parentId					: '',
@@ -340,6 +349,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyDefaultValue: '',
 				displayAddOption	: true,
 				displayEditOption	: true,
+				allowMultiple			: false,
 				formlyDesciption	: '',
 				formlyOptions			: [],
 				parentId					: '',
@@ -375,6 +385,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyDefaultValue: '',
 				displayAddOption	: true,
 				displayEditOption	: true,
+				allowMultiple			: false,
 				formlyDesciption	: '' ,
 				formlyOptions			: [],
 				parentId					: '',
@@ -409,6 +420,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyDefaultValue: '',
 				displayAddOption	: true,
 				displayEditOption	: true,
+				allowMultiple			: false,
 				formlyDesciption	: '',
 				formlyOptions			: [],
 				parentId					: '',
@@ -444,6 +456,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyDefaultValue: '',
 				displayAddOption	: true,
 				displayEditOption	: true,
+				allowMultiple			: false,
 				formlyDesciption	: '',
 				formlyOptions			: [],
 				parentId					: '',
@@ -479,6 +492,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyDefaultValue: '',
 				displayAddOption	: true,
 				displayEditOption	: true,
+				allowMultiple			: false,
 				formlyDesciption	: '',
 				formlyOptions			: [],
 				parentId					: '',
@@ -497,28 +511,64 @@ const resetNyaSelect = (nyaSelectObj) => {
 						}
 					}
 				}
-			}
-			],
-			selectedControl : 'none' ,
-			temporyConfig 	: {
-				selectedControl		: 'none',
+			},
+
+			{
+				id								: 'Upload',
+				name							: 'Upload',
+				subtitle					: 'Upload',
+				group							: 'upload',
+				formlyType				: 'upload',
+				formlySubtype			: 'file',
 				formlyLabel				: '',
-				formlyLabelShort	: '',
 				formlyRequired		: false,
 				formlyUnique			: false,
 				formlyDefaultValue: '',
 				displayAddOption	: true,
 				displayEditOption	: true,
+				allowMultiple			: false,
 				formlyDesciption	: '',
-				formlyPlaceholder	: '',
-				formlyOptions 		: [],
+				formlyOptions			: [] ,
 				parentId					: '',
 				referenceId				: '',
-				//expressions/validation fields
+				maxLengthOption		: '',
 				formlyExpressionProperties: {},
-				formlyValidators	: {},
-				formlyValidation	: {}
+				formlyValidators 	: {},
+				formlyValidation	: {
+					messages: {
+						required: function(viewValue, modelValue, scope) {
+							//return a required validation message :
+							//-> '<label as name> is required '
+							//-> or if not exists or empty just 'this field is required'
+							var defaultReturnMsg 	= 'this Text input field is required';
+							var returnMsg 				= (typeof scope.to.label !== 'undefined') ? ((scope.to.label !== '') ? scope.to.label + ' is required' : defaultReturnMsg) : defaultReturnMsg;
+							if (scope.to.required) return returnMsg;
+						}
+					}
+				}
 			}
+		],
+		selectedControl : 'none' ,
+		temporyConfig 	: {
+			selectedControl		: 'none',
+			formlyLabel				: '',
+			formlyLabelShort	: '',
+			formlyRequired		: false,
+			formlyUnique			: false,
+			formlyDefaultValue: '',
+			displayAddOption	: true,
+			displayEditOption	: true,
+			allowMultiple			: false,
+			formlyDesciption	: '',
+			formlyPlaceholder	: '',
+			formlyOptions 		: [],
+			parentId					: '',
+			referenceId				: '',
+			//expressions/validation fields
+			formlyExpressionProperties: {},
+			formlyValidators	: {},
+			formlyValidation	: {}
+		}
 
 	};
 
@@ -538,6 +588,7 @@ const getResetConfig = () => {
 			formlyDefaultValue: '',
 			displayAddOption	: true,
 			displayEditOption	: true,
+			allowMultiple			: false,
 			formlyPlaceholder	: '',
 			formlyDesciption	: '',
 			formlyOptions			: [],
@@ -564,6 +615,7 @@ const returnControlFromAddCtrlModalModel = (CtrlModalModel) =>{
 		formlyDefaultValue: '',
 		displayAddOption: true,
 		displayEditOption: true,
+		allowMultiple: false,
 		formlyDesciption: '',
 		formlyPlaceholder: '',
 		formlyOptions: [],
@@ -588,6 +640,7 @@ const returnControlFromAddCtrlModalModel = (CtrlModalModel) =>{
 			modelToReturn.formlyDefaultValue 	= CtrlModalModel.controls[i].formlyDefaultValue;
 			modelToReturn.displayAddOption 		= CtrlModalModel.controls[i].displayAddOption;
 			modelToReturn.displayEditOption 	= CtrlModalModel.controls[i].displayEditOption;
+			modelToReturn.allowMultiple 			= CtrlModalModel.controls[i].allowMultiple;
 			modelToReturn.formlyDesciption 		= CtrlModalModel.controls[i].formlyDesciption;
 			modelToReturn.formlyPlaceholder 	= CtrlModalModel.controls[i].formlyPlaceholder;
 			modelToReturn.formlyOptions 			= CtrlModalModel.controls[i].formlyOptions;

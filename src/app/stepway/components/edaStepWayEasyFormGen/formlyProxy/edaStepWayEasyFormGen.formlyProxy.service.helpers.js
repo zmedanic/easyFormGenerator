@@ -145,6 +145,10 @@ const extractTemplateOptionDisplayEditOption = (obj)=>{
 	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.displayEditOption !== 'undefined'? obj.templateOptions.displayEditOption: true) : true;
 };
 
+const extractTemplateOptionAllowMultiple = (obj)=>{
+	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.allowMultiple !== 'undefined'? obj.templateOptions.allowMultiple: false) : false;
+};
+
 const extractTemplateOptionOptions = (obj)=>{
 	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.options !== 'undefined'? obj.templateOptions.options: '') : '';
 };
@@ -223,6 +227,7 @@ function addColumnControl(formlyModel, configurationModel,lineIndex, numberOfCol
 			unique 						: extractTemplateOptionUnique(configurationModel.lines[lineIndex].columns[columnIndex].control),
 			displayAddOption 	: extractTemplateOptionDisplayAddOption(configurationModel.lines[lineIndex].columns[columnIndex].control),
 			displayEditOption : extractTemplateOptionDisplayEditOption(configurationModel.lines[lineIndex].columns[columnIndex].control),
+			allowMultiple 		: extractTemplateOptionAllowMultiple(configurationModel.lines[lineIndex].columns[columnIndex].control),
 			placeholder 			: extractTemplateOptionPlaceholder(configurationModel.lines[lineIndex].columns[columnIndex].control),
 			description 			: extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[columnIndex].control),
 			options 					: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[columnIndex].control),
@@ -319,6 +324,7 @@ export {
 	extractDefaultValue,
 	extractTemplateOptionDisplayAddOption,
 	extractTemplateOptionDisplayEditOption,
+	extractTemplateOptionAllowMultiple,
 	extractTemplateOptionOptions,
 	extractTemplateOptionType,
 	extractTemplateOptionPlaceholder,

@@ -17,6 +17,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyUnique			: false,
 				displayAddOption	: true,
 				displayEditOption	: true,
+				allowMultiple			: false,
 				formlyDesciption	: '',
 				formlyOptions			: [] ,
 				parentId					: '',
@@ -39,6 +40,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyUnique			: false,
 				displayAddOption	: true,
 				displayEditOption	: true,
+				allowMultiple			: false,
 				formlyDesciption	: '',
 				formlyOptions			: [] ,
 				parentId					: '',
@@ -61,6 +63,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyUnique			: false,
 				displayAddOption	: true,
 				displayEditOption	: true,
+				allowMultiple			: false,
 				formlyDesciption	: '',
 				formlyOptions			: [] ,
 				parentId					: '',
@@ -83,6 +86,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyUnique			: false,
 				displayAddOption	: true,
 				displayEditOption	: true,
+				allowMultiple			: false,
 				formlyDesciption	: '',
 				formlyOptions			: [] ,
 				parentId					: '',
@@ -125,6 +129,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyUnique			: false,
 				displayAddOption	: true,
 				displayEditOption	: true,
+				allowMultiple			: false,
 				formlyDesciption	: '',
 				formlyOptions			: [] ,
 				parentId					: '',
@@ -182,6 +187,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyUnique			: false,
 				displayAddOption	: true,
 				displayEditOption	: true,
+				allowMultiple			: false,
 				formlyDesciption	: '',
 				formlyOptions			: [] ,
 				parentId					: '',
@@ -215,6 +221,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyUnique								: false,
 				displayAddOption						: true,
 				displayEditOption						: true,
+				allowMultiple								: false,
 				formlyDesciption 						: '',
 				formlyOptions 							: [],
 				parentId										: '',
@@ -258,6 +265,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyUnique			: false,
 				displayAddOption	: true,
 				displayEditOption	: true,
+				allowMultiple			: false,
 				formlyDesciption	: '',
 				formlyOptions			: [],
 				parentId					: '',
@@ -292,6 +300,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyUnique			: false,
 				displayAddOption	: true,
 				displayEditOption	: true,
+				allowMultiple			: false,
 				formlyDesciption	: '',
 				formlyOptions			: [],
 				parentId					: '',
@@ -325,6 +334,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyUnique			: false,
 				displayAddOption	: true,
 				displayEditOption	: true,
+				allowMultiple			: false,
 				formlyDesciption	: '',
 				formlyOptions			: [],
 				parentId					: '',
@@ -359,6 +369,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyUnique			: false,
 				displayAddOption	: true,
 				displayEditOption	: true,
+				allowMultiple			: false,
 				formlyDesciption	: '' ,
 				formlyOptions			: [],
 				parentId					: '',
@@ -392,6 +403,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyUnique			: false,
 				displayAddOption	: true,
 				displayEditOption	: true,
+				allowMultiple			: false,
 				formlyDesciption	: '',
 				formlyOptions			: [],
 				parentId					: '',
@@ -426,6 +438,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyUnique			: false,
 				displayAddOption	: true,
 				displayEditOption	: true,
+				allowMultiple			: false,
 				formlyDesciption	: '',
 				formlyOptions			: [],
 				parentId					: '',
@@ -460,6 +473,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyUnique			: false,
 				displayAddOption	: true,
 				displayEditOption	: true,
+				allowMultiple			: false,
 				formlyDesciption	: '',
 				formlyOptions			: [],
 				parentId					: '',
@@ -478,27 +492,63 @@ const resetNyaSelect = (nyaSelectObj) => {
 						}
 					}
 				}
-			}
-			],
-			selectedControl : 'none' ,
-			temporyConfig 	: {
-				selectedControl		: 'none',
-				formlyLabel				: 'label',
-				formlyLabelShort	: '',
+			},
+
+			{
+				id								: 'Upload',
+				name							: 'Upload',
+				subtitle					: 'Upload',
+				group							: 'upload',
+				formlyType				: 'upload',
+				formlySubtype			: 'file',
+				formlyLabel				: '',
 				formlyRequired		: false,
 				formlyUnique			: false,
+				formlyDefaultValue: '',
 				displayAddOption	: true,
 				displayEditOption	: true,
+				allowMultiple			: false,
 				formlyDesciption	: '',
-				formlyPlaceholder	: '',
-				formlyOptions 		: [],
+				formlyOptions			: [] ,
 				parentId					: '',
 				referenceId				: '',
-				//expressions/validation fields
+				maxLengthOption		: '',
 				formlyExpressionProperties: {},
-				formlyValidators	: {},
-				formlyValidation	: {}
+				formlyValidators 	: {},
+				formlyValidation	: {
+					messages: {
+						required: function(viewValue, modelValue, scope) {
+							//return a required validation message :
+							//-> '<label as name> is required '
+							//-> or if not exists or empty just 'this field is required'
+							var defaultReturnMsg 	= 'this Text input field is required';
+							var returnMsg 				= (typeof scope.to.label !== 'undefined') ? ((scope.to.label !== '') ? scope.to.label + ' is required' : defaultReturnMsg) : defaultReturnMsg;
+							if (scope.to.required) return returnMsg;
+						}
+					}
+				}
 			}
+		],
+		selectedControl : 'none' ,
+		temporyConfig 	: {
+			selectedControl		: 'none',
+			formlyLabel				: 'label',
+			formlyLabelShort	: '',
+			formlyRequired		: false,
+			formlyUnique			: false,
+			displayAddOption	: true,
+			displayEditOption	: true,
+			allowMultiple			: false,
+			formlyDesciption	: '',
+			formlyPlaceholder	: '',
+			formlyOptions 		: [],
+			parentId					: '',
+			referenceId				: '',
+			//expressions/validation fields
+			formlyExpressionProperties: {},
+			formlyValidators	: {},
+			formlyValidation	: {}
+		}
 
 	};
 
@@ -657,6 +707,8 @@ const extractTemplateOptionDisplayAddOption = (obj) => typeof obj.templateOption
 
 const extractTemplateOptionDisplayEditOption = (obj) => typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.displayEditOption !== 'undefined'? obj.templateOptions.displayEditOption: true) : true;
 
+const extractTemplateOptionAllowMultiple = (obj) => typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.allowMultiple !== 'undefined'? obj.templateOptions.allowMultiple: false) : false;
+
 const extractTemplateOptionOptions = (obj) => typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.options !== 'undefined'? obj.templateOptions.options: '') : '';
 
 const addDatepickerOptionsProperty = (fieldToPush, configurationModel,lineIndex, position) => fieldToPush.templateOptions.datepickerOptions = extractTemplateOptionDatepickerOptions(configurationModel.lines[lineIndex].columns[position].control);
@@ -706,6 +758,7 @@ function addColumnControl(formlyModel, configurationModel,lineIndex, numberOfCol
 			unique 						: extractTemplateOptionUnique(configurationModel.lines[lineIndex].columns[columnIndex].control),
 			displayAddOption 	: extractTemplateOptionDisplayAddOption(configurationModel.lines[lineIndex].columns[columnIndex].control),
 			displayEditOption : extractTemplateOptionDisplayEditOption(configurationModel.lines[lineIndex].columns[columnIndex].control),
+			allowMultiple 		: extractTemplateOptionAllowMultiple(configurationModel.lines[lineIndex].columns[columnIndex].control),
 			placeholder 			: extractTemplateOptionPlaceholder(configurationModel.lines[lineIndex].columns[columnIndex].control),
 			description 			: extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[columnIndex].control),
 			options 					: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[columnIndex].control),

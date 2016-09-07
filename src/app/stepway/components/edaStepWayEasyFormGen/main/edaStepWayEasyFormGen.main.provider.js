@@ -63,7 +63,8 @@ function easyFormSteWayConfig($translateProvider) {
 			{name: 'Radio', 					enabled: true},
 			{name: 'Checkbox', 				enabled: true},
 			{name: 'BasicSelect', 		enabled: true},
-			{name: 'GroupedSelect', 	enabled: true}
+			{name: 'GroupedSelect', 	enabled: true},
+			{name: 'Upload',					enabled: true}
 		];
 		return controls;
 	}

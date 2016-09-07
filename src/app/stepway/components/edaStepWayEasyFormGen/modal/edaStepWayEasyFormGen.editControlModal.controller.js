@@ -480,6 +480,7 @@ class editControlModalController {
 			formlyDefaultValue: '',
 			displayAddOption	: true,
 			displayEditOption	: true,
+			allowMultiple 		: false,
 			formlyPlaceholder	: '',
 			formlyDesciption	: '',
 			formlyOptions			: [],
