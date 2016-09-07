@@ -5,6 +5,7 @@ function easyFormSteWayConfig($translateProvider) {
 	let _configuration 			= defaultConfig();
 	let _controlsList				= controlsList();
 	let _numberTypesList		= numberTypesList();
+	let _numberAllowedValues= numberAllowedValues();
 	let _defaultLanguage		= getDefaultLanguage();
 	let _currentLanguage		= initDefaultLanguage();
 	let _showPreviewPanel		= getDefaultshowPreviewPanel();
@@ -69,7 +70,7 @@ function easyFormSteWayConfig($translateProvider) {
 		return controls;
 	}
 
-	//list of number types
+	//lists of number types
 	function numberTypesList() {
 		let numberTypes = [
 			'integer',
@@ -78,6 +79,17 @@ function easyFormSteWayConfig($translateProvider) {
 			'year'
 		];
 		return numberTypes;
+	}
+
+	//lists number of possible copies for elements
+	function numberAllowedValues() {
+		let allowedValues = ['Unlimited'];
+
+		for (let i = 1; i <= 10; i++) {
+			allowedValues[i] = i;
+		}
+
+		return allowedValues;
 	}
 
 	function showPreviewPanel(wantToShow){
@@ -166,6 +178,7 @@ function easyFormSteWayConfig($translateProvider) {
 			getModalAnimationValue 	: getModalAnimationValue,
 			getListEnabledControl		: getListEnabledControl,
 			getNumberTypesList			: getNumberTypesList,
+			getNumberAllowedValues	: getNumberAllowedValues,
 			setLanguage 						: switchLanguage,
 			getCurrentLanguage			: getCurrentLanguage,
 			isPreviewPanelVisible		: isPreviewPanelVisible,
@@ -188,6 +201,10 @@ function easyFormSteWayConfig($translateProvider) {
 
 		function getNumberTypesList(){
 			return _numberTypesList;
+		}
+
+		function getNumberAllowedValues(){
+			return _numberAllowedValues;
 		}
 
 		function switchLanguage(language){

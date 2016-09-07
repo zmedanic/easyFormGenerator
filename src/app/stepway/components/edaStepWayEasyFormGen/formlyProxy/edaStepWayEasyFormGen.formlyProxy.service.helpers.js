@@ -146,7 +146,7 @@ const extractTemplateOptionDisplayEditOption = (obj)=>{
 };
 
 const extractTemplateOptionAllowMultiple = (obj)=>{
-	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.allowMultiple !== 'undefined'? obj.templateOptions.allowMultiple: false) : false;
+	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.allowMultiple !== 'undefined'? obj.templateOptions.allowMultiple: 1) : 1;
 };
 
 const extractTemplateOptionOptions = (obj)=>{

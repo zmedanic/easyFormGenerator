@@ -30,6 +30,7 @@ class $modalProxy{
 		/**
 			* data send to modal controller
 			*/
+
 		if (typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions != 'undefined') {
 
 			nyaSelectObj.temporyConfig.selectedControl 		= typeof configurationObj.lines[indexLine].columns[numcolumn].control.selectedControl 									!= 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.selectedControl : 'none';
@@ -40,7 +41,7 @@ class $modalProxy{
 			nyaSelectObj.temporyConfig.formlyDefaultValue	= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.defaultValue 			!= 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.defaultValue : (nyaSelectObj.temporyConfig.selectedControl === 'Checkbox' ? true : '');
 			nyaSelectObj.temporyConfig.displayAddOption		= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.displayAddOption 	!= 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.displayAddOption : true;
 			nyaSelectObj.temporyConfig.displayEditOption	= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.displayEditOption != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.displayEditOption : true;
-			nyaSelectObj.temporyConfig.allowMultiple			= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.allowMultiple 		!= 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.allowMultiple : false;
+			nyaSelectObj.temporyConfig.allowMultiple			= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.allowMultiple 		!= 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.allowMultiple : 1;
 			nyaSelectObj.temporyConfig.formlyDesciption 	= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.description 			!= 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.description : '';
 			nyaSelectObj.temporyConfig.formlyPlaceholder 	= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.placeholder 			!= 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.placeholder : '';
 			nyaSelectObj.temporyConfig.formlyOptions 			= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.options 					!= 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.options : '';
@@ -90,7 +91,7 @@ class $modalProxy{
 				defaultValue: '',
 				displayAddOption: true,
 				displayEditOption: true,
-				allowMultiple: false,
+				allowMultiple: 1,
 				description: '',
 				placeholder: '',
 				options: [],
