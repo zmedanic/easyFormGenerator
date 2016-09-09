@@ -284,6 +284,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				parentId					: '',
 				referenceId				: '',
 				datepickerOptions	: 'dd-MMMM-yyyy',
+				currentDateOption	: false,
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
 				formlyValidation	: {
@@ -654,6 +655,7 @@ const returnControlFromAddCtrlModalModel = (CtrlModalModel) =>{
 			//datetpicker format
 			if (CtrlModalModel.controls[i].formlyType === 'datepicker') {
 				modelToReturn.datepickerOptions = CtrlModalModel.controls[i].datepickerOptions;
+				modelToReturn.currentDateOption = CtrlModalModel.controls[i].currentDateOption;
 			}
 			if (CtrlModalModel.controls[i].formlyType === 'input') {
 				switch (CtrlModalModel.controls[i].formlySubtype) {

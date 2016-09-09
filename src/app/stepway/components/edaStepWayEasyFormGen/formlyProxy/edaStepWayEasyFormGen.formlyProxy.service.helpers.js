@@ -102,15 +102,19 @@ const extractTemplateOptionMaxValueOption= (obj)=>{
 };
 
 const extractTemplateOptionNumberType= (obj)=>{
-	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.numberType !== 'undefined'? angular.copy(obj.templateOptions.numberType) : '') : '';
+	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.numberType !== 'undefined'? angular.copy(obj.templateOptions.numberType) : 'integer') : 'integer';
 };
 
 const extractTemplateOptionIncrementalOption= (obj)=>{
-	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.incrementalOption !== 'undefined'? obj.templateOptions.incrementalOption: '') : '';
+	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.incrementalOption !== 'undefined'? obj.templateOptions.incrementalOption: false) : false;
 };
 
 const extractTemplateOptionCurrentYearOption= (obj)=>{
-	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.currentYearOption !== 'undefined'? obj.templateOptions.currentYearOption: '') : '';
+	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.currentYearOption !== 'undefined'? obj.templateOptions.currentYearOption: false) : false;
+};
+
+const extractTemplateOptionCurrentDateOption= (obj)=>{
+	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.currentDateOption !== 'undefined'? obj.templateOptions.currentDateOption: false) : false;
 };
 
 const extractFormlyExpressionProperties = (obj)=>{
@@ -194,6 +198,10 @@ const addCurrentYearOptionProperty = (fieldToPush, configurationModel,lineIndex,
 		fieldToPush.templateOptions.currentYearOption = extractTemplateOptionCurrentYearOption(configurationModel.lines[lineIndex].columns[position].control);
 };
 
+const addCurrentDateOptionProperty = (fieldToPush, configurationModel,lineIndex, position) => {
+		fieldToPush.templateOptions.currentDateOption = extractTemplateOptionCurrentDateOption(configurationModel.lines[lineIndex].columns[position].control);
+};
+
 const addOneColumnHeader = (formlyModel, configurationModel,lineIndex) => {
 	const headerTemplateCol = `<div class="row"><div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h2 class="text-center">${extractTemplateOptionLabel(configurationModel.lines[lineIndex].columns[0].control)}</h2></div></div><div class="row"><div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">${extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[0].control)}</div></div><hr/>`;
 	formlyModel.push({
@@ -243,6 +251,7 @@ function addColumnControl(formlyModel, configurationModel,lineIndex, numberOfCol
 	//////////////////////////////////////////////
 	if (configurationModel.lines[lineIndex].columns[columnIndex].control.type === 'datepicker') {
 		addDatepickerOptionsProperty(controlCol, configurationModel,lineIndex, 0);
+		addCurrentDateOptionProperty(controlCol, configurationModel,lineIndex, columnIndex);
 	}
 	if (configurationModel.lines[lineIndex].columns[columnIndex].control.type === 'input') {
 		switch (configurationModel.lines[lineIndex].columns[columnIndex].control.subtype) {
@@ -316,6 +325,7 @@ export {
 	extractTemplateOptionMaxValueOption,
 	extractTemplateOptionIncrementalOption,
 	extractTemplateOptionCurrentYearOption,
+	extractTemplateOptionCurrentDateOption,
 	extractFormlyExpressionProperties,
 	extractFormlyValidators,
 	extractFormlyValidation,
@@ -337,6 +347,7 @@ export {
 	addMaxValueOptionProperty,
 	addIncrementalOptionProperty,
 	addCurrentYearOptionProperty,
+	addCurrentDateOptionProperty,
 	addOneColumnHeader,
 	addColumns
 };

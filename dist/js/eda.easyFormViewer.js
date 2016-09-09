@@ -425,7 +425,7 @@ $__System.register('e', [], function (_export) {
 
 	'use strict';
 
-	var resetNyaSelect, getConfigurationModelInit, getEmptyConfigModelResult, resetDataModel, getErrorObject, getMessageObject, resetFormlyModel, extractTemplateOptionDescription, extractTemplateOptionPlaceholder, extractTemplateOptionType, extractTemplateOptionLabel, extractTemplateOptionLabelShort, extractTemplateOptionParentId, extractTemplateOptionReferenceId, extractTemplateOptionDatepickerOptions, extractTemplateOptionMaxLengthOption, extractTemplateOptionNumberType, extractTemplateOptionMinValueOption, extractTemplateOptionMaxValueOption, extractTemplateOptionIncrementalOption, extractTemplateOptionCurrentYearOption, extractFormlyExpressionProperties, extractFormlyValidators, extractFormlyValidation, extractTemplateOptionRequired, extractTemplateOptionUnique, extractDefaultValue, extractTemplateOptionDisplayAddOption, extractTemplateOptionDisplayEditOption, extractTemplateOptionAllowMultiple, extractTemplateOptionOptions, addDatepickerOptionsProperty, addMaxLengthOptionProperty, addNumberTypeProperty, addMinValueOptionProperty, addMaxValueOptionProperty, addIncrementalOptionProperty, addCurrentYearOptionProperty, addOneColumnHeader, addColumns;
+	var resetNyaSelect, getConfigurationModelInit, getEmptyConfigModelResult, resetDataModel, getErrorObject, getMessageObject, resetFormlyModel, extractTemplateOptionDescription, extractTemplateOptionPlaceholder, extractTemplateOptionType, extractTemplateOptionLabel, extractTemplateOptionLabelShort, extractTemplateOptionParentId, extractTemplateOptionReferenceId, extractTemplateOptionDatepickerOptions, extractTemplateOptionMaxLengthOption, extractTemplateOptionNumberType, extractTemplateOptionMinValueOption, extractTemplateOptionMaxValueOption, extractTemplateOptionIncrementalOption, extractTemplateOptionCurrentYearOption, extractTemplateOptionCurrentDateOption, extractFormlyExpressionProperties, extractFormlyValidators, extractFormlyValidation, extractTemplateOptionRequired, extractTemplateOptionUnique, extractDefaultValue, extractTemplateOptionDisplayAddOption, extractTemplateOptionDisplayEditOption, extractTemplateOptionAllowMultiple, extractTemplateOptionOptions, addDatepickerOptionsProperty, addMaxLengthOptionProperty, addNumberTypeProperty, addMinValueOptionProperty, addMaxValueOptionProperty, addIncrementalOptionProperty, addCurrentYearOptionProperty, addCurrentDateOptionProperty, addOneColumnHeader, addColumns;
 
 	function addColumnControl(formlyModel, configurationModel, lineIndex, numberOfColumns, columnIndex, FieldGroup) {
 		var headerTemplateCol = {
@@ -461,6 +461,7 @@ $__System.register('e', [], function (_export) {
 		//////////////////////////////////////////////
 		if (configurationModel.lines[lineIndex].columns[columnIndex].control.type === 'datepicker') {
 			addDatepickerOptionsProperty(controlCol, configurationModel, lineIndex, 0);
+			addCurrentDateOptionProperty(controlCol, configurationModel, lineIndex, columnIndex);
 		}
 		if (configurationModel.lines[lineIndex].columns[columnIndex].control.type === 'input') {
 			switch (configurationModel.lines[lineIndex].columns[columnIndex].control.subtype) {
@@ -619,6 +620,7 @@ $__System.register('e', [], function (_export) {
 						minValueOption: '',
 						maxValueOption: '',
 						incrementalOption: true,
+						currentYearOption: false,
 						formlyExpressionProperties: {},
 						formlyValidators: {
 							numberShape: {
@@ -748,6 +750,7 @@ $__System.register('e', [], function (_export) {
 						parentId: '',
 						referenceId: '',
 						datepickerOptions: { format: 'dd-MMMM-yyyy' },
+						currentDateOption: false,
 						formlyExpressionProperties: {},
 						formlyValidators: {},
 						formlyValidation: {
@@ -1140,7 +1143,7 @@ $__System.register('e', [], function (_export) {
 			};
 
 			extractTemplateOptionNumberType = function extractTemplateOptionNumberType(obj) {
-				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.numberType !== 'undefined' ? angular.copy(obj.templateOptions.numberType) : '' : '';
+				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.numberType !== 'undefined' ? angular.copy(obj.templateOptions.numberType) : 'integer' : 'integer';
 			};
 
 			extractTemplateOptionMinValueOption = function extractTemplateOptionMinValueOption(obj) {
@@ -1152,11 +1155,15 @@ $__System.register('e', [], function (_export) {
 			};
 
 			extractTemplateOptionIncrementalOption = function extractTemplateOptionIncrementalOption(obj) {
-				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.incrementalOption !== 'undefined' ? obj.templateOptions.incrementalOption : '' : '';
+				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.incrementalOption !== 'undefined' ? obj.templateOptions.incrementalOption : false : false;
 			};
 
 			extractTemplateOptionCurrentYearOption = function extractTemplateOptionCurrentYearOption(obj) {
-				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.currentYearOption !== 'undefined' ? obj.templateOptions.currentYearOption : '' : '';
+				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.currentYearOption !== 'undefined' ? obj.templateOptions.currentYearOption : false : false;
+			};
+
+			extractTemplateOptionCurrentDateOption = function extractTemplateOptionCurrentDateOption(obj) {
+				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.currentDateOption !== 'undefined' ? obj.templateOptions.currentDateOption : false : false;
 			};
 
 			extractFormlyExpressionProperties = function extractFormlyExpressionProperties(obj) {
@@ -1225,6 +1232,10 @@ $__System.register('e', [], function (_export) {
 
 			addCurrentYearOptionProperty = function addCurrentYearOptionProperty(fieldToPush, configurationModel, lineIndex, position) {
 				return fieldToPush.templateOptions.currentYearOption = extractTemplateOptionCurrentYearOption(configurationModel.lines[lineIndex].columns[position].control);
+			};
+
+			addCurrentDateOptionProperty = function addCurrentDateOptionProperty(fieldToPush, configurationModel, lineIndex, position) {
+				return fieldToPush.templateOptions.currentDateOption = extractTemplateOptionCurrentDateOption(configurationModel.lines[lineIndex].columns[position].control);
 			};
 
 			addOneColumnHeader = function addOneColumnHeader(formlyModel, configurationModel, lineIndex) {

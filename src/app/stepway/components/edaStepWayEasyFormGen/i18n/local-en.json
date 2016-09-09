@@ -95,6 +95,7 @@
     "INCREMENTAL"         : "Incremental value",
     "MAX_LENGTH"          : "Maximum length",
     "CURRENT_YEAR"        : "Current year as default value",
+    "CURRENT_DATE"        : "Current date as default value",
     "PARENT_ID"           : "Parent field",
     "LABEL_TEXT_SHORT"    : "Label short text",
     "UNIQUE"              : "Unique",

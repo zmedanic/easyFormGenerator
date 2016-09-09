@@ -138,6 +138,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				minValueOption		: '',
 				maxValueOption  	: '',
 				incrementalOption	: true,
+				currentYearOption	: false,
 				formlyExpressionProperties: {},
 				formlyValidators 						: {
 					numberShape : {
@@ -271,6 +272,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				parentId					: '',
 				referenceId				: '',
 				datepickerOptions	: {format : 'dd-MMMM-yyyy'},
+				currentDateOption	: false,
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
 				formlyValidation	: {
@@ -684,11 +686,12 @@ const extractTemplateOptionReferenceId = (obj) => typeof obj.templateOptions !==
 const extractTemplateOptionDatepickerOptions = (obj) => typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.datepickerOptions !== 'undefined'? angular.copy(obj.templateOptions.datepickerOptions) : '') : '';
 
 const extractTemplateOptionMaxLengthOption = (obj) => typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.maxLengthOption !== 'undefined'? obj.templateOptions.maxLengthOption : '') : '';
-const extractTemplateOptionNumberType = (obj)=> typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.numberType !== 'undefined'? angular.copy(obj.templateOptions.numberType) : '') : '';
+const extractTemplateOptionNumberType = (obj)=> typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.numberType !== 'undefined'? angular.copy(obj.templateOptions.numberType) : 'integer') : 'integer';
 const extractTemplateOptionMinValueOption = (obj) => typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.minValueOption !== 'undefined'? obj.templateOptions.minValueOption : '') : '';
 const extractTemplateOptionMaxValueOption = (obj) => typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.maxValueOption !== 'undefined'? obj.templateOptions.maxValueOption : '') : '';
-const extractTemplateOptionIncrementalOption = (obj) => typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.incrementalOption !== 'undefined'? obj.templateOptions.incrementalOption : '') : '';
-const extractTemplateOptionCurrentYearOption = (obj) => typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.currentYearOption !== 'undefined'? obj.templateOptions.currentYearOption : '') : '';
+const extractTemplateOptionIncrementalOption = (obj) => typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.incrementalOption !== 'undefined'? obj.templateOptions.incrementalOption : false) : false;
+const extractTemplateOptionCurrentYearOption = (obj) => typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.currentYearOption !== 'undefined'? obj.templateOptions.currentYearOption : false) : false;
+const extractTemplateOptionCurrentDateOption = (obj) => typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.currentDateOption !== 'undefined'? obj.templateOptions.currentDateOption : false) : false;
 
 const extractFormlyExpressionProperties = (obj) => typeof obj.formlyExpressionProperties !== 'undefined' ? angular.copy(obj.formlyExpressionProperties) : {};
 
@@ -718,6 +721,7 @@ const addMinValueOptionProperty = (fieldToPush, configurationModel,lineIndex, po
 const addMaxValueOptionProperty = (fieldToPush, configurationModel,lineIndex, position) => fieldToPush.templateOptions.maxValueOption = extractTemplateOptionMaxValueOption(configurationModel.lines[lineIndex].columns[position].control);
 const addIncrementalOptionProperty = (fieldToPush, configurationModel,lineIndex, position) => fieldToPush.templateOptions.incrementalOption = extractTemplateOptionIncrementalOption(configurationModel.lines[lineIndex].columns[position].control);
 const addCurrentYearOptionProperty = (fieldToPush, configurationModel,lineIndex, position) => fieldToPush.templateOptions.currentYearOption = extractTemplateOptionCurrentYearOption(configurationModel.lines[lineIndex].columns[position].control);
+const addCurrentDateOptionProperty = (fieldToPush, configurationModel,lineIndex, position) => fieldToPush.templateOptions.currentDateOption = extractTemplateOptionCurrentDateOption(configurationModel.lines[lineIndex].columns[position].control);
 
 const addOneColumnHeader = (formlyModel, configurationModel,lineIndex) => {
 	/**
@@ -773,6 +777,7 @@ function addColumnControl(formlyModel, configurationModel,lineIndex, numberOfCol
 	//////////////////////////////////////////////
 	if (configurationModel.lines[lineIndex].columns[columnIndex].control.type === 'datepicker') {
 		addDatepickerOptionsProperty(controlCol, configurationModel,lineIndex, 0);
+		addCurrentDateOptionProperty(controlCol, configurationModel,lineIndex, columnIndex);
 	}
 	if (configurationModel.lines[lineIndex].columns[columnIndex].control.type === 'input') {
 		switch (configurationModel.lines[lineIndex].columns[columnIndex].control.subtype) {
