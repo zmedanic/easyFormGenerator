@@ -25,29 +25,68 @@ const subTitleTemplate = `
   <hr/>`;
 
 const basicSelectTemplate = `
-<ol
-	class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
-	ng-model="model[options.key || index]"
-	id="{{id}}"
-	disabled="options.templateOptions.options.length === 0">
-	<li class="nya-bs-option" nya-bs-option="option in options.templateOptions.options">
-		<a>{{option.name}}</a>
-	</li>
-</ol>`;
+<div class="row">
+  <ol
+    class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
+    ng-model="model[options.key || index]"
+    ng-if="options.templateOptions.allowMultiple == 1"
+    id="{{id}}"
+    disabled="options.templateOptions.options.length === 0">
+    <li class="nya-bs-option" nya-bs-option="option in options.templateOptions.options">
+      <a>{{option.name}}</a>
+    </li>
+  </ol>
+  <ol
+    class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
+    ng-model="model[options.key || index]"
+    ng-if="options.templateOptions.allowMultiple != 1"
+    multiple
+    id="{{id}}"
+    disabled="options.templateOptions.options.length === 0">
+    <li
+      class="nya-bs-option"
+      nya-bs-option="option in options.templateOptions.options"
+      value="$index"
+      ng-class="{disabled: options.templateOptions.allowMultiple > 1 && model[options.key || index].length >= options.templateOptions.allowMultiple && model[options.key || index].indexOf($index) == -1}">
+      <a>{{option.name}}</a>
+    </li>
+  </ol>
+</div>`;
+// && model[options.key || index].indexOf($index) == -1}
 
 const groupedSelectTemplate = `
-	<ol class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
-		ng-model="model[options.key || index]"
-		data-live-search="true"
-		disabled="options.templateOptions.options.length === 0">
-		<li nya-bs-option="option in  options.templateOptions.options group by option.group">
-			<span class="dropdown-header">{{$group}}</span>
-			<a>
-				<span>{{option.name}}</span>
-				<span class="glyphicon glyphicon-ok check-mark"></span>
-			</a>
-		</li>
-	</ol>`;
+<div class="row">
+  <ol class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
+    ng-model="model[options.key || index]"
+    ng-if="options.templateOptions.allowMultiple == 1"
+    data-live-search="true"
+    disabled="options.templateOptions.options.length === 0">
+    <li nya-bs-option="option in  options.templateOptions.options group by option.group">
+      <span class="dropdown-header">{{$group}}</span>
+      <a>
+        <span>{{option.name}}</span>
+        <span class="glyphicon glyphicon-ok check-mark"></span>
+      </a>
+    </li>
+  </ol>
+  <ol class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
+    ng-model="model[options.key || index]"
+    ng-if="options.templateOptions.allowMultiple != 1"
+    multiple
+    data-live-search="true"
+    disabled="options.templateOptions.options.length === 0">
+    <li
+      nya-bs-option="option in options.templateOptions.options group by option.group"
+      value="$index"
+      ng-class="{disabled: options.templateOptions.allowMultiple > 1 && model[options.key || index].length >= options.templateOptions.allowMultiple && model[options.key || index].indexOf($index) == -1}">
+      <span class="dropdown-header">{{$group}}</span>
+      <a>
+        <span>{{option.name}}</span>
+        <span class="glyphicon glyphicon-ok check-mark"></span>
+      </a>
+    </li>
+  </ol>
+</div>`;
 
 const datepickerTemplate = `
 <p class="input-group">
@@ -90,7 +129,7 @@ export {
 	richTextTemplate,
 	blankTemplate,
 	subTitleTemplate,
-	basicSelectTemplate,
+  basicSelectTemplate,
 	groupedSelectTemplate,
 	datepickerTemplate,
 	validationTemplate

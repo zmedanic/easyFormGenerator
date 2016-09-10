@@ -1476,35 +1476,35 @@ $__System.register('10', ['f'], function (_export) {
 	};
 });
 $__System.register("11", [], function (_export) {
-	"use strict";
+  "use strict";
 
-	var richTextTemplate, blankTemplate, subTitleTemplate, basicSelectTemplate, groupedSelectTemplate, datepickerTemplate, validationTemplate;
-	return {
-		setters: [],
-		execute: function () {
-			richTextTemplate = "\n\t<text-angular name=\"{{id}}\"\n\t\tclass=\"richTextAngular\"\n\t\tng-model=\"model[options.key || index]\">\n\t</text-angular>";
-			blankTemplate = "<div></div>";
-			subTitleTemplate = "\n  <div class=\"row\">\n    <div class=\"\">\n      <h4 class=\"text-center\">\n        {{options.templateOptions.label}}\n      </h4>\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"\">\n      {{options.templateOptions.description}}\n    </div>\n  </div>\n  <hr/>";
-			basicSelectTemplate = "\n<ol\n\tclass=\"nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12\"\n\tng-model=\"model[options.key || index]\"\n\tid=\"{{id}}\"\n\tdisabled=\"options.templateOptions.options.length === 0\">\n\t<li class=\"nya-bs-option\" nya-bs-option=\"option in options.templateOptions.options\">\n\t\t<a>{{option.name}}</a>\n\t</li>\n</ol>";
-			groupedSelectTemplate = "\n\t<ol class=\"nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12\"\n\t\tng-model=\"model[options.key || index]\"\n\t\tdata-live-search=\"true\"\n\t\tdisabled=\"options.templateOptions.options.length === 0\">\n\t\t<li nya-bs-option=\"option in  options.templateOptions.options group by option.group\">\n\t\t\t<span class=\"dropdown-header\">{{$group}}</span>\n\t\t\t<a>\n\t\t\t\t<span>{{option.name}}</span>\n\t\t\t\t<span class=\"glyphicon glyphicon-ok check-mark\"></span>\n\t\t\t</a>\n\t\t</li>\n\t</ol>";
-			datepickerTemplate = "\n  <p class=\"input-group\">\n    <span class=\"input-group-btn\">\n        <button\n          type=\"button\"\n          class=\"btn btn-default\"\n          ng-click=\"formlyDatePicker.open($event)\">\n          <i class=\"glyphicon glyphicon-calendar\"></i>\n        </button>\n    </span>\n    <input  type=\"text\"\n            id=\"{{::id}}\"\n            name=\"{{::id}}\"\n            ng-model=\"model[options.key]\"\n            class=\"form-control\"\n            ng-click=\"datepicker.open($event)\"\n            uib-datepicker-popup=\"{{to.datepickerOptions.format}}\"\n            is-open=\"datepicker.opened\"\n            datepicker-options=\"to.datepickerOptions\"\n    />\n  </p>\n  ";
-			validationTemplate = "\n\t<div class=\"formly-template-wrapper form-group\"\n\t\t\t\t\t\tng-class=\"{'has-error': options.validation.errorExistsAndShouldBeVisible}\">\n\t\t\t\t<formly-transclude></formly-transclude>\n\t\t\t\t<div class=\"validation\"\n\t\t\t\t\t\t\tng-if=\"options.validation.errorExistsAndShouldBeVisible\"\n\t\t\t\t\t\t\tng-messages=\"options.formControl.$error\">\n\t\t\t\t\t<div ng-messages-include=\"validation.html\"></div>\n\t\t\t\t\t<div ng-message=\"{{::name}}\" ng-repeat=\"(name, message) in ::options.validation.messages\">\n\t\t\t\t\t\t{{message(options.formControl.$viewValue, options.formControl.$modelValue, this)}}\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>";
+  var richTextTemplate, blankTemplate, subTitleTemplate, basicSelectTemplate, groupedSelectTemplate, datepickerTemplate, validationTemplate;
+  return {
+    setters: [],
+    execute: function () {
+      richTextTemplate = "\n\t<text-angular name=\"{{id}}\"\n\t\tclass=\"richTextAngular\"\n\t\tng-model=\"model[options.key || index]\">\n\t</text-angular>";
+      blankTemplate = "<div></div>";
+      subTitleTemplate = "\n  <div class=\"row\">\n    <div class=\"\">\n      <h4 class=\"text-center\">\n        {{options.templateOptions.label}}\n      </h4>\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"\">\n      {{options.templateOptions.description}}\n    </div>\n  </div>\n  <hr/>";
+      basicSelectTemplate = "\n<div class=\"row\">\n  <ol\n    class=\"nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12\"\n    ng-model=\"model[options.key || index]\"\n    ng-if=\"options.templateOptions.allowMultiple == 1\"\n    id=\"{{id}}\"\n    disabled=\"options.templateOptions.options.length === 0\">\n    <li class=\"nya-bs-option\" nya-bs-option=\"option in options.templateOptions.options\">\n      <a>{{option.name}}</a>\n    </li>\n  </ol>\n  <ol\n    class=\"nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12\"\n    ng-model=\"model[options.key || index]\"\n    ng-if=\"options.templateOptions.allowMultiple != 1\"\n    multiple\n    id=\"{{id}}\"\n    disabled=\"options.templateOptions.options.length === 0\">\n    <li class=\"nya-bs-option\" nya-bs-option=\"option in options.templateOptions.options\">\n      <a>{{option.name}}</a>\n    </li>\n  </ol>\n</div>";
+      groupedSelectTemplate = "\n<div class=\"row\">\n  <ol class=\"nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12\"\n    ng-model=\"model[options.key || index]\"\n    ng-if=\"options.templateOptions.allowMultiple == 1\"\n    data-live-search=\"true\"\n    disabled=\"options.templateOptions.options.length === 0\">\n    <li nya-bs-option=\"option in  options.templateOptions.options group by option.group\">\n      <span class=\"dropdown-header\">{{$group}}</span>\n      <a>\n        <span>{{option.name}}</span>\n        <span class=\"glyphicon glyphicon-ok check-mark\"></span>\n      </a>\n    </li>\n  </ol>\n  <ol class=\"nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12\"\n    ng-model=\"model[options.key || index]\"\n    ng-if=\"options.templateOptions.allowMultiple != 1\"\n    multiple\n    data-live-search=\"true\"\n    disabled=\"options.templateOptions.options.length === 0\">\n    <li nya-bs-option=\"option in  options.templateOptions.options group by option.group\">\n      <span class=\"dropdown-header\">{{$group}}</span>\n      <a>\n        <span>{{option.name}}</span>\n        <span class=\"glyphicon glyphicon-ok check-mark\"></span>\n      </a>\n    </li>\n  </ol>\n</div>";
+      datepickerTemplate = "\n  <p class=\"input-group\">\n    <span class=\"input-group-btn\">\n        <button\n          type=\"button\"\n          class=\"btn btn-default\"\n          ng-click=\"formlyDatePicker.open($event)\">\n          <i class=\"glyphicon glyphicon-calendar\"></i>\n        </button>\n    </span>\n    <input  type=\"text\"\n            id=\"{{::id}}\"\n            name=\"{{::id}}\"\n            ng-model=\"model[options.key]\"\n            class=\"form-control\"\n            ng-click=\"datepicker.open($event)\"\n            uib-datepicker-popup=\"{{to.datepickerOptions.format}}\"\n            is-open=\"datepicker.opened\"\n            datepicker-options=\"to.datepickerOptions\"\n    />\n  </p>\n  ";
+      validationTemplate = "\n\t<div class=\"formly-template-wrapper form-group\"\n\t\t\t\t\t\tng-class=\"{'has-error': options.validation.errorExistsAndShouldBeVisible}\">\n\t\t\t\t<formly-transclude></formly-transclude>\n\t\t\t\t<div class=\"validation\"\n\t\t\t\t\t\t\tng-if=\"options.validation.errorExistsAndShouldBeVisible\"\n\t\t\t\t\t\t\tng-messages=\"options.formControl.$error\">\n\t\t\t\t\t<div ng-messages-include=\"validation.html\"></div>\n\t\t\t\t\t<div ng-message=\"{{::name}}\" ng-repeat=\"(name, message) in ::options.validation.messages\">\n\t\t\t\t\t\t{{message(options.formControl.$viewValue, options.formControl.$modelValue, this)}}\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>";
 
-			_export("richTextTemplate", richTextTemplate);
+      _export("richTextTemplate", richTextTemplate);
 
-			_export("blankTemplate", blankTemplate);
+      _export("blankTemplate", blankTemplate);
 
-			_export("subTitleTemplate", subTitleTemplate);
+      _export("subTitleTemplate", subTitleTemplate);
 
-			_export("basicSelectTemplate", basicSelectTemplate);
+      _export("basicSelectTemplate", basicSelectTemplate);
 
-			_export("groupedSelectTemplate", groupedSelectTemplate);
+      _export("groupedSelectTemplate", groupedSelectTemplate);
 
-			_export("datepickerTemplate", datepickerTemplate);
+      _export("datepickerTemplate", datepickerTemplate);
 
-			_export("validationTemplate", validationTemplate);
-		}
-	};
+      _export("validationTemplate", validationTemplate);
+    }
+  };
 });
 $__System.register('12', ['11'], function (_export) {
   'use strict';

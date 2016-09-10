@@ -102,7 +102,7 @@
     "DEFAULT_VALUE"       : "Default value",
     "DISPLAY_ADD"         : "Display at input form",
     "DISPLAY_EDIT"        : "Display at edit form",
-    "ALLOW_MULTIPLE"      : "Allow multiple fields at form",
+    "ALLOW_MULTIPLE"      : "Number of values per field",
     "NOTHING_SELECTED"    : "Nothing selected",
     "NO_VALUE"            : "No value",
     "ADD_DEFAUT_VALUE_HERE": "Add default value here",

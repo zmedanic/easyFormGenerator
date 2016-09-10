@@ -2836,11 +2836,34 @@
                     class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
                     ng-model="editControlModCtrl.modelbasicSelect"
                     id="basicSelect"
+                    ng-if="editControlModCtrl.nyaSelect.temporyConfig.allowMultiple == 1"
                     disabled="editControlModCtrl.basicSelectRowCollection.rows.length === 0">
                     <li
                       class="nya-bs-option"
                       nya-bs-option="basicSelectRow in editControlModCtrl.basicSelectRowCollection.rows"
                       value="$index">
+                      <a>
+                        {{basicSelectRow.option}}
+                        <p
+                          ng-if="basicSelectRow.description.length > 0"
+                          class="help-block help-inline">
+                          ({{basicSelectRow.description}})
+                        </p>
+                      </a>
+                    </li>
+                  </ol>
+                  <ol
+                    class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
+                    ng-model="editControlModCtrl.modelbasicSelect"
+                    id="basicSelect"
+                    ng-if="editControlModCtrl.nyaSelect.temporyConfig.allowMultiple != 1"
+                    multiple
+                    disabled="editControlModCtrl.basicSelectRowCollection.rows.length === 0">
+                    <li
+                      class="nya-bs-option"
+                      nya-bs-option="basicSelectRow in editControlModCtrl.basicSelectRowCollection.rows"
+                      value="$index"
+                      ng-class="{disabled: editControlModCtrl.nyaSelect.temporyConfig.allowMultiple > 1 && editControlModCtrl.modelbasicSelect.length >= editControlModCtrl.nyaSelect.temporyConfig.allowMultiple && editControlModCtrl.modelbasicSelect.indexOf($index) == -1}">
                       <a>
                         {{basicSelectRow.option}}
                         <p
@@ -3257,12 +3280,41 @@
                 <div class="">
                   <ol
                     class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
-                    ng-model="modelGroupedSelect"
+                    ng-model="editControlModCtrl.modelGroupedSelect"
+                    ng-if="editControlModCtrl.nyaSelect.temporyConfig.allowMultiple == 1"
                     data-live-search="true"
                     disabled="editControlModCtrl.groupedSelectRowCollection.rows.length === 0">
                     <li
                       nya-bs-option="groupedSelectRow in editControlModCtrl.groupedSelectRowCollection.rows group by groupedSelectRow.group"
                       value="$index">
+                      <span class="dropdown-header">
+                        {{groupedSelectRow.group}}
+                      </span>
+                      <a>
+                        <span>
+                          {{groupedSelectRow.option}}
+                        </span>
+                        <p
+                          ng-if="groupedSelectRow.description.length > 0"
+                          class="help-block help-inline">
+                          ({{groupedSelectRow.description}})
+                        </p>
+                        <span class="glyphicon glyphicon-ok check-mark">
+                        </span>
+                      </a>
+                    </li>
+                  </ol>
+                  <ol
+                    class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
+                    ng-model="editControlModCtrl.modelGroupedSelect"
+                    ng-if="editControlModCtrl.nyaSelect.temporyConfig.allowMultiple != 1"
+                    multiple
+                    data-live-search="true"
+                    disabled="editControlModCtrl.groupedSelectRowCollection.rows.length === 0">
+                    <li
+                      nya-bs-option="groupedSelectRow in editControlModCtrl.groupedSelectRowCollection.rows group by groupedSelectRow.group"
+                      value="$index"
+                      ng-class="{disabled: editControlModCtrl.nyaSelect.temporyConfig.allowMultiple > 1 && editControlModCtrl.modelGroupedSelect.length >= editControlModCtrl.nyaSelect.temporyConfig.allowMultiple && editControlModCtrl.modelGroupedSelect.indexOf($index) == -1}">
                       <span class="dropdown-header">
                         {{groupedSelectRow.group}}
                       </span>
