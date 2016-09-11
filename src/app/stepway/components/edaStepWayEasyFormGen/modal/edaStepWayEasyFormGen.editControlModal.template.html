@@ -779,6 +779,7 @@
                     <div class="checkboxCssCorrection">&nbsp;</div>
                     <input
                       type="checkbox"
+                      ng-change="editControlModCtrl.nyaSelect.temporyConfig.allowMultiple = 1"
                       ng-model="editControlModCtrl.nyaSelect.temporyConfig.incrementalOption"
                       id="inputNumberIncrementalUpdate">
                   </div>
@@ -797,6 +798,7 @@
                     <div class="checkboxCssCorrection">&nbsp;</div>
                     <input
                       type="checkbox"
+                      ng-change="editControlModCtrl.nyaSelect.temporyConfig.allowMultiple = 1"
                       ng-model="editControlModCtrl.nyaSelect.temporyConfig.currentYearOption"
                       id="inputYearCurrentUpdate">
                   </div>
@@ -896,7 +898,9 @@
             </div>
           </div>
           <div class="marginTopFivepixels"></div>
-          <div class="row">
+          <div
+            class="row"
+            ng-if="!editControlModCtrl.nyaSelect.temporyConfig.incrementalOption && !editControlModCtrl.nyaSelect.temporyConfig.currentYearOption">
             <div class="form-group">
               <label
                 for="inputTextAllowMultipleUpdate"
@@ -921,7 +925,6 @@
               </div>
             </div>
           </div>
-          <div class="marginTopFivepixels"></div>
           <div class="row">
             <div class="form-group">
               <label
@@ -1680,6 +1683,7 @@
                 <div class="checkboxCssCorrection">&nbsp;</div>
                 <input
                   type="checkbox"
+                  ng-change="editControlModCtrl.nyaSelect.temporyConfig.allowMultiple = 1"
                   ng-model="editControlModCtrl.nyaSelect.temporyConfig.currentDateOption"
                   id="inputDateCurrentUpdate">
               </div>
@@ -1749,7 +1753,7 @@
             </div>
           </div>
           <div class="marginTopFivepixels"></div>
-          <div class="row">
+          <div class="row" ng-if="editControlModCtrl.nyaSelect.temporyConfig.currentDateOption === false">
             <div class="form-group">
               <label
                 for="inputTextAllowMultipleUpdate"
@@ -1774,7 +1778,6 @@
               </div>
             </div>
           </div>
-          <div class="marginTopFivepixels"></div>
           <div class="row">
             <div class="form-group">
               <label
