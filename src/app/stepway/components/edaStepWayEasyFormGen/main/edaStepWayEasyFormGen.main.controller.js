@@ -413,6 +413,8 @@ class edaStepWayEasyFormGenController {
 			resolve			: {
 				titleColumns 						: () => columns.titleColumns,
 				columns 								: () => columns.columns,
+				activeLine 							: indexLine,
+				activeColumn 						: numcolumn,
 				activeLineColumnsCount 	: () => this.configuration.lines[indexLine].columns.length,
 				nyaSelect 							: () => nyaSelect
 			}

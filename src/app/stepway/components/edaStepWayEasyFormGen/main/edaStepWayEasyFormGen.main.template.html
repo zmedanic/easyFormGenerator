@@ -87,9 +87,24 @@
 																	<!-- columns -->
 																	<div class="row linesList">
 																		<div class="col-md-12 lineCommandButtons" ng-show="vm.configuration.lines.length > 1">
-																			<button class="btn btn-warning" ng-hide="$index==0" ng-click="vm.upThisLine($index)"><i class="fa fa-arrow-up"></i></button>
-																			<button class="btn btn-warning" ng-hide="$index==(vm.configuration.lines.length-1)" ng-click="vm.downThisLine($index)"><i class="fa fa-arrow-down"></i></button>
-																			<button class="btn btn-danger pull-right" ng-click="vm.removeThisLine($index)"><i class="fa fa-trash-o"></i></button>
+																			<button
+																				class="btn btn-warning"
+																				ng-hide="$index==0 || $index==1"
+																				ng-click="vm.upThisLine($index)">
+																				<i class="fa fa-arrow-up"></i>
+																			</button>
+																			<button
+																				class="btn btn-warning"
+																				ng-hide="$index==(vm.configuration.lines.length-1) || $index==0"
+																				ng-click="vm.downThisLine($index)">
+																				<i class="fa fa-arrow-down"></i>
+																			</button>
+																			<button
+																				class="btn btn-danger pull-right"
+																				ng-hide="$index==0"
+																				ng-click="vm.removeThisLine($index)">
+																				<i class="fa fa-trash-o"></i>
+																			</button>
 																		</div>
 																		<div class="col-md-12">
 																			<div ng-repeat="column in line.columns">

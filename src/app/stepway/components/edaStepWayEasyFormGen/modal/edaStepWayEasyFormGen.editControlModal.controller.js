@@ -10,6 +10,8 @@ class editControlModalController {
 								$modalProxy,
 								titleColumns,
 								columns,
+								activeLine,
+								activeColumn,
 								activeLineColumnsCount) {
 
 		this.$modalInstance 					= $uibModalInstance;
@@ -19,6 +21,8 @@ class editControlModalController {
 		this.$modalProxy 							= $modalProxy;
 		this.titleColumns							= titleColumns;
 		this.columns									= columns;
+		this.activeLine 							= activeLine;
+		this.activeColumn 						= activeColumn;
 		this.activeLineColumnsCount 	= activeLineColumnsCount;
 
 		this.init();
@@ -499,6 +503,8 @@ const toInject =  [
 	'$modalProxy',
 	'titleColumns',
 	'columns',
+	'activeLine',
+	'activeColumn',
 	'activeLineColumnsCount'
 ];
 

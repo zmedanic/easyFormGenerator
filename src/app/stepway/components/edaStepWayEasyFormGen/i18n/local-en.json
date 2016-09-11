@@ -100,6 +100,7 @@
     "LABEL_TEXT_SHORT"    : "Label short text",
     "UNIQUE"              : "Unique",
     "DEFAULT_VALUE"       : "Default value",
+    "START_VALUE"         : "Start value",
     "DISPLAY_ADD"         : "Display at input form",
     "DISPLAY_EDIT"        : "Display at edit form",
     "ALLOW_MULTIPLE"      : "Number of values per field",

@@ -17,6 +17,21 @@
       <ol
         class="nya-bs-select col-xs-12 col-sm-12 col-md-12 col-lg-12"
         ng-model="editControlModCtrl.modelNyaSelect"
+        ng-if="editControlModCtrl.activeLine === 0 && editControlModCtrl.activeColumn === 0"
+        data-live-search="false">
+        <li nya-bs-option="option in editControlModCtrl.nyaSelectFiltered.controls | filter : {id: 'Header'}: true">
+          <a ng-click="editControlModCtrl.selectThisControl(option.id)">
+            <span>
+              {{ option.name }}
+            </span>
+            <span class="glyphicon glyphicon-ok check-mark"></span>
+          </a>
+        </li>
+      </ol>
+      <ol
+        class="nya-bs-select col-xs-12 col-sm-12 col-md-12 col-lg-12"
+        ng-model="editControlModCtrl.modelNyaSelect"
+        ng-if="!(editControlModCtrl.activeLine === 0 && editControlModCtrl.activeColumn === 0)"
         data-live-search="false">
         <li nya-bs-option="option in editControlModCtrl.nyaSelectFiltered.controls group by option.group">
           <span class="dropdown-header greyText">
@@ -109,7 +124,9 @@
           </div>
           <hr/>
           <div class="marginTopFivepixels"></div>
-          <div class="row">
+          <div
+            class="row"
+            ng-if="!(editControlModCtrl.activeLine === 0 && editControlModCtrl.activeColumn === 0)">
             <div class="form-group">
               <label
                 for="headerParentIdUpdate"
@@ -809,12 +826,12 @@
           <div class="marginTopFivepixels"></div>
           <div
             class="row"
-            ng-if="(editControlModCtrl.nyaSelect.temporyConfig.currentYearOption==true || editControlModCtrl.nyaSelect.temporyConfig.incrementalOption==true) === false">
+            ng-if="editControlModCtrl.nyaSelect.temporyConfig.currentYearOption === false">
             <div class="form-group">
               <label
                 for="inputNumberDefaultValueUpdate"
                 class="col-lg-3 control-label greyText editPropertiesLabel">
-                {{'DEFAULT_VALUE' | translate}} :
+                {{editControlModCtrl.nyaSelect.temporyConfig.incrementalOption ? 'START_VALUE' : 'DEFAULT_VALUE' | translate}} :
               </label>
               <div class="col-lg-9">
                 <input
@@ -3995,7 +4012,7 @@
     <div class="col-lg-6 text-left">
       <button
         class="btn btn-danger pull-left"
-        ng-if="editControlModCtrl.activeLineColumnsCount > 1"
+        ng-hide="editControlModCtrl.activeLineColumnsCount === 1 || (editControlModCtrl.activeLine === 0 && editControlModCtrl.activeColumn === 0)"
         ng-click="editControlModCtrl.removeColumn()">
         <i class="fa fa-trash-o"></i>
       </button>
