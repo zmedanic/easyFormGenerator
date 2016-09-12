@@ -2392,7 +2392,7 @@ $__System.register('1b', [], function (_export) {
 									var value = modelValue || viewValue;
 									return scope.to.maxLengthOption ? (value ? value.length : 0) <= parseInt(scope.to.maxLengthOption) : true;
 								},
-								message: 'to.label + \' size should have max \' + to.maxLengthOption + \' characters\''
+								message: "to.label + \" size should have max \" + to.maxLengthOption + \" characters\""
 							}
 						},
 						formlyValidation: {
@@ -2401,7 +2401,7 @@ $__System.register('1b', [], function (_export) {
 									//return a required validation message :
 									//-> '<label as name> is required '
 									//-> or if not exists or empty just 'this field is required'
-									var defaultReturnMsg = 'this Text input field is required';
+									var defaultReturnMsg = "this Text input field is required";
 									var returnMsg = typeof scope.to.label !== 'undefined' ? scope.to.label !== '' ? scope.to.label + ' is required' : defaultReturnMsg : defaultReturnMsg;
 									if (scope.to.required) return returnMsg;
 								}
@@ -2440,7 +2440,7 @@ $__System.register('1b', [], function (_export) {
 									var returnMax = scope.to.maxValueOption ? parseInt(value) <= parseInt(scope.to.maxValueOption) : true;
 									return returnMin && returnMax;
 								},
-								message: 'to.label + \' is limited to values (\' + to.minValueOption + \' - \' + to.maxValueOption + \')\''
+								message: "to.label + \" is limited to values (\" + to.minValueOption + \" - \" + to.maxValueOption + \")\""
 							},
 							yearShape: {
 								expression: function expression(viewValue, modelValue, scope) {
@@ -2451,12 +2451,12 @@ $__System.register('1b', [], function (_export) {
 									}
 									return true;
 								},
-								message: 'to.label + \' is not valid year (0 - 9999)\''
+								message: "to.label + \" is not valid year (0 - 9999)\""
 							}
 						},
 						formlyAsyncValidators: {
 							unique: {
-								message: 'to.label + \" value $value already exists\"'
+								message: ""
 							}
 						},
 						formlyValidation: {
@@ -2531,7 +2531,7 @@ $__System.register('1b', [], function (_export) {
 									return (/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/.test(value)
 									);
 								},
-								message: '$viewValue + \' is not a valid email\''
+								message: "$viewValue + \" is not a valid email\""
 							}
 						},
 						formlyValidation: {
