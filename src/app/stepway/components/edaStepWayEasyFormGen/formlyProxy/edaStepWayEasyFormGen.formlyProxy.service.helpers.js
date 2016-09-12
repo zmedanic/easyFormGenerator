@@ -138,7 +138,7 @@ const extractTemplateOptionUnique = (obj)=>{
 };
 
 const extractDefaultValue = (obj)=>{
-	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.defaultValue !== 'undefined'? obj.defaultValue: (obj.type == 'checkbox' ? false : '')) : (obj.type == 'checkbox' ? false : '');
+	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.defaultValue !== 'undefined'? obj.templateOptions.defaultValue: (obj.type == 'checkbox' ? false : '')) : (obj.type == 'checkbox' ? false : '');
 };
 
 const extractTemplateOptionDisplayAddOption = (obj)=>{

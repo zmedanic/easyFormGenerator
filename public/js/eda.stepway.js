@@ -3511,7 +3511,7 @@ $__System.register('1e', [], function (_export) {
 			};
 
 			extractDefaultValue = function extractDefaultValue(obj) {
-				return typeof obj.templateOptions !== 'undefined' ? typeof obj.defaultValue !== 'undefined' ? obj.defaultValue : obj.type == 'checkbox' ? false : '' : obj.type == 'checkbox' ? false : '';
+				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.defaultValue !== 'undefined' ? obj.templateOptions.defaultValue : obj.type == 'checkbox' ? false : '' : obj.type == 'checkbox' ? false : '';
 			};
 
 			extractTemplateOptionDisplayAddOption = function extractTemplateOptionDisplayAddOption(obj) {

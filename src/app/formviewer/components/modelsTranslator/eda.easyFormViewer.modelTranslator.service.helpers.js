@@ -718,7 +718,7 @@ const extractTemplateOptionRequired = (obj) => typeof obj.templateOptions !== 'u
 
 const extractTemplateOptionUnique = (obj) => typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.unique !== 'undefined'? obj.templateOptions.unique: false) : false;
 
-const extractDefaultValue = (obj) => typeof obj.templateOptions !== 'undefined' ? (typeof obj.defaultValue !== 'undefined'? obj.defaultValue: (obj.type == 'checkbox' ? false : '')) : (obj.type == 'checkbox' ? false : '');
+const extractDefaultValue = (obj) => typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.defaultValue !== 'undefined'? obj.templateOptions.defaultValue: (obj.type == 'checkbox' ? false : '')) : (obj.type == 'checkbox' ? false : '');
 
 const extractTemplateOptionDisplayAddOption = (obj) => typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.displayAddOption !== 'undefined'? obj.templateOptions.displayAddOption: true) : true;
 
