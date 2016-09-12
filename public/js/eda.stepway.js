@@ -1795,7 +1795,7 @@ $__System.register('14', ['15', '16'], function (_export) {
 						this.groupSelectGroupClick = { showList: false };
 						this.demodt = {};
 						this.dateOptions = this.dateOptionsInit();
-						this.demodt.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+						this.demodt.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate', 'mediumDate', 'longDate', 'fullDate'];
 						this.defaultdt = {};
 						this.nyaSelect.selectedControl = this.nyaSelect.temporyConfig.selectedControl;
 						this.nyaSelectFiltered = {};
@@ -2694,7 +2694,7 @@ $__System.register('1b', [], function (_export) {
 						formlyLabelShort: '',
 						formlyRequired: false,
 						formlyUnique: false,
-						formlyDefaultValue: '',
+						formlyDefaultValue: false,
 						displayAddOption: true,
 						displayEditOption: true,
 						allowMultiple: 1,
@@ -3087,12 +3087,13 @@ $__System.register('1c', ['15', '16', '1b'], function (_export) {
 							parentId: '',
 							referenceId: ''
 						};
+
 						//then bind templateOptions
 						configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.label = extractedProps.formlyLabel;
 						configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.labelShort = extractedProps.formlyLabelShort;
 						configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.required = extractedProps.formlyRequired;
 						configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.unique = extractedProps.formlyUnique;
-						configurationObj.lines[indexLine].columns[numcolumn].control.defaultValue = extractedProps.formlyDefaultValue;
+						configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.defaultValue = extractedProps.formlyDefaultValue;
 						configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.displayAddOption = extractedProps.displayAddOption;
 						configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.displayEditOption = extractedProps.displayEditOption;
 						configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.allowMultiple = extractedProps.allowMultiple;

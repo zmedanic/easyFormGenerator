@@ -50,7 +50,7 @@ class editControlModalController {
 		this.groupSelectGroupClick      = {showList : false};
 		this.demodt         						= {};
 		this.dateOptions    						= this.dateOptionsInit();
-		this.demodt.formats 						= ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+		this.demodt.formats 						= ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate', 'mediumDate', 'longDate', 'fullDate'];
 		this.defaultdt         					= {};
 		this.nyaSelect.selectedControl  = this.nyaSelect.temporyConfig.selectedControl;
 		this.nyaSelectFiltered 					= {};

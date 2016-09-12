@@ -418,7 +418,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyLabelShort	: '',
 				formlyRequired		: false,
 				formlyUnique			: false,
-				formlyDefaultValue: '',
+				formlyDefaultValue: false,
 				displayAddOption	: true,
 				displayEditOption	: true,
 				allowMultiple			: 1,
