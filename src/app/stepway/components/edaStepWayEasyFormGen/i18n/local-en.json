@@ -108,5 +108,6 @@
     "NO_VALUE"            : "No value",
     "ADD_DEFAUT_VALUE_HERE": "Add default value here",
     "ADD_EDIT_SHORT_LABEL_HERE" : "Add / edit short label here",
-    "NUMBER_TYPE"         : "Number type"
+    "NUMBER_TYPE"         : "Number type",
+    "ALLOW_EMPTY_OPTION"  : "Allow  empty option"
 }

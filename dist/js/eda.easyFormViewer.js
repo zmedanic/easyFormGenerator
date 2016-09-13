@@ -425,7 +425,7 @@ $__System.register('e', [], function (_export) {
 
 	'use strict';
 
-	var resetNyaSelect, getConfigurationModelInit, getEmptyConfigModelResult, resetDataModel, getErrorObject, getMessageObject, resetFormlyModel, extractTemplateOptionDescription, extractTemplateOptionPlaceholder, extractTemplateOptionType, extractTemplateOptionLabel, extractTemplateOptionLabelShort, extractTemplateOptionParentId, extractTemplateOptionReferenceId, extractTemplateOptionDatepickerOptions, extractTemplateOptionMaxLengthOption, extractTemplateOptionNumberType, extractTemplateOptionMinValueOption, extractTemplateOptionMaxValueOption, extractTemplateOptionIncrementalOption, extractTemplateOptionCurrentYearOption, extractTemplateOptionCurrentDateOption, extractFormlyExpressionProperties, extractFormlyValidators, extractFormlyValidation, extractTemplateOptionRequired, extractTemplateOptionUnique, extractDefaultValue, extractTemplateOptionDisplayAddOption, extractTemplateOptionDisplayEditOption, extractTemplateOptionAllowMultiple, extractTemplateOptionOptions, addDatepickerOptionsProperty, addMaxLengthOptionProperty, addNumberTypeProperty, addMinValueOptionProperty, addMaxValueOptionProperty, addIncrementalOptionProperty, addCurrentYearOptionProperty, addCurrentDateOptionProperty, addOneColumnHeader, addColumns;
+	var resetNyaSelect, getConfigurationModelInit, getEmptyConfigModelResult, resetDataModel, getErrorObject, getMessageObject, resetFormlyModel, extractTemplateOptionDescription, extractTemplateOptionPlaceholder, extractTemplateOptionType, extractTemplateOptionLabel, extractTemplateOptionLabelShort, extractTemplateOptionParentId, extractTemplateOptionReferenceId, extractTemplateOptionDatepickerOptions, extractTemplateOptionMaxLengthOption, extractTemplateOptionNumberType, extractTemplateOptionMinValueOption, extractTemplateOptionMaxValueOption, extractTemplateOptionIncrementalOption, extractTemplateOptionCurrentYearOption, extractTemplateOptionCurrentDateOption, extractTemplateOptionAllowEmptyOption, extractFormlyExpressionProperties, extractFormlyValidators, extractFormlyValidation, extractTemplateOptionRequired, extractTemplateOptionUnique, extractDefaultValue, extractTemplateOptionDisplayAddOption, extractTemplateOptionDisplayEditOption, extractTemplateOptionAllowMultiple, extractTemplateOptionOptions, addDatepickerOptionsProperty, addMaxLengthOptionProperty, addNumberTypeProperty, addMinValueOptionProperty, addMaxValueOptionProperty, addIncrementalOptionProperty, addCurrentYearOptionProperty, addCurrentDateOptionProperty, addAllowEmptyOptionProperty, addOneColumnHeader, addColumns;
 
 	function addColumnControl(formlyModel, configurationModel, lineIndex, numberOfColumns, columnIndex, FieldGroup) {
 		var headerTemplateCol = {
@@ -477,6 +477,11 @@ $__System.register('e', [], function (_export) {
 					addCurrentYearOptionProperty(controlCol, configurationModel, lineIndex, columnIndex);
 					break;
 			}
+		}
+
+		var fildsWithOptions = ['basicSelect', 'groupedSelect', 'radio'];
+		if (fildsWithOptions.indexOf(configurationModel.lines[lineIndex].columns[columnIndex].control.type) !== -1) {
+			addAllowEmptyOptionProperty(controlCol, configurationModel, lineIndex, columnIndex);
 		}
 
 		if (configurationModel.lines[lineIndex].columns[columnIndex].control.type === 'header') {
@@ -854,6 +859,7 @@ $__System.register('e', [], function (_export) {
 						formlyDefaultValue: '',
 						displayAddOption: true,
 						displayEditOption: true,
+						allowEmptyOption: false,
 						allowMultiple: 1,
 						formlyDesciption: '',
 						formlyOptions: [],
@@ -921,6 +927,7 @@ $__System.register('e', [], function (_export) {
 						formlyDefaultValue: '',
 						displayAddOption: true,
 						displayEditOption: true,
+						allowEmptyOption: false,
 						allowMultiple: 1,
 						formlyDesciption: '',
 						formlyOptions: [],
@@ -955,6 +962,7 @@ $__System.register('e', [], function (_export) {
 						formlyDefaultValue: '',
 						displayAddOption: true,
 						displayEditOption: true,
+						allowEmptyOption: false,
 						allowMultiple: 1,
 						formlyDesciption: '',
 						formlyOptions: [],
@@ -1181,6 +1189,10 @@ $__System.register('e', [], function (_export) {
 				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.currentDateOption !== 'undefined' ? obj.templateOptions.currentDateOption : false : false;
 			};
 
+			extractTemplateOptionAllowEmptyOption = function extractTemplateOptionAllowEmptyOption(obj) {
+				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.allowEmptyOption !== 'undefined' ? obj.templateOptions.allowEmptyOption : false : false;
+			};
+
 			extractFormlyExpressionProperties = function extractFormlyExpressionProperties(obj) {
 				return typeof obj.formlyExpressionProperties !== 'undefined' ? angular.copy(obj.formlyExpressionProperties) : {};
 			};
@@ -1251,6 +1263,10 @@ $__System.register('e', [], function (_export) {
 
 			addCurrentDateOptionProperty = function addCurrentDateOptionProperty(fieldToPush, configurationModel, lineIndex, position) {
 				return fieldToPush.templateOptions.currentDateOption = extractTemplateOptionCurrentDateOption(configurationModel.lines[lineIndex].columns[position].control);
+			};
+
+			addAllowEmptyOptionProperty = function addAllowEmptyOptionProperty(fieldToPush, configurationModel, lineIndex, position) {
+				return fieldToPush.templateOptions.allowEmptyOption = extractTemplateOptionAllowEmptyOption(configurationModel.lines[lineIndex].columns[position].control);
 			};
 
 			addOneColumnHeader = function addOneColumnHeader(formlyModel, configurationModel, lineIndex) {

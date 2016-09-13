@@ -29,12 +29,12 @@ class selectOptionManage {
 		return false;
 	}
 
-	addNewOptionRadio(selectObj, newOptionOptions, parentsBasic){
+	addNewOptionRadio(selectObj, newOptionOptions, parentsBasic, allowEmpty){
 		let fullResponse = {
 			resultFlag 	: false,
 			details 		: ''
 		};
-		let checkResult = this.validOption(selectObj, newOptionOptions.saisie);
+		let checkResult = this.validOption(selectObj, newOptionOptions.saisie, allowEmpty);
 		if (checkResult.resultFlag === true){
 
 			let newOption = {
@@ -63,13 +63,13 @@ class selectOptionManage {
 		}
 	}
 
-	addNewOptionBasicSelect(selectObj, newOptionOptions, parentsBasic){
+	addNewOptionBasicSelect(selectObj, newOptionOptions, parentsBasic, allowEmpty){
 		let fullResponse = {
 			resultFlag 	: false,
 			details 		: ''
 		};
 
-		let checkResult = this.validOption(selectObj, newOptionOptions.saisie);
+		let checkResult = this.validOption(selectObj, newOptionOptions.saisie, allowEmpty);
 		if (checkResult.resultFlag === true){
 
 			let newOption = {
@@ -98,13 +98,13 @@ class selectOptionManage {
 		}
 	}
 
-	addNewOptionGroupedSelect(selectObj, newOptionOptions, newOptionGroup, parentsBasic){
+	addNewOptionGroupedSelect(selectObj, newOptionOptions, newOptionGroup, parentsBasic, allowEmpty){
 		let fullResponse = {
 					resultFlag 	: false,
 					details 		: ''
 				};
 
-		let checkResult = this.validOption(selectObj, newOptionOptions.saisie);
+		let checkResult = this.validOption(selectObj, newOptionOptions.saisie, allowEmpty);
 
 		if (checkResult.resultFlag === true){
 
@@ -239,11 +239,13 @@ class selectOptionManage {
 
 
 
-	validOption(selectObj, newOptionText){
+	validOption(selectObj, newOptionText, allowEmpty){
 			let fullResponse = {
 						resultFlag  : false,
 						details     : ''
 					};
+
+			let allowEmptyOption = (typeof allowEmpty === 'undefined') ? false : allowEmpty;
 
 			if (typeof newOptionText === 'undefined') {
 				fullResponse.resultFlag = false;
@@ -251,7 +253,7 @@ class selectOptionManage {
 				return fullResponse;
 			}
 
-			if (newOptionText !== '') {
+			if (allowEmptyOption || newOptionText !== '') {
 				for (let i = selectObj.rows.length - 1; i >= 0; i--) {
 					if (selectObj.rows[i].option === newOptionText) {
 						fullResponse.resultFlag = false;

@@ -382,6 +382,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyDefaultValue: '',
 				displayAddOption	: true,
 				displayEditOption	: true,
+				allowEmptyOption 	: false,
 				allowMultiple			: 1,
 				formlyDesciption	: '' ,
 				formlyOptions			: [],
@@ -453,6 +454,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyDefaultValue: '',
 				displayAddOption	: true,
 				displayEditOption	: true,
+				allowEmptyOption 	: false,
 				allowMultiple			: 1,
 				formlyDesciption	: '',
 				formlyOptions			: [],
@@ -489,6 +491,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyDefaultValue: '',
 				displayAddOption	: true,
 				displayEditOption	: true,
+				allowEmptyOption 	: false,
 				allowMultiple			: 1,
 				formlyDesciption	: '',
 				formlyOptions			: [],
@@ -707,6 +710,7 @@ const extractTemplateOptionMaxValueOption = (obj) => typeof obj.templateOptions 
 const extractTemplateOptionIncrementalOption = (obj) => typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.incrementalOption !== 'undefined'? obj.templateOptions.incrementalOption : false) : false;
 const extractTemplateOptionCurrentYearOption = (obj) => typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.currentYearOption !== 'undefined'? obj.templateOptions.currentYearOption : false) : false;
 const extractTemplateOptionCurrentDateOption = (obj) => typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.currentDateOption !== 'undefined'? obj.templateOptions.currentDateOption : false) : false;
+const extractTemplateOptionAllowEmptyOption = (obj) => typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.allowEmptyOption !== 'undefined'? obj.templateOptions.allowEmptyOption : false) : false;
 
 const extractFormlyExpressionProperties = (obj) => typeof obj.formlyExpressionProperties !== 'undefined' ? angular.copy(obj.formlyExpressionProperties) : {};
 
@@ -737,6 +741,7 @@ const addMaxValueOptionProperty = (fieldToPush, configurationModel,lineIndex, po
 const addIncrementalOptionProperty = (fieldToPush, configurationModel,lineIndex, position) => fieldToPush.templateOptions.incrementalOption = extractTemplateOptionIncrementalOption(configurationModel.lines[lineIndex].columns[position].control);
 const addCurrentYearOptionProperty = (fieldToPush, configurationModel,lineIndex, position) => fieldToPush.templateOptions.currentYearOption = extractTemplateOptionCurrentYearOption(configurationModel.lines[lineIndex].columns[position].control);
 const addCurrentDateOptionProperty = (fieldToPush, configurationModel,lineIndex, position) => fieldToPush.templateOptions.currentDateOption = extractTemplateOptionCurrentDateOption(configurationModel.lines[lineIndex].columns[position].control);
+const addAllowEmptyOptionProperty = (fieldToPush, configurationModel,lineIndex, position) => fieldToPush.templateOptions.allowEmptyOption = extractTemplateOptionAllowEmptyOption(configurationModel.lines[lineIndex].columns[position].control);
 
 const addOneColumnHeader = (formlyModel, configurationModel,lineIndex) => {
 	/**
@@ -808,6 +813,11 @@ function addColumnControl(formlyModel, configurationModel,lineIndex, numberOfCol
 				addCurrentYearOptionProperty(controlCol, configurationModel,lineIndex, columnIndex);
 				break;
 		}
+	}
+
+	let fildsWithOptions = ['basicSelect', 'groupedSelect', 'radio'];
+	if (fildsWithOptions.indexOf(configurationModel.lines[lineIndex].columns[columnIndex].control.type) !== -1) {
+		addAllowEmptyOptionProperty(controlCol, configurationModel,lineIndex, columnIndex);
 	}
 
 	if (configurationModel.lines[lineIndex].columns[columnIndex].control.type === 'header') {

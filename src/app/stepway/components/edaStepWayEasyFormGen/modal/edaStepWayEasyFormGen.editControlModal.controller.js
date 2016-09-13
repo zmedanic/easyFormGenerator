@@ -146,7 +146,7 @@ class editControlModalController {
 
 
 	addNewOptionRadio() {
-		let result = this.selectOptionManage.addNewOptionRadio(this.radioRowCollection, this.newOptionRadio, this.parentsBasic);
+		let result = this.selectOptionManage.addNewOptionRadio(this.radioRowCollection, this.newOptionRadio, this.parentsBasic, this.nyaSelect.temporyConfig.allowEmptyOption);
 		if (result.resultFlag === false) {
 			this.toaster.pop({
 				type		: 'warning',
@@ -203,7 +203,7 @@ class editControlModalController {
 
 
 	addNewOptionBasicSelect() {
-		let result = this.selectOptionManage.addNewOptionBasicSelect(this.basicSelectRowCollection, this.newOptionBasicSelect, this.parentsBasic);
+		let result = this.selectOptionManage.addNewOptionBasicSelect(this.basicSelectRowCollection, this.newOptionBasicSelect, this.parentsBasic, this.nyaSelect.temporyConfig.allowEmptyOption);
 		if (result.resultFlag === false) {
 			this.toaster.pop({
 				type		: 'warning',
@@ -292,7 +292,7 @@ class editControlModalController {
 
 
 	addNewOptionGroupedSelect() {
-		let result = this.selectOptionManage.addNewOptionGroupedSelect(this.groupedSelectRowCollection, this.newOptionGroupedSelect, '', this.parentsBasic);
+		let result = this.selectOptionManage.addNewOptionGroupedSelect(this.groupedSelectRowCollection, this.newOptionGroupedSelect, '', this.parentsBasic, this.nyaSelect.temporyConfig.allowEmptyOption);
 		if (result.resultFlag === false) {
 			this.toaster.pop({
 				type		: 'warning',

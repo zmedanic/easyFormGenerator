@@ -386,6 +386,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyDefaultValue: '',
 				displayAddOption	: true,
 				displayEditOption	: true,
+				allowEmptyOption 	: false,
 				allowMultiple			: 1,
 				formlyDesciption	: '' ,
 				formlyOptions			: [],
@@ -457,6 +458,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyDefaultValue: '',
 				displayAddOption	: true,
 				displayEditOption	: true,
+				allowEmptyOption 	: false,
 				allowMultiple			: 1,
 				formlyDesciption	: '',
 				formlyOptions			: [],
@@ -493,6 +495,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyDefaultValue: '',
 				displayAddOption	: true,
 				displayEditOption	: true,
+				allowEmptyOption 	: false,
 				allowMultiple			: 1,
 				formlyDesciption	: '',
 				formlyOptions			: [],
@@ -671,6 +674,10 @@ const returnControlFromAddCtrlModalModel = (CtrlModalModel) =>{
 						modelToReturn.currentYearOption = CtrlModalModel.controls[i].currentYearOption;
 						break;
 				}
+			}
+			let fildsWithOptions = ['basicSelect', 'groupedSelect', 'radio'];
+			if (fildsWithOptions.indexOf(CtrlModalModel.controls[i].formlyType) !== -1) {
+				modelToReturn.allowEmptyOption = CtrlModalModel.controls[i].allowEmptyOption;
 			}
 		}
 	}

@@ -117,6 +117,10 @@ const extractTemplateOptionCurrentDateOption= (obj)=>{
 	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.currentDateOption !== 'undefined'? obj.templateOptions.currentDateOption: false) : false;
 };
 
+const extractTemplateOptionAllowEmptyOption= (obj)=>{
+	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.allowEmptyOption !== 'undefined'? obj.templateOptions.allowEmptyOption: false) : false;
+};
+
 const extractFormlyExpressionProperties = (obj)=>{
 	return  typeof obj.formlyExpressionProperties !== 'undefined' ? angular.copy(obj.formlyExpressionProperties) : {};
 };
@@ -176,6 +180,10 @@ const addDatepickerOptionsProperty = (fieldToPush, configurationModel,lineIndex,
 
 const addMaxLengthOptionProperty = (fieldToPush, configurationModel,lineIndex, position) => {
 		fieldToPush.templateOptions.maxLengthOption = extractTemplateOptionMaxLengthOption(configurationModel.lines[lineIndex].columns[position].control);
+};
+
+const addAllowEmptyOptionProperty = (fieldToPush, configurationModel,lineIndex, position) => {
+		fieldToPush.templateOptions.allowEmptyOption = extractTemplateOptionAllowEmptyOption(configurationModel.lines[lineIndex].columns[position].control);
 };
 
 const addNumberTypeProperty = (fieldToPush, configurationModel,lineIndex, position) => {
@@ -269,6 +277,11 @@ function addColumnControl(formlyModel, configurationModel,lineIndex, numberOfCol
 		}
 	}
 
+	let fildsWithOptions = ['basicSelect', 'groupedSelect', 'radio'];
+	if (fildsWithOptions.indexOf(configurationModel.lines[lineIndex].columns[columnIndex].control.type) !== -1) {
+		addAllowEmptyOptionProperty(controlCol, configurationModel,lineIndex, columnIndex);
+	}
+
 	if (configurationModel.lines[lineIndex].columns[columnIndex].control.type === 'header') {
 		FieldGroup.push(headerTemplateCol);
 	} else {
@@ -326,6 +339,7 @@ export {
 	extractTemplateOptionIncrementalOption,
 	extractTemplateOptionCurrentYearOption,
 	extractTemplateOptionCurrentDateOption,
+	extractTemplateOptionAllowEmptyOption,
 	extractFormlyExpressionProperties,
 	extractFormlyValidators,
 	extractFormlyValidation,
@@ -348,6 +362,7 @@ export {
 	addIncrementalOptionProperty,
 	addCurrentYearOptionProperty,
 	addCurrentDateOptionProperty,
+	addAllowEmptyOptionProperty,
 	addOneColumnHeader,
 	addColumns
 };

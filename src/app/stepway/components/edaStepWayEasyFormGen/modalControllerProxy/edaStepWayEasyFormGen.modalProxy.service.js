@@ -59,15 +59,19 @@ class $modalProxy{
 			}
 
 			if (nyaSelectObj.temporyConfig.selectedControl === 'TextInput') {
-				nyaSelectObj.temporyConfig.maxLengthOption 	= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.maxLengthOption != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.maxLengthOption : '';
+				nyaSelectObj.temporyConfig.maxLengthOption 		= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.maxLengthOption != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.maxLengthOption : '';
 			}
 
 			if (nyaSelectObj.temporyConfig.selectedControl === 'Number') {
-				nyaSelectObj.temporyConfig.numberType 			= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.numberType != 'undefined' ? angular.copy(configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.numberType) : 'integer';
-				nyaSelectObj.temporyConfig.minValueOption 	= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.minValueOption != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.minValueOption : '';
-				nyaSelectObj.temporyConfig.maxValueOption 	= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.maxValueOption != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.maxValueOption : '';
+				nyaSelectObj.temporyConfig.numberType 				= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.numberType != 'undefined' ? angular.copy(configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.numberType) : 'integer';
+				nyaSelectObj.temporyConfig.minValueOption 		= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.minValueOption != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.minValueOption : '';
+				nyaSelectObj.temporyConfig.maxValueOption 		= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.maxValueOption != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.maxValueOption : '';
 				nyaSelectObj.temporyConfig.incrementalOption 	= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.incrementalOption != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.incrementalOption : false;
 				nyaSelectObj.temporyConfig.currentYearOption 	= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.currentYearOption != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.currentYearOption : false;
+			}
+			let fildsWithOptions = ['BasicSelect', 'GroupedSelect', 'Radio'];
+			if (fildsWithOptions.indexOf(nyaSelectObj.temporyConfig.selectedControl) !== -1) {
+				nyaSelectObj.temporyConfig.allowEmptyOption 	= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.allowEmptyOption != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.allowEmptyOption : false;
 			}
 		}
 		return nyaSelectObj;
@@ -127,21 +131,26 @@ class $modalProxy{
 			configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.currentDateOption = extractedProps.currentDateOption;
 		}
 
-	if (configurationObj.lines[indexLine].columns[numcolumn].control.type === 'input') {
-		switch (configurationObj.lines[indexLine].columns[numcolumn].control.subtype) {
-			case "":
-				configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.maxLengthOption = extractedProps.maxLengthOption;
-				break;
+		if (configurationObj.lines[indexLine].columns[numcolumn].control.type === 'input') {
+			switch (configurationObj.lines[indexLine].columns[numcolumn].control.subtype) {
+				case "":
+					configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.maxLengthOption = extractedProps.maxLengthOption;
+					break;
 
-			case "number":
-				configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.numberType = extractedProps.numberType;
-				configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.minValueOption = extractedProps.minValueOption;
-				configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.maxValueOption = extractedProps.maxValueOption;
-				configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.incrementalOption = extractedProps.incrementalOption;
-				configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.currentYearOption = extractedProps.currentYearOption;
-				break;
+				case "number":
+					configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.numberType = extractedProps.numberType;
+					configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.minValueOption = extractedProps.minValueOption;
+					configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.maxValueOption = extractedProps.maxValueOption;
+					configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.incrementalOption = extractedProps.incrementalOption;
+					configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.currentYearOption = extractedProps.currentYearOption;
+					break;
+			}
 		}
-	}
+
+		let fildsWithOptions = ['basicSelect', 'groupedSelect', 'radio'];
+		if (fildsWithOptions.indexOf(configurationObj.lines[indexLine].columns[numcolumn].control.type) !== -1) {
+			configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.allowEmptyOption = extractedProps.allowEmptyOption;
+		}
 
 		/**
 			* unique key (set only first time) in this model is formly control type + Date.now();
@@ -205,6 +214,10 @@ class $modalProxy{
 						nyaSelectObj.controls[i].maxValueOption 					= nyaSelectObj.temporyConfig.maxValueOption;
 						nyaSelectObj.controls[i].incrementalOption 				= nyaSelectObj.temporyConfig.incrementalOption;
 						nyaSelectObj.controls[i].currentYearOption 				= nyaSelectObj.temporyConfig.currentYearOption;
+					}
+					let fildsWithOptions = ['BasicSelect', 'GroupedSelect', 'Radio'];
+					if (fildsWithOptions.indexOf(nyaSelectObj.controls[i].id) !== -1) {
+						nyaSelectObj.controls[i].allowEmptyOption 				= nyaSelectObj.temporyConfig.allowEmptyOption;
 					}
 				}
 		}
