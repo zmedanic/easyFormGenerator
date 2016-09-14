@@ -41,6 +41,7 @@ class selectOptionManage {
 				option			: newOptionOptions.saisie,
 				description	: newOptionOptions.description,
 				order				: selectObj.rows.length,
+				uniqueValue	: selectObj.rows.length,
 				parentId 		: {
 												id: '',
 												name: 'No value',
@@ -76,6 +77,7 @@ class selectOptionManage {
 				option			: newOptionOptions.saisie,
 				description	: newOptionOptions.description,
 				order				: selectObj.rows.length,
+				uniqueValue	: selectObj.rows.length,
 				parentId 		: {
 												id: '',
 												name: 'No value',
@@ -113,6 +115,7 @@ class selectOptionManage {
 				description	: newOptionOptions.description,
 				group				: newOptionGroup,
 				order				: selectObj.rows.length,
+				uniqueValue	: selectObj.rows.length,
 				parentId 		: {
 												id: '',
 												name: 'No value',

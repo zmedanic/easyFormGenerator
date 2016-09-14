@@ -95,6 +95,7 @@ class editControlModalController {
 					'option'			: this.nyaSelect.temporyConfig.formlyOptions[i].name,
 					'description' : this.nyaSelect.temporyConfig.formlyOptions[i].description,
 					'order'				: i,
+					'uniqueValue'	: this.nyaSelect.temporyConfig.formlyOptions[i].uniqueValue,
 					'group'				: '',
 					'parentId' 		: angular.copy(this.nyaSelect.temporyConfig.formlyOptions[i].parentId),
 					'referenceId'	:	this.nyaSelect.temporyConfig.formlyOptions[i].referenceId
@@ -112,6 +113,7 @@ class editControlModalController {
 						'option'			: this.nyaSelect.temporyConfig.formlyOptions[i].name,
 						'description' : this.nyaSelect.temporyConfig.formlyOptions[i].description,
 						'order'				: i,
+						'uniqueValue'	: this.nyaSelect.temporyConfig.formlyOptions[i].uniqueValue,
 						'group'				: '',
 						'parentId' 		: angular.copy(this.nyaSelect.temporyConfig.formlyOptions[i].parentId),
 						'referenceId'	:	this.nyaSelect.temporyConfig.formlyOptions[i].referenceId
@@ -131,6 +133,7 @@ class editControlModalController {
 					'option'			: this.nyaSelect.temporyConfig.formlyOptions[i].name,
 					'description' : this.nyaSelect.temporyConfig.formlyOptions[i].description,
 					'order'				: i,
+					'uniqueValue'	: this.nyaSelect.temporyConfig.formlyOptions[i].uniqueValue,
 					'group'				: this.nyaSelect.temporyConfig.formlyOptions[i].group,
 					'parentId' 		: angular.copy(this.nyaSelect.temporyConfig.formlyOptions[i].parentId),
 					'referenceId'	:	this.nyaSelect.temporyConfig.formlyOptions[i].referenceId
@@ -413,7 +416,7 @@ class editControlModalController {
 					'name'				: this.basicSelectRowCollection.rows[i].option,
 					'description' : this.basicSelectRowCollection.rows[i].description,
 					'value'				: i,
-					'uniqueValue' : this.basicSelectRowCollection.rows[i].order,
+					'uniqueValue' : this.basicSelectRowCollection.rows[i].uniqueValue,
 					'group'				: '',
 					'parentId' 		: angular.copy(this.basicSelectRowCollection.rows[i].parentId),
 					'referenceId'	:	this.basicSelectRowCollection.rows[i].referenceId
@@ -431,9 +434,9 @@ class editControlModalController {
 		for (let i = 0; i <= this.groupedSelectRowCollection.rows.length - 1; i++){
 			let newOption = {
 				'name'				: this.groupedSelectRowCollection.rows[i].option,
-				'description' : this.basicSelectRowCollection.rows[i].description,
+				'description' : this.groupedSelectRowCollection.rows[i].description,
 				'value'				: i,
-				'uniqueValue' : this.basicSelectRowCollection.rows[i].order,
+				'uniqueValue' : this.groupedSelectRowCollection.rows[i].uniqueValue,
 				'group'				: this.groupedSelectRowCollection.rows[i].group,
 				'parentId' 		: angular.copy(this.groupedSelectRowCollection.rows[i].parentId),
 				'referenceId'	:	this.groupedSelectRowCollection.rows[i].referenceId
@@ -452,9 +455,9 @@ class editControlModalController {
 			for (let i = 0; i <= this.radioRowCollection.rows.length - 1; i++){
 				let newOption = {
 					'name'				: this.radioRowCollection.rows[i].option,
-					'description' : this.basicSelectRowCollection.rows[i].description,
+					'description' : this.radioRowCollection.rows[i].description,
 					'value'				: i,
-					'uniqueValue' : this.basicSelectRowCollection.rows[i].order,
+					'uniqueValue' : this.radioRowCollection.rows[i].uniqueValue,
 					'group'				: '',
 					'parentId' 		: angular.copy(this.radioRowCollection.rows[i].parentId),
 					'referenceId'	:	this.radioRowCollection.rows[i].referenceId

@@ -3029,7 +3029,7 @@
                                   class="nya-bs-option"
                                   nya-bs-option="parent in editControlModCtrl.basicSelectRowCollection.parents"
                                   ng-if="parent.option!=basicSelectRow.option"
-                                  value="{id: parent.referenceId, name: parent.option, value: parent.order}">
+                                  value="{id: parent.referenceId, name: parent.option, value: parent.uniqueValue}">
                                   <a>{{parent.option}}</a>
                                 </li>
                               </ol>
@@ -3171,18 +3171,10 @@
                     id="basicSelect"
                     disabled="editControlModCtrl.basicSelectRowCollection.rows.length === 0">
                     <li
-                      class="nya-bs-option"
-                      value="">
+                      nya-bs-option="row in editControlModCtrl.basicSelectRowCollection.parents"
+                      value="{referenceId: row.referenceId, name: row.option, uniqueValue: row.uniqueValue}">
                       <a>
-                        {{'NOTHING_SELECTED' | translate}}
-                      </a>
-                    </li>
-                    <li
-                      class="nya-bs-option"
-                      nya-bs-option="basicSelectRow in editControlModCtrl.basicSelectRowCollection.rows"
-                      value="$index">
-                      <a>
-                        {{basicSelectRow.option}}
+                        {{row.option}}
                       </a>
                     </li>
                   </ol>
@@ -3542,7 +3534,7 @@
                                   class="nya-bs-option"
                                   nya-bs-option="parent in editControlModCtrl.groupedSelectRowCollection.parents"
                                   ng-if="parent.option!=groupedSelectRow.option"
-                                  value="{id: parent.referenceId, name: parent.option, value: parent.order}">
+                                  value="{id: parent.referenceId, name: parent.option, value: parent.uniqueValue}">
                                   <a>{{parent.option}}</a>
                                 </li>
                               </ol>
@@ -3700,25 +3692,14 @@
                     data-live-search="true"
                     disabled="editControlModCtrl.groupedSelectRowCollection.rows.length === 0">
                     <li
-                      class="nya-bs-option"
-                      value="">
-                      <a>
-                        <span>
-                          {{'NOTHING_SELECTED' | translate}}
-                        </span>
-                        <span class="glyphicon glyphicon-ok check-mark">
-                        </span>
-                      </a>
-                    </li>
-                    <li
-                      nya-bs-option="groupedSelectRow in editControlModCtrl.groupedSelectRowCollection.rows group by groupedSelectRow.group"
-                      value="$index">
+                      nya-bs-option="row in editControlModCtrl.groupedSelectRowCollection.parents group by row.group"
+                      value="{referenceId: row.referenceId, name: row.option, uniqueValue: row.uniqueValue}">
                       <span class="dropdown-header">
-                        {{groupedSelectRow.group}}
+                        {{row.group}}
                       </span>
                       <a>
                         <span>
-                          {{groupedSelectRow.option}}
+                          {{row.option}}
                         </span>
                         <span class="glyphicon glyphicon-ok check-mark">
                         </span>

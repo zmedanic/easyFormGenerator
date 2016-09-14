@@ -32,7 +32,10 @@ const basicSelectTemplate = `
     ng-if="options.templateOptions.allowMultiple == 1"
     id="{{id}}"
     disabled="options.templateOptions.options.length === 0">
-    <li class="nya-bs-option" nya-bs-option="option in options.templateOptions.options">
+    <li
+      class="nya-bs-option"
+      nya-bs-option="option in options.templateOptions.options"
+      value="{referenceId: option.referenceId, name: option.name, uniqueValue: option.uniqueValue}">
       <a>{{option.name}}</a>
     </li>
   </ol>
@@ -43,7 +46,11 @@ const basicSelectTemplate = `
     multiple
     id="{{id}}"
     disabled="options.templateOptions.options.length === 0">
-    <li class="nya-bs-option" nya-bs-option="option in options.templateOptions.options">
+    <li
+      class="nya-bs-option"
+      nya-bs-option="option in options.templateOptions.options"
+      value="{referenceId: option.referenceId, name: option.name, uniqueValue: option.uniqueValue}"
+      ng-class="{disabled: options.templateOptions.allowMultiple > 1 && model[options.key || index].length >= options.templateOptions.allowMultiple && model[options.key || index].indexOf($index) == -1}">
       <a>{{option.name}}</a>
     </li>
   </ol>
@@ -56,7 +63,9 @@ const groupedSelectTemplate = `
     ng-if="options.templateOptions.allowMultiple == 1"
     data-live-search="true"
     disabled="options.templateOptions.options.length === 0">
-    <li nya-bs-option="option in  options.templateOptions.options group by option.group">
+    <li
+      nya-bs-option="option in options.templateOptions.options group by option.group"
+      value="{referenceId: option.referenceId, name: option.name, uniqueValue: option.uniqueValue}">
       <span class="dropdown-header">{{$group}}</span>
       <a>
         <span>{{option.name}}</span>
@@ -70,7 +79,10 @@ const groupedSelectTemplate = `
     multiple
     data-live-search="true"
     disabled="options.templateOptions.options.length === 0">
-    <li nya-bs-option="option in  options.templateOptions.options group by option.group">
+    <li
+      nya-bs-option="option in options.templateOptions.options group by option.group"
+      value="{referenceId: option.referenceId, name: option.name, uniqueValue: option.uniqueValue}"
+      ng-class="{disabled: options.templateOptions.allowMultiple > 1 && model[options.key || index].length >= options.templateOptions.allowMultiple && model[options.key || index].indexOf($index) == -1}">
       <span class="dropdown-header">{{$group}}</span>
       <a>
         <span>{{option.name}}</span>
