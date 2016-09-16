@@ -2,6 +2,7 @@ import {
   richTextTemplate,
   blankTemplate,
   subTitleTemplate,
+  radioTemplate,
   basicSelectTemplate,
   groupedSelectTemplate,
   datepickerTemplate,
@@ -32,6 +33,15 @@ function edaEasyFormViewerConfig(formlyConfigProvider) {
     {
       name    : 'subTitle',
       template: subTitleTemplate
+    }
+  );
+
+  formlyConfigProvider.setType(
+    {
+      name      : 'radio',
+      overwriteOk: true,
+      template  : radioTemplate,
+      wrapper   : ['bootstrapLabel', 'bootstrapHasError']
     }
   );
 

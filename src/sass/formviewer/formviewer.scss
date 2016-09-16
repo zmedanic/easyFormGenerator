@@ -1,15 +1,15 @@
 @import "formviewer_var.scss";
 @import "formviewer_mixins.scss";
 
-body { 
+body {
 	margin: 20px;
 	font-family: $font-family-roboto;
-} 
+}
 
 // textAngular div to apply a margin bottom
 .ta-scroll-window
 {
-  margin-bottom:16px;  
+  margin-bottom:16px;
 }
 
 /**
@@ -62,7 +62,7 @@ body {
   // top: -10px;
 }
 
-.error-messages.ng-leave, 
+.error-messages.ng-leave,
 .message.ng-leave,
 .validation.ng-leave {
   opacity: 1;
@@ -76,10 +76,11 @@ body {
   // top: -10px;
 }
 
+.help-block.help-inline {
+  display: inline-block;
+  margin: 0 auto;
+}
 
-
-
-
-
-
-
+.nya-bs-select.btn-group .dropdown-menu li a {
+  min-height: 20px;
+}

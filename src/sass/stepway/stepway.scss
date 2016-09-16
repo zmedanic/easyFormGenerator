@@ -690,10 +690,9 @@ easy customize animation from here : http://www.nganimate.org/angularjs/ng-repea
 
 .help-block.help-inline {
   display: inline-block;
+  margin: 0 auto;
 }
 
-
-
-
-
-
+.nya-bs-select.btn-group .dropdown-menu li a {
+  min-height: 20px;
+}

@@ -3,6 +3,7 @@ import {
 	richTextTemplate,
 	blankTemplate,
 	subTitleTemplate,
+  radioTemplate,
 	basicSelectTemplate,
 	groupedSelectTemplate,
 	datepickerTemplate,
@@ -37,13 +38,22 @@ function formlyConfig(formlyConfigProvider){
 		}
 	);
 
-	formlyConfigProvider.setType(
-		{
-			name 			: 'basicSelect',
-			template 	: basicSelectTemplate,
-			wrapper 	: ['bootstrapLabel', 'bootstrapHasError']
-		}
-	);
+  formlyConfigProvider.setType(
+    {
+      name      : 'radio',
+      overwriteOk: true,
+      template  : radioTemplate,
+      wrapper   : ['bootstrapLabel', 'bootstrapHasError']
+    }
+  );
+
+  formlyConfigProvider.setType(
+    {
+      name      : 'basicSelect',
+      template  : basicSelectTemplate,
+      wrapper   : ['bootstrapLabel', 'bootstrapHasError']
+    }
+  );
 
 	formlyConfigProvider.setType(
 		{

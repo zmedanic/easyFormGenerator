@@ -2281,14 +2281,13 @@
                         type="radio"
                         name="optionsRadios"
                         id="{{'optionsRadio-' + $index}}"
-                        value="$index"
-                        checked="">
+                        value="$index">
                         {{radioRow.option}}
-                      <p
+                      <span
                         ng-if="radioRow.description.length > 0"
                         class="help-block help-inline">
                         ({{radioRow.description}})
-                      </p>
+                      </span>
                     </label>
                   </div>
                   <p class="help-block">
@@ -2530,31 +2529,34 @@
               <div class="col-lg-9">
                 <div
                   class="">
-                  <div
+                   <div
                     class="radio">
                     <label>
                       <input
                         type="radio"
-                        name="optionsRadios"
+                        name="optionsRadiosDefaultValue"
                         ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyDefaultValue"
                         id="{{'optionsRadio-a'}}"
-                        value=""
-                        checked="true">
+                        value="">
                         {{'NOTHING_SELECTED' | translate}}
                     </label>
                   </div>
                   <div
                     class="radio"
-                    ng-repeat="radioRow in editControlModCtrl.radioRowCollection.rows">
+                    ng-repeat="row in editControlModCtrl.radioRowCollection.rows">
                     <label>
                       <input
                         type="radio"
-                        name="optionsRadios"
+                        name="optionsRadiosDefaultValue"
                         ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyDefaultValue"
-                        id="{{'optionsRadio-' + $index}}"
-                        value="{{$index}}"
-                        checked="false">
-                        {{radioRow.option}}
+                        id="{{'optionsRadioDefaultValue-' + $index}}"
+                        ng-value="row.referenceId || row.uniqueValue">
+                      {{row.option}}
+                      <span
+                        ng-if="row.description.length > 0"
+                        class="help-block help-inline">
+                        ({{row.description}})
+                      </span>
                     </label>
                   </div>
                   <p class="help-block">
@@ -2765,8 +2767,7 @@
                 <input
                   type="checkbox"
                   ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyDefaultValue"
-                  id="checkBox"
-                  checked="false">
+                  id="checkBox">
               </div>
             </div>
           </div>
@@ -2861,15 +2862,23 @@
                     disabled="editControlModCtrl.basicSelectRowCollection.rows.length === 0">
                     <li
                       class="nya-bs-option"
+                      ng-if="!editControlModCtrl.nyaSelect.temporyConfig.formlyRequired"
+                      value="">
+                      <a>{{'NOTHING_SELECTED' | translate}}</a>
+                    </li>
+                    <li
+                      class="nya-bs-option"
                       nya-bs-option="basicSelectRow in editControlModCtrl.basicSelectRowCollection.rows"
                       value="$index">
                       <a>
-                        {{basicSelectRow.option}}
-                        <p
+                        <span>
+                          {{basicSelectRow.option}}
+                        </span>
+                        <span
                           ng-if="basicSelectRow.description.length > 0"
                           class="help-block help-inline">
                           ({{basicSelectRow.description}})
-                        </p>
+                        </span>
                       </a>
                     </li>
                   </ol>
@@ -2886,12 +2895,14 @@
                       value="$index"
                       ng-class="{disabled: editControlModCtrl.nyaSelect.temporyConfig.allowMultiple > 1 && editControlModCtrl.modelbasicSelect.length >= editControlModCtrl.nyaSelect.temporyConfig.allowMultiple && editControlModCtrl.modelbasicSelect.indexOf($index) == -1}">
                       <a>
-                        {{basicSelectRow.option}}
-                        <p
+                        <span>
+                          {{basicSelectRow.option}}
+                        </span>
+                        <span
                           ng-if="basicSelectRow.description.length > 0"
                           class="help-block help-inline">
                           ({{basicSelectRow.description}})
-                        </p>
+                        </span>
                       </a>
                     </li>
                   </ol>
@@ -3163,22 +3174,35 @@
                 class="col-lg-3 control-label greyText editPropertiesLabel">
                 {{'DEFAULT_VALUE' | translate}} :
               </label>
-              <div class="col-lg-9">
-                <div class="">
-                  <ol
-                    class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
-                    ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyDefaultValue"
-                    id="basicSelect"
-                    disabled="editControlModCtrl.basicSelectRowCollection.rows.length === 0">
-                    <li
-                      nya-bs-option="row in editControlModCtrl.basicSelectRowCollection.parents"
-                      value="{referenceId: row.referenceId, name: row.option, uniqueValue: row.uniqueValue}">
-                      <a>
+              <div class="col-lg-6">
+                <ol
+                  class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyDefaultValue"
+                  id="basicSelect"
+                  disabled="editControlModCtrl.basicSelectRowCollection.rows.length === 0">
+                  <li
+                    class="nya-bs-option"
+                    nya-bs-option="row in editControlModCtrl.basicSelectRowCollection.rows"
+                    data-value="{referenceId: row.referenceId, name: row.option, uniqueValue: row.uniqueValue}">
+                    <a>
+                      <span>
                         {{row.option}}
-                      </a>
-                    </li>
-                  </ol>
-                </div>
+                      </span>
+                      <span
+                        ng-if="row.description.length > 0"
+                        class="help-block help-inline">
+                        ({{row.description}})
+                      </span>
+                    </a>
+                  </li>
+                </ol>
+              </div>
+              <div class="col-lg-3">
+                <button
+                  class="btn btn-warning"
+                  ng-click="editControlModCtrl.nyaSelect.temporyConfig.formlyDefaultValue=''">
+                    {{'RESET SELECTION' | translate}}
+                </button>
               </div>
             </div>
           </div>
@@ -3317,6 +3341,12 @@
                     data-live-search="true"
                     disabled="editControlModCtrl.groupedSelectRowCollection.rows.length === 0">
                     <li
+                      class="nya-bs-option"
+                      ng-if="!editControlModCtrl.nyaSelect.temporyConfig.formlyRequired"
+                      value="">
+                      <a>{{'NOTHING_SELECTED' | translate}}</a>
+                    </li>
+                    <li
                       nya-bs-option="groupedSelectRow in editControlModCtrl.groupedSelectRowCollection.rows group by groupedSelectRow.group"
                       value="$index">
                       <span class="dropdown-header">
@@ -3326,11 +3356,11 @@
                         <span>
                           {{groupedSelectRow.option}}
                         </span>
-                        <p
+                        <span
                           ng-if="groupedSelectRow.description.length > 0"
                           class="help-block help-inline">
                           ({{groupedSelectRow.description}})
-                        </p>
+                        </span>
                         <span class="glyphicon glyphicon-ok check-mark">
                         </span>
                       </a>
@@ -3354,11 +3384,11 @@
                         <span>
                           {{groupedSelectRow.option}}
                         </span>
-                        <p
+                        <span
                           ng-if="groupedSelectRow.description.length > 0"
                           class="help-block help-inline">
                           ({{groupedSelectRow.description}})
-                        </p>
+                        </span>
                         <span class="glyphicon glyphicon-ok check-mark">
                         </span>
                       </a>
@@ -3684,29 +3714,39 @@
                 class="col-lg-3 control-label greyText editPropertiesLabel">
                 {{'DEFAULT_VALUE' | translate}} :
               </label>
-              <div class="col-lg-9">
-                <div class="">
-                  <ol
-                    class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
-                    ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyDefaultValue"
-                    data-live-search="true"
-                    disabled="editControlModCtrl.groupedSelectRowCollection.rows.length === 0">
-                    <li
-                      nya-bs-option="row in editControlModCtrl.groupedSelectRowCollection.parents group by row.group"
-                      value="{referenceId: row.referenceId, name: row.option, uniqueValue: row.uniqueValue}">
-                      <span class="dropdown-header">
-                        {{row.group}}
+              <div class="col-lg-6">
+                <ol
+                  class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyDefaultValue"
+                  data-live-search="true"
+                  disabled="editControlModCtrl.groupedSelectRowCollection.rows.length === 0">
+                  <li
+                    nya-bs-option="row in editControlModCtrl.groupedSelectRowCollection.rows group by row.group"
+                    value="{referenceId: row.referenceId, name: row.option, uniqueValue: row.uniqueValue}">
+                    <span class="dropdown-header">
+                      {{row.group}}
+                    </span>
+                    <a>
+                      <span>
+                        {{row.option}}
                       </span>
-                      <a>
-                        <span>
-                          {{row.option}}
-                        </span>
-                        <span class="glyphicon glyphicon-ok check-mark">
-                        </span>
-                      </a>
-                    </li>
-                  </ol>
-                </div>
+                      <span
+                        ng-if="row.description.length > 0"
+                        class="help-block help-inline">
+                        ({{row.description}})
+                      </span>
+                      <span class="glyphicon glyphicon-ok check-mark">
+                      </span>
+                    </a>
+                  </li>
+                </ol>
+              </div>
+              <div class="col-lg-3">
+                <button
+                  class="btn btn-warning"
+                  ng-click="editControlModCtrl.nyaSelect.temporyConfig.formlyDefaultValue=''">
+                    {{'RESET SELECTION' | translate}}
+                </button>
               </div>
             </div>
           </div>

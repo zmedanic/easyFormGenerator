@@ -34,9 +34,22 @@ const basicSelectTemplate = `
     disabled="options.templateOptions.options.length === 0">
     <li
       class="nya-bs-option"
+      ng-if="!options.templateOptions.required"
+      data-value="">
+      <a>{{'NOTHING_SELECTED' | translate}}</a>
+    </li>
+    <li
+      class="nya-bs-option"
       nya-bs-option="option in options.templateOptions.options"
-      value="{referenceId: option.referenceId, name: option.name, uniqueValue: option.uniqueValue}">
-      <a>{{option.name}}</a>
+      data-value="{referenceId: option.referenceId, name: option.name, uniqueValue: option.uniqueValue}">
+      <a>
+        <span>{{option.name}}</span>
+        <span
+          ng-if="option.description.length > 0"
+          class="help-block help-inline">
+          ({{option.description}})
+        </span>
+      </a>
     </li>
   </ol>
   <ol
@@ -49,9 +62,16 @@ const basicSelectTemplate = `
     <li
       class="nya-bs-option"
       nya-bs-option="option in options.templateOptions.options"
-      value="{referenceId: option.referenceId, name: option.name, uniqueValue: option.uniqueValue}"
+      data-value="{referenceId: option.referenceId, name: option.name, uniqueValue: option.uniqueValue}"
       ng-class="{disabled: options.templateOptions.allowMultiple > 1 && model[options.key || index].length >= options.templateOptions.allowMultiple && model[options.key || index].indexOf($index) == -1}">
-      <a>{{option.name}}</a>
+      <a>
+        <span>{{option.name}}</span>
+        <span
+          ng-if="option.description.length > 0"
+          class="help-block help-inline">
+          ({{option.description}})
+        </span>
+      </a>
     </li>
   </ol>
 </div>`;
@@ -64,11 +84,22 @@ const groupedSelectTemplate = `
     data-live-search="true"
     disabled="options.templateOptions.options.length === 0">
     <li
+      class="nya-bs-option"
+      ng-if="!options.templateOptions.required"
+      data-value="">
+      <a>{{'NOTHING_SELECTED' | translate}}</a>
+    </li>
+    <li
       nya-bs-option="option in options.templateOptions.options group by option.group"
       value="{referenceId: option.referenceId, name: option.name, uniqueValue: option.uniqueValue}">
       <span class="dropdown-header">{{$group}}</span>
       <a>
         <span>{{option.name}}</span>
+        <span
+          ng-if="option.description.length > 0"
+          class="help-block help-inline">
+          ({{option.description}})
+        </span>
         <span class="glyphicon glyphicon-ok check-mark"></span>
       </a>
     </li>
@@ -86,6 +117,11 @@ const groupedSelectTemplate = `
       <span class="dropdown-header">{{$group}}</span>
       <a>
         <span>{{option.name}}</span>
+        <span
+          ng-if="option.description.length > 0"
+          class="help-block help-inline">
+          ({{option.description}})
+        </span>
         <span class="glyphicon glyphicon-ok check-mark"></span>
       </a>
     </li>
@@ -129,10 +165,34 @@ const validationTemplate = `
 				</div>
 			</div>`;
 
+const radioTemplate = `
+  <div class="radio-group">
+    <div
+      class="radio"
+      ng-repeat="option in options.templateOptions.options">
+      <label>
+        <input
+          type="radio"
+          ng-model="model[options.key]"
+          id="{{::id}}"
+          name="{{::id}}"
+          ng-value="option.referenceId || option.uniqueValue">
+        {{option.name}}
+        <p
+          ng-if="option.description.length > 0"
+          class="help-block help-inline">
+          ({{option.description}})
+        </p>
+      </label>
+    </div>
+  </div>
+`;
+
 export {
 	richTextTemplate,
 	blankTemplate,
 	subTitleTemplate,
+  radioTemplate,
 	basicSelectTemplate,
 	groupedSelectTemplate,
 	datepickerTemplate,
