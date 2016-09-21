@@ -74,7 +74,16 @@
 					.module('appDemo', [
 						'eda.easyFormViewer' //injects easy form viewer
 					])
+					.config(configFct)
 					.controller('demoController', demoController);
+
+				/**
+				 * config
+				 */
+				configFct.$inject = ['edaEasyFormViewerConfigProvider'];
+				function configFct(edaEasyFormViewerConfigProvider){
+	        edaEasyFormViewerConfigProvider.setLanguage('de');
+				}
 
 				demoController.$inject = ['$timeout'];
 				function demoController($timeout){
@@ -210,15 +219,15 @@
 											"key": "input-1441426295927",
 											"selectedControl": "Number",
 											"subtype": "number",
-											"defaultValue": 222,
 											"templateOptions": {
+												"defaultValue": 222,
 												"label": "password",
 												"required": true,
 												"description": "password",
 												"placeholder": "password",
 												"minValueOption": 1,
 												"maxValueOption": 550,
-												"incrementalOption": false,
+												"incrementalOption": true,
 												"options": []
 											},
 											"formlyExpressionProperties": {},
@@ -300,6 +309,10 @@
 											"selectedControl": "BasicSelect",
 											"subtype": "",
 											"templateOptions": {
+												"defaultValue": {
+													"referenceId": 56,
+													"name": "opt3"
+												},
 												"label": "",
 												"required": false,
 												"description": "",
@@ -307,18 +320,21 @@
 												"options": [
 													{
 														"name": "opt1",
-														"value": 0,
-														"group": ""
+														"value": "bb",
+														"group": "",
+														"referenceId": 54
 													},
 													{
 														"name": "opt2",
-														"value": 1,
-														"group": ""
+														"value": "cc",
+														"group": "",
+														"referenceId": 55
 													},
 													{
 														"name": "opt3",
-														"value": 2,
-														"group": ""
+														"value": "aa",
+														"group": "",
+														"referenceId": 56
 													}
 												]
 											},
@@ -329,7 +345,7 @@
 											},
 											"edited": true
 										}
-									}
+									},
 								]
 							},
 							{
@@ -389,6 +405,8 @@
 			<script src='./public/lib/js/textAngular.min.js'></script>
 			<!-- lodash -->
 			<script src='./public/lib/js/lodash.min.js'></script>
+			<!--angular-translate -->
+			<script type="text/javascript" src='./public/lib/js/angular-translate.min.js'></script>
 			<!-- angular animate -->
 			<script type="text/javascript" src="./public/lib/js/angular-animate.min.js"></script>
 			<!-- nya select bootstrap -->

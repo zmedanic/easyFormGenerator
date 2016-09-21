@@ -10,7 +10,7 @@ import {
 }                       from './eda.easyFormViewer.formly.template';
 
 
-function edaEasyFormViewerConfig(formlyConfigProvider) {
+function formlyConfig(formlyConfigProvider) {
   var initInjector = angular.injector(['ng']);
   var $window = initInjector.get('$window');
 
@@ -214,6 +214,6 @@ function edaEasyFormViewerConfig(formlyConfigProvider) {
 
 }
 
-edaEasyFormViewerConfig.$inject = ['formlyConfigProvider'];
+formlyConfig.$inject = ['formlyConfigProvider'];
 
-export default edaEasyFormViewerConfig;
+export default formlyConfig;

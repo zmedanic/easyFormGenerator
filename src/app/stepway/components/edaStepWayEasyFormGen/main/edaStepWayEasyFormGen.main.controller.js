@@ -226,7 +226,7 @@ class edaStepWayEasyFormGenController {
 
 		for (let i = 0; i < this.configuration.lines.length; i++) {
 			for (let j = 0; j < this.configuration.lines[i].columns.length; j++) {
-				if (typeof(this.configuration.lines[i].columns[j].control.templateOptions.parentId) === 'object') {
+				if (this.configuration.lines[i].columns[j].control.templateOptions && typeof(this.configuration.lines[i].columns[j].control.templateOptions.parentId) === 'object') {
 					let position = this.configuration.lines[i].columns[j].control.templateOptions.parentId.name.match(/([0-9]+)\,([0-9]+)/);
 					if (typeof(position) === 'object' && position[1] && position[2]) {
 						pos1 = parseInt(position[1]);

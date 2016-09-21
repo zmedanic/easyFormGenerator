@@ -1,10 +1,11 @@
 const CORE_MODULES = [
-	'textAngular',  
-	'formly',  
+	'textAngular',
+	'formly',
 	'ngAnimate',
-	'formlyBootstrap', 
-	'ui.bootstrap', 
-	'nya.bootstrap.select' 
+	'formlyBootstrap',
+	'ui.bootstrap',
+	'nya.bootstrap.select',
+  'pascalprecht.translate'
 ];
 
 const FORMVIEWER_CORE_MODULE_NAME = 'edaEasyFormViewerCore.module';

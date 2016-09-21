@@ -1106,7 +1106,7 @@ $__System.register('13', ['11', '12', '14', '15', '16'], function (_export) {
 
 						for (var i = 0; i < this.configuration.lines.length; i++) {
 							for (var j = 0; j < this.configuration.lines[i].columns.length; j++) {
-								if (typeof this.configuration.lines[i].columns[j].control.templateOptions.parentId === 'object') {
+								if (this.configuration.lines[i].columns[j].control.templateOptions && typeof this.configuration.lines[i].columns[j].control.templateOptions.parentId === 'object') {
 									var position = this.configuration.lines[i].columns[j].control.templateOptions.parentId.name.match(/([0-9]+)\,([0-9]+)/);
 									if (typeof position === 'object' && position[1] && position[2]) {
 										pos1 = parseInt(position[1]);
@@ -1726,27 +1726,27 @@ $__System.register('18', [], function (_export) {
 	};
 });
 $__System.register('19', ['13', '17', '18'], function (_export) {
-  /* global angular */
-  'use strict';
+                /* global angular */
+                'use strict';
 
-  var edaStepWayEasyFormGenController, STEP_WAY_MAIN_CONTROLLER_NAME, edaStepWayEasyFormGenDirective, STEP_WAY_DIRECTIVE_NAME, easyFormSteWayConfig, EASY_FORM_STEP_WAY_CONFIG_NAME, STEP_WAY_MAIN_MODULE;
-  return {
-    setters: [function (_) {
-      edaStepWayEasyFormGenController = _['default'];
-      STEP_WAY_MAIN_CONTROLLER_NAME = _.STEP_WAY_MAIN_CONTROLLER_NAME;
-    }, function (_2) {
-      edaStepWayEasyFormGenDirective = _2['default'];
-      STEP_WAY_DIRECTIVE_NAME = _2.STEP_WAY_DIRECTIVE_NAME;
-    }, function (_3) {
-      easyFormSteWayConfig = _3['default'];
-      EASY_FORM_STEP_WAY_CONFIG_NAME = _3.EASY_FORM_STEP_WAY_CONFIG_NAME;
-    }],
-    execute: function () {
-      STEP_WAY_MAIN_MODULE = 'easyFormStepwayMainModule';
+                var edaStepWayEasyFormGenController, STEP_WAY_MAIN_CONTROLLER_NAME, edaStepWayEasyFormGenDirective, STEP_WAY_DIRECTIVE_NAME, easyFormSteWayConfig, EASY_FORM_STEP_WAY_CONFIG_NAME, STEP_WAY_MAIN_MODULE;
+                return {
+                                setters: [function (_) {
+                                                edaStepWayEasyFormGenController = _['default'];
+                                                STEP_WAY_MAIN_CONTROLLER_NAME = _.STEP_WAY_MAIN_CONTROLLER_NAME;
+                                }, function (_2) {
+                                                edaStepWayEasyFormGenDirective = _2['default'];
+                                                STEP_WAY_DIRECTIVE_NAME = _2.STEP_WAY_DIRECTIVE_NAME;
+                                }, function (_3) {
+                                                easyFormSteWayConfig = _3['default'];
+                                                EASY_FORM_STEP_WAY_CONFIG_NAME = _3.EASY_FORM_STEP_WAY_CONFIG_NAME;
+                                }],
+                                execute: function () {
+                                                STEP_WAY_MAIN_MODULE = 'easyFormStepwayMainModule';
 
-      _export('default', angular.module(STEP_WAY_MAIN_MODULE, []).controller(STEP_WAY_MAIN_CONTROLLER_NAME, edaStepWayEasyFormGenController).directive(STEP_WAY_DIRECTIVE_NAME, edaStepWayEasyFormGenDirective).provider(EASY_FORM_STEP_WAY_CONFIG_NAME, easyFormSteWayConfig));
-    }
-  };
+                                                _export('default', angular.module(STEP_WAY_MAIN_MODULE, []).controller(STEP_WAY_MAIN_CONTROLLER_NAME, edaStepWayEasyFormGenController).directive(STEP_WAY_DIRECTIVE_NAME, edaStepWayEasyFormGenDirective).provider(EASY_FORM_STEP_WAY_CONFIG_NAME, easyFormSteWayConfig));
+                                }
+                };
 });
 $__System.register('14', ['15', '16'], function (_export) {
 	var _createClass, _classCallCheck, EDIT_MODAL_CONTROLLER_NAME, EDIT_MODAL_CONTROLLERAS_NAME, editControlModalController, toInject;
