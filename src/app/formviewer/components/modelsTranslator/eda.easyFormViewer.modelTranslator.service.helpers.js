@@ -110,7 +110,7 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 					messages: {
 						required: function(viewValue, modelValue, scope) {
 							var returnMsg = (scope.to.label ? scope.to.label : $translate.instant('FIELD')) + $translate.instant('VALIDATION_REQUIRED');
-							if (scope.to.required) return returnMsg;
+							return returnMsg;
 						}
 					}
 				}
@@ -166,7 +166,7 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 					messages: {
 						required: function(viewValue, modelValue, scope) {
 							var returnMsg = (scope.to.label ? scope.to.label : $translate.instant('FIELD')) + $translate.instant('VALIDATION_REQUIRED');
-							if (scope.to.required) return returnMsg;
+							return returnMsg;
 						}
 					}
 				}
@@ -236,7 +236,7 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 					messages: {
 						required: function(viewValue, modelValue, scope) {
 							var returnMsg = (scope.to.label ? scope.to.label : $translate.instant('FIELD')) + $translate.instant('VALIDATION_REQUIRED');
-							if (scope.to.required) return returnMsg;
+							return returnMsg;
 						}
 					}
 				}
@@ -491,7 +491,7 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 					messages: {
 						required: function(viewValue, modelValue, scope) {
 							var returnMsg = (scope.to.label ? scope.to.label : $translate.instant('FIELD')) + $translate.instant('VALIDATION_REQUIRED');
-							if (scope.to.required) return returnMsg;
+							return returnMsg;
 						}
 					}
 				}

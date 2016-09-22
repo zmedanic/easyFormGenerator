@@ -160,7 +160,9 @@ const validationTemplate = `
 							ng-messages="options.formControl.$error">
 					<div ng-messages-include="validation.html"></div>
 					<div ng-message="{{::name}}" ng-repeat="(name, message) in ::options.validation.messages">
-						{{message(options.formControl.$viewValue, options.formControl.$modelValue, this)}}
+            <div ng-if="options.formControl.$error[name]">
+						  {{message(options.formControl.$viewValue, options.formControl.$modelValue, this)}}
+            </div>
 					</div>
 				</div>
 			</div>`;
