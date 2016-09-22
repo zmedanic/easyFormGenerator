@@ -1,6 +1,6 @@
 /* global angular */
 
-const resetNyaSelect = (nyaSelectObj) => {
+const resetNyaSelect = (nyaSelectObj, $translate) => {
 
 	let newNyaSelectObj = {
 		controls : [
@@ -103,17 +103,13 @@ const resetNyaSelect = (nyaSelectObj) => {
 							var value = modelValue || viewValue;
 							return (scope.to.maxLengthOption) ? (value ? value.length : 0) <= parseInt(scope.to.maxLengthOption) : true;
 						},
-						message		: "to.label + \" size should have max \" + to.maxLengthOption + \" characters\""
+						message	: "(to.label ? to.label : (\"FIELD\" | translate)) + (\"VALIDATION_MAX_LENGTH\"| translate: \"{max: \" + to.maxLengthOption + \"}\")"
 					}
 				},
 				formlyValidation	: {
 					messages: {
 						required: function(viewValue, modelValue, scope) {
-							//return a required validation message :
-							//-> '<label as name> is required '
-							//-> or if not exists or empty just 'this field is required'
-							var defaultReturnMsg 	= "this Text input field is required";
-							var returnMsg 				= (typeof scope.to.label !== 'undefined') ? ((scope.to.label !== '') ? scope.to.label + ' is required' : defaultReturnMsg) : defaultReturnMsg;
+							var returnMsg = (scope.to.label ? scope.to.label : $translate.instant('FIELD')) + $translate.instant('VALIDATION_REQUIRED');
 							if (scope.to.required) return returnMsg;
 						}
 					}
@@ -153,7 +149,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 							var returnMax = (scope.to.maxValueOption) ? parseInt(value) <= parseInt(scope.to.maxValueOption) : true;
 							return returnMin && returnMax;
 						},
-						message	: "to.label + \" is limited to values (\" + to.minValueOption + \" - \" + to.maxValueOption + \")\""
+						message	: "(to.label ? to.label : (\"FIELD\" | translate)) + (\"VALIDATION_MIN_MAX\"| translate: \"{min: \" + to.minValueOption + \", max: \" + to.maxValueOption + \"}\")"
 					},
 					yearShape : {
 						expression : function(viewValue, modelValue, scope) {
@@ -163,17 +159,13 @@ const resetNyaSelect = (nyaSelectObj) => {
 							}
 							return true;
 						},
-						message	: "to.label + \" is not valid year (0 - 9999)\""
+						message	: "(to.label ? to.label : (\"FIELD\" | translate)) + (\"VALIDATION_YEAR\" | translate: \"{min: 0, max: 9999}\")"
 					}
 				},
 				formlyValidation	: {
 					messages: {
 						required: function(viewValue, modelValue, scope) {
-							//return a required validation message :
-							//-> '<label as name> is required '
-							//-> or if not exists or empty just 'this field is required'
-							var defaultReturnMsg 	= 'this Number field is required';
-							var returnMsg 				= (typeof scope.to.label !== 'undefined') ? ((scope.to.label !== '') ? scope.to.label + ' is required' : defaultReturnMsg) : defaultReturnMsg;
+							var returnMsg = (scope.to.label ? scope.to.label : $translate.instant('FIELD')) + $translate.instant('VALIDATION_REQUIRED');
 							if (scope.to.required) return returnMsg;
 						}
 					}
@@ -204,11 +196,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyValidation	: {
 					messages: {
 						required: function(viewValue, modelValue, scope) {
-							//return a required validation message :
-							//-> '<label as name> is required '
-							//-> or if not exists or empty just 'this field is required'
-							var defaultReturnMsg 	= 'this Password field is required';
-							var returnMsg 				= (typeof scope.to.label !== 'undefined') ? ((scope.to.label !== '') ? scope.to.label + ' is required' : defaultReturnMsg) : defaultReturnMsg;
+							var returnMsg = (scope.to.label ? scope.to.label : $translate.instant('FIELD')) + $translate.instant('VALIDATION_REQUIRED');
 							return returnMsg;
 						}
 					}
@@ -241,19 +229,13 @@ const resetNyaSelect = (nyaSelectObj) => {
 							var value = modelValue || viewValue;
 							return /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/.test(value);
 						},
-						message		: "$viewValue + \" is not a valid email\""
+						message	: "(to.label ? to.label : (\"FIELD\" | translate)) + (\"VALIDATION_EMAIL\" | translate)"
 					}
 				},
 				formlyValidation: {
 					messages: {
 						required: function(viewValue, modelValue, scope) {
-							//return a required validation message :
-							//-> '<label as name> is required '
-							//-> or if not exists or empty just 'this field is required'
-							var defaultReturnMsg 	= 'this Email field is required';
-							var returnMsg 				= (typeof scope.to.label !== 'undefined') ? ((scope.to.label !== '') ? scope.to.label + ' is required' : defaultReturnMsg) : defaultReturnMsg;
-							//check if validation is really dued to require validation
-							//and not another validation like emailShape validator
+							var returnMsg = (scope.to.label ? scope.to.label : $translate.instant('FIELD')) + $translate.instant('VALIDATION_REQUIRED');
 							if (scope.to.required) return returnMsg;
 						}
 					}
@@ -286,11 +268,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyValidation	: {
 					messages: {
 						required: function(viewValue, modelValue, scope) {
-							//return a required validation message :
-							//-> '<label as name> is required '
-							//-> or if not exists or empty just 'this field is required'
-							var defaultReturnMsg 	= 'this Date field is required';
-							var returnMsg 				= (typeof scope.to.label !== 'undefined') ? ((scope.to.label !== '') ? scope.to.label + ' is required' : defaultReturnMsg) : defaultReturnMsg;
+							var returnMsg = (scope.to.label ? scope.to.label : $translate.instant('FIELD')) + $translate.instant('VALIDATION_REQUIRED');
 							return returnMsg;
 						}
 					}
@@ -321,11 +299,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyValidation	: {
 					messages	: {
 						required: function(viewValue, modelValue, scope) {
-							//return a required validation message :
-							//-> '<label as name> is required '
-							//-> or if not exists or empty just 'this field is required'
-							var defaultReturnMsg 	= 'this Textarea field is required';
-							var returnMsg 				= (typeof scope.to.label !== 'undefined') ? ((scope.to.label !== '') ? scope.to.label + ' is required' : defaultReturnMsg) : defaultReturnMsg;
+							var returnMsg = (scope.to.label ? scope.to.label : $translate.instant('FIELD')) + $translate.instant('VALIDATION_REQUIRED');
 							return returnMsg;
 						}
 					}
@@ -356,11 +330,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyValidation	: {
 					messages: {
 						required: function(viewValue, modelValue, scope) {
-							//return a required validation message :
-							//-> '<label as name> is required '
-							//-> or if not exists or empty just 'this field is required'
-							var defaultReturnMsg	= 'this RichTextEditor field is required';
-							var returnMsg 				= (typeof scope.to.label !== 'undefined') ? ((scope.to.label !== '') ? scope.to.label + ' is required' : defaultReturnMsg) : defaultReturnMsg;
+							var returnMsg = (scope.to.label ? scope.to.label : $translate.instant('FIELD')) + $translate.instant('VALIDATION_REQUIRED');
 							return returnMsg;
 						}
 					}
@@ -393,11 +363,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyValidation	: {
 					messages: {
 						required: function(viewValue, modelValue, scope) {
-							//return a required validation message :
-							//-> '<label as name> is required '
-							//-> or if not exists or empty just 'this field is required'
-							var defaultReturnMsg 	= 'this Password field is required';
-							var returnMsg 				= (typeof scope.to.label !== 'undefined') ? ((scope.to.label !== '') ? scope.to.label + ' is required' : defaultReturnMsg) : defaultReturnMsg;
+							var returnMsg = (scope.to.label ? scope.to.label : $translate.instant('FIELD')) + $translate.instant('VALIDATION_REQUIRED');
 							return returnMsg;
 						}
 					}
@@ -428,11 +394,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyValidation	: {
 					messages: {
 						required: function(viewValue, modelValue, scope) {
-							//return a required validation message :
-							//-> '<label as name> is required '
-							//-> or if not exists or empty just 'this field is required'
-							var defaultReturnMsg 	= 'this Checkbox field is required';
-							var returnMsg 				= (typeof scope.to.label !== 'undefined') ? ((scope.to.label !== '') ? scope.to.label + ' is required' : defaultReturnMsg) : defaultReturnMsg;
+							var returnMsg = (scope.to.label ? scope.to.label : $translate.instant('FIELD')) + $translate.instant('VALIDATION_REQUIRED');
 							return returnMsg;
 						}
 					}
@@ -465,11 +427,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyValidation	: {
 					messages: {
 						required: function(viewValue, modelValue, scope) {
-							//return a required validation message :
-							//-> '<label as name> is required '
-							//-> or if not exists or empty just 'this field is required'
-							var defaultReturnMsg 	= 'this Basic select field is required';
-							var returnMsg 				= (typeof scope.to.label !== 'undefined') ? ((scope.to.label !== '') ? scope.to.label + ' is required' : defaultReturnMsg) : defaultReturnMsg;
+							var returnMsg = (scope.to.label ? scope.to.label : $translate.instant('FIELD')) + $translate.instant('VALIDATION_REQUIRED');
 							return returnMsg;
 						}
 					}
@@ -502,11 +460,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyValidation	: {
 					messages				: {
 						required	: function(viewValue, modelValue, scope) {
-							//return a required validation message :
-							//-> '<label as name> is required '
-							//-> or if not exists or empty just 'this field is required'
-							var defaultReturnMsg 	= 'this Grouped Select field is required';
-							var returnMsg 				= (typeof scope.to.label !== 'undefined') ? ((scope.to.label !== '') ? scope.to.label + ' is required' : defaultReturnMsg) : defaultReturnMsg;
+							var returnMsg = (scope.to.label ? scope.to.label : $translate.instant('FIELD')) + $translate.instant('VALIDATION_REQUIRED');
 							return returnMsg;
 						}
 					}
@@ -536,11 +490,7 @@ const resetNyaSelect = (nyaSelectObj) => {
 				formlyValidation	: {
 					messages: {
 						required: function(viewValue, modelValue, scope) {
-							//return a required validation message :
-							//-> '<label as name> is required '
-							//-> or if not exists or empty just 'this field is required'
-							var defaultReturnMsg 	= 'this Text input field is required';
-							var returnMsg 				= (typeof scope.to.label !== 'undefined') ? ((scope.to.label !== '') ? scope.to.label + ' is required' : defaultReturnMsg) : defaultReturnMsg;
+							var returnMsg = (scope.to.label ? scope.to.label : $translate.instant('FIELD')) + $translate.instant('VALIDATION_REQUIRED');
 							if (scope.to.required) return returnMsg;
 						}
 					}

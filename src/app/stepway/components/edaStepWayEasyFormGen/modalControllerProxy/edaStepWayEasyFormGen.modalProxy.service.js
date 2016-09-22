@@ -9,24 +9,25 @@ const CONTROLLER_MODAL_PROXY_SERVICE = '$modalProxy';
 
 class $modalProxy{
 
-	constructor(easyFormSteWayConfig) {
+	constructor(easyFormSteWayConfig, $translate) {
 		this.easyFormSteWayConfig	=	easyFormSteWayConfig;
+		this.$translate = $translate;
 		this.columnRemoved = false;
 		this.columnUpdated = false;
 	}
 
 	initNyaSelect(nyaSelectObj) {
-		return resetNyaSelect(nyaSelectObj);
+		return resetNyaSelect(nyaSelectObj, this.$translate);
 	}
 
 	getControlsDefinition() {
 		let controls = {};
-		resetNyaSelect(controls);
+		resetNyaSelect(controls, this.$translate);
 		return controls;
 	}
 
 	getNyASelectFromSelectedLineColumn(nyaSelectObj, configurationObj, indexLine, numcolumn) {
-		resetNyaSelect(nyaSelectObj);
+		resetNyaSelect(nyaSelectObj, this.$translate);
 		/**
 			* data send to modal controller
 			*/
@@ -312,12 +313,12 @@ class $modalProxy{
 
 	getFilteredNyaSelectObject(){
 		let newNyaSelectObj = {};
-		resetNyaSelect(newNyaSelectObj);
+		resetNyaSelect(newNyaSelectObj, this.$translate);
 		return angular.copy(this.filterDisabledControl(angular.copy(newNyaSelectObj)));
 		//return angular.copy(angular.copy(newNyaSelectObj));
 	}
 }
 
-$modalProxy.$inject= ['easyFormSteWayConfig'];
+$modalProxy.$inject= ['easyFormSteWayConfig', '$translate'];
 export default $modalProxy;
 export {CONTROLLER_MODAL_PROXY_SERVICE};

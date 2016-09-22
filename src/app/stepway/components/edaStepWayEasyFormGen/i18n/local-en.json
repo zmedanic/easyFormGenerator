@@ -110,5 +110,11 @@
     "ADD_EDIT_SHORT_LABEL_HERE" : "Add / edit short label here",
     "NUMBER_TYPE"         : "Number type",
     "ALLOW_EMPTY_OPTION"  : "Allow  empty option",
-    "RESET_SELECTION"     : "Reset selection"
+    "RESET_SELECTION"     : "Reset selection",
+    "FIELD"               : "Field",
+    "VALIDATION_REQUIRED" : " is required",
+    "VALIDATION_MIN_MAX"  : " is limited to values ({{min}} - {{max}})",
+    "VALIDATION_YEAR"     : " is not valid year ({{min}} - {{max}})",
+    "VALIDATION_EMAIL"    : " is not a valid email",
+    "VALIDATION_MAXLENGTH": " size should have max {{max}} characters"
 }

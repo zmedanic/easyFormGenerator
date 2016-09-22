@@ -358,7 +358,13 @@ $__System.registerDynamic("7", [], true, function($__require, exports, module) {
     "ADD_EDIT_SHORT_LABEL_HERE": "Add / edit short label here",
     "NUMBER_TYPE": "Number type",
     "ALLOW_EMPTY_OPTION": "Allow  empty option",
-    "RESET_SELECTION": "Reset selection"
+    "RESET_SELECTION": "Reset selection",
+    "FIELD": "Field",
+    "VALIDATION_REQUIRED": " is required",
+    "VALIDATION_MIN_MAX": " is limited to values ({{min}} - {{max}})",
+    "VALIDATION_YEAR": " is not valid year ({{min}} - {{max}})",
+    "VALIDATION_EMAIL": " is not a valid email",
+    "VALIDATION_MAXLENGTH": " size should have max {{max}} characters"
   };
   return module.exports;
 });
@@ -2310,7 +2316,7 @@ $__System.register('1b', [], function (_export) {
 	return {
 		setters: [],
 		execute: function () {
-			resetNyaSelect = function resetNyaSelect(nyaSelectObj) {
+			resetNyaSelect = function resetNyaSelect(nyaSelectObj, $translate) {
 
 				var newNyaSelectObj = {
 					controls: [{
@@ -2405,17 +2411,13 @@ $__System.register('1b', [], function (_export) {
 									var value = modelValue || viewValue;
 									return scope.to.maxLengthOption ? (value ? value.length : 0) <= parseInt(scope.to.maxLengthOption) : true;
 								},
-								message: "to.label + \" size should have max \" + to.maxLengthOption + \" characters\""
+								message: "(to.label ? to.label : (\"FIELD\" | translate)) + (\"VALIDATION_MAX_LENGTH\"| translate: \"{max: \" + to.maxLengthOption + \"}\")"
 							}
 						},
 						formlyValidation: {
 							messages: {
 								required: function required(viewValue, modelValue, scope) {
-									//return a required validation message :
-									//-> '<label as name> is required '
-									//-> or if not exists or empty just 'this field is required'
-									var defaultReturnMsg = "this Text input field is required";
-									var returnMsg = typeof scope.to.label !== 'undefined' ? scope.to.label !== '' ? scope.to.label + ' is required' : defaultReturnMsg : defaultReturnMsg;
+									var returnMsg = (scope.to.label ? scope.to.label : $translate.instant('FIELD')) + $translate.instant('VALIDATION_REQUIRED');
 									if (scope.to.required) return returnMsg;
 								}
 							}
@@ -2453,7 +2455,7 @@ $__System.register('1b', [], function (_export) {
 									var returnMax = scope.to.maxValueOption ? parseInt(value) <= parseInt(scope.to.maxValueOption) : true;
 									return returnMin && returnMax;
 								},
-								message: "to.label + \" is limited to values (\" + to.minValueOption + \" - \" + to.maxValueOption + \")\""
+								message: "(to.label ? to.label : (\"FIELD\" | translate)) + (\"VALIDATION_MIN_MAX\"| translate: \"{min: \" + to.minValueOption + \", max: \" + to.maxValueOption + \"}\")"
 							},
 							yearShape: {
 								expression: function expression(viewValue, modelValue, scope) {
@@ -2464,7 +2466,7 @@ $__System.register('1b', [], function (_export) {
 									}
 									return true;
 								},
-								message: "to.label + \" is not valid year (0 - 9999)\""
+								message: "(to.label ? to.label : (\"FIELD\" | translate)) + (\"VALIDATION_YEAR\" | translate: \"{min: 0, max: 9999}\")"
 							}
 						},
 						formlyAsyncValidators: {
@@ -2475,11 +2477,7 @@ $__System.register('1b', [], function (_export) {
 						formlyValidation: {
 							messages: {
 								required: function required(viewValue, modelValue, scope) {
-									//return a required validation message :
-									//-> '<label as name> is required '
-									//-> or if not exists or empty just 'this field is required'
-									var defaultReturnMsg = 'this Number field is required';
-									var returnMsg = typeof scope.to.label !== 'undefined' ? scope.to.label !== '' ? scope.to.label + ' is required' : defaultReturnMsg : defaultReturnMsg;
+									var returnMsg = (scope.to.label ? scope.to.label : $translate.instant('FIELD')) + $translate.instant('VALIDATION_REQUIRED');
 									if (scope.to.required) return returnMsg;
 								}
 							}
@@ -2508,11 +2506,7 @@ $__System.register('1b', [], function (_export) {
 						formlyValidation: {
 							messages: {
 								required: function required(viewValue, modelValue, scope) {
-									//return a required validation message :
-									//-> '<label as name> is required '
-									//-> or if not exists or empty just 'this field is required'
-									var defaultReturnMsg = 'this Password field is required';
-									var returnMsg = typeof scope.to.label !== 'undefined' ? scope.to.label !== '' ? scope.to.label + ' is required' : defaultReturnMsg : defaultReturnMsg;
+									var returnMsg = (scope.to.label ? scope.to.label : $translate.instant('FIELD')) + $translate.instant('VALIDATION_REQUIRED');
 									return returnMsg;
 								}
 							}
@@ -2544,19 +2538,13 @@ $__System.register('1b', [], function (_export) {
 									return (/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/.test(value)
 									);
 								},
-								message: "$viewValue + \" is not a valid email\""
+								message: "(to.label ? to.label : (\"FIELD\" | translate)) + (\"VALIDATION_EMAIL\" | translate)"
 							}
 						},
 						formlyValidation: {
 							messages: {
 								required: function required(viewValue, modelValue, scope) {
-									//return a required validation message :
-									//-> '<label as name> is required '
-									//-> or if not exists or empty just 'this field is required'
-									var defaultReturnMsg = 'this Email field is required';
-									var returnMsg = typeof scope.to.label !== 'undefined' ? scope.to.label !== '' ? scope.to.label + ' is required' : defaultReturnMsg : defaultReturnMsg;
-									//check if validation is really dued to require validation
-									//and not another validation like emailShape validator
+									var returnMsg = (scope.to.label ? scope.to.label : $translate.instant('FIELD')) + $translate.instant('VALIDATION_REQUIRED');
 									if (scope.to.required) return returnMsg;
 								}
 							}
@@ -2587,11 +2575,7 @@ $__System.register('1b', [], function (_export) {
 						formlyValidation: {
 							messages: {
 								required: function required(viewValue, modelValue, scope) {
-									//return a required validation message :
-									//-> '<label as name> is required '
-									//-> or if not exists or empty just 'this field is required'
-									var defaultReturnMsg = 'this Date field is required';
-									var returnMsg = typeof scope.to.label !== 'undefined' ? scope.to.label !== '' ? scope.to.label + ' is required' : defaultReturnMsg : defaultReturnMsg;
+									var returnMsg = (scope.to.label ? scope.to.label : $translate.instant('FIELD')) + $translate.instant('VALIDATION_REQUIRED');
 									return returnMsg;
 								}
 							}
@@ -2620,11 +2604,7 @@ $__System.register('1b', [], function (_export) {
 						formlyValidation: {
 							messages: {
 								required: function required(viewValue, modelValue, scope) {
-									//return a required validation message :
-									//-> '<label as name> is required '
-									//-> or if not exists or empty just 'this field is required'
-									var defaultReturnMsg = 'this Textarea field is required';
-									var returnMsg = typeof scope.to.label !== 'undefined' ? scope.to.label !== '' ? scope.to.label + ' is required' : defaultReturnMsg : defaultReturnMsg;
+									var returnMsg = (scope.to.label ? scope.to.label : $translate.instant('FIELD')) + $translate.instant('VALIDATION_REQUIRED');
 									return returnMsg;
 								}
 							}
@@ -2653,11 +2633,7 @@ $__System.register('1b', [], function (_export) {
 						formlyValidation: {
 							messages: {
 								required: function required(viewValue, modelValue, scope) {
-									//return a required validation message :
-									//-> '<label as name> is required '
-									//-> or if not exists or empty just 'this field is required'
-									var defaultReturnMsg = 'this RichTextEditor field is required';
-									var returnMsg = typeof scope.to.label !== 'undefined' ? scope.to.label !== '' ? scope.to.label + ' is required' : defaultReturnMsg : defaultReturnMsg;
+									var returnMsg = (scope.to.label ? scope.to.label : $translate.instant('FIELD')) + $translate.instant('VALIDATION_REQUIRED');
 									return returnMsg;
 								}
 							}
@@ -2688,11 +2664,7 @@ $__System.register('1b', [], function (_export) {
 						formlyValidation: {
 							messages: {
 								required: function required(viewValue, modelValue, scope) {
-									//return a required validation message :
-									//-> '<label as name> is required '
-									//-> or if not exists or empty just 'this field is required'
-									var defaultReturnMsg = 'this Password field is required';
-									var returnMsg = typeof scope.to.label !== 'undefined' ? scope.to.label !== '' ? scope.to.label + ' is required' : defaultReturnMsg : defaultReturnMsg;
+									var returnMsg = (scope.to.label ? scope.to.label : $translate.instant('FIELD')) + $translate.instant('VALIDATION_REQUIRED');
 									return returnMsg;
 								}
 							}
@@ -2721,11 +2693,7 @@ $__System.register('1b', [], function (_export) {
 						formlyValidation: {
 							messages: {
 								required: function required(viewValue, modelValue, scope) {
-									//return a required validation message :
-									//-> '<label as name> is required '
-									//-> or if not exists or empty just 'this field is required'
-									var defaultReturnMsg = 'this Checkbox field is required';
-									var returnMsg = typeof scope.to.label !== 'undefined' ? scope.to.label !== '' ? scope.to.label + ' is required' : defaultReturnMsg : defaultReturnMsg;
+									var returnMsg = (scope.to.label ? scope.to.label : $translate.instant('FIELD')) + $translate.instant('VALIDATION_REQUIRED');
 									return returnMsg;
 								}
 							}
@@ -2756,11 +2724,7 @@ $__System.register('1b', [], function (_export) {
 						formlyValidation: {
 							messages: {
 								required: function required(viewValue, modelValue, scope) {
-									//return a required validation message :
-									//-> '<label as name> is required '
-									//-> or if not exists or empty just 'this field is required'
-									var defaultReturnMsg = 'this Basic select field is required';
-									var returnMsg = typeof scope.to.label !== 'undefined' ? scope.to.label !== '' ? scope.to.label + ' is required' : defaultReturnMsg : defaultReturnMsg;
+									var returnMsg = (scope.to.label ? scope.to.label : $translate.instant('FIELD')) + $translate.instant('VALIDATION_REQUIRED');
 									return returnMsg;
 								}
 							}
@@ -2791,11 +2755,7 @@ $__System.register('1b', [], function (_export) {
 						formlyValidation: {
 							messages: {
 								required: function required(viewValue, modelValue, scope) {
-									//return a required validation message :
-									//-> '<label as name> is required '
-									//-> or if not exists or empty just 'this field is required'
-									var defaultReturnMsg = 'this Grouped Select field is required';
-									var returnMsg = typeof scope.to.label !== 'undefined' ? scope.to.label !== '' ? scope.to.label + ' is required' : defaultReturnMsg : defaultReturnMsg;
+									var returnMsg = (scope.to.label ? scope.to.label : $translate.instant('FIELD')) + $translate.instant('VALIDATION_REQUIRED');
 									return returnMsg;
 								}
 							}
@@ -2823,11 +2783,7 @@ $__System.register('1b', [], function (_export) {
 						formlyValidation: {
 							messages: {
 								required: function required(viewValue, modelValue, scope) {
-									//return a required validation message :
-									//-> '<label as name> is required '
-									//-> or if not exists or empty just 'this field is required'
-									var defaultReturnMsg = 'this Text input field is required';
-									var returnMsg = typeof scope.to.label !== 'undefined' ? scope.to.label !== '' ? scope.to.label + ' is required' : defaultReturnMsg : defaultReturnMsg;
+									var returnMsg = (scope.to.label ? scope.to.label : $translate.instant('FIELD')) + $translate.instant('VALIDATION_REQUIRED');
 									if (scope.to.required) return returnMsg;
 								}
 							}
@@ -3014,10 +2970,11 @@ $__System.register('1c', ['15', '16', '1b'], function (_export) {
 			CONTROLLER_MODAL_PROXY_SERVICE = '$modalProxy';
 
 			$modalProxy = (function () {
-				function $modalProxy(easyFormSteWayConfig) {
+				function $modalProxy(easyFormSteWayConfig, $translate) {
 					_classCallCheck(this, $modalProxy);
 
 					this.easyFormSteWayConfig = easyFormSteWayConfig;
+					this.$translate = $translate;
 					this.columnRemoved = false;
 					this.columnUpdated = false;
 				}
@@ -3025,19 +2982,19 @@ $__System.register('1c', ['15', '16', '1b'], function (_export) {
 				_createClass($modalProxy, [{
 					key: 'initNyaSelect',
 					value: function initNyaSelect(nyaSelectObj) {
-						return resetNyaSelect(nyaSelectObj);
+						return resetNyaSelect(nyaSelectObj, this.$translate);
 					}
 				}, {
 					key: 'getControlsDefinition',
 					value: function getControlsDefinition() {
 						var controls = {};
-						resetNyaSelect(controls);
+						resetNyaSelect(controls, this.$translate);
 						return controls;
 					}
 				}, {
 					key: 'getNyASelectFromSelectedLineColumn',
 					value: function getNyASelectFromSelectedLineColumn(nyaSelectObj, configurationObj, indexLine, numcolumn) {
-						resetNyaSelect(nyaSelectObj);
+						resetNyaSelect(nyaSelectObj, this.$translate);
 						/**
       	* data send to modal controller
       	*/
@@ -3328,7 +3285,7 @@ $__System.register('1c', ['15', '16', '1b'], function (_export) {
 					key: 'getFilteredNyaSelectObject',
 					value: function getFilteredNyaSelectObject() {
 						var newNyaSelectObj = {};
-						resetNyaSelect(newNyaSelectObj);
+						resetNyaSelect(newNyaSelectObj, this.$translate);
 						return angular.copy(this.filterDisabledControl(angular.copy(newNyaSelectObj)));
 						//return angular.copy(angular.copy(newNyaSelectObj));
 					}
@@ -3337,7 +3294,7 @@ $__System.register('1c', ['15', '16', '1b'], function (_export) {
 				return $modalProxy;
 			})();
 
-			$modalProxy.$inject = ['easyFormSteWayConfig'];
+			$modalProxy.$inject = ['easyFormSteWayConfig', '$translate'];
 
 			_export('default', $modalProxy);
 

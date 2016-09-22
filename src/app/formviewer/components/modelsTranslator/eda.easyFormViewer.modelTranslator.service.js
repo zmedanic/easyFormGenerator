@@ -17,13 +17,13 @@ const MODEL_TRANSLATOR_SERVICE = '$modelsTranslator';
 
 class $modelsTranslator{
 
-	constructor(){
-
+	constructor($translate){
+		this.$translate = $translate;
 	}
 
 
 	initNyaSelect(nyaSelectObj){
-		return resetNyaSelect(nyaSelectObj);
+		return resetNyaSelect(nyaSelectObj, this.$translate);
 	}
 
 	/**
@@ -37,7 +37,7 @@ class $modelsTranslator{
 		*/
 	getControlsDefinition(){
 		let controls = {};
-		resetNyaSelect(controls);
+		resetNyaSelect(controls, this.$translate);
 		return controls;
 	}
 
@@ -146,7 +146,7 @@ class $modelsTranslator{
 	}
 }
 
-$modelsTranslator.$inject = [];
+$modelsTranslator.$inject = ['$translate'];
 
 export default $modelsTranslator;
 
