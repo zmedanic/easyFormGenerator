@@ -1399,7 +1399,7 @@ $__System.register('1b', [], function (_export) {
 
 	'use strict';
 
-	var resetNyaSelect, getConfigurationModelInit, getEmptyConfigModelResult, resetDataModel, getErrorObject, getMessageObject, resetFormlyModel, extractTemplateOptionDescription, extractTemplateOptionPlaceholder, extractTemplateOptionType, extractTemplateOptionLabel, extractTemplateOptionLabelShort, extractTemplateOptionParentId, extractTemplateOptionReferenceId, extractTemplateOptionDatepickerOptions, extractTemplateOptionMaxLengthOption, extractTemplateOptionNumberType, extractTemplateOptionMinValueOption, extractTemplateOptionMaxValueOption, extractTemplateOptionIncrementalOption, extractTemplateOptionCurrentYearOption, extractTemplateOptionCurrentDateOption, extractTemplateOptionAllowEmptyOption, extractFormlyExpressionProperties, extractFormlyValidators, extractFormlyValidation, extractTemplateOptionRequired, extractTemplateOptionUnique, extractDefaultValue, extractTemplateOptionDisplayAddOption, extractTemplateOptionDisplayEditOption, extractTemplateOptionAllowMultiple, extractTemplateOptionOptions, addDatepickerOptionsProperty, addMaxLengthOptionProperty, addNumberTypeProperty, addMinValueOptionProperty, addMaxValueOptionProperty, addIncrementalOptionProperty, addCurrentYearOptionProperty, addCurrentDateOptionProperty, addAllowEmptyOptionProperty, addOneColumnHeader, addColumns;
+	var resetNyaSelect, getConfigurationModelInit, getEmptyConfigModelResult, resetDataModel, getErrorObject, getMessageObject, resetFormlyModel, extractTemplateOptionDescription, extractTemplateOptionPlaceholder, extractTemplateOptionType, extractTemplateOptionLabel, extractTemplateOptionLabelShort, extractTemplateOptionParentId, extractTemplateOptionReferenceId, extractTemplateOptionDatepickerOptions, extractTemplateOptionMaxLengthOption, extractTemplateOptionNumberType, extractTemplateOptionMinValueOption, extractTemplateOptionMaxValueOption, extractTemplateOptionIncrementalOption, extractTemplateOptionCurrentYearOption, extractTemplateOptionCurrentDateOption, extractTemplateOptionAllowEmptyOption, extractFormlyExpressionProperties, extractFormlyValidators, extractFormlyValidation, extractTemplateOptionRequired, extractTemplateOptionUnique, extractDefaultValue, extractTemplateOptionDisplayAddOption, extractTemplateOptionDisplayEditOption, extractTemplateOptionAllowMultiple, extractTemplateOptionOptions, extractTemplateEventOnChange, addDatepickerOptionsProperty, addMaxLengthOptionProperty, addNumberTypeProperty, addMinValueOptionProperty, addMaxValueOptionProperty, addIncrementalOptionProperty, addCurrentYearOptionProperty, addCurrentDateOptionProperty, addAllowEmptyOptionProperty, addOneColumnHeader, addColumns;
 
 	function addColumnControl(formlyModel, configurationModel, lineIndex, numberOfColumns, columnIndex, FieldGroup) {
 		var headerTemplateCol = {
@@ -1424,7 +1424,8 @@ $__System.register('1b', [], function (_export) {
 				description: extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[columnIndex].control),
 				options: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[columnIndex].control),
 				referenceId: extractTemplateOptionReferenceId(configurationModel.lines[lineIndex].columns[columnIndex].control),
-				parentId: extractTemplateOptionParentId(configurationModel.lines[lineIndex].columns[columnIndex].control)
+				parentId: extractTemplateOptionParentId(configurationModel.lines[lineIndex].columns[columnIndex].control),
+				onChange: extractTemplateEventOnChange(configurationModel.lines[lineIndex].columns[columnIndex].control)
 			},
 			expressionProperties: extractFormlyExpressionProperties(configurationModel.lines[lineIndex].columns[columnIndex].control),
 			validators: extractFormlyValidators(configurationModel.lines[lineIndex].columns[columnIndex].control),
@@ -1470,7 +1471,7 @@ $__System.register('1b', [], function (_export) {
 	return {
 		setters: [],
 		execute: function () {
-			resetNyaSelect = function resetNyaSelect(nyaSelectObj, $translate) {
+			resetNyaSelect = function resetNyaSelect(nyaSelectObj, $translate, $http) {
 
 				var newNyaSelectObj = {
 					controls: [{
@@ -1492,6 +1493,9 @@ $__System.register('1b', [], function (_export) {
 						formlyOptions: [],
 						parentId: '',
 						referenceId: '',
+						formlyEvents: {
+							onChange: ''
+						},
 						formlyExpressionProperties: {},
 						formlyValidators: {},
 						formlyValidation: {}
@@ -1514,6 +1518,9 @@ $__System.register('1b', [], function (_export) {
 						formlyOptions: [],
 						parentId: '',
 						referenceId: '',
+						formlyEvents: {
+							onChange: ''
+						},
 						formlyExpressionProperties: {},
 						formlyValidators: {},
 						formlyValidation: {}
@@ -1536,6 +1543,9 @@ $__System.register('1b', [], function (_export) {
 						formlyOptions: [],
 						parentId: '',
 						referenceId: '',
+						formlyEvents: {
+							onChange: ''
+						},
 						formlyExpressionProperties: {},
 						formlyValidators: {},
 						formlyValidation: {}
@@ -1559,6 +1569,9 @@ $__System.register('1b', [], function (_export) {
 						parentId: '',
 						referenceId: '',
 						maxLengthOption: '',
+						formlyEvents: {
+							onChange: ''
+						},
 						formlyExpressionProperties: {},
 						formlyValidators: {
 							textShape: {
@@ -1601,6 +1614,9 @@ $__System.register('1b', [], function (_export) {
 						maxValueOption: '',
 						incrementalOption: true,
 						currentYearOption: false,
+						formlyEvents: {
+							onChange: ''
+						},
 						formlyExpressionProperties: {},
 						formlyValidators: {
 							numberShape: {
@@ -1651,6 +1667,9 @@ $__System.register('1b', [], function (_export) {
 						formlyOptions: [],
 						parentId: '',
 						referenceId: '',
+						formlyEvents: {
+							onChange: ''
+						},
 						formlyExpressionProperties: {},
 						formlyValidators: {},
 						formlyValidation: {
@@ -1680,6 +1699,9 @@ $__System.register('1b', [], function (_export) {
 						formlyOptions: [],
 						parentId: '',
 						referenceId: '',
+						formlyEvents: {
+							onChange: ''
+						},
 						formlyExpressionProperties: {},
 						formlyValidators: {
 							emailShape: {
@@ -1720,6 +1742,9 @@ $__System.register('1b', [], function (_export) {
 						referenceId: '',
 						datepickerOptions: { format: 'dd-MMMM-yyyy' },
 						currentDateOption: false,
+						formlyEvents: {
+							onChange: ''
+						},
 						formlyExpressionProperties: {},
 						formlyValidators: {},
 						formlyValidation: {
@@ -1749,6 +1774,9 @@ $__System.register('1b', [], function (_export) {
 						formlyOptions: [],
 						parentId: '',
 						referenceId: '',
+						formlyEvents: {
+							onChange: ''
+						},
 						formlyExpressionProperties: {},
 						formlyValidators: {},
 						formlyValidation: {
@@ -1778,6 +1806,9 @@ $__System.register('1b', [], function (_export) {
 						formlyOptions: [],
 						parentId: '',
 						referenceId: '',
+						formlyEvents: {
+							onChange: ''
+						},
 						formlyExpressionProperties: {},
 						formlyValidators: {},
 						formlyValidation: {
@@ -1809,6 +1840,9 @@ $__System.register('1b', [], function (_export) {
 						formlyOptions: [],
 						parentId: '',
 						referenceId: '',
+						formlyEvents: {
+							onChange: ''
+						},
 						formlyExpressionProperties: {},
 						formlyValidators: {},
 						formlyValidation: {
@@ -1838,6 +1872,9 @@ $__System.register('1b', [], function (_export) {
 						formlyOptions: [],
 						parentId: '',
 						referenceId: '',
+						formlyEvents: {
+							onChange: ''
+						},
 						formlyExpressionProperties: {},
 						formlyValidators: {},
 						formlyValidation: {
@@ -1869,6 +1906,9 @@ $__System.register('1b', [], function (_export) {
 						formlyOptions: [],
 						parentId: '',
 						referenceId: '',
+						formlyEvents: {
+							onChange: ''
+						},
 						formlyExpressionProperties: {},
 						formlyValidators: {},
 						formlyValidation: {
@@ -1900,6 +1940,9 @@ $__System.register('1b', [], function (_export) {
 						formlyOptions: [],
 						parentId: '',
 						referenceId: '',
+						formlyEvents: {
+							onChange: ''
+						},
 						formlyExpressionProperties: {},
 						formlyValidators: {},
 						formlyValidation: {
@@ -1928,6 +1971,9 @@ $__System.register('1b', [], function (_export) {
 						formlyOptions: [],
 						parentId: '',
 						referenceId: '',
+						formlyEvents: {
+							onChange: ''
+						},
 						formlyExpressionProperties: {},
 						formlyValidators: {},
 						formlyValidation: {
@@ -1955,6 +2001,9 @@ $__System.register('1b', [], function (_export) {
 						formlyOptions: [],
 						parentId: '',
 						referenceId: '',
+						formlyEvents: {
+							onChange: ''
+						},
 						//expressions/validation fields
 						formlyExpressionProperties: {},
 						formlyValidators: {},
@@ -2157,6 +2206,10 @@ $__System.register('1b', [], function (_export) {
 				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.options !== 'undefined' ? obj.templateOptions.options : '' : '';
 			};
 
+			extractTemplateEventOnChange = function extractTemplateEventOnChange(obj) {
+				return typeof obj.templateOptions !== 'undefined' && typeof obj.formlyEvents !== 'undefined' && typeof obj.formlyEvents.onChange !== 'undefined' ? angular.copy(obj.formlyEvents.onChange) : '';
+			};
+
 			addDatepickerOptionsProperty = function addDatepickerOptionsProperty(fieldToPush, configurationModel, lineIndex, position) {
 				return fieldToPush.templateOptions.datepickerOptions = extractTemplateOptionDatepickerOptions(configurationModel.lines[lineIndex].columns[position].control);
 			};
@@ -2261,16 +2314,17 @@ $__System.register('1c', ['13', '14', '1b'], function (_export) {
 			MODEL_TRANSLATOR_SERVICE = '$modelsTranslator';
 
 			$modelsTranslator = (function () {
-				function $modelsTranslator($translate) {
+				function $modelsTranslator($translate, $http) {
 					_classCallCheck(this, $modelsTranslator);
 
 					this.$translate = $translate;
+					this.$http = $http;
 				}
 
 				_createClass($modelsTranslator, [{
 					key: 'initNyaSelect',
 					value: function initNyaSelect(nyaSelectObj) {
-						return resetNyaSelect(nyaSelectObj, this.$translate);
+						return resetNyaSelect(nyaSelectObj, this.$translate, this.$http);
 					}
 
 					/**
@@ -2286,7 +2340,7 @@ $__System.register('1c', ['13', '14', '1b'], function (_export) {
 					key: 'getControlsDefinition',
 					value: function getControlsDefinition() {
 						var controls = {};
-						resetNyaSelect(controls, this.$translate);
+						resetNyaSelect(controls, this.$translate, this.$http);
 						return controls;
 					}
 
@@ -2405,7 +2459,7 @@ $__System.register('1c', ['13', '14', '1b'], function (_export) {
 				return $modelsTranslator;
 			})();
 
-			$modelsTranslator.$inject = ['$translate'];
+			$modelsTranslator.$inject = ['$translate', '$http'];
 
 			_export('default', $modelsTranslator);
 

@@ -1,6 +1,6 @@
 /* global angular */
 
-const resetNyaSelect = (nyaSelectObj, $translate) => {
+const resetNyaSelect = (nyaSelectObj, $translate, $http) => {
 
 	let newNyaSelectObj = {
 		controls : [
@@ -23,6 +23,9 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 				formlyOptions			: [] ,
 				parentId					: '',
 				referenceId				: '',
+				formlyEvents: {
+					onChange 				: ''
+				},
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
 				formlyValidation	: {}
@@ -47,6 +50,9 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 				formlyOptions			: [] ,
 				parentId					: '',
 				referenceId				: '',
+				formlyEvents: {
+					onChange 				: ''
+				},
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
 				formlyValidation	: {}
@@ -71,6 +77,9 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 				formlyOptions			: [] ,
 				parentId					: '',
 				referenceId				: '',
+				formlyEvents: {
+					onChange 				: ''
+				},
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
 				formlyValidation	: {}
@@ -96,6 +105,9 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 				parentId					: '',
 				referenceId				: '',
 				maxLengthOption		: '',
+				formlyEvents: {
+					onChange 				: ''
+				},
 				formlyExpressionProperties: {},
 				formlyValidators 						: {
 					textShape : {
@@ -140,6 +152,9 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 				maxValueOption  	: '',
 				incrementalOption	: true,
 				currentYearOption	: false,
+				formlyEvents: {
+					onChange 				: ''
+				},
 				formlyExpressionProperties: {},
 				formlyValidators 						: {
 					numberShape : {
@@ -191,6 +206,9 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 				formlyOptions			: [] ,
 				parentId					: '',
 				referenceId				: '',
+				formlyEvents: {
+					onChange 				: ''
+				},
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
 				formlyValidation	: {
@@ -222,6 +240,9 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 				formlyOptions 							: [],
 				parentId										: '',
 				referenceId									: '',
+				formlyEvents: {
+					onChange 									: ''
+				},
 				formlyExpressionProperties 	: {},
 				formlyValidators 						: {
 					emailShape : {
@@ -263,6 +284,9 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 				referenceId				: '',
 				datepickerOptions	: {format : 'dd-MMMM-yyyy'},
 				currentDateOption	: false,
+				formlyEvents: {
+					onChange 				: ''
+				},
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
 				formlyValidation	: {
@@ -294,6 +318,9 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 				formlyOptions			: [],
 				parentId					: '',
 				referenceId				: '',
+				formlyEvents: {
+					onChange 				: ''
+				},
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
 				formlyValidation	: {
@@ -325,6 +352,9 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 				formlyOptions			: [],
 				parentId					: '',
 				referenceId				: '',
+				formlyEvents: {
+					onChange 				: ''
+				},
 				formlyExpressionProperties: {},
 				formlyValidators 					: {},
 				formlyValidation	: {
@@ -358,6 +388,9 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 				formlyOptions			: [],
 				parentId					: '',
 				referenceId				: '',
+				formlyEvents: {
+					onChange 				: ''
+				},
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
 				formlyValidation	: {
@@ -389,6 +422,9 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 				formlyOptions			: [],
 				parentId					: '',
 				referenceId				: '',
+				formlyEvents: {
+					onChange 				: ''
+				},
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
 				formlyValidation	: {
@@ -422,6 +458,9 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 				formlyOptions			: [],
 				parentId					: '',
 				referenceId				: '',
+				formlyEvents: {
+					onChange 				: ''
+				},
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
 				formlyValidation	: {
@@ -455,6 +494,9 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 				formlyOptions			: [],
 				parentId					: '',
 				referenceId				: '',
+				formlyEvents: {
+					onChange 				: ''
+				},
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
 				formlyValidation	: {
@@ -485,6 +527,9 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 				formlyOptions			: [] ,
 				parentId					: '',
 				referenceId				: '',
+				formlyEvents: {
+					onChange 				: ''
+				},
 				formlyExpressionProperties: {},
 				formlyValidators 	: {},
 				formlyValidation	: {
@@ -513,6 +558,9 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 			formlyOptions 		: [],
 			parentId					: '',
 			referenceId				: '',
+				formlyEvents: {
+					onChange 				: ''
+				},
 			//expressions/validation fields
 			formlyExpressionProperties: {},
 			formlyValidators	: {},
@@ -682,8 +730,9 @@ const extractTemplateOptionAllowMultiple = (obj) => typeof obj.templateOptions !
 
 const extractTemplateOptionOptions = (obj) => typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.options !== 'undefined'? obj.templateOptions.options: '') : '';
 
-const addDatepickerOptionsProperty = (fieldToPush, configurationModel,lineIndex, position) => fieldToPush.templateOptions.datepickerOptions = extractTemplateOptionDatepickerOptions(configurationModel.lines[lineIndex].columns[position].control);
+const extractTemplateEventOnChange = (obj) => typeof obj.templateOptions !== 'undefined' && typeof obj.formlyEvents !== 'undefined' && typeof obj.formlyEvents.onChange !== 'undefined' ? angular.copy(obj.formlyEvents.onChange) : '';
 
+const addDatepickerOptionsProperty = (fieldToPush, configurationModel,lineIndex, position) => fieldToPush.templateOptions.datepickerOptions = extractTemplateOptionDatepickerOptions(configurationModel.lines[lineIndex].columns[position].control);
 const addMaxLengthOptionProperty = (fieldToPush, configurationModel,lineIndex, position) => fieldToPush.templateOptions.maxLengthOption = extractTemplateOptionMaxLengthOption(configurationModel.lines[lineIndex].columns[position].control);
 const addNumberTypeProperty = (fieldToPush, configurationModel,lineIndex, position) => fieldToPush.templateOptions.numberType = extractTemplateOptionNumberType(configurationModel.lines[lineIndex].columns[position].control);
 const addMinValueOptionProperty = (fieldToPush, configurationModel,lineIndex, position) => fieldToPush.templateOptions.minValueOption = extractTemplateOptionMinValueOption(configurationModel.lines[lineIndex].columns[position].control);
@@ -736,7 +785,8 @@ function addColumnControl(formlyModel, configurationModel,lineIndex, numberOfCol
 			description 			: extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[columnIndex].control),
 			options 					: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[columnIndex].control),
 			referenceId 			: extractTemplateOptionReferenceId(configurationModel.lines[lineIndex].columns[columnIndex].control),
-			parentId    			: extractTemplateOptionParentId(configurationModel.lines[lineIndex].columns[columnIndex].control)
+			parentId    			: extractTemplateOptionParentId(configurationModel.lines[lineIndex].columns[columnIndex].control),
+			onChange    			: extractTemplateEventOnChange(configurationModel.lines[lineIndex].columns[columnIndex].control),
 		},
 		expressionProperties : extractFormlyExpressionProperties(configurationModel.lines[lineIndex].columns[columnIndex].control),
 		validators : extractFormlyValidators(configurationModel.lines[lineIndex].columns[columnIndex].control),
