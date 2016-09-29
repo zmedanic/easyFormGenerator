@@ -63,7 +63,7 @@ const basicSelectTemplate = `
       class="nya-bs-option"
       nya-bs-option="option in options.templateOptions.options"
       data-value="{referenceId: option.referenceId, name: option.name, uniqueValue: option.uniqueValue}"
-      ng-class="{disabled: options.templateOptions.allowMultiple > 1 && model[options.key || index].length >= options.templateOptions.allowMultiple && model[options.key || index].indexOf($index) == -1}">
+      ng-class="{disabled: isDisabled(model[options.key || index], option.uniqueValue, options)}">
       <a>
         <span>{{option.name}}</span>
         <span
@@ -113,7 +113,7 @@ const groupedSelectTemplate = `
     <li
       nya-bs-option="option in options.templateOptions.options group by option.group"
       value="{referenceId: option.referenceId, name: option.name, uniqueValue: option.uniqueValue}"
-      ng-class="{disabled: options.templateOptions.allowMultiple > 1 && model[options.key || index].length >= options.templateOptions.allowMultiple && model[options.key || index].indexOf($index) == -1}">
+      ng-class="{disabled: isDisabled(model[options.key || index], option.uniqueValue, options)}">
       <span class="dropdown-header">{{$group}}</span>
       <a>
         <span>{{option.name}}</span>

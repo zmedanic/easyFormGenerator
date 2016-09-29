@@ -135,8 +135,8 @@
 				/**
 				 * controller
 				 **/
-				demoController.$inject = ['$timeout', 'easyFormSteWayConfig'];
-				function demoController($timeout, easyFormSteWayConfig){
+				demoController.$inject = ['$timeout', 'easyFormSteWayConfig', '$http'];
+				function demoController($timeout, easyFormSteWayConfig, $http){
 					var demoCtrl = this;
 
 					demoCtrl.easyFormGeneratorModel	= {};
@@ -337,6 +337,25 @@
 												"currentYearOption": true,
 												"options": [],
 												"referenceId": 4
+											},
+											"formlyEvents": {
+												"onChange": function(viewValue, model, scope) {
+													console.log(viewValue);
+													console.log(model);
+													console.log(scope.model);
+													$http({
+														method: 'GET',
+														dataType: 'jsonp',
+														url: 'http://digital.local/record/find-value?id=1'
+													}).then(
+														function successCallback(response) {
+															console.log(response);
+														},
+														function errorCallback(response) {
+
+														}
+													);
+												}
 											},
 											"formlyExpressionProperties": {},
 											"formlyValidators": {

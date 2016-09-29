@@ -51,7 +51,25 @@ function formlyConfig(formlyConfigProvider){
     {
       name      : 'basicSelect',
       template  : basicSelectTemplate,
-      wrapper   : ['bootstrapLabel', 'bootstrapHasError']
+      wrapper   : ['bootstrapLabel', 'bootstrapHasError'],
+      controller: ['$scope', ($scope) => {
+        $scope.isDisabled = function(model, value, options) {
+          if (typeof model == "object") {
+            let optionSelected = true;
+
+            for (let i in model) {
+              if (model[i].uniqueValue === value) {
+                optionSelected = false;
+              }
+            }
+            let optionsMultiple = options.templateOptions.allowMultiple > 1;
+            let optionsLength = model.length >= options.templateOptions.allowMultiple
+            return optionSelected && optionsMultiple && optionsLength;
+          }
+
+          return false;
+        }
+      }]
     }
   );
 
@@ -59,7 +77,25 @@ function formlyConfig(formlyConfigProvider){
 		{
 			name 			: 'groupedSelect',
 			template 	: groupedSelectTemplate,
-			wrapper 	: ['bootstrapLabel', 'bootstrapHasError']
+			wrapper 	: ['bootstrapLabel', 'bootstrapHasError'],
+      controller: ['$scope', ($scope) => {
+        $scope.isDisabled = function(model, value, options) {
+          if (typeof model == "object") {
+            let optionSelected = true;
+
+            for (let i in model) {
+              if (model[i].uniqueValue === value) {
+                optionSelected = false;
+              }
+            }
+            let optionsMultiple = options.templateOptions.allowMultiple > 1;
+            let optionsLength = model.length >= options.templateOptions.allowMultiple
+            return optionSelected && optionsMultiple && optionsLength;
+          }
+
+          return false;
+        }
+      }]
 		}
 	);
 
