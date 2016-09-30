@@ -176,11 +176,10 @@ $__System.register('6', ['5'], function (_export) {
         el.on("change", function (changeEvent) {
           var file = changeEvent.target.files[0];
           if (file) {
-            // console.log('scope.id', scope.id);
             var fd = new FormData();
             // use key on backEnd
             fd.append('uploadFile', file);
-            scope.$emit('fileToUpload', fd);
+            scope.$emit('fileToUpload', fd, scope.id);
             var fileProp = {};
             for (var properties in file) {
               if (!angular.isFunction(file[properties])) {
