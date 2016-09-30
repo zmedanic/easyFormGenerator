@@ -60,13 +60,13 @@ class $modalProxy{
 			}
 
 			if (nyaSelectObj.temporyConfig.selectedControl === 'TextInput') {
-				nyaSelectObj.temporyConfig.maxLengthOption 		= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.maxLengthOption != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.maxLengthOption : '';
+				nyaSelectObj.temporyConfig.maxLengthOption 		= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.maxLengthOption != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.maxLengthOption : null;
 			}
 
 			if (nyaSelectObj.temporyConfig.selectedControl === 'Number') {
 				nyaSelectObj.temporyConfig.numberType 				= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.numberType != 'undefined' ? angular.copy(configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.numberType) : 'integer';
-				nyaSelectObj.temporyConfig.minValueOption 		= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.minValueOption != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.minValueOption : '';
-				nyaSelectObj.temporyConfig.maxValueOption 		= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.maxValueOption != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.maxValueOption : '';
+				nyaSelectObj.temporyConfig.minValueOption 		= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.minValueOption != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.minValueOption : null;
+				nyaSelectObj.temporyConfig.maxValueOption 		= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.maxValueOption != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.maxValueOption : null;
 				nyaSelectObj.temporyConfig.incrementalOption 	= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.incrementalOption != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.incrementalOption : false;
 				nyaSelectObj.temporyConfig.currentYearOption 	= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.currentYearOption != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.currentYearOption : false;
 			}

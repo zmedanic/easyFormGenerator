@@ -104,7 +104,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $http) => {
 				formlyOptions			: [] ,
 				parentId					: '',
 				referenceId				: '',
-				maxLengthOption		: '',
+				maxLengthOption		: null,
 				formlyEvents: {
 					onChange 				: ''
 				},
@@ -148,8 +148,8 @@ const resetNyaSelect = (nyaSelectObj, $translate, $http) => {
 				parentId					: '',
 				referenceId				: '',
 				numberType				: 'integer',
-				minValueOption		: '',
-				maxValueOption  	: '',
+				minValueOption		: null,
+				maxValueOption  	: null,
 				incrementalOption	: true,
 				currentYearOption	: false,
 				formlyEvents: {
@@ -160,8 +160,8 @@ const resetNyaSelect = (nyaSelectObj, $translate, $http) => {
 					numberShape : {
 						expression : function(viewValue, modelValue, scope) {
 							var value = modelValue || viewValue;
-							var returnMin = (scope.to.minValueOption) ? parseInt(value) >= parseInt(scope.to.minValueOption) : true;
-							var returnMax = (scope.to.maxValueOption) ? parseInt(value) <= parseInt(scope.to.maxValueOption) : true;
+							var returnMin = (scope.to.minValueOption && value) ? parseInt(value) >= parseInt(scope.to.minValueOption) : true;
+							var returnMax = (scope.to.maxValueOption && value) ? parseInt(value) <= parseInt(scope.to.maxValueOption) : true;
 							return returnMin && returnMax;
 						},
 						message	: "(to.label ? to.label : (\"FIELD\" | translate)) + (\"VALIDATION_MIN_MAX\"| translate: \"{min: \" + to.minValueOption + \", max: \" + to.maxValueOption + \"}\")"
@@ -701,10 +701,10 @@ const extractTemplateOptionReferenceId = (obj) => typeof obj.templateOptions !==
 
 const extractTemplateOptionDatepickerOptions = (obj) => typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.datepickerOptions !== 'undefined'? angular.copy(obj.templateOptions.datepickerOptions) : '') : '';
 
-const extractTemplateOptionMaxLengthOption = (obj) => typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.maxLengthOption !== 'undefined'? obj.templateOptions.maxLengthOption : '') : '';
+const extractTemplateOptionMaxLengthOption = (obj) => typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.maxLengthOption !== 'undefined'? obj.templateOptions.maxLengthOption : null) : null;
 const extractTemplateOptionNumberType = (obj)=> typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.numberType !== 'undefined'? angular.copy(obj.templateOptions.numberType) : 'integer') : 'integer';
-const extractTemplateOptionMinValueOption = (obj) => typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.minValueOption !== 'undefined'? obj.templateOptions.minValueOption : '') : '';
-const extractTemplateOptionMaxValueOption = (obj) => typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.maxValueOption !== 'undefined'? obj.templateOptions.maxValueOption : '') : '';
+const extractTemplateOptionMinValueOption = (obj) => typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.minValueOption !== 'undefined'? obj.templateOptions.minValueOption : null) : null;
+const extractTemplateOptionMaxValueOption = (obj) => typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.maxValueOption !== 'undefined'? obj.templateOptions.maxValueOption : null) : null;
 const extractTemplateOptionIncrementalOption = (obj) => typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.incrementalOption !== 'undefined'? obj.templateOptions.incrementalOption : false) : false;
 const extractTemplateOptionCurrentYearOption = (obj) => typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.currentYearOption !== 'undefined'? obj.templateOptions.currentYearOption : false) : false;
 const extractTemplateOptionCurrentDateOption = (obj) => typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.currentDateOption !== 'undefined'? obj.templateOptions.currentDateOption : false) : false;

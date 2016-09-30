@@ -2583,7 +2583,7 @@ $__System.register('1b', [], function (_export) {
 						formlyOptions: [],
 						parentId: '',
 						referenceId: '',
-						maxLengthOption: '',
+						maxLengthOption: null,
 						formlyExpressionProperties: {},
 						formlyValidators: {
 							textShape: {
@@ -2622,8 +2622,8 @@ $__System.register('1b', [], function (_export) {
 						parentId: '',
 						referenceId: '',
 						numberType: 'integer',
-						minValueOption: '',
-						maxValueOption: '',
+						minValueOption: null,
+						maxValueOption: null,
 						incrementalOption: false,
 						currentYearOption: false,
 						formlyExpressionProperties: {},
@@ -2631,8 +2631,8 @@ $__System.register('1b', [], function (_export) {
 							numberShape: {
 								expression: function expression(viewValue, modelValue, scope) {
 									var value = modelValue || viewValue;
-									var returnMin = scope.to.minValueOption ? parseInt(value) >= parseInt(scope.to.minValueOption) : true;
-									var returnMax = scope.to.maxValueOption ? parseInt(value) <= parseInt(scope.to.maxValueOption) : true;
+									var returnMin = scope.to.minValueOption && value ? parseInt(value) >= parseInt(scope.to.minValueOption) : true;
+									var returnMax = scope.to.maxValueOption && value ? parseInt(value) <= parseInt(scope.to.maxValueOption) : true;
 									return returnMin && returnMax;
 								},
 								message: "(to.label ? to.label : (\"FIELD\" | translate)) + (\"VALIDATION_MIN_MAX\"| translate: \"{min: \" + to.minValueOption + \", max: \" + to.maxValueOption + \"}\")"
@@ -3207,13 +3207,13 @@ $__System.register('1c', ['15', '16', '1b'], function (_export) {
 							}
 
 							if (nyaSelectObj.temporyConfig.selectedControl === 'TextInput') {
-								nyaSelectObj.temporyConfig.maxLengthOption = typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.maxLengthOption != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.maxLengthOption : '';
+								nyaSelectObj.temporyConfig.maxLengthOption = typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.maxLengthOption != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.maxLengthOption : null;
 							}
 
 							if (nyaSelectObj.temporyConfig.selectedControl === 'Number') {
 								nyaSelectObj.temporyConfig.numberType = typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.numberType != 'undefined' ? angular.copy(configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.numberType) : 'integer';
-								nyaSelectObj.temporyConfig.minValueOption = typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.minValueOption != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.minValueOption : '';
-								nyaSelectObj.temporyConfig.maxValueOption = typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.maxValueOption != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.maxValueOption : '';
+								nyaSelectObj.temporyConfig.minValueOption = typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.minValueOption != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.minValueOption : null;
+								nyaSelectObj.temporyConfig.maxValueOption = typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.maxValueOption != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.maxValueOption : null;
 								nyaSelectObj.temporyConfig.incrementalOption = typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.incrementalOption != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.incrementalOption : false;
 								nyaSelectObj.temporyConfig.currentYearOption = typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.currentYearOption != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.currentYearOption : false;
 							}
@@ -3638,15 +3638,15 @@ $__System.register('1e', [], function (_export) {
 			};
 
 			extractTemplateOptionMaxLengthOption = function extractTemplateOptionMaxLengthOption(obj) {
-				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.maxLengthOption !== 'undefined' ? obj.templateOptions.maxLengthOption : '' : '';
+				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.maxLengthOption !== 'undefined' ? obj.templateOptions.maxLengthOption : null : null;
 			};
 
 			extractTemplateOptionMinValueOption = function extractTemplateOptionMinValueOption(obj) {
-				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.minValueOption !== 'undefined' ? obj.templateOptions.minValueOption : '' : '';
+				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.minValueOption !== 'undefined' ? obj.templateOptions.minValueOption : null : null;
 			};
 
 			extractTemplateOptionMaxValueOption = function extractTemplateOptionMaxValueOption(obj) {
-				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.maxValueOption !== 'undefined' ? obj.templateOptions.maxValueOption : '' : '';
+				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.maxValueOption !== 'undefined' ? obj.templateOptions.maxValueOption : null : null;
 			};
 
 			extractTemplateOptionNumberType = function extractTemplateOptionNumberType(obj) {

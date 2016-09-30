@@ -90,15 +90,15 @@ const extractTemplateOptionDatepickerOptions= (obj)=>{
 };
 
 const extractTemplateOptionMaxLengthOption= (obj)=>{
-	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.maxLengthOption !== 'undefined'? obj.templateOptions.maxLengthOption: '') : '';
+	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.maxLengthOption !== 'undefined'? obj.templateOptions.maxLengthOption: null) : null;
 };
 
 const extractTemplateOptionMinValueOption= (obj)=>{
-	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.minValueOption !== 'undefined'? obj.templateOptions.minValueOption: '') : '';
+	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.minValueOption !== 'undefined'? obj.templateOptions.minValueOption: null) : null;
 };
 
 const extractTemplateOptionMaxValueOption= (obj)=>{
-	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.maxValueOption !== 'undefined'? obj.templateOptions.maxValueOption: '') : '';
+	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.maxValueOption !== 'undefined'? obj.templateOptions.maxValueOption: null) : null;
 };
 
 const extractTemplateOptionNumberType= (obj)=>{

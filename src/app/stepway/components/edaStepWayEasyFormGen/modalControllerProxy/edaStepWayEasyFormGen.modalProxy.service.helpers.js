@@ -94,7 +94,7 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 				formlyOptions			: [] ,
 				parentId					: '',
 				referenceId				: '',
-				maxLengthOption		: '',
+				maxLengthOption		: null,
 				formlyExpressionProperties: {},
 				formlyValidators 						: {
 					textShape : {
@@ -135,8 +135,8 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 				parentId					: '',
 				referenceId				: '',
 				numberType				: 'integer',
-				minValueOption		: '',
-				maxValueOption  	: '',
+				minValueOption		: null,
+				maxValueOption  	: null,
 				incrementalOption	: false,
 				currentYearOption	: false,
 				formlyExpressionProperties: {},
@@ -144,8 +144,8 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 					numberShape : {
 						expression : function(viewValue, modelValue, scope) {
 							var value = modelValue || viewValue;
-							var returnMin = (scope.to.minValueOption) ? parseInt(value) >= parseInt(scope.to.minValueOption) : true;
-							var returnMax = (scope.to.maxValueOption) ? parseInt(value) <= parseInt(scope.to.maxValueOption) : true;
+							var returnMin = (scope.to.minValueOption && value) ? parseInt(value) >= parseInt(scope.to.minValueOption) : true;
+							var returnMax = (scope.to.maxValueOption && value) ? parseInt(value) <= parseInt(scope.to.maxValueOption) : true;
 							return returnMin && returnMax;
 						},
 						message	: "(to.label ? to.label : (\"FIELD\" | translate)) + (\"VALIDATION_MIN_MAX\"| translate: \"{min: \" + to.minValueOption + \", max: \" + to.maxValueOption + \"}\")"

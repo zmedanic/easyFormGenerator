@@ -1603,7 +1603,7 @@ $__System.register('1b', [], function (_export) {
 						formlyOptions: [],
 						parentId: '',
 						referenceId: '',
-						maxLengthOption: '',
+						maxLengthOption: null,
 						formlyEvents: {
 							onChange: ''
 						},
@@ -1645,8 +1645,8 @@ $__System.register('1b', [], function (_export) {
 						parentId: '',
 						referenceId: '',
 						numberType: 'integer',
-						minValueOption: '',
-						maxValueOption: '',
+						minValueOption: null,
+						maxValueOption: null,
 						incrementalOption: true,
 						currentYearOption: false,
 						formlyEvents: {
@@ -1657,8 +1657,8 @@ $__System.register('1b', [], function (_export) {
 							numberShape: {
 								expression: function expression(viewValue, modelValue, scope) {
 									var value = modelValue || viewValue;
-									var returnMin = scope.to.minValueOption ? parseInt(value) >= parseInt(scope.to.minValueOption) : true;
-									var returnMax = scope.to.maxValueOption ? parseInt(value) <= parseInt(scope.to.maxValueOption) : true;
+									var returnMin = scope.to.minValueOption && value ? parseInt(value) >= parseInt(scope.to.minValueOption) : true;
+									var returnMax = scope.to.maxValueOption && value ? parseInt(value) <= parseInt(scope.to.maxValueOption) : true;
 									return returnMin && returnMax;
 								},
 								message: "(to.label ? to.label : (\"FIELD\" | translate)) + (\"VALIDATION_MIN_MAX\"| translate: \"{min: \" + to.minValueOption + \", max: \" + to.maxValueOption + \"}\")"
@@ -2170,7 +2170,7 @@ $__System.register('1b', [], function (_export) {
 			};
 
 			extractTemplateOptionMaxLengthOption = function extractTemplateOptionMaxLengthOption(obj) {
-				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.maxLengthOption !== 'undefined' ? obj.templateOptions.maxLengthOption : '' : '';
+				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.maxLengthOption !== 'undefined' ? obj.templateOptions.maxLengthOption : null : null;
 			};
 
 			extractTemplateOptionNumberType = function extractTemplateOptionNumberType(obj) {
@@ -2178,11 +2178,11 @@ $__System.register('1b', [], function (_export) {
 			};
 
 			extractTemplateOptionMinValueOption = function extractTemplateOptionMinValueOption(obj) {
-				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.minValueOption !== 'undefined' ? obj.templateOptions.minValueOption : '' : '';
+				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.minValueOption !== 'undefined' ? obj.templateOptions.minValueOption : null : null;
 			};
 
 			extractTemplateOptionMaxValueOption = function extractTemplateOptionMaxValueOption(obj) {
-				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.maxValueOption !== 'undefined' ? obj.templateOptions.maxValueOption : '' : '';
+				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.maxValueOption !== 'undefined' ? obj.templateOptions.maxValueOption : null : null;
 			};
 
 			extractTemplateOptionIncrementalOption = function extractTemplateOptionIncrementalOption(obj) {
