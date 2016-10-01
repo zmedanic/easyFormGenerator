@@ -105,6 +105,13 @@ function formlyConfig(formlyConfigProvider){
     name: 'upload',
     template  : uploadTemplate,
     wrapper: ['bootstrapLabel', 'bootstrapHasError'],
+    controller: ['$scope', ($scope) => {
+      $scope.deleteFile = function(referenceId) {
+        if (referenceId) {
+          $scope.$emit('fileDelete', referenceId);
+        }
+      }
+    }],
     link: function(scope, el, attrs) {
       el.on("change", function(changeEvent) {
         var file = changeEvent.target.files[0];
@@ -121,7 +128,7 @@ function formlyConfig(formlyConfigProvider){
           }
           scope.fc.$setViewValue(fileProp);
         } else {
-          scope.fc.$setViewValue(undefined);
+          scope.fc.$setViewValue('');
         }
       });
       el.on("focusout", (focusoutEvent) => {

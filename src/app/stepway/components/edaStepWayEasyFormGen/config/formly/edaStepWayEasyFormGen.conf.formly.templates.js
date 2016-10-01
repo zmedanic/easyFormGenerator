@@ -26,117 +26,121 @@ const subTitleTemplate = `
 
 const basicSelectTemplate = `
   <div class="row">
-    <ol
-      class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
-      ng-model="model[options.key || index]"
-      ng-if="options.templateOptions.allowMultiple == 1"
-      id="{{id}}"
-      disabled="options.templateOptions.options.length === 0">
-      <li
-        class="nya-bs-option"
-        ng-if="!options.templateOptions.required"
-        data-value="">
-        <a>{{'NOTHING_SELECTED' | translate}}</a>
-      </li>
-      <li
-        class="nya-bs-option"
-        nya-bs-option="option in options.templateOptions.options"
-        data-value="{referenceId: option.referenceId, name: option.name, uniqueValue: option.uniqueValue}">
-        <a>
-          <span>{{option.name}}</span>
-          <span
-            ng-if="option.description.length > 0"
-            class="help-block help-inline">
-            ({{option.description}})
-          </span>
-        </a>
-      </li>
-    </ol>
-    <ol
-      class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
-      ng-model="model[options.key || index]"
-      ng-if="options.templateOptions.allowMultiple != 1"
-      multiple
-      id="{{id}}"
-      disabled="options.templateOptions.options.length === 0">
-      <li
-        class="nya-bs-option"
-        nya-bs-option="option in options.templateOptions.options"
-        data-value="{referenceId: option.referenceId, name: option.name, uniqueValue: option.uniqueValue}"
-        ng-class="{disabled: isDisabled(model[options.key || index], option.uniqueValue, options)}">
-        <a>
-          <span>{{option.name}}</span>
-          <span
-            ng-if="option.description.length > 0"
-            class="help-block help-inline">
-            ({{option.description}})
-          </span>
-        </a>
-      </li>
-    </ol>
+    <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+      <ol
+        class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg-12"
+        ng-model="model[options.key || index]"
+        ng-if="options.templateOptions.allowMultiple == 1"
+        id="{{id}}"
+        disabled="options.templateOptions.options.length === 0">
+        <li
+          class="nya-bs-option"
+          ng-if="!options.templateOptions.required"
+          data-value="">
+          <a>{{'NOTHING_SELECTED' | translate}}</a>
+        </li>
+        <li
+          class="nya-bs-option"
+          nya-bs-option="option in options.templateOptions.options"
+          data-value="{referenceId: option.referenceId, name: option.name, uniqueValue: option.uniqueValue}">
+          <a>
+            <span>{{option.name}}</span>
+            <span
+              ng-if="option.description.length > 0"
+              class="help-block help-inline">
+              ({{option.description}})
+            </span>
+          </a>
+        </li>
+      </ol>
+      <ol
+        class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg-12"
+        ng-model="model[options.key || index]"
+        ng-if="options.templateOptions.allowMultiple != 1"
+        multiple
+        id="{{id}}"
+        disabled="options.templateOptions.options.length === 0">
+        <li
+          class="nya-bs-option"
+          nya-bs-option="option in options.templateOptions.options"
+          data-value="{referenceId: option.referenceId, name: option.name, uniqueValue: option.uniqueValue}"
+          ng-class="{disabled: isDisabled(model[options.key || index], option.uniqueValue, options)}">
+          <a>
+            <span>{{option.name}}</span>
+            <span
+              ng-if="option.description.length > 0"
+              class="help-block help-inline">
+              ({{option.description}})
+            </span>
+          </a>
+        </li>
+      </ol>
+    </div>
   </div>`;
 
 const groupedSelectTemplate = `
   <div class="row">
-    <ol class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
-      ng-model="model[options.key || index]"
-      ng-if="options.templateOptions.allowMultiple == 1"
-      data-live-search="true"
-      disabled="options.templateOptions.options.length === 0">
-      <li
-        class="nya-bs-option"
-        ng-if="!options.templateOptions.required"
-        data-value="">
-        <a>{{'NOTHING_SELECTED' | translate}}</a>
-      </li>
-      <li
-        nya-bs-option="option in options.templateOptions.options group by option.group"
-        value="{referenceId: option.referenceId, name: option.name, uniqueValue: option.uniqueValue}">
-        <span class="dropdown-header">{{$group}}</span>
-        <a>
-          <span>{{option.name}}</span>
-          <span
-            ng-if="option.description.length > 0"
-            class="help-block help-inline">
-            ({{option.description}})
-          </span>
-          <span class="glyphicon glyphicon-ok check-mark"></span>
-        </a>
-      </li>
-    </ol>
-    <ol class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
-      ng-model="model[options.key || index]"
-      ng-if="options.templateOptions.allowMultiple != 1"
-      multiple
-      data-live-search="true"
-      disabled="options.templateOptions.options.length === 0">
-      <li
-        nya-bs-option="option in options.templateOptions.options group by option.group"
-        value="{referenceId: option.referenceId, name: option.name, uniqueValue: option.uniqueValue}"
-        ng-class="{disabled: isDisabled(model[options.key || index], option.uniqueValue, options)}">
-        <span class="dropdown-header">{{$group}}</span>
-        <a>
-          <span>{{option.name}}</span>
-          <span
-            ng-if="option.description.length > 0"
-            class="help-block help-inline">
-            ({{option.description}})
-          </span>
-          <span class="glyphicon glyphicon-ok check-mark"></span>
-        </a>
-      </li>
-    </ol>
+    <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+      <ol class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg-12"
+        ng-model="model[options.key || index]"
+        ng-if="options.templateOptions.allowMultiple == 1"
+        data-live-search="true"
+        disabled="options.templateOptions.options.length === 0">
+        <li
+          class="nya-bs-option"
+          ng-if="!options.templateOptions.required"
+          data-value="">
+          <a>{{'NOTHING_SELECTED' | translate}}</a>
+        </li>
+        <li
+          nya-bs-option="option in options.templateOptions.options group by option.group"
+          value="{referenceId: option.referenceId, name: option.name, uniqueValue: option.uniqueValue}">
+          <span class="dropdown-header">{{$group}}</span>
+          <a>
+            <span>{{option.name}}</span>
+            <span
+              ng-if="option.description.length > 0"
+              class="help-block help-inline">
+              ({{option.description}})
+            </span>
+            <span class="glyphicon glyphicon-ok check-mark"></span>
+          </a>
+        </li>
+      </ol>
+      <ol class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg-12"
+        ng-model="model[options.key || index]"
+        ng-if="options.templateOptions.allowMultiple != 1"
+        multiple
+        data-live-search="true"
+        disabled="options.templateOptions.options.length === 0">
+        <li
+          nya-bs-option="option in options.templateOptions.options group by option.group"
+          value="{referenceId: option.referenceId, name: option.name, uniqueValue: option.uniqueValue}"
+          ng-class="{disabled: isDisabled(model[options.key || index], option.uniqueValue, options)}">
+          <span class="dropdown-header">{{$group}}</span>
+          <a>
+            <span>{{option.name}}</span>
+            <span
+              ng-if="option.description.length > 0"
+              class="help-block help-inline">
+              ({{option.description}})
+            </span>
+            <span class="glyphicon glyphicon-ok check-mark"></span>
+          </a>
+        </li>
+      </ol>
+    </div>
   </div>`;
 
 const datepickerTemplate = `
   <p class="input-group">
     <span class="input-group-btn">
-        <button
-          type="button"
-          class="btn btn-default"
-          ng-click="formlyDatePicker.open($event)">
-          <i class="glyphicon glyphicon-calendar"></i>
-        </button>
+      <button
+        type="button"
+        class="btn btn-default"
+        ng-click="formlyDatePicker.open($event)">
+        <i class="glyphicon glyphicon-calendar"></i>
+      </button>
     </span>
     <input
       type="text"
@@ -182,7 +186,9 @@ const uploadTemplate = `
             <a class="upload-files" href="{{file.path}}" target="_blank">{{file.name}}</a>
           </div>
           <div class="col-xs-2">
-            <button class="btn btn-xs btn-danger upload-files">X</button>
+            <button
+              class="btn btn-xs btn-danger upload-files"
+              ng-click="deleteFile(file.referenceId)">X</button>
           </div>
         </div>
       </div>
@@ -190,13 +196,16 @@ const uploadTemplate = `
     <div
       class="row"
       ng-if="options.templateOptions.allowMultiple == -1 || !(options.templateOptions.files && options.templateOptions.files.length >= options.templateOptions.allowMultiple)">
-      <input
-        type="file"
-        class="form-control"
-        ng-model="model[options.key]"
-        id="{{::id}}"
-        name="{{::id}}"
-      />
+      <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+        <input
+          type="file"
+          class="form-control"
+          ng-model="model[options.key]"
+          id="{{::id}}"
+          name="{{::id}}"
+        />
+      </div>
+    </div>
   </div>`;
 
 const validationTemplate = `
