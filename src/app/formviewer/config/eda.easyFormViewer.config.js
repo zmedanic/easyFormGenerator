@@ -6,8 +6,9 @@ import {
   basicSelectTemplate,
   groupedSelectTemplate,
   datepickerTemplate,
+  uploadTemplate,
   validationTemplate
-}                       from './eda.easyFormViewer.formly.template';
+} from './eda.easyFormViewer.formly.template';
 
 
 function formlyConfig(formlyConfigProvider) {
@@ -100,7 +101,7 @@ function formlyConfig(formlyConfigProvider) {
   // impplement from : http://jsbin.com/koredu/edit?js,output
   formlyConfigProvider.setType({
     name: 'upload',
-    extends: 'input',
+    template  : uploadTemplate,
     wrapper: ['bootstrapLabel', 'bootstrapHasError'],
     link: function(scope, el, attrs) {
       el.on("change", function(changeEvent) {
@@ -129,8 +130,10 @@ function formlyConfig(formlyConfigProvider) {
             scope.fc.$setUntouched();
           });
         } else {
-          // element losing focus so we trigger validation
-          scope.fc.$validate();
+          if (!angular.element(focusoutEvent.srcElement).hasClass("upload-list") && scope.fc) {
+            // element losing focus so we trigger validation
+            scope.fc.$validate();
+          }
         }
       });
     },
@@ -221,9 +224,6 @@ function formlyConfig(formlyConfigProvider) {
     }]
 
   });
-
-
-
 
 
   /**

@@ -56,7 +56,7 @@ $__System.register('4', ['3'], function (_export) {
 $__System.register("5", [], function (_export) {
   "use strict";
 
-  var richTextTemplate, blankTemplate, subTitleTemplate, basicSelectTemplate, groupedSelectTemplate, datepickerTemplate, validationTemplate, radioTemplate;
+  var richTextTemplate, blankTemplate, subTitleTemplate, basicSelectTemplate, groupedSelectTemplate, datepickerTemplate, radioTemplate, uploadTemplate, validationTemplate;
   return {
     setters: [],
     execute: function () {
@@ -65,9 +65,10 @@ $__System.register("5", [], function (_export) {
       subTitleTemplate = "\n  <div class=\"row\">\n    <div class=\"\">\n      <h4 class=\"text-center\">\n        {{options.templateOptions.label}}\n      </h4>\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"\">\n      {{options.templateOptions.description}}\n    </div>\n  </div>\n  <hr/>";
       basicSelectTemplate = "\n<div class=\"row\">\n  <ol\n    class=\"nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12\"\n    ng-model=\"model[options.key || index]\"\n    ng-if=\"options.templateOptions.allowMultiple == 1\"\n    id=\"{{id}}\"\n    disabled=\"options.templateOptions.options.length === 0\">\n    <li\n      class=\"nya-bs-option\"\n      ng-if=\"!options.templateOptions.required\"\n      data-value=\"\">\n      <a>{{'NOTHING_SELECTED' | translate}}</a>\n    </li>\n    <li\n      class=\"nya-bs-option\"\n      nya-bs-option=\"option in options.templateOptions.options\"\n      data-value=\"{referenceId: option.referenceId, name: option.name, uniqueValue: option.uniqueValue}\">\n      <a>\n        <span>{{option.name}}</span>\n        <span\n          ng-if=\"option.description.length > 0\"\n          class=\"help-block help-inline\">\n          ({{option.description}})\n        </span>\n      </a>\n    </li>\n  </ol>\n  <ol\n    class=\"nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12\"\n    ng-model=\"model[options.key || index]\"\n    ng-if=\"options.templateOptions.allowMultiple != 1\"\n    multiple\n    id=\"{{id}}\"\n    disabled=\"options.templateOptions.options.length === 0\">\n    <li\n      class=\"nya-bs-option\"\n      nya-bs-option=\"option in options.templateOptions.options\"\n      data-value=\"{referenceId: option.referenceId, name: option.name, uniqueValue: option.uniqueValue}\"\n      ng-class=\"{disabled: isDisabled(model[options.key || index], option.uniqueValue, options)}\">\n      <a>\n        <span>{{option.name}}</span>\n        <span\n          ng-if=\"option.description.length > 0\"\n          class=\"help-block help-inline\">\n          ({{option.description}})\n        </span>\n      </a>\n    </li>\n  </ol>\n</div>";
       groupedSelectTemplate = "\n<div class=\"row\">\n  <ol class=\"nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12\"\n    ng-model=\"model[options.key || index]\"\n    ng-if=\"options.templateOptions.allowMultiple == 1\"\n    data-live-search=\"true\"\n    disabled=\"options.templateOptions.options.length === 0\">\n    <li\n      class=\"nya-bs-option\"\n      ng-if=\"!options.templateOptions.required\"\n      data-value=\"\">\n      <a>{{'NOTHING_SELECTED' | translate}}</a>\n    </li>\n    <li\n      nya-bs-option=\"option in options.templateOptions.options group by option.group\"\n      value=\"{referenceId: option.referenceId, name: option.name, uniqueValue: option.uniqueValue}\">\n      <span class=\"dropdown-header\">{{$group}}</span>\n      <a>\n        <span>{{option.name}}</span>\n        <span\n          ng-if=\"option.description.length > 0\"\n          class=\"help-block help-inline\">\n          ({{option.description}})\n        </span>\n        <span class=\"glyphicon glyphicon-ok check-mark\"></span>\n      </a>\n    </li>\n  </ol>\n  <ol class=\"nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12\"\n    ng-model=\"model[options.key || index]\"\n    ng-if=\"options.templateOptions.allowMultiple != 1\"\n    multiple\n    data-live-search=\"true\"\n    disabled=\"options.templateOptions.options.length === 0\">\n    <li\n      nya-bs-option=\"option in options.templateOptions.options group by option.group\"\n      value=\"{referenceId: option.referenceId, name: option.name, uniqueValue: option.uniqueValue}\"\n      ng-class=\"{disabled: isDisabled(model[options.key || index], option.uniqueValue, options)}\">\n      <span class=\"dropdown-header\">{{$group}}</span>\n      <a>\n        <span>{{option.name}}</span>\n        <span\n          ng-if=\"option.description.length > 0\"\n          class=\"help-block help-inline\">\n          ({{option.description}})\n        </span>\n        <span class=\"glyphicon glyphicon-ok check-mark\"></span>\n      </a>\n    </li>\n  </ol>\n</div>";
-      datepickerTemplate = "\n  <p class=\"input-group\">\n    <span class=\"input-group-btn\">\n        <button\n          type=\"button\"\n          class=\"btn btn-default\"\n          ng-click=\"formlyDatePicker.open($event)\">\n          <i class=\"glyphicon glyphicon-calendar\"></i>\n        </button>\n    </span>\n    <input  type=\"text\"\n            id=\"{{::id}}\"\n            name=\"{{::id}}\"\n            ng-model=\"model[options.key]\"\n            class=\"form-control\"\n            ng-click=\"datepicker.open($event)\"\n            uib-datepicker-popup=\"{{to.datepickerOptions.format}}\"\n            is-open=\"datepicker.opened\"\n            datepicker-options=\"to.datepickerOptions\"\n    />\n  </p>\n  ";
-      validationTemplate = "\n\t<div class=\"formly-template-wrapper form-group\"\n\t\t\t\t\t\tng-class=\"{'has-error': options.validation.errorExistsAndShouldBeVisible}\">\n\t\t\t\t<formly-transclude></formly-transclude>\n\t\t\t\t<div class=\"validation\"\n\t\t\t\t\t\t\tng-if=\"options.validation.errorExistsAndShouldBeVisible\"\n\t\t\t\t\t\t\tng-messages=\"options.formControl.$error\">\n\t\t\t\t\t<div ng-messages-include=\"validation.html\"></div>\n\t\t\t\t\t<div ng-message=\"{{::name}}\" ng-repeat=\"(name, message) in ::options.validation.messages\">\n            <div ng-if=\"options.formControl.$error[name]\">\n\t\t\t\t\t\t  {{message(options.formControl.$viewValue, options.formControl.$modelValue, this)}}\n            </div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>";
-      radioTemplate = "\n  <div class=\"radio-group\">\n    <div\n      class=\"radio\"\n      ng-repeat=\"option in options.templateOptions.options\">\n      <label>\n        <input\n          type=\"radio\"\n          ng-model=\"model[options.key]\"\n          id=\"{{::id}}\"\n          name=\"{{::id}}\"\n          ng-value=\"option.referenceId || option.uniqueValue\">\n        {{option.name}}\n        <p\n          ng-if=\"option.description.length > 0\"\n          class=\"help-block help-inline\">\n          ({{option.description}})\n        </p>\n      </label>\n    </div>\n  </div>\n";
+      datepickerTemplate = "\n  <p class=\"input-group\">\n    <span class=\"input-group-btn\">\n        <button\n          type=\"button\"\n          class=\"btn btn-default\"\n          ng-click=\"formlyDatePicker.open($event)\">\n          <i class=\"glyphicon glyphicon-calendar\"></i>\n        </button>\n    </span>\n    <input\n      type=\"text\"\n      id=\"{{::id}}\"\n      name=\"{{::id}}\"\n      ng-model=\"model[options.key]\"\n      class=\"form-control\"\n      ng-click=\"datepicker.open($event)\"\n      uib-datepicker-popup=\"{{to.datepickerOptions.format}}\"\n      is-open=\"datepicker.opened\"\n      datepicker-options=\"to.datepickerOptions\"\n    />\n  </p>";
+      radioTemplate = "\n  <div class=\"radio-group\">\n    <div\n      class=\"radio\"\n      ng-repeat=\"option in options.templateOptions.options\">\n      <label>\n        <input\n          type=\"radio\"\n          ng-model=\"model[options.key]\"\n          id=\"{{::id}}\"\n          name=\"{{::id}}\"\n          ng-value=\"option.referenceId || option.uniqueValue\">\n        {{option.name}}\n        <p\n          ng-if=\"option.description.length > 0\"\n          class=\"help-block help-inline\">\n          ({{option.description}})\n        </p>\n      </label>\n    </div>\n  </div>";
+      uploadTemplate = "\n  <div>\n    <div ng-if=\"options.type == 'upload' && options.templateOptions.files\">\n      <div ng-repeat=\"file in options.templateOptions.files\">\n        <div class=\"row\">\n          <div class=\"col-xs-10\">\n            <a class=\"upload-files\" href=\"{{file.path}}\" target=\"_blank\">{{file.name}}</a>\n          </div>\n          <div class=\"col-xs-2\">\n            <button class=\"btn btn-xs btn-danger upload-files\">X</button>\n          </div>\n        </div>\n      </div>\n    </div>\n    <div\n      class=\"row\"\n      ng-if=\"options.templateOptions.allowMultiple == -1 || !(options.templateOptions.files && options.templateOptions.files.length >= options.templateOptions.allowMultiple)\">\n      <input\n        type=\"file\"\n        class=\"form-control\"\n        ng-model=\"model[options.key]\"\n        id=\"{{::id}}\"\n        name=\"{{::id}}\"\n      />\n  </div>";
+      validationTemplate = "\n  <div\n    class=\"formly-template-wrapper form-group\"\n    ng-class=\"{'has-error': options.validation.errorExistsAndShouldBeVisible}\">\n    <formly-transclude></formly-transclude>\n    <div class=\"validation\"\n      ng-if=\"options.validation.errorExistsAndShouldBeVisible\"\n      ng-messages=\"options.formControl.$error\">\n      <div ng-messages-include=\"validation.html\"></div>\n      <div ng-message=\"{{::name}}\" ng-repeat=\"(name, message) in ::options.validation.messages\">\n        <div ng-if=\"options.formControl.$error[name]\">\n          {{message(options.formControl.$viewValue, options.formControl.$modelValue, this)}}\n        </div>\n      </div>\n    </div>\n  </div>";
 
       _export("richTextTemplate", richTextTemplate);
 
@@ -83,6 +84,8 @@ $__System.register("5", [], function (_export) {
 
       _export("datepickerTemplate", datepickerTemplate);
 
+      _export("uploadTemplate", uploadTemplate);
+
       _export("validationTemplate", validationTemplate);
     }
   };
@@ -90,7 +93,7 @@ $__System.register("5", [], function (_export) {
 $__System.register('6', ['5'], function (_export) {
   'use strict';
 
-  var richTextTemplate, blankTemplate, subTitleTemplate, radioTemplate, basicSelectTemplate, groupedSelectTemplate, datepickerTemplate, validationTemplate;
+  var richTextTemplate, blankTemplate, subTitleTemplate, radioTemplate, basicSelectTemplate, groupedSelectTemplate, datepickerTemplate, uploadTemplate, validationTemplate;
 
   function formlyConfig(formlyConfigProvider) {
     var initInjector = angular.injector(['ng']);
@@ -170,7 +173,7 @@ $__System.register('6', ['5'], function (_export) {
     // impplement from : http://jsbin.com/koredu/edit?js,output
     formlyConfigProvider.setType({
       name: 'upload',
-      'extends': 'input',
+      template: uploadTemplate,
       wrapper: ['bootstrapLabel', 'bootstrapHasError'],
       link: function link(scope, el, attrs) {
         el.on("change", function (changeEvent) {
@@ -199,8 +202,10 @@ $__System.register('6', ['5'], function (_export) {
               scope.fc.$setUntouched();
             });
           } else {
-            // element losing focus so we trigger validation
-            scope.fc.$validate();
+            if (!angular.element(focusoutEvent.srcElement).hasClass("upload-list") && scope.fc) {
+              // element losing focus so we trigger validation
+              scope.fc.$validate();
+            }
           }
         });
       },
@@ -293,6 +298,7 @@ $__System.register('6', ['5'], function (_export) {
       basicSelectTemplate = _.basicSelectTemplate;
       groupedSelectTemplate = _.groupedSelectTemplate;
       datepickerTemplate = _.datepickerTemplate;
+      uploadTemplate = _.uploadTemplate;
       validationTemplate = _.validationTemplate;
     }],
     execute: function () {
@@ -1434,7 +1440,7 @@ $__System.register('1b', [], function (_export) {
 
 	'use strict';
 
-	var resetNyaSelect, getConfigurationModelInit, getEmptyConfigModelResult, resetDataModel, getErrorObject, getMessageObject, resetFormlyModel, extractTemplateOptionDescription, extractTemplateOptionPlaceholder, extractTemplateOptionType, extractTemplateOptionLabel, extractTemplateOptionLabelShort, extractTemplateOptionParentId, extractTemplateOptionReferenceId, extractTemplateOptionDatepickerOptions, extractTemplateOptionMaxLengthOption, extractTemplateOptionNumberType, extractTemplateOptionMinValueOption, extractTemplateOptionMaxValueOption, extractTemplateOptionIncrementalOption, extractTemplateOptionCurrentYearOption, extractTemplateOptionCurrentDateOption, extractTemplateOptionAllowEmptyOption, extractFormlyExpressionProperties, extractFormlyValidators, extractFormlyValidation, extractTemplateOptionRequired, extractTemplateOptionUnique, extractDefaultValue, extractTemplateOptionDisplayAddOption, extractTemplateOptionDisplayEditOption, extractTemplateOptionAllowMultiple, extractTemplateOptionOptions, extractTemplateEventOnChange, addDatepickerOptionsProperty, addMaxLengthOptionProperty, addNumberTypeProperty, addMinValueOptionProperty, addMaxValueOptionProperty, addIncrementalOptionProperty, addCurrentYearOptionProperty, addCurrentDateOptionProperty, addAllowEmptyOptionProperty, addOneColumnHeader, addColumns;
+	var resetNyaSelect, getConfigurationModelInit, getEmptyConfigModelResult, resetDataModel, getErrorObject, getMessageObject, resetFormlyModel, extractTemplateOptionDescription, extractTemplateOptionPlaceholder, extractTemplateOptionType, extractTemplateOptionLabel, extractTemplateOptionLabelShort, extractTemplateOptionParentId, extractTemplateOptionReferenceId, extractTemplateOptionDatepickerOptions, extractTemplateOptionMaxLengthOption, extractTemplateOptionNumberType, extractTemplateOptionMinValueOption, extractTemplateOptionMaxValueOption, extractTemplateOptionIncrementalOption, extractTemplateOptionCurrentYearOption, extractTemplateOptionCurrentDateOption, extractTemplateOptionAllowEmptyOption, extractTemplateOptionFiles, extractFormlyExpressionProperties, extractFormlyValidators, extractFormlyValidation, extractTemplateOptionRequired, extractTemplateOptionUnique, extractDefaultValue, extractTemplateOptionDisplayAddOption, extractTemplateOptionDisplayEditOption, extractTemplateOptionAllowMultiple, extractTemplateOptionOptions, extractTemplateEventOnChange, addDatepickerOptionsProperty, addMaxLengthOptionProperty, addNumberTypeProperty, addMinValueOptionProperty, addMaxValueOptionProperty, addIncrementalOptionProperty, addCurrentYearOptionProperty, addCurrentDateOptionProperty, addAllowEmptyOptionProperty, addFilesProperty, addOneColumnHeader, addColumns;
 
 	function addColumnControl(formlyModel, configurationModel, lineIndex, numberOfColumns, columnIndex, FieldGroup) {
 		var headerTemplateCol = {
@@ -1487,6 +1493,9 @@ $__System.register('1b', [], function (_export) {
 					addCurrentYearOptionProperty(controlCol, configurationModel, lineIndex, columnIndex);
 					break;
 			}
+		}
+		if (configurationModel.lines[lineIndex].columns[columnIndex].control.type === 'upload') {
+			addFilesProperty(controlCol, configurationModel, lineIndex, columnIndex);
 		}
 
 		var fildsWithOptions = ['basicSelect', 'groupedSelect', 'radio'];
@@ -2006,19 +2015,29 @@ $__System.register('1b', [], function (_export) {
 						formlyOptions: [],
 						parentId: '',
 						referenceId: '',
+						files: [],
 						formlyEvents: {
 							onChange: ''
 						},
 						formlyExpressionProperties: {},
-						formlyValidators: {},
-						formlyValidation: {
-							messages: {
-								required: function required(viewValue, modelValue, scope) {
-									var returnMsg = (scope.to.label ? scope.to.label : $translate.instant('FIELD')) + $translate.instant('VALIDATION_REQUIRED');
-									return returnMsg;
-								}
+						formlyValidators: {
+							required: {
+								expression: function expression(viewValue, modelValue, scope) {
+									var value = modelValue || viewValue;
+									var cnt = 0;
+									if (scope.to.files) {
+										cnt = scope.to.files.length;
+									}
+									if (cnt > 0 || value) {
+										return true;
+									} else {
+										return false;
+									}
+								},
+								message: "(to.label ? to.label : (\"FIELD\" | translate)) + (\"VALIDATION_REQUIRED\" | translate)"
 							}
-						}
+						},
+						formlyValidation: {}
 					}],
 					selectedControl: 'none',
 					temporyConfig: {
@@ -2201,6 +2220,10 @@ $__System.register('1b', [], function (_export) {
 				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.allowEmptyOption !== 'undefined' ? obj.templateOptions.allowEmptyOption : false : false;
 			};
 
+			extractTemplateOptionFiles = function extractTemplateOptionFiles(obj) {
+				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.files !== 'undefined' ? obj.templateOptions.files : [] : [];
+			};
+
 			extractFormlyExpressionProperties = function extractFormlyExpressionProperties(obj) {
 				return typeof obj.formlyExpressionProperties !== 'undefined' ? angular.copy(obj.formlyExpressionProperties) : {};
 			};
@@ -2279,6 +2302,10 @@ $__System.register('1b', [], function (_export) {
 
 			addAllowEmptyOptionProperty = function addAllowEmptyOptionProperty(fieldToPush, configurationModel, lineIndex, position) {
 				return fieldToPush.templateOptions.allowEmptyOption = extractTemplateOptionAllowEmptyOption(configurationModel.lines[lineIndex].columns[position].control);
+			};
+
+			addFilesProperty = function addFilesProperty(fieldToPush, configurationModel, lineIndex, position) {
+				return fieldToPush.templateOptions.files = extractTemplateOptionFiles(configurationModel.lines[lineIndex].columns[position].control);
 			};
 
 			addOneColumnHeader = function addOneColumnHeader(formlyModel, configurationModel, lineIndex) {

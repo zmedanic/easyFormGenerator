@@ -490,15 +490,24 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 				parentId					: '',
 				referenceId				: '',
 				formlyExpressionProperties: {},
-				formlyValidators 	: {},
-				formlyValidation	: {
-					messages: {
-						required: function(viewValue, modelValue, scope) {
-							var returnMsg = (scope.to.label ? scope.to.label : $translate.instant('FIELD')) + $translate.instant('VALIDATION_REQUIRED');
-							return returnMsg;
-						}
-					}
-				}
+				formlyValidators  : {
+					required : {
+						expression : function(viewValue, modelValue, scope) {
+							var value = modelValue || viewValue;
+							let cnt = 0;
+							if (scope.to.files) {
+								cnt = scope.to.files.length;
+							}
+							if (cnt > 0 || value) {
+								return true;
+							} else {
+								return false;
+							}
+						},
+						message	: "(to.label ? to.label : (\"FIELD\" | translate)) + (\"VALIDATION_REQUIRED\" | translate)"
+					},
+				},
+				formlyValidation	: {}
 			}
 		],
 		selectedControl : 'none' ,

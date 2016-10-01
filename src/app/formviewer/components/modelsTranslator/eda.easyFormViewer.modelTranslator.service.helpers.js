@@ -156,7 +156,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $http) => {
 					onChange 				: ''
 				},
 				formlyExpressionProperties: {},
-				formlyValidators 						: {
+				formlyValidators  : {
 					numberShape : {
 						expression : function(viewValue, modelValue, scope) {
 							var value = modelValue || viewValue;
@@ -527,19 +527,29 @@ const resetNyaSelect = (nyaSelectObj, $translate, $http) => {
 				formlyOptions			: [] ,
 				parentId					: '',
 				referenceId				: '',
+				files 						: [],
 				formlyEvents: {
 					onChange 				: ''
 				},
 				formlyExpressionProperties: {},
-				formlyValidators 	: {},
-				formlyValidation	: {
-					messages: {
-						required: function(viewValue, modelValue, scope) {
-							var returnMsg = (scope.to.label ? scope.to.label : $translate.instant('FIELD')) + $translate.instant('VALIDATION_REQUIRED');
-							return returnMsg;
-						}
-					}
-				}
+				formlyValidators  : {
+					required : {
+						expression : function(viewValue, modelValue, scope) {
+							var value = modelValue || viewValue;
+							let cnt = 0;
+							if (scope.to.files) {
+								cnt = scope.to.files.length;
+							}
+							if (cnt > 0 || value) {
+								return true;
+							} else {
+								return false;
+							}
+						},
+						message	: "(to.label ? to.label : (\"FIELD\" | translate)) + (\"VALIDATION_REQUIRED\" | translate)"
+					},
+				},
+				formlyValidation	: {}
 			}
 		],
 		selectedControl : 'none' ,
@@ -710,6 +720,8 @@ const extractTemplateOptionCurrentYearOption = (obj) => typeof obj.templateOptio
 const extractTemplateOptionCurrentDateOption = (obj) => typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.currentDateOption !== 'undefined'? obj.templateOptions.currentDateOption : false) : false;
 const extractTemplateOptionAllowEmptyOption = (obj) => typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.allowEmptyOption !== 'undefined'? obj.templateOptions.allowEmptyOption : false) : false;
 
+const extractTemplateOptionFiles = (obj) => typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.files !== 'undefined'? obj.templateOptions.files : []) : [];
+
 const extractFormlyExpressionProperties = (obj) => typeof obj.formlyExpressionProperties !== 'undefined' ? angular.copy(obj.formlyExpressionProperties) : {};
 
 const extractFormlyValidators = (obj) => typeof obj.formlyValidators !== 'undefined' ? angular.copy(obj.formlyValidators): {};
@@ -741,6 +753,8 @@ const addIncrementalOptionProperty = (fieldToPush, configurationModel,lineIndex,
 const addCurrentYearOptionProperty = (fieldToPush, configurationModel,lineIndex, position) => fieldToPush.templateOptions.currentYearOption = extractTemplateOptionCurrentYearOption(configurationModel.lines[lineIndex].columns[position].control);
 const addCurrentDateOptionProperty = (fieldToPush, configurationModel,lineIndex, position) => fieldToPush.templateOptions.currentDateOption = extractTemplateOptionCurrentDateOption(configurationModel.lines[lineIndex].columns[position].control);
 const addAllowEmptyOptionProperty = (fieldToPush, configurationModel,lineIndex, position) => fieldToPush.templateOptions.allowEmptyOption = extractTemplateOptionAllowEmptyOption(configurationModel.lines[lineIndex].columns[position].control);
+
+const addFilesProperty = (fieldToPush, configurationModel,lineIndex, position) => fieldToPush.templateOptions.files = extractTemplateOptionFiles(configurationModel.lines[lineIndex].columns[position].control);
 
 const addOneColumnHeader = (formlyModel, configurationModel,lineIndex) => {
 	/**
@@ -813,6 +827,9 @@ function addColumnControl(formlyModel, configurationModel,lineIndex, numberOfCol
 				addCurrentYearOptionProperty(controlCol, configurationModel,lineIndex, columnIndex);
 				break;
 		}
+	}
+	if (configurationModel.lines[lineIndex].columns[columnIndex].control.type === 'upload') {
+		addFilesProperty(controlCol, configurationModel,lineIndex, columnIndex);
 	}
 
 	let fildsWithOptions = ['basicSelect', 'groupedSelect', 'radio'];
