@@ -3737,7 +3737,7 @@ $__System.register('1e', [], function (_export) {
 
 	function defaultValueForMultiFields(type, defaultValue) {
 		var returnValue = defaultValue;
-		var multipleTypes = ['input', 'datepicker', 'textarea', 'richEditor', 'upload'];
+		var multipleTypes = ['input', 'datepicker', 'textarea', 'richEditor', 'upload', 'basicMultiSelect', 'groupedMultiSelect'];
 		if (multipleTypes.indexOf(type) !== -1) {
 			returnValue = [];
 			returnValue.push(defaultValue);
@@ -3752,9 +3752,9 @@ $__System.register('1e', [], function (_export) {
 			template: '<div class="row"><div class=""><h2 class="text-center">' + extractTemplateOptionLabel(configurationModel.lines[lineIndex].columns[columnIndex].control) + '</h2></div></div><div class="row"><div class="">' + extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[columnIndex].control) + '</div></div><hr/>'
 		};
 
+		var allowMultiple = extractTemplateOptionAllowMultiple(configurationModel.lines[lineIndex].columns[columnIndex].control);
 		var type = typeof configurationModel.lines[lineIndex].columns[columnIndex].control.type !== 'undefined' ? configurationModel.lines[lineIndex].columns[columnIndex].control.type === 'none' ? 'blank' : typeMultiSelect(configurationModel.lines[lineIndex].columns[columnIndex].control.type, allowMultiple) : 'blank';
 		var subtype = extractTemplateOptionType(configurationModel.lines[lineIndex].columns[columnIndex].control);
-		var allowMultiple = extractTemplateOptionAllowMultiple(configurationModel.lines[lineIndex].columns[columnIndex].control);
 
 		var controlCol = {
 			className: 'col-xs-' + 12 / numberOfColumns,

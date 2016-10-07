@@ -248,7 +248,7 @@ function typeMultiSelect(type, allowMultiple) {
 
 function defaultValueForMultiFields(type, defaultValue) {
 	let returnValue = defaultValue;
-	let multipleTypes = ['input', 'datepicker', 'textarea', 'richEditor', 'upload'];
+	let multipleTypes = ['input', 'datepicker', 'textarea', 'richEditor', 'upload', 'basicMultiSelect', 'groupedMultiSelect'];
 	if (multipleTypes.indexOf(type) !== -1) {
 		returnValue = [];
 		returnValue.push(defaultValue);
@@ -263,9 +263,9 @@ function addColumnControl(formlyModel, configurationModel,lineIndex, numberOfCol
 		template : `<div class="row"><div class=""><h2 class="text-center">${extractTemplateOptionLabel(configurationModel.lines[lineIndex].columns[columnIndex].control)}</h2></div></div><div class="row"><div class="">${extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[columnIndex].control)}</div></div><hr/>`
 	};
 
+	let allowMultiple = extractTemplateOptionAllowMultiple(configurationModel.lines[lineIndex].columns[columnIndex].control);
 	let type = typeof configurationModel.lines[lineIndex].columns[columnIndex].control.type !== 'undefined' ? (configurationModel.lines[lineIndex].columns[columnIndex].control.type === 'none' ? 'blank': typeMultiSelect(configurationModel.lines[lineIndex].columns[columnIndex].control.type, allowMultiple)) : 'blank';
 	let subtype = extractTemplateOptionType(configurationModel.lines[lineIndex].columns[columnIndex].control);
-	let allowMultiple = extractTemplateOptionAllowMultiple(configurationModel.lines[lineIndex].columns[columnIndex].control);
 
 	let controlCol = {
 		className			: 'col-xs-' + (12 / numberOfColumns),
