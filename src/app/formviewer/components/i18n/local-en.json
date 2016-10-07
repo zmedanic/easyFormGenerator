@@ -116,5 +116,8 @@
     "VALIDATION_MIN_MAX"  : " is limited to values ({{min}} - {{max}})",
     "VALIDATION_YEAR"     : " is not valid year ({{min}} - {{max}})",
     "VALIDATION_EMAIL"    : " is not a valid email",
-    "VALIDATION_MAXLENGTH": " size should have max {{max}} characters"
+    "VALIDATION_MAXLENGTH": " size should have max {{max}} characters",
+    "VALIDATION_DATE_INVALID" : " has invalid date",
+    "REMOVE"              : "Remove",
+    "ADD_NEW"             : "Add new"
 }

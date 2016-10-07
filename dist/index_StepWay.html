@@ -276,6 +276,7 @@
 											"selectedControl": "Upload",
 											"subtype": "file",
 											"templateOptions": {
+												"defaultValue": "",
 												"label": "Upload",
 												"required": false,
 												"description": "text input",
@@ -301,6 +302,7 @@
 											"selectedControl": "Number",
 											"subtype": "number",
 											"templateOptions": {
+												"defaultValue": "",
 												"label": "password",
 												"required": false,
 												"description": "password",
@@ -329,6 +331,7 @@
 											"selectedControl": "Number",
 											"subtype": "number",
 											"templateOptions": {
+												"defaultValue": "",
 												"label": "email",
 												"required": false,
 												"description": "email",
@@ -337,25 +340,6 @@
 												"currentYearOption": true,
 												"options": [],
 												"referenceId": 4
-											},
-											"formlyEvents": {
-												"onChange": function(viewValue, model, scope) {
-													console.log(viewValue);
-													console.log(model);
-													console.log(scope.model);
-													$http({
-														method: 'GET',
-														dataType: 'jsonp',
-														url: 'http://digital.local/record/find-value?id=1'
-													}).then(
-														function successCallback(response) {
-															console.log(response);
-														},
-														function errorCallback(response) {
-
-														}
-													);
-												}
 											},
 											"formlyExpressionProperties": {},
 											"formlyValidators": {
@@ -384,6 +368,8 @@
 											"selectedControl": "Date",
 											"subtype": "",
 											"templateOptions": {
+												"defaultValue": "",
+												"allowMultiple": 2,
 												"label": "date",
 												"required": false,
 												"description": "date",
@@ -410,7 +396,8 @@
 											"subtype": "",
 											"templateOptions": {
 												"label": "",
-												"required": false,
+												"allowMultiple": 1,
+												"required": true,
 												"description": "",
 												"placeholder": "",
 												"options": [
@@ -467,6 +454,7 @@
 											"selectedControl": "Email",
 											"subtype": "email",
 											"templateOptions": {
+												"defaultValue": "",
 												"label": "email",
 												"required": false,
 												"description": "email",
@@ -497,6 +485,7 @@
 											"selectedControl": "RichTextEditor",
 											"subtype": "",
 											"templateOptions": {
+												"defaultValue": "",
 												"label": "",
 												"required": false,
 												"description": "",

@@ -222,33 +222,36 @@ const resetNyaSelect = (nyaSelectObj, $translate, $http) => {
 		},
 
 			{
-				id 													: 'Email',
-				name 												: 'Email',
-				subtitle 										: 'Email',
-				group 											: 'input',
-				formlyType									: 'input',
-				formlySubtype 							: 'email',
-				formlyLabel 								: '',
-				formlyLabelShort						: '',
-				formlyRequired 							: false,
-				formlyUnique								: false,
-				formlyDefaultValue					: '',
-				displayAddOption						: true,
-				displayEditOption						: true,
-				allowMultiple								: 1,
-				formlyDesciption 						: '',
-				formlyOptions 							: [],
-				parentId										: '',
-				referenceId									: '',
+				id 								: 'Email',
+				name 							: 'Email',
+				subtitle 					: 'Email',
+				group 						: 'input',
+				formlyType				: 'input',
+				formlySubtype 		: 'email',
+				formlyLabel 			: '',
+				formlyLabelShort	: '',
+				formlyRequired 		: false,
+				formlyUnique			: false,
+				formlyDefaultValue: '',
+				displayAddOption	: true,
+				displayEditOption	: true,
+				allowMultiple			: 1,
+				formlyDesciption 	: '',
+				formlyOptions 		: [],
+				parentId					: '',
+				referenceId				: '',
 				formlyEvents: {
-					onChange 									: ''
+					onChange 				: ''
 				},
-				formlyExpressionProperties 	: {},
-				formlyValidators 						: {
+				formlyExpressionProperties : {},
+				formlyValidators 	: {
 					emailShape : {
 						expression : function(viewValue, modelValue) {
 							var value = modelValue || viewValue;
-							return /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/.test(value);
+							if (value) {
+								return /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/.test(value);
+							}
+							return true;
 						},
 						message	: "(to.label ? to.label : (\"FIELD\" | translate)) + (\"VALIDATION_EMAIL\" | translate)"
 					}
@@ -293,6 +296,10 @@ const resetNyaSelect = (nyaSelectObj, $translate, $http) => {
 					messages: {
 						required: function(viewValue, modelValue, scope) {
 							var returnMsg = (scope.to.label ? scope.to.label : $translate.instant('FIELD')) + $translate.instant('VALIDATION_REQUIRED');
+							return returnMsg;
+						},
+						date: function(viewValue, modelValue, scope) {
+							var returnMsg = (scope.to.label ? scope.to.label : $translate.instant('FIELD')) + $translate.instant('VALIDATION_DATE_INVALID');
 							return returnMsg;
 						}
 					}
@@ -568,9 +575,9 @@ const resetNyaSelect = (nyaSelectObj, $translate, $http) => {
 			formlyOptions 		: [],
 			parentId					: '',
 			referenceId				: '',
-				formlyEvents: {
-					onChange 				: ''
-				},
+			formlyEvents: {
+				onChange 				: ''
+			},
 			//expressions/validation fields
 			formlyExpressionProperties: {},
 			formlyValidators	: {},
@@ -776,30 +783,68 @@ const addOneColumnHeader = (formlyModel, configurationModel,lineIndex) => {
 	);
 };
 
+function checkIfCanDisplayMultiple(type, subtype) {
+	let multipleTypes = ['input', 'datepicker', 'textarea', 'richEditor', 'upload'];
+	return multipleTypes.indexOf(type) !== -1;
+}
+
+function typeMultiSelect(type, allowMultiple) {
+	if (allowMultiple != 1) {
+		switch (type) {
+			case 'basicSelect':
+				type = 'basicMultiSelect';
+				break;
+
+			case 'groupedSelect':
+				type = 'groupedMultiSelect';
+				break;
+		}
+	}
+
+	return type;
+}
+
+function defaultValueForMultiFields(type, defaultValue) {
+	let returnValue = defaultValue;
+	let multipleTypes = ['input', 'datepicker', 'textarea', 'richEditor', 'upload'];
+	if (multipleTypes.indexOf(type) !== -1) {
+		returnValue = [];
+		returnValue.push(defaultValue);
+	}
+
+	return returnValue;
+}
+
 function addColumnControl(formlyModel, configurationModel,lineIndex, numberOfColumns, columnIndex, FieldGroup) {
 	let headerTemplateCol = {
 		className: 'col-xs-' + (12 / numberOfColumns),
 		template : `<div class="row"><div class=""><h2 class="text-center">${extractTemplateOptionLabel(configurationModel.lines[lineIndex].columns[columnIndex].control)}</h2></div></div><div class="row"><div class="">${extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[columnIndex].control)}</div></div><hr/>`
 	};
 
+	let type = typeof configurationModel.lines[lineIndex].columns[columnIndex].control.type !== 'undefined' ? (configurationModel.lines[lineIndex].columns[columnIndex].control.type === 'none' ? 'blank': typeMultiSelect(configurationModel.lines[lineIndex].columns[columnIndex].control.type, allowMultiple)) : 'blank';
+	let subtype = extractTemplateOptionType(configurationModel.lines[lineIndex].columns[columnIndex].control);
+	let allowMultiple = extractTemplateOptionAllowMultiple(configurationModel.lines[lineIndex].columns[columnIndex].control);
+
 	let controlCol = {
 		className			: 'col-xs-' + (12 / numberOfColumns),
-		type					: typeof configurationModel.lines[lineIndex].columns[columnIndex].control.type !== 'undefined' ? (configurationModel.lines[lineIndex].columns[columnIndex].control.type === 'none' ? 'blank': configurationModel.lines[lineIndex].columns[columnIndex].control.type): 'blank',
+		type					: type,
 		key						: typeof configurationModel.lines[lineIndex].columns[columnIndex].control.key !== 'undefined' ?  configurationModel.lines[lineIndex].columns[columnIndex].control.key : 'blank' + Date.now(),
-		defaultValue 	: extractDefaultValue(configurationModel.lines[lineIndex].columns[columnIndex].control),
+		defaultValue 	: defaultValueForMultiFields(type, extractDefaultValue(configurationModel.lines[lineIndex].columns[columnIndex].control)),
 		templateOptions: {
-			type							: extractTemplateOptionType(configurationModel.lines[lineIndex].columns[columnIndex].control),
+			type							: subtype,
 			label							: extractTemplateOptionLabel(configurationModel.lines[lineIndex].columns[columnIndex].control),
 			required 					: extractTemplateOptionRequired(configurationModel.lines[lineIndex].columns[columnIndex].control),
 			unique 						: extractTemplateOptionUnique(configurationModel.lines[lineIndex].columns[columnIndex].control),
 			displayAddOption 	: extractTemplateOptionDisplayAddOption(configurationModel.lines[lineIndex].columns[columnIndex].control),
 			displayEditOption : extractTemplateOptionDisplayEditOption(configurationModel.lines[lineIndex].columns[columnIndex].control),
-			allowMultiple 		: extractTemplateOptionAllowMultiple(configurationModel.lines[lineIndex].columns[columnIndex].control),
+			allowMultiple 		: allowMultiple,
 			placeholder 			: extractTemplateOptionPlaceholder(configurationModel.lines[lineIndex].columns[columnIndex].control),
-			description 			: extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[columnIndex].control),
+			descriptionNew 		: extractTemplateOptionDescription(configurationModel.lines[lineIndex].columns[columnIndex].control),
+			description 			: '',
 			options 					: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[columnIndex].control),
 			referenceId 			: extractTemplateOptionReferenceId(configurationModel.lines[lineIndex].columns[columnIndex].control),
 			parentId    			: extractTemplateOptionParentId(configurationModel.lines[lineIndex].columns[columnIndex].control),
+			canDisplayMultiple: checkIfCanDisplayMultiple(type, subtype),
 			onChange    			: extractTemplateEventOnChange(configurationModel.lines[lineIndex].columns[columnIndex].control),
 		},
 		expressionProperties : extractFormlyExpressionProperties(configurationModel.lines[lineIndex].columns[columnIndex].control),

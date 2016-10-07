@@ -545,7 +545,7 @@ easy customize animation from here : http://www.nganimate.org/angularjs/ng-repea
   margin-bottom: 20px; }
 
 .validation {
-  position: absolute;
+  display: inline-block;
   font-size: .8em;
   color: #a94442; }
 

@@ -231,7 +231,10 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 					emailShape : {
 						expression : (viewValue, modelValue) => {
 							var value = modelValue || viewValue;
-							return /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/.test(value);
+							if (value) {
+								return /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/.test(value);
+							}
+							return true;
 						},
 						message	: "(to.label ? to.label : (\"FIELD\" | translate)) + (\"VALIDATION_EMAIL\" | translate)"
 					}
@@ -273,6 +276,10 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 					messages: {
 						required: function(viewValue, modelValue, scope) {
 							var returnMsg = (scope.to.label ? scope.to.label : $translate.instant('FIELD')) + $translate.instant('VALIDATION_REQUIRED');
+							return returnMsg;
+						},
+						date: function(viewValue, modelValue, scope) {
+							var returnMsg = (scope.to.label ? scope.to.label : $translate.instant('FIELD')) + $translate.instant('VALIDATION_DATE_INVALID');
 							return returnMsg;
 						}
 					}
