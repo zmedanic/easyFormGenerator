@@ -3741,7 +3741,7 @@ $__System.register('1e', [], function (_export) {
 	function defaultValueForMultiFields(type, defaultValue) {
 		var returnValue = defaultValue;
 		var multipleTypes = ['input', 'datepicker', 'textarea', 'richEditor', 'upload', 'basicMultiSelect', 'groupedMultiSelect'];
-		if (multipleTypes.indexOf(type) !== -1) {
+		if (multipleTypes.indexOf(type) !== -1 && typeof defaultValue[0] === "undefined") {
 			returnValue = [];
 			returnValue.push(defaultValue);
 		}
