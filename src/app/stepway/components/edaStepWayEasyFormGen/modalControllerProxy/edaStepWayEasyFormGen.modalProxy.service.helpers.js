@@ -505,7 +505,7 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 							if (scope.to.files) {
 								cnt = scope.to.files.length;
 							}
-							if (cnt > 0 || value) {
+							if (!scope.to.required || cnt > 0 || value) {
 								return true;
 							} else {
 								return false;
