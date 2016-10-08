@@ -30,7 +30,8 @@ const datepickerTemplate = `
         <button
           type="button"
           class="btn btn-default"
-          ng-click="formlyDatePicker.open($event, fieldIndex)">
+          ng-click="formlyDatePicker.open($event, fieldIndex)"
+        >
           <i class="glyphicon glyphicon-calendar"></i>
         </button>
       </span>
@@ -53,7 +54,8 @@ const textareaTemplate = `
     id="{{::id}}_{{fieldIndex}}"
     name="{{::id}}_{{fieldIndex}}"
     class="form-control"
-    ng-model="model[options.key][fieldIndex]">
+    ng-model="model[options.key][fieldIndex]"
+  >
   </textarea>`;
 
 const richTextTemplate = `
@@ -61,14 +63,16 @@ const richTextTemplate = `
     id="{{::id}}_{{fieldIndex}}"
     name="{{::id}}_{{fieldIndex}}"
     class="richTextAngular"
-    ng-model="model[options.key || index][fieldIndex]">
+    ng-model="model[options.key || index][fieldIndex]"
+  >
   </text-angular>`;
 
 const radioTemplate = `
   <div class="radio-group">
     <div
       ng-repeat="(key, option) in to.options"
-      ng-class="{ 'radio': !to.inline, 'radio-inline': to.inline }">
+      ng-class="{ 'radio': !to.inline, 'radio-inline': to.inline }"
+    >
       <label>
         <input
           type="radio"
@@ -80,7 +84,8 @@ const radioTemplate = `
         {{option[to.labelProp || 'name']}}
         <p
           ng-if="option.description.length > 0"
-          class="help-block help-inline">
+          class="help-block help-inline"
+        >
           ({{option.description}})
         </p>
       </label>
@@ -92,17 +97,20 @@ const basicSelectTemplate = `
     class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg-12"
     ng-model="model[options.key || index]"
     id="{{id}}"
-    disabled="options.templateOptions.options.length === 0">
+    disabled="options.templateOptions.options.length === 0"
+  >
     <li
       class="nya-bs-option"
       ng-if="!options.templateOptions.required"
-      data-value="">
+      data-value=""
+    >
       <a>{{'NOTHING_SELECTED' | translate}}</a>
     </li>
     <li
       class="nya-bs-option"
       nya-bs-option="option in options.templateOptions.options"
-      data-value="{referenceId: option.referenceId, name: option.name, uniqueValue: option.uniqueValue}">
+      data-value="{referenceId: option.referenceId, name: option.name, uniqueValue: option.uniqueValue}"
+    >
       <a>
         <span>{{option.name}}</span>
         <span
@@ -120,17 +128,20 @@ const basicMultiSelectTemplate = `
     ng-model="model[options.key || index]"
     multiple
     id="{{id}}"
-    disabled="options.templateOptions.options.length === 0">
+    disabled="options.templateOptions.options.length === 0"
+  >
     <li
       class="nya-bs-option"
       nya-bs-option="option in options.templateOptions.options"
       data-value="{referenceId: option.referenceId, name: option.name, uniqueValue: option.uniqueValue}"
-      ng-class="{disabled: isDisabled(model[options.key || index], option.uniqueValue, options)}">
+      ng-class="{disabled: isDisabled(model[options.key || index], option.uniqueValue, options)}"
+    >
       <a>
         <span>{{option.name}}</span>
         <span
           ng-if="option.description.length > 0"
-          class="help-block help-inline">
+          class="help-block help-inline"
+        >
           ({{option.description}})
         </span>
       </a>
@@ -141,22 +152,26 @@ const groupedSelectTemplate = `
   <ol class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg-12"
     ng-model="model[options.key || index]"
     data-live-search="true"
-    disabled="options.templateOptions.options.length === 0">
+    disabled="options.templateOptions.options.length === 0"
+  >
     <li
       class="nya-bs-option"
       ng-if="!options.templateOptions.required"
-      data-value="">
+      data-value=""
+    >
       <a>{{'NOTHING_SELECTED' | translate}}</a>
     </li>
     <li
       nya-bs-option="option in options.templateOptions.options group by option.group"
-      value="{referenceId: option.referenceId, name: option.name, uniqueValue: option.uniqueValue}">
+      value="{referenceId: option.referenceId, name: option.name, uniqueValue: option.uniqueValue}"
+    >
       <span class="dropdown-header">{{$group}}</span>
       <a>
         <span>{{option.name}}</span>
         <span
           ng-if="option.description.length > 0"
-          class="help-block help-inline">
+          class="help-block help-inline"
+        >
           ({{option.description}})
         </span>
         <span class="glyphicon glyphicon-ok check-mark"></span>
@@ -169,17 +184,20 @@ const groupedMultiSelectTemplate = `
     ng-model="model[options.key || index]"
     multiple
     data-live-search="true"
-    disabled="options.templateOptions.options.length === 0">
+    disabled="options.templateOptions.options.length === 0"
+  >
     <li
       nya-bs-option="option in options.templateOptions.options group by option.group"
       value="{referenceId: option.referenceId, name: option.name, uniqueValue: option.uniqueValue}"
-      ng-class="{disabled: isDisabled(model[options.key || index], option.uniqueValue, options)}">
+      ng-class="{disabled: isDisabled(model[options.key || index], option.uniqueValue, options)}"
+    >
       <span class="dropdown-header">{{$group}}</span>
       <a>
         <span>{{option.name}}</span>
         <span
           ng-if="option.description.length > 0"
-          class="help-block help-inline">
+          class="help-block help-inline"
+        >
           ({{option.description}})
         </span>
         <span class="glyphicon glyphicon-ok check-mark"></span>
@@ -190,7 +208,8 @@ const groupedMultiSelectTemplate = `
 const uploadTemplateListFiles = `
   <div
     ng-if="options.type == \'upload\' && options.templateOptions.files"
-    style="padding-bottom: 20px">
+    style="padding-bottom: 20px"
+  >
     <div ng-repeat="file in options.templateOptions.files">
       <div class="row">
         <div class="col-sm-9 col-xs-12 col-md-9 col-lg-9">
@@ -199,7 +218,8 @@ const uploadTemplateListFiles = `
         <div class="col-sm-3 col-xs-12 col-md-3 col-lg-3">
           <button
             class="btn btn-sm btn-danger upload-files"
-            ng-click="deleteFile(file.referenceId)">
+            ng-click="deleteFile(file.referenceId)"
+          >
             {{'REMOVE' | translate}}
           </button>
         </div>
@@ -210,7 +230,8 @@ const uploadTemplateListFiles = `
 
 const uploadTemplate = `
   <div
-    ng-if="options.templateOptions.allowMultiple == -1 || !(options.templateOptions.files && options.templateOptions.files.length >= options.templateOptions.allowMultiple)">
+    ng-if="options.templateOptions.allowMultiple == -1 || !(options.templateOptions.files && options.templateOptions.files.length >= options.templateOptions.allowMultiple)"
+  >
     <input
       type="file"
       class="form-control"
@@ -223,11 +244,13 @@ const uploadTemplate = `
 const validationTemplate = `
   <div
     class="formly-template-wrapper form-group"
-    ng-class="{\'has-error\': options.validation.errorExistsAndShouldBeVisible}">
+    ng-class="{\'has-error\': options.validation.errorExistsAndShouldBeVisible}"
+  >
     <formly-transclude></formly-transclude>
     <div class="validation"
       ng-if="!options.templateOptions.canDisplayMultiple && fc[0] && fc[0].$invalid && (fc[0].$touched || fc[0].$viewValue)"
-      ng-messages="fc[0].$error">
+      ng-messages="fc[0].$error"
+    >
       <div ng-messages-include="validation.html"></div>
       <div ng-message="{{name}}" ng-repeat="(name, value) in fc[0].$error">
         <div ng-if="value && options.validation.messages[name]">
@@ -237,7 +260,8 @@ const validationTemplate = `
     </div>
     <div class="validation"
       ng-if="!options.templateOptions.canDisplayMultiple && !fc[0] && fc.$invalid && (fc.$touched || fc.$viewValue)"
-      ng-messages="fc.$error">
+      ng-messages="fc.$error"
+    >
       <div ng-messages-include="validation.html"></div>
       <div ng-message="{{name}}" ng-repeat="(name, value) in fc.$error">
         <div ng-if="value && options.validation.messages[name]">
@@ -249,18 +273,20 @@ const validationTemplate = `
 
 const validationTemplateMultiple = `
   <div
-    ng-repeat="item in model[options.key] track by $index" ng-init="fieldIndex = $index">
+    ng-repeat="item in model[options.key] track by $index" ng-init="fieldIndex = $index"
+  >
     <div class="row">
       <div class="col-sm-9 col-xs-12 col-md-9 col-lg-9">
         <formly-transclude></formly-transclude>
       </div>
-      <div class="col-sm-3 col-xs-12 col-md-3 col-lg-3" style="margin-bottom:20px;">
+      <div class="col-sm-3 col-xs-12 col-md-3 col-lg-3" style="margin-bottom: 20px;">
         <button
           type="button"
           id="delete-{{::id}}"
           class="btn btn-sm btn-danger"
           ng-click="model[options.key].splice($index, 1)"
-          ng-if="model[options.key].length > 1">
+          ng-if="model[options.key].length > 1"
+        >
           {{'REMOVE' | translate}}
         </button>
       </div>
@@ -269,7 +295,8 @@ const validationTemplateMultiple = `
       <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
         <div class="validation"
           ng-if="fc[$index] && fc[$index].$invalid && (fc[$index].$touched || fc[$index].$viewValue)"
-          ng-messages="fc[$index].$error">
+          ng-messages="fc[$index].$error"
+        >
           <div ng-messages-include="validation.html"></div>
           <div ng-message="{{name}}" ng-repeat="(name, value) in fc[$index].$error">
             <div ng-if="value && options.validation.messages[name]">
@@ -294,14 +321,15 @@ const descriptionTemplate = `
   <formly-transclude></formly-transclude>
   <p
     class="help-block"
-    ng-if="to.descriptionNew">
+    ng-if="to.descriptionNew"
+  >
     {{to.descriptionNew}}
   </p>`;
 
 
 export {
-	blankTemplate,
-	subTitleTemplate,
+  blankTemplate,
+  subTitleTemplate,
   inputTemplate,
   datepickerTemplate,
   textareaTemplate,

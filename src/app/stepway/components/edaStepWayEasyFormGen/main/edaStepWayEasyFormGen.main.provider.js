@@ -83,10 +83,16 @@ function easyFormSteWayConfig($translateProvider) {
 
 	//lists number of possible copies for elements
 	function numberAllowedValues() {
-		let allowedValues = ['Unlimited'];
+		let allowedValues = [{
+			name: 'Unlimited',
+			value: -1
+		}];
 
 		for (let i = 1; i <= 10; i++) {
-			allowedValues[i] = i;
+			allowedValues[i] = {
+				name: i,
+				value: i
+			}
 		}
 
 		return allowedValues;

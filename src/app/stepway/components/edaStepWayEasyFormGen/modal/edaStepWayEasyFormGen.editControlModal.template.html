@@ -326,12 +326,38 @@
                     *
                   </span>
                 </label>
-                <div class="">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="inputText"
-                    placeholder="{{editControlModCtrl.nyaSelect.temporyConfig.formlyPlaceholder}}">
+                <div
+                  ng-init="editControlModCtrl.demoInput=['']">
+                  <div ng-repeat="item in editControlModCtrl.demoInput track by $index">
+                    <div class="row">
+                      <div class="col-sm-9 col-xs-12 col-md-9 col-lg-9">
+                        <input
+                          type="text"
+                          class="form-control"
+                          ng-model="editControlModCtrl.demoInput[$index]"
+                          id="inputText"
+                          placeholder="{{editControlModCtrl.nyaSelect.temporyConfig.formlyPlaceholder}}">
+                      </div>
+                      <div class="col-sm-3 col-xs-12 col-md-3 col-lg-3" style="margin-bottom: 20px;">
+                        <button
+                          type="button"
+                          class="btn btn-sm btn-danger"
+                          ng-click="editControlModCtrl.demoInput.splice($index, 1)"
+                          ng-if="editControlModCtrl.demoInput.length > 1">
+                          {{'REMOVE' | translate}}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <p
+                    ng-if="editControlModCtrl.nyaSelect.temporyConfig.allowMultiple == -1 || (editControlModCtrl.demoInput.length < editControlModCtrl.nyaSelect.temporyConfig.allowMultiple)">
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      ng-click="editControlModCtrl.demoInput.push('')">
+                      {{'ADD_NEW' | translate}}
+                    </button>
+                  </p>
                   <p class="help-block">
                   {{editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption}}
                   </p>
@@ -552,10 +578,12 @@
                   ng-model="editControlModCtrl.nyaSelect.temporyConfig.allowMultiple"
                   id="allowMultipleUpdate"
                   title="No value">
-                  <li nya-bs-option="allowedValue in editControlModCtrl.$modalProxy.easyFormSteWayConfig.getNumberAllowedValues()">
+                  <li
+                    value="allowedValue.value"
+                    nya-bs-option="allowedValue in editControlModCtrl.$modalProxy.easyFormSteWayConfig.getNumberAllowedValues()">
                     <a>
                       <span>
-                        {{ allowedValue }}
+                        {{ allowedValue.name }}
                       </span>
                       <span class="glyphicon glyphicon-ok check-mark"></span>
                     </a>
@@ -612,12 +640,38 @@
                     *
                   </span>
                 </label>
-                <div class="">
-                  <input
-                    type="number"
-                    class="form-control"
-                    id="inputNumber"
-                    placeholder="{{editControlModCtrl.nyaSelect.temporyConfig.formlyPlaceholder}}">
+                <div
+                  ng-init="editControlModCtrl.demoInput=['']">
+                  <div ng-repeat="item in editControlModCtrl.demoInput track by $index">
+                    <div class="row">
+                      <div class="col-sm-9 col-xs-12 col-md-9 col-lg-9">
+                        <input
+                          type="number"
+                          class="form-control"
+                          ng-model="editControlModCtrl.demoInput[$index]"
+                          id="inputNumber"
+                          placeholder="{{editControlModCtrl.nyaSelect.temporyConfig.formlyPlaceholder}}">
+                      </div>
+                      <div class="col-sm-3 col-xs-12 col-md-3 col-lg-3" style="margin-bottom: 20px;">
+                        <button
+                          type="button"
+                          class="btn btn-sm btn-danger"
+                          ng-click="editControlModCtrl.demoInput.splice($index, 1)"
+                          ng-if="editControlModCtrl.demoInput.length > 1">
+                          {{'REMOVE' | translate}}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <p
+                    ng-if="editControlModCtrl.nyaSelect.temporyConfig.allowMultiple == -1 || (editControlModCtrl.demoInput.length < editControlModCtrl.nyaSelect.temporyConfig.allowMultiple)">
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      ng-click="editControlModCtrl.demoInput.push('')">
+                      {{'ADD_NEW' | translate}}
+                    </button>
+                  </p>
                   <p class="help-block">
                   {{editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption}}
                   </p>
@@ -930,10 +984,12 @@
                   ng-model="editControlModCtrl.nyaSelect.temporyConfig.allowMultiple"
                   id="allowMultipleUpdate"
                   title="No value">
-                  <li nya-bs-option="allowedValue in editControlModCtrl.$modalProxy.easyFormSteWayConfig.getNumberAllowedValues()">
+                  <li
+                    value="allowedValue.value"
+                    nya-bs-option="allowedValue in editControlModCtrl.$modalProxy.easyFormSteWayConfig.getNumberAllowedValues()">
                     <a>
                       <span>
-                        {{ allowedValue }}
+                        {{ allowedValue.name }}
                       </span>
                       <span class="glyphicon glyphicon-ok check-mark"></span>
                     </a>
@@ -989,14 +1045,40 @@
                     *
                   </span>
                 </label>
-                <div class="">
-                  <input
-                    type="password"
-                    class="form-control"
-                    id="inputPassword"
-                    placeholder="{{editControlModCtrl.nyaSelect.temporyConfig.formlyPlaceholder}}">
+                <div
+                  ng-init="editControlModCtrl.demoInput=['']">
+                  <div ng-repeat="item in editControlModCtrl.demoInput track by $index">
+                    <div class="row">
+                      <div class="col-sm-9 col-xs-12 col-md-9 col-lg-9">
+                        <input
+                          type="password"
+                          class="form-control"
+                          ng-model="editControlModCtrl.demoInput[$index]"
+                          id="inputPassword"
+                          placeholder="{{editControlModCtrl.nyaSelect.temporyConfig.formlyPlaceholder}}">
+                      </div>
+                      <div class="col-sm-3 col-xs-12 col-md-3 col-lg-3" style="margin-bottom: 20px;">
+                        <button
+                          type="button"
+                          class="btn btn-sm btn-danger"
+                          ng-click="editControlModCtrl.demoInput.splice($index, 1)"
+                          ng-if="editControlModCtrl.demoInput.length > 1">
+                          {{'REMOVE' | translate}}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <p
+                    ng-if="editControlModCtrl.nyaSelect.temporyConfig.allowMultiple == -1 || (editControlModCtrl.demoInput.length < editControlModCtrl.nyaSelect.temporyConfig.allowMultiple)">
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      ng-click="editControlModCtrl.demoInput.push('')">
+                      {{'ADD_NEW' | translate}}
+                    </button>
+                  </p>
                   <p class="help-block">
-                    {{editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption}}
+                  {{editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption}}
                   </p>
                 </div>
               </div>
@@ -1199,10 +1281,12 @@
                   ng-model="editControlModCtrl.nyaSelect.temporyConfig.allowMultiple"
                   id="allowMultipleUpdate"
                   title="No value">
-                  <li nya-bs-option="allowedValue in editControlModCtrl.$modalProxy.easyFormSteWayConfig.getNumberAllowedValues()">
+                  <li
+                    value="allowedValue.value"
+                    nya-bs-option="allowedValue in editControlModCtrl.$modalProxy.easyFormSteWayConfig.getNumberAllowedValues()">
                     <a>
                       <span>
-                        {{ allowedValue }}
+                        {{ allowedValue.name }}
                       </span>
                       <span class="glyphicon glyphicon-ok check-mark"></span>
                     </a>
@@ -1259,14 +1343,40 @@
                     *
                   </span>
                 </label>
-                <div class="">
-                  <input
-                    type="email"
-                    class="form-control"
-                    id="inputEmail"
-                    placeholder="{{editControlModCtrl.nyaSelect.temporyConfig.formlyPlaceholder}}">
+                <div
+                  ng-init="editControlModCtrl.demoInput=['']">
+                  <div ng-repeat="item in editControlModCtrl.demoInput track by $index">
+                    <div class="row">
+                      <div class="col-sm-9 col-xs-12 col-md-9 col-lg-9">
+                        <input
+                          type="email"
+                          class="form-control"
+                          ng-model="editControlModCtrl.demoInput[$index]"
+                          id="inputEmail"
+                          placeholder="{{editControlModCtrl.nyaSelect.temporyConfig.formlyPlaceholder}}">
+                      </div>
+                      <div class="col-sm-3 col-xs-12 col-md-3 col-lg-3" style="margin-bottom: 20px;">
+                        <button
+                          type="button"
+                          class="btn btn-sm btn-danger"
+                          ng-click="editControlModCtrl.demoInput.splice($index, 1)"
+                          ng-if="editControlModCtrl.demoInput.length > 1">
+                          {{'REMOVE' | translate}}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <p
+                    ng-if="editControlModCtrl.nyaSelect.temporyConfig.allowMultiple == -1 || (editControlModCtrl.demoInput.length < editControlModCtrl.nyaSelect.temporyConfig.allowMultiple)">
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      ng-click="editControlModCtrl.demoInput.push('')">
+                      {{'ADD_NEW' | translate}}
+                    </button>
+                  </p>
                   <p class="help-block">
-                    {{editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption}}
+                  {{editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption}}
                   </p>
                 </div>
               </div>
@@ -1469,10 +1579,12 @@
                   ng-model="editControlModCtrl.nyaSelect.temporyConfig.allowMultiple"
                   id="allowMultipleUpdate"
                   title="No value">
-                  <li nya-bs-option="allowedValue in editControlModCtrl.$modalProxy.easyFormSteWayConfig.getNumberAllowedValues()">
+                  <li
+                    value="allowedValue.value"
+                    nya-bs-option="allowedValue in editControlModCtrl.$modalProxy.easyFormSteWayConfig.getNumberAllowedValues()">
                     <a>
                       <span>
-                        {{ allowedValue }}
+                        {{ allowedValue.name }}
                       </span>
                       <span class="glyphicon glyphicon-ok check-mark"></span>
                     </a>
@@ -1529,24 +1641,50 @@
                     *
                   </span>
                 </label>
-                <div class="">
-                  <div class="input-group" >
-                    <span class="input-group-addon">
-                      <i class="glyphicon glyphicon-calendar"></i>
-                    </span>
-                    <input
-                      type="text"
-                      class="form-control"
-                      uib-datepicker-popup="{{editControlModCtrl.nyaSelect.temporyConfig.datepickerOptions.format}}"
-                      ng-model="editControlModCtrl.demodt.dt"
-                      is-open="editControlModCtrl.demodt.opened"
-                      datepicker-options="editControlModCtrl.dateOptions"
-                      close-text="Close"
-                      ng-click="editControlModCtrl.open($event, 'demodt')"
-                    />
+                <div>
+                  <div ng-repeat="item in editControlModCtrl.demodt.dt track by $index">
+                    <div class="row">
+                      <div class="col-sm-9 col-xs-12 col-md-9 col-lg-9">
+                        <div class="input-group">
+                          <span class="input-group-addon">
+                            <i class="glyphicon glyphicon-calendar"></i>
+                          </span>
+                          <input
+                            type="text"
+                            class="form-control"
+                            uib-datepicker-popup="{{editControlModCtrl.nyaSelect.temporyConfig.datepickerOptions.format}}"
+                            ng-model="editControlModCtrl.demodt.dt[$index]"
+                            ng-init="editControlModCtrl.today('demodt', $index); editControlModCtrl.demodt.opened[$index] = false"
+                            is-open="editControlModCtrl.demodt.opened[$index]"
+                            datepicker-options="editControlModCtrl.dateOptions"
+                            close-text="Close"
+                            ng-click="editControlModCtrl.open($event, 'demodt', $index)"
+                            placeholder="{{editControlModCtrl.nyaSelect.temporyConfig.formlyPlaceholder}}"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-sm-3 col-xs-12 col-md-3 col-lg-3" style="margin-bottom: 20px;">
+                        <button
+                          type="button"
+                          class="btn btn-sm btn-danger"
+                          ng-click="editControlModCtrl.demodt.dt.splice($index, 1); editControlModCtrl.demodt.opened.splice($index, 1)"
+                          ng-if="editControlModCtrl.demodt.dt.length > 1">
+                          {{'REMOVE' | translate}}
+                        </button>
+                      </div>
+                    </div>
                   </div>
+                  <p
+                    ng-if="editControlModCtrl.nyaSelect.temporyConfig.allowMultiple == -1 || (editControlModCtrl.demodt.dt.length < editControlModCtrl.nyaSelect.temporyConfig.allowMultiple)">
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      ng-click="editControlModCtrl.demodt.dt.push(''); editControlModCtrl.demodt.opened.push(false)">
+                      {{'ADD_NEW' | translate}}
+                    </button>
+                  </p>
                   <p class="help-block">
-                    {{editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption}}
+                  {{editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption}}
                   </p>
                 </div>
               </div>
@@ -1728,7 +1866,7 @@
                       is-open="editControlModCtrl.defaultdt.opened"
                       datepicker-options="editControlModCtrl.dateOptions"
                       close-text="Close"
-                      ng-click="editControlModCtrl.open($event, 'defaultdt')"
+                      ng-click="editControlModCtrl.open($event, 'defaultdt', -1)"
                     />
                   </div>
                 </div>
@@ -1783,10 +1921,12 @@
                   ng-model="editControlModCtrl.nyaSelect.temporyConfig.allowMultiple"
                   id="allowMultipleUpdate"
                   title="No value">
-                  <li nya-bs-option="allowedValue in editControlModCtrl.$modalProxy.easyFormSteWayConfig.getNumberAllowedValues()">
+                  <li
+                    value="allowedValue.value"
+                    nya-bs-option="allowedValue in editControlModCtrl.$modalProxy.easyFormSteWayConfig.getNumberAllowedValues()">
                     <a>
                       <span>
-                        {{ allowedValue }}
+                        {{ allowedValue.name }}
                       </span>
                       <span class="glyphicon glyphicon-ok check-mark"></span>
                     </a>
@@ -1842,15 +1982,40 @@
                     *
                   </span>
                 </label>
-                <div class="">
-                  <textarea
-                    class="form-control"
-                    ng-model="model[options.key]"
-                    rows="3"
-                    id="textArea">
-                  </textarea>
+                <div
+                  ng-init="editControlModCtrl.demoInput=['']">
+                  <div ng-repeat="item in editControlModCtrl.demoInput track by $index">
+                    <div class="row">
+                      <div class="col-sm-9 col-xs-12 col-md-9 col-lg-9">
+                        <textarea
+                          class="form-control"
+                          ng-model="editControlModCtrl.demoInput[$index]"
+                          rows="3"
+                          id="textArea">
+                        </textarea>
+                      </div>
+                      <div class="col-sm-3 col-xs-12 col-md-3 col-lg-3" style="margin-bottom: 20px;">
+                        <button
+                          type="button"
+                          class="btn btn-sm btn-danger"
+                          ng-click="editControlModCtrl.demoInput.splice($index, 1)"
+                          ng-if="editControlModCtrl.demoInput.length > 1">
+                          {{'REMOVE' | translate}}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <p
+                    ng-if="editControlModCtrl.nyaSelect.temporyConfig.allowMultiple == -1 || (editControlModCtrl.demoInput.length < editControlModCtrl.nyaSelect.temporyConfig.allowMultiple)">
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      ng-click="editControlModCtrl.demoInput.push('')">
+                      {{'ADD_NEW' | translate}}
+                    </button>
+                  </p>
                   <p class="help-block">
-                    {{editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption}}
+                  {{editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption}}
                   </p>
                 </div>
               </div>
@@ -2000,10 +2165,12 @@
                   ng-model="editControlModCtrl.nyaSelect.temporyConfig.allowMultiple"
                   id="allowMultipleUpdate"
                   title="No value">
-                  <li nya-bs-option="allowedValue in editControlModCtrl.$modalProxy.easyFormSteWayConfig.getNumberAllowedValues()">
+                  <li
+                    value="allowedValue.value"
+                    nya-bs-option="allowedValue in editControlModCtrl.$modalProxy.easyFormSteWayConfig.getNumberAllowedValues()">
                     <a>
                       <span>
-                        {{ allowedValue }}
+                        {{ allowedValue.name }}
                       </span>
                       <span class="glyphicon glyphicon-ok check-mark"></span>
                     </a>
@@ -2059,12 +2226,37 @@
                     *
                   </span>
                 </label>
-                <div class="">
-                  <text-angular
-                    ng-model="editControlModCtrl.model[options.key]">
-                  </text-angular>
+                <div
+                  ng-init="editControlModCtrl.demoInput=['']">
+                  <div ng-repeat="item in editControlModCtrl.demoInput track by $index">
+                    <div class="row">
+                      <div class="col-sm-9 col-xs-12 col-md-9 col-lg-9">
+                        <text-angular
+                          ng-model="editControlModCtrl.demoInput[$index]">
+                        </text-angular>
+                      </div>
+                      <div class="col-sm-3 col-xs-12 col-md-3 col-lg-3" style="margin-bottom: 20px;">
+                        <button
+                          type="button"
+                          class="btn btn-sm btn-danger"
+                          ng-click="editControlModCtrl.demoInput.splice($index, 1)"
+                          ng-if="editControlModCtrl.demoInput.length > 1">
+                          {{'REMOVE' | translate}}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <p
+                    ng-if="editControlModCtrl.nyaSelect.temporyConfig.allowMultiple == -1 || (editControlModCtrl.demoInput.length < editControlModCtrl.nyaSelect.temporyConfig.allowMultiple)">
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      ng-click="editControlModCtrl.demoInput.push('')">
+                      {{'ADD_NEW' | translate}}
+                    </button>
+                  </p>
                   <p class="help-block">
-                    {{editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption}}
+                  {{editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption}}
                   </p>
                 </div>
               </div>
@@ -2213,10 +2405,12 @@
                   ng-model="editControlModCtrl.nyaSelect.temporyConfig.allowMultiple"
                   id="allowMultipleUpdate"
                   title="No value">
-                  <li nya-bs-option="allowedValue in editControlModCtrl.$modalProxy.easyFormSteWayConfig.getNumberAllowedValues()">
+                  <li
+                    value="allowedValue.value"
+                    nya-bs-option="allowedValue in editControlModCtrl.$modalProxy.easyFormSteWayConfig.getNumberAllowedValues()">
                     <a>
                       <span>
-                        {{ allowedValue }}
+                        {{ allowedValue.name }}
                       </span>
                       <span class="glyphicon glyphicon-ok check-mark"></span>
                     </a>
@@ -3273,10 +3467,12 @@
                   ng-model="editControlModCtrl.nyaSelect.temporyConfig.allowMultiple"
                   id="allowMultipleUpdate"
                   title="No value">
-                  <li nya-bs-option="allowedValue in editControlModCtrl.$modalProxy.easyFormSteWayConfig.getNumberAllowedValues()">
+                  <li
+                    value="allowedValue.value"
+                    nya-bs-option="allowedValue in editControlModCtrl.$modalProxy.easyFormSteWayConfig.getNumberAllowedValues()">
                     <a>
                       <span>
-                        {{ allowedValue }}
+                        {{ allowedValue.name }}
                       </span>
                       <span class="glyphicon glyphicon-ok check-mark"></span>
                     </a>
@@ -3817,10 +4013,12 @@
                   ng-model="editControlModCtrl.nyaSelect.temporyConfig.allowMultiple"
                   id="allowMultipleUpdate"
                   title="No value">
-                  <li nya-bs-option="allowedValue in editControlModCtrl.$modalProxy.easyFormSteWayConfig.getNumberAllowedValues()">
+                  <li
+                    value="allowedValue.value"
+                    nya-bs-option="allowedValue in editControlModCtrl.$modalProxy.easyFormSteWayConfig.getNumberAllowedValues()">
                     <a>
                       <span>
-                        {{ allowedValue }}
+                        {{ allowedValue.name }}
                       </span>
                       <span class="glyphicon glyphicon-ok check-mark"></span>
                     </a>
@@ -3877,12 +4075,38 @@
                     *
                   </span>
                 </label>
-                <div class="">
-                  <input
-                    type="file"
-                    class="form-control"
-                    id="upload"
-                    placeholder="{{editControlModCtrl.nyaSelect.temporyConfig.formlyPlaceholder}}">
+                <div
+                  ng-init="editControlModCtrl.demoInput=['']">
+                  <div ng-repeat="item in editControlModCtrl.demoInput track by $index">
+                    <div class="row">
+                      <div class="col-sm-9 col-xs-12 col-md-9 col-lg-9">
+                        <input
+                          type="file"
+                          class="form-control"
+                          ng-model="editControlModCtrl.demoInput[$index]"
+                          id="upload"
+                          placeholder="{{editControlModCtrl.nyaSelect.temporyConfig.formlyPlaceholder}}">
+                      </div>
+                      <div class="col-sm-3 col-xs-12 col-md-3 col-lg-3" style="margin-bottom: 20px;">
+                        <button
+                          type="button"
+                          class="btn btn-sm btn-danger"
+                          ng-click="editControlModCtrl.demoInput.splice($index, 1)"
+                          ng-if="editControlModCtrl.demoInput.length > 1">
+                          {{'REMOVE' | translate}}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <p
+                    ng-if="editControlModCtrl.nyaSelect.temporyConfig.allowMultiple == -1 || (editControlModCtrl.demoInput.length < editControlModCtrl.nyaSelect.temporyConfig.allowMultiple)">
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      ng-click="editControlModCtrl.demoInput.push('')">
+                      {{'ADD_NEW' | translate}}
+                    </button>
+                  </p>
                   <p class="help-block">
                   {{editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption}}
                   </p>
@@ -4032,10 +4256,12 @@
                   ng-model="editControlModCtrl.nyaSelect.temporyConfig.allowMultiple"
                   id="allowMultipleUpdate"
                   title="No value">
-                  <li nya-bs-option="allowedValue in editControlModCtrl.$modalProxy.easyFormSteWayConfig.getNumberAllowedValues()">
+                  <li
+                    value="allowedValue.value"
+                    nya-bs-option="allowedValue in editControlModCtrl.$modalProxy.easyFormSteWayConfig.getNumberAllowedValues()">
                     <a>
                       <span>
-                        {{ allowedValue }}
+                        {{ allowedValue.name }}
                       </span>
                       <span class="glyphicon glyphicon-ok check-mark"></span>
                     </a>

@@ -48,7 +48,7 @@ class editControlModalController {
 		this.newGroupGroupedSelect      = {saisie: ''};
 		this.basicSelectGroupClick      = {showList : false};
 		this.groupSelectGroupClick      = {showList : false};
-		this.demodt         						= {};
+		this.demodt         						= {dt: [new Date()], opened: [false]};
 		this.dateOptions    						= this.dateOptionsInit();
 		this.demodt.formats 						= ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate', 'mediumDate', 'longDate', 'fullDate'];
 		this.defaultdt         					= {};
@@ -56,8 +56,6 @@ class editControlModalController {
 		this.nyaSelectFiltered 					= {};
 		this.modelNyaSelect							= {};
 
-		//init today date
-		this.today();
 		//init nyaSelect model depending selected control
 		this.initNyaSelectConformingSelectedControl();
 	}
@@ -352,20 +350,20 @@ class editControlModalController {
 		}
 	}
 
-	today() {
-		this.demodt.dt = new Date();
-		this.defaultdt.dt = new Date();
+	today(field, position) {
+		if (position >= 0) {
+			this[field].dt[position] = new Date();
+		}
 	}
 
-	clear() {
-		this.demodt.dt = null;
-		this.defaultdt.dt = null;
-	}
-
-	open($event, position){
+	open($event, field, position) {
 		$event.preventDefault();
 		$event.stopPropagation();
-		this[position].opened = true;
+		if (position >= 0) {
+			this[field].opened[position] = true;
+		} else {
+			this[field].opened = true;
+		}
 	}
 
 	dateOptionsInit(){
