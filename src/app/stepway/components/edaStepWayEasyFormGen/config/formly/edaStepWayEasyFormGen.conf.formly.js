@@ -279,7 +279,7 @@ function formlyConfig(formlyConfigProvider){
           var fd = new FormData();
           // use key on backEnd
           fd.append('uploadFile', file);
-          scope.$emit('fileToUpload', fd, scope.options.key, changeEvent.target.name);
+          scope.$emit('fileToUpload', fd, scope.options.key, changeEvent.target.name, fcKey);
           var fileProp = {};
           for (var properties in file) {
             if (!angular.isFunction(file[properties])) {

@@ -242,9 +242,6 @@ const uploadTemplate = `
   </div>`;
 
 const validationTemplate = `
-{{options.templateOptions.allowMultiple != -1}}
-{{options.templateOptions.files && options.templateOptions.files.length >= options.templateOptions.allowMultiple}}
-{{!(options.templateOptions.allowMultiple == -1 || !(options.templateOptions.files && options.templateOptions.files.length >= options.templateOptions.allowMultiple))}}
   <div
     class="formly-template-wrapper form-group"
     ng-class="{\'has-error\': options.validation.errorExistsAndShouldBeVisible}"
