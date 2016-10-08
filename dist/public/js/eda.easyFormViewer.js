@@ -353,7 +353,7 @@ $__System.register('6', ['5'], function (_export) {
             var fd = new FormData();
             // use key on backEnd
             fd.append('uploadFile', file);
-            scope.$emit('fileToUpload', fd, scope.options.key, scope.name);
+            scope.$emit('fileToUpload', fd, scope.options.key, changeEvent.target.name);
             var fileProp = {};
             for (var properties in file) {
               if (!angular.isFunction(file[properties])) {
