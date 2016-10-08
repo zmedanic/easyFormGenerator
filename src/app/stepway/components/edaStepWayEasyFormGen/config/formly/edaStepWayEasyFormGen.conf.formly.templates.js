@@ -230,7 +230,7 @@ const uploadTemplateListFiles = `
 
 const uploadTemplate = `
   <div
-    ng-if="options.templateOptions.allowMultiple == -1 || !(options.templateOptions.files && options.templateOptions.files.length >= options.templateOptions.allowMultiple)"
+    ng-hide="!(options.templateOptions.allowMultiple == -1 || !(options.templateOptions.files && options.templateOptions.files.length >= options.templateOptions.allowMultiple))"
   >
     <input
       type="file"
