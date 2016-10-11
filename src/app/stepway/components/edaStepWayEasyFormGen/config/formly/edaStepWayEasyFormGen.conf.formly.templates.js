@@ -206,11 +206,11 @@ const groupedMultiSelectTemplate = `
   </ol>`;
 
 const uploadTemplateListFiles = `
-  <div
-    ng-if="options.type == \'upload\' && options.templateOptions.files"
-    style="padding-bottom: 20px"
-  >
-    <div ng-repeat="file in options.templateOptions.files">
+  <div ng-if="options.type == \'upload\' && options.templateOptions.files">
+    <div
+      ng-repeat="file in options.templateOptions.files"
+      style="padding-bottom: 20px"
+    >
       <div class="row">
         <div class="col-sm-9 col-xs-12 col-md-9 col-lg-9">
           <a class="upload-files" href="{{file.path}}" target="_blank">{{file.name}}</a>

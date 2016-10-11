@@ -94,7 +94,7 @@ const radioTemplate = `
 
 const basicSelectTemplate = `
   <ol
-    class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg-12"
+    class="nya-bs-select no-margin-bottom col-sm-12 col-xs-12 col-md-12 col-lg-12"
     ng-model="model[options.key || index]"
     id="{{id}}"
     disabled="options.templateOptions.options.length === 0"
@@ -124,7 +124,7 @@ const basicSelectTemplate = `
 
 const basicMultiSelectTemplate = `
   <ol
-    class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg-12"
+    class="nya-bs-select no-margin-bottom col-sm-12 col-xs-12 col-md-12 col-lg-12"
     ng-model="model[options.key || index]"
     multiple
     id="{{id}}"
@@ -149,7 +149,7 @@ const basicMultiSelectTemplate = `
   </ol>`;
 
 const groupedSelectTemplate = `
-  <ol class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg-12"
+  <ol class="nya-bs-select no-margin-bottom col-sm-12 col-xs-12 col-md-12 col-lg-12"
     ng-model="model[options.key || index]"
     data-live-search="true"
     disabled="options.templateOptions.options.length === 0"
@@ -180,7 +180,7 @@ const groupedSelectTemplate = `
   </ol>`;
 
 const groupedMultiSelectTemplate = `
-  <ol class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg-12"
+  <ol class="nya-bs-select no-margin-bottom col-sm-12 col-xs-12 col-md-12 col-lg-12"
     ng-model="model[options.key || index]"
     multiple
     data-live-search="true"
@@ -206,11 +206,11 @@ const groupedMultiSelectTemplate = `
   </ol>`;
 
 const uploadTemplateListFiles = `
-  <div
-    ng-if="options.type == \'upload\' && options.templateOptions.files"
-    style="padding-bottom: 20px"
-  >
-    <div ng-repeat="file in options.templateOptions.files">
+  <div ng-if="options.type == \'upload\' && options.templateOptions.files">
+    <div
+      ng-repeat="file in options.templateOptions.files"
+      style="padding-bottom: 20px"
+    >
       <div class="row">
         <div class="col-sm-9 col-xs-12 col-md-9 col-lg-9">
           <a class="upload-files" href="{{file.path}}" target="_blank">{{file.name}}</a>
