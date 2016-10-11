@@ -54,9 +54,9 @@ class $modelsTranslator{
 					let _controlsDefinition = this.getControlsDefinition();
 					angular.forEach(_controlsDefinition.controls, (aControl) => {
 						if (column.control.type === aControl.formlyType &&
-								column.control.subtype === aControl.formlySubtype) {
-								//----> update control formlyExpressionProperties property
-								column.control.formlyExpressionProperties = aControl.formlyExpressionProperties;
+							column.control.subtype === aControl.formlySubtype) {
+							//----> update control formlyExpressionProperties property
+							column.control.formlyExpressionProperties = angular.merge({}, aControl.formlyExpressionProperties, column.control.formlyExpressionProperties);
 						}
 					});
 				});
@@ -77,9 +77,9 @@ class $modelsTranslator{
 					let _controlsDefinition = this.getControlsDefinition();
 					angular.forEach(_controlsDefinition.controls, (aControl) => {
 						if (column.control.type === aControl.formlyType &&
-								column.control.subtype === aControl.formlySubtype) {
-								//----> update control formlyValidators property
-								column.control.formlyValidators = aControl.formlyValidators;
+							column.control.subtype === aControl.formlySubtype) {
+							//----> update control formlyValidators property
+							column.control.formlyValidators = angular.merge({}, aControl.formlyValidators, column.control.formlyValidators);
 						}
 					});
 				});
@@ -100,9 +100,9 @@ class $modelsTranslator{
 					let _controlsDefinition = this.getControlsDefinition();
 					angular.forEach(_controlsDefinition.controls, (aControl) => {
 						if (column.control.type === aControl.formlyType &&
-								column.control.subtype === aControl.formlySubtype) {
-								//----> update control formlyValidation property
-								column.control.formlyValidation = aControl.formlyValidation;
+							column.control.subtype === aControl.formlySubtype) {
+							//----> update control formlyValidation property
+							column.control.formlyValidation = angular.merge({}, aControl.formlyValidation, column.control.formlyValidation);
 						}
 					});
 				});
