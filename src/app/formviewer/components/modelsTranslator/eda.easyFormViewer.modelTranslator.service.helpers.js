@@ -176,7 +176,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $http) => {
 						},
 						message	: "(to.label ? to.label : (\"FIELD\" | translate)) + (\"VALIDATION_YEAR\" | translate: \"{min: 0, max: 9999}\")"
 					}
-				},
+		    },
 				formlyValidation	: {
 					messages: {
 						required: function(viewValue, modelValue, scope) {
@@ -363,7 +363,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $http) => {
 					onChange 				: ''
 				},
 				formlyExpressionProperties: {},
-				formlyValidators 					: {},
+				formlyValidators	: {},
 				formlyValidation	: {
 					messages: {
 						required: function(viewValue, modelValue, scope) {
@@ -553,7 +553,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $http) => {
 							return false;
 						},
 						message	: "(to.label ? to.label : (\"FIELD\" | translate)) + (\"VALIDATION_REQUIRED\" | translate)"
-					},
+					}
 				},
 				formlyValidation	: {}
 			}
@@ -582,8 +582,28 @@ const resetNyaSelect = (nyaSelectObj, $translate, $http) => {
 			formlyValidators	: {},
 			formlyValidation	: {}
 		}
-
 	};
+
+	// Apply unique validator to all fields
+	let uniqueValidator = {
+    uniqueValue: {
+			expression : function(viewValue, modelValue, scope) {
+				if (scope.to.unique) {
+          //Write down logic to find uniqueness or put it in configuration
+				}
+
+				return true;
+			},
+      message: "(to.label ? to.label : (\"FIELD\" | translate)) + (\"VALIDATION_UNIQUE\" | translate)"
+    }
+  };
+
+  let notUnique = ['blank', 'header', 'subTitle'];
+  angular.forEach(newNyaSelectObj.controls, (control) => {
+  	if (notUnique.indexOf(control.formlyType) === -1) {
+			control.formlyValidators = angular.merge({}, control.formlyValidators, uniqueValidator);
+		}
+	});
 
 	//reset
 	angular.copy(newNyaSelectObj, nyaSelectObj);
@@ -730,7 +750,7 @@ const extractTemplateOptionFiles = (obj) => typeof obj.templateOptions !== 'unde
 
 const extractFormlyExpressionProperties = (obj) => typeof obj.formlyExpressionProperties !== 'undefined' ? angular.copy(obj.formlyExpressionProperties) : {};
 
-const extractFormlyValidators = (obj) => typeof obj.formlyValidators !== 'undefined' ? angular.copy(obj.formlyValidators): {};
+const extractFormlyValidators = (obj) => typeof obj.formlyValidators !== 'undefined' ?  angular.copy(obj.formlyValidators) : {};
 
 const extractFormlyValidation = (obj) => typeof obj.formlyValidation !== 'undefined' ?  angular.copy(obj.formlyValidation) : {};
 

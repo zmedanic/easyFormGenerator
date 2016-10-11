@@ -161,11 +161,6 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 						message	: "(to.label ? to.label : (\"FIELD\" | translate)) + (\"VALIDATION_YEAR\" | translate: \"{min: 0, max: 9999}\")"
 					}
 				},
-		    formlyAsyncValidators: {
-		      unique: {
-		        message: ""
-		      }
-		    },
 				formlyValidation	: {
 					messages: {
 						required: function(viewValue, modelValue, scope) {
@@ -199,13 +194,13 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 				formlyValidators	: {},
 				formlyValidation	: {
 					messages: {
-						required: (viewValue, modelValue, scope) => {
+						required: function(viewValue, modelValue, scope) {
 							var returnMsg = (scope.to.label ? scope.to.label : $translate.instant('FIELD')) + $translate.instant('VALIDATION_REQUIRED');
 							return returnMsg;
 						}
 					}
 				}
-		},
+			},
 
 			{
 				id 													: 'Email',
@@ -337,7 +332,7 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 				parentId					: '',
 				referenceId				: '',
 				formlyExpressionProperties: {},
-				formlyValidators 					: {},
+				formlyValidators 	: {},
 				formlyValidation	: {
 					messages: {
 						required: function(viewValue, modelValue, scope) {
@@ -540,6 +535,27 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 		}
 
 	};
+
+	// Apply unique validator to all fields
+	let uniqueValidator = {
+    uniqueValue: {
+			expression : function(viewValue, modelValue, scope) {
+				if (scope.to.unique) {
+          //Write down logic to find uniqueness or put it in configuration
+				}
+
+				return true;
+			},
+      message: "(to.label ? to.label : (\"FIELD\" | translate)) + (\"VALIDATION_UNIQUE\" | translate)"
+    }
+  };
+
+  let notUnique = ['blank', 'header', 'subTitle'];
+  angular.forEach(newNyaSelectObj.controls, (control) => {
+  	if (notUnique.indexOf(control.formlyType) === -1) {
+			control.formlyValidators = angular.merge({}, control.formlyValidators, uniqueValidator);
+		}
+	});
 
 	//reset
 	angular.copy(newNyaSelectObj, nyaSelectObj);

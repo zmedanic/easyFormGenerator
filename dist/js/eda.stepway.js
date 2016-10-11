@@ -76,7 +76,7 @@ $__System.register("5", [], function (_export) {
       basicMultiSelectTemplate = "\n  <ol\n    class=\"nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg-12\"\n    ng-model=\"model[options.key || index]\"\n    multiple\n    id=\"{{id}}\"\n    disabled=\"options.templateOptions.options.length === 0\"\n  >\n    <li\n      class=\"nya-bs-option\"\n      nya-bs-option=\"option in options.templateOptions.options\"\n      data-value=\"{referenceId: option.referenceId, name: option.name, uniqueValue: option.uniqueValue}\"\n      ng-class=\"{disabled: isDisabled(model[options.key || index], option.uniqueValue, options)}\"\n    >\n      <a>\n        <span>{{option.name}}</span>\n        <span\n          ng-if=\"option.description.length > 0\"\n          class=\"help-block help-inline\"\n        >\n          ({{option.description}})\n        </span>\n      </a>\n    </li>\n  </ol>";
       groupedSelectTemplate = "\n  <ol class=\"nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg-12\"\n    ng-model=\"model[options.key || index]\"\n    data-live-search=\"true\"\n    disabled=\"options.templateOptions.options.length === 0\"\n  >\n    <li\n      class=\"nya-bs-option\"\n      ng-if=\"!options.templateOptions.required\"\n      data-value=\"\"\n    >\n      <a>{{'NOTHING_SELECTED' | translate}}</a>\n    </li>\n    <li\n      nya-bs-option=\"option in options.templateOptions.options group by option.group\"\n      value=\"{referenceId: option.referenceId, name: option.name, uniqueValue: option.uniqueValue}\"\n    >\n      <span class=\"dropdown-header\">{{$group}}</span>\n      <a>\n        <span>{{option.name}}</span>\n        <span\n          ng-if=\"option.description.length > 0\"\n          class=\"help-block help-inline\"\n        >\n          ({{option.description}})\n        </span>\n        <span class=\"glyphicon glyphicon-ok check-mark\"></span>\n      </a>\n    </li>\n  </ol>";
       groupedMultiSelectTemplate = "\n  <ol class=\"nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg-12\"\n    ng-model=\"model[options.key || index]\"\n    multiple\n    data-live-search=\"true\"\n    disabled=\"options.templateOptions.options.length === 0\"\n  >\n    <li\n      nya-bs-option=\"option in options.templateOptions.options group by option.group\"\n      value=\"{referenceId: option.referenceId, name: option.name, uniqueValue: option.uniqueValue}\"\n      ng-class=\"{disabled: isDisabled(model[options.key || index], option.uniqueValue, options)}\"\n    >\n      <span class=\"dropdown-header\">{{$group}}</span>\n      <a>\n        <span>{{option.name}}</span>\n        <span\n          ng-if=\"option.description.length > 0\"\n          class=\"help-block help-inline\"\n        >\n          ({{option.description}})\n        </span>\n        <span class=\"glyphicon glyphicon-ok check-mark\"></span>\n      </a>\n    </li>\n  </ol>";
-      uploadTemplateListFiles = "\n  <div\n    ng-if=\"options.type == 'upload' && options.templateOptions.files\"\n    style=\"padding-bottom: 20px\"\n  >\n    <div ng-repeat=\"file in options.templateOptions.files\">\n      <div class=\"row\">\n        <div class=\"col-sm-9 col-xs-12 col-md-9 col-lg-9\">\n          <a class=\"upload-files\" href=\"{{file.path}}\" target=\"_blank\">{{file.name}}</a>\n        </div>\n        <div class=\"col-sm-3 col-xs-12 col-md-3 col-lg-3\">\n          <button\n            class=\"btn btn-sm btn-danger upload-files\"\n            ng-click=\"deleteFile(file.referenceId)\"\n          >\n            {{'REMOVE' | translate}}\n          </button>\n        </div>\n      </div>\n    </div>\n  </div>\n  <formly-transclude></formly-transclude>";
+      uploadTemplateListFiles = "\n  <div ng-if=\"options.type == 'upload' && options.templateOptions.files\">\n    <div\n      ng-repeat=\"file in options.templateOptions.files\"\n      style=\"padding-bottom: 20px\"\n    >\n      <div class=\"row\">\n        <div class=\"col-sm-9 col-xs-12 col-md-9 col-lg-9\">\n          <a class=\"upload-files\" href=\"{{file.path}}\" target=\"_blank\">{{file.name}}</a>\n        </div>\n        <div class=\"col-sm-3 col-xs-12 col-md-3 col-lg-3\">\n          <button\n            class=\"btn btn-sm btn-danger upload-files\"\n            ng-click=\"deleteFile(file.referenceId)\"\n          >\n            {{'REMOVE' | translate}}\n          </button>\n        </div>\n      </div>\n    </div>\n  </div>\n  <formly-transclude></formly-transclude>";
       uploadTemplate = "\n  <div\n    ng-hide=\"!(options.templateOptions.allowMultiple == -1 || !(options.templateOptions.files && options.templateOptions.files.length >= options.templateOptions.allowMultiple))\"\n  >\n    <input\n      type=\"file\"\n      class=\"form-control\"\n      ng-model=\"model[options.key][fieldIndex]\"\n      id=\"{{::id}}_{{fieldIndex}}\"\n      name=\"{{::id}}_{{fieldIndex}}\"\n    />\n  </div>";
       validationTemplate = "\n  <div\n    class=\"formly-template-wrapper form-group\"\n    ng-class=\"{'has-error': options.validation.errorExistsAndShouldBeVisible}\"\n  >\n    <formly-transclude></formly-transclude>\n    <div class=\"validation\"\n      ng-if=\"!options.templateOptions.canDisplayMultiple && fc[0] && fc[0].$invalid && (fc[0].$touched || fc[0].$viewValue)\"\n      ng-messages=\"fc[0].$error\"\n    >\n      <div ng-messages-include=\"validation.html\"></div>\n      <div ng-message=\"{{name}}\" ng-repeat=\"(name, value) in fc[0].$error\">\n        <div ng-if=\"value && options.validation.messages[name]\">\n          {{options.validation.messages[name](fc[0].$viewValue, fc[0].$modelValue, this)}}\n        </div>\n      </div>\n    </div>\n    <div class=\"validation\"\n      ng-if=\"!options.templateOptions.canDisplayMultiple && !fc[0] && fc.$invalid && (fc.$touched || fc.$viewValue)\"\n      ng-messages=\"fc.$error\"\n    >\n      <div ng-messages-include=\"validation.html\"></div>\n      <div ng-message=\"{{name}}\" ng-repeat=\"(name, value) in fc.$error\">\n        <div ng-if=\"value && options.validation.messages[name]\">\n          {{options.validation.messages[name](fc.$viewValue, fc.$modelValue, this)}}\n        </div>\n      </div>\n    </div>\n  </div>";
       validationTemplateMultiple = "\n  <div\n    ng-repeat=\"item in model[options.key] track by $index\" ng-init=\"fieldIndex = $index\"\n  >\n    <div class=\"row\">\n      <div class=\"col-sm-9 col-xs-12 col-md-9 col-lg-9\">\n        <formly-transclude></formly-transclude>\n      </div>\n      <div class=\"col-sm-3 col-xs-12 col-md-3 col-lg-3\" style=\"margin-bottom: 20px;\">\n        <button\n          type=\"button\"\n          id=\"delete-{{::id}}\"\n          class=\"btn btn-sm btn-danger\"\n          ng-click=\"model[options.key].splice($index, 1)\"\n          ng-if=\"model[options.key].length > 1\"\n        >\n          {{'REMOVE' | translate}}\n        </button>\n      </div>\n    </div>\n    <div class=\"row\">\n      <div class=\"col-sm-12 col-xs-12 col-md-12 col-lg-12\">\n        <div class=\"validation\"\n          ng-if=\"fc[$index] && fc[$index].$invalid && (fc[$index].$touched || fc[$index].$viewValue)\"\n          ng-messages=\"fc[$index].$error\"\n        >\n          <div ng-messages-include=\"validation.html\"></div>\n          <div ng-message=\"{{name}}\" ng-repeat=\"(name, value) in fc[$index].$error\">\n            <div ng-if=\"value && options.validation.messages[name]\">\n              {{options.validation.messages[name](fc[$index].$viewValue, fc[$index].$modelValue, this)}}\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n  <p\n    ng-if=\"options.templateOptions.allowMultiple == -1 || (options.type != 'upload' && model[options.key].length < options.templateOptions.allowMultiple) || (options.type == 'upload' && options.templateOptions.files && options.templateOptions.files.length + model[options.key].length < options.templateOptions.allowMultiple)\">\n    <button\n      type=\"button\"\n      class=\"btn btn-primary\"\n      ng-click=\"model[options.key].push('')\">\n      {{'ADD_NEW' | translate}}\n    </button>\n  </p>";
@@ -620,6 +620,7 @@ $__System.registerDynamic("7", [], true, function ($__require, exports, module) 
         "VALIDATION_EMAIL": " is not a valid email",
         "VALIDATION_MAXLENGTH": " size should have max {{max}} characters",
         "VALIDATION_DATE_INVALID": " has invalid date",
+        "VALIDATION_UNIQUE": " is not unique",
         "REMOVE": "Remove",
         "ADD_NEW": "Add new"
     };
@@ -1476,16 +1477,18 @@ $__System.register('13', ['11', '12', '14', '15', '16'], function (_export) {
 				}, {
 					key: 'updateParents',
 					value: function updateParents(row, column, switchType) {
+						var _this = this;
+
 						var newRow = undefined,
 						    newColumn = undefined;
 						var pos1 = undefined,
 						    pos2 = undefined;
 						var updatePositions = true;
 
-						for (var i = 0; i < this.configuration.lines.length; i++) {
-							for (var j = 0; j < this.configuration.lines[i].columns.length; j++) {
-								if (this.configuration.lines[i].columns[j].control.templateOptions && typeof this.configuration.lines[i].columns[j].control.templateOptions.parentId === 'object') {
-									var position = this.configuration.lines[i].columns[j].control.templateOptions.parentId.name.match(/([0-9]+)\,([0-9]+)/);
+						angular.forEach(this.configuration.lines, function (line) {
+							angular.forEach(line.columns, function (column) {
+								if (column.control.templateOptions && typeof column.control.templateOptions.parentId === 'object') {
+									var position = column.control.templateOptions.parentId.name.match(/([0-9]+)\,([0-9]+)/);
 									if (typeof position === 'object' && position[1] && position[2]) {
 										pos1 = parseInt(position[1]);
 										pos2 = parseInt(position[2]);
@@ -1495,7 +1498,7 @@ $__System.register('13', ['11', '12', '14', '15', '16'], function (_export) {
 											case 'removeLine':
 												if (pos1 === row) {
 													updatePositions = false;
-													this.configuration.lines[i].columns[j].control.templateOptions.parentId = "";
+													column.control.templateOptions.parentId = "";
 												} else {
 													newRow = pos1 > row ? pos1 - 1 : pos1;
 													newColumn = pos2;
@@ -1519,7 +1522,7 @@ $__System.register('13', ['11', '12', '14', '15', '16'], function (_export) {
 											case 'removeColumn':
 												if (pos2 === column) {
 													updatePositions = false;
-													this.configuration.lines[i].columns[j].control.templateOptions.parentId = "";
+													column.control.templateOptions.parentId = "";
 												} else {
 													newRow = pos1;
 													newColumn = pos2 > column ? pos2 - 1 : pos2;
@@ -1532,12 +1535,12 @@ $__System.register('13', ['11', '12', '14', '15', '16'], function (_export) {
 										}
 
 										if (updatePositions) {
-											this.configuration.lines[i].columns[j].control.templateOptions.parentId.name = (this.configuration.lines[pos1].columns[pos2].control.templateOptions.label ? this.configuration.lines[pos1].columns[pos2].control.templateOptions.label : 'Field') + ' ' + newRow + ',' + newColumn + ' - ' + this.configuration.lines[pos1].columns[pos2].control.type + ' ' + this.configuration.lines[pos1].columns[pos2].control.subtype;
+											column.control.templateOptions.parentId.name = (_this.configuration.lines[pos1].columns[pos2].control.templateOptions.label ? _this.configuration.lines[pos1].columns[pos2].control.templateOptions.label : 'Field') + ' ' + newRow + ',' + newColumn + ' - ' + _this.configuration.lines[pos1].columns[pos2].control.type + ' ' + _this.configuration.lines[pos1].columns[pos2].control.subtype;
 										}
 									}
 								}
-							}
-						}
+							});
+						});
 					}
 				}, {
 					key: 'removeOption',
@@ -1624,23 +1627,23 @@ $__System.register('13', ['11', '12', '14', '15', '16'], function (_export) {
 						}];
 						var columns = angular.copy(titleColumns);
 
-						for (var i in this.configuration.lines) {
-							for (var j in this.configuration.lines[i].columns) {
-								if (this.configuration.lines[i].columns[j].control.templateOptions) {
-									if (this.configuration.lines[i].columns[j].control.templateOptions.referenceId !== currentReferenceId) {
+						angular.forEach(this.configuration.lines, function (line, lineKey) {
+							angular.forEach(line.columns, function (column, columnKey) {
+								if (column.control.templateOptions) {
+									if (column.control.templateOptions.referenceId !== currentReferenceId) {
 										field = {
-											id: this.configuration.lines[i].columns[j].control.templateOptions.referenceId,
-											name: (this.configuration.lines[i].columns[j].control.templateOptions.label ? this.configuration.lines[i].columns[j].control.templateOptions.label : 'Field') + ' ' + i + ',' + j + ' - ' + this.configuration.lines[i].columns[j].control.type + ' ' + this.configuration.lines[i].columns[j].control.subtype
+											id: column.control.templateOptions.referenceId,
+											name: (column.control.templateOptions.label ? column.control.templateOptions.label : 'Field') + ' ' + lineKey + ',' + columnKey + ' - ' + column.control.type + ' ' + column.control.subtype
 										};
-										if (this.configuration.lines[i].columns[j].control.type == 'header' || this.configuration.lines[i].columns[j].control.type == 'subTitle') {
+										if (column.control.type == 'header' || column.control.type == 'subTitle') {
 											titleColumns.push(field);
 										} else {
 											columns.push(field);
 										}
 									}
 								}
-							}
-						}
+							});
+						});
 
 						return {
 							titleColumns: titleColumns,
@@ -1650,7 +1653,7 @@ $__System.register('13', ['11', '12', '14', '15', '16'], function (_export) {
 				}, {
 					key: 'showModalAddCtrlToColumn',
 					value: function showModalAddCtrlToColumn(size, indexLine, numcolumn) {
-						var _this = this;
+						var _this2 = this;
 
 						var editControlModal = {};
 						var _nyaSelect = this.$modalProxy.getNyASelectFromSelectedLineColumn(this.nyaSelect, this.configuration, indexLine, numcolumn);
@@ -1673,7 +1676,7 @@ $__System.register('13', ['11', '12', '14', '15', '16'], function (_export) {
 								activeLine: indexLine,
 								activeColumn: numcolumn,
 								activeLineColumnsCount: function activeLineColumnsCount() {
-									return _this.configuration.lines[indexLine].columns.length;
+									return _this2.configuration.lines[indexLine].columns.length;
 								},
 								nyaSelect: function nyaSelect() {
 									return _nyaSelect;
@@ -1683,17 +1686,17 @@ $__System.register('13', ['11', '12', '14', '15', '16'], function (_export) {
 
 						var modalInstance = this.$modal.open(editControlModal);
 						modalInstance.result.then(function (modalAddCtrlModel) {
-							_this.$modalProxy.bindConfigurationModelFromModalReturn(indexLine, numcolumn, modalAddCtrlModel, _this.configuration);
-							_this.$formlyProxy.applyConfigurationToformlyModel(_this.configuration, _this.wfFormFields, _this.dataModel);
-							_this.wfFormFieldsOnlyNeededProperties = angular.copy(_this.wfFormFields);
+							_this2.$modalProxy.bindConfigurationModelFromModalReturn(indexLine, numcolumn, modalAddCtrlModel, _this2.configuration);
+							_this2.$formlyProxy.applyConfigurationToformlyModel(_this2.configuration, _this2.wfFormFields, _this2.dataModel);
+							_this2.wfFormFieldsOnlyNeededProperties = angular.copy(_this2.wfFormFields);
 
-							if (_this.$modalProxy.columnRemoved) {
-								_this.decreaseNumberOfColumns(indexLine, numcolumn);
-								_this.$modalProxy.columnRemoved = false;
+							if (_this2.$modalProxy.columnRemoved) {
+								_this2.decreaseNumberOfColumns(indexLine, numcolumn);
+								_this2.$modalProxy.columnRemoved = false;
 							}
-							if (_this.$modalProxy.columnUpdated) {
-								_this.updateParents(indexLine, numcolumn, '');
-								_this.$modalProxy.columnUpdated = false;
+							if (_this2.$modalProxy.columnUpdated) {
+								_this2.updateParents(indexLine, numcolumn, '');
+								_this2.$modalProxy.columnUpdated = false;
 							}
 						}, function () {
 							//$log.info('Modal dismissed at: ' + new Date());
@@ -2844,11 +2847,6 @@ $__System.register('1b', [], function (_export) {
 								message: "(to.label ? to.label : (\"FIELD\" | translate)) + (\"VALIDATION_YEAR\" | translate: \"{min: 0, max: 9999}\")"
 							}
 						},
-						formlyAsyncValidators: {
-							unique: {
-								message: ""
-							}
-						},
 						formlyValidation: {
 							messages: {
 								required: function required(viewValue, modelValue, scope) {
@@ -3203,6 +3201,27 @@ $__System.register('1b', [], function (_export) {
 					}
 
 				};
+
+				// Apply unique validator to all fields
+				var uniqueValidator = {
+					uniqueValue: {
+						expression: function expression(viewValue, modelValue, scope) {
+							if (scope.to.unique) {
+								//Write down logic to find uniqueness or put it in configuration
+							}
+
+							return true;
+						},
+						message: "(to.label ? to.label : (\"FIELD\" | translate)) + (\"VALIDATION_UNIQUE\" | translate)"
+					}
+				};
+
+				var notUnique = ['blank', 'header', 'subTitle'];
+				angular.forEach(newNyaSelectObj.controls, function (control) {
+					if (notUnique.indexOf(control.formlyType) === -1) {
+						control.formlyValidators = angular.merge({}, control.formlyValidators, uniqueValidator);
+					}
+				});
 
 				//reset
 				angular.copy(newNyaSelectObj, nyaSelectObj);
@@ -3601,7 +3620,7 @@ $__System.register('1c', ['15', '16', '1b'], function (_export) {
 									angular.forEach(_controlsDefinition.controls, function (aControl, aControlIndex) {
 										if (column.control.type === aControl.formlyType && column.control.subtype === aControl.formlySubtype) {
 											//----> update control formlyExpressionProperties property
-											column.control.formlyExpressionProperties = aControl.formlyExpressionProperties;
+											column.control.formlyExpressionProperties = angular.merge({}, aControl.formlyExpressionProperties, column.control.formlyExpressionProperties);
 										}
 									});
 								});
@@ -3626,7 +3645,7 @@ $__System.register('1c', ['15', '16', '1b'], function (_export) {
 									angular.forEach(_controlsDefinition.controls, function (aControl, aControlIndex) {
 										if (column.control.type === aControl.formlyType && column.control.subtype === aControl.formlySubtype) {
 											//----> update control formlyValidators property
-											column.control.formlyValidators = aControl.formlyValidators;
+											column.control.formlyValidators = angular.merge({}, aControl.formlyValidators, column.control.formlyValidators);
 										}
 									});
 								});
@@ -3651,7 +3670,7 @@ $__System.register('1c', ['15', '16', '1b'], function (_export) {
 									angular.forEach(_controlsDefinition.controls, function (aControl, aControlIndex) {
 										if (column.control.type === aControl.formlyType && column.control.subtype === aControl.formlySubtype) {
 											//----> update control formlyValidation property
-											column.control.formlyValidation = aControl.formlyValidation;
+											column.control.formlyValidation = angular.merge({}, aControl.formlyValidation, column.control.formlyValidation);
 										}
 									});
 								});

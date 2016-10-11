@@ -67,11 +67,11 @@ $__System.register("5", [], function (_export) {
       textareaTemplate = "\n  <textarea\n    id=\"{{::id}}_{{fieldIndex}}\"\n    name=\"{{::id}}_{{fieldIndex}}\"\n    class=\"form-control\"\n    ng-model=\"model[options.key][fieldIndex]\"\n  >\n  </textarea>";
       richTextTemplate = "\n  <text-angular\n    id=\"{{::id}}_{{fieldIndex}}\"\n    name=\"{{::id}}_{{fieldIndex}}\"\n    class=\"richTextAngular\"\n    ng-model=\"model[options.key || index][fieldIndex]\"\n  >\n  </text-angular>";
       radioTemplate = "\n  <div class=\"radio-group\">\n    <div\n      ng-repeat=\"(key, option) in to.options\"\n      ng-class=\"{ 'radio': !to.inline, 'radio-inline': to.inline }\"\n    >\n      <label>\n        <input\n          type=\"radio\"\n          id=\"{{id + '_'+ $index}}\"\n          tabindex=\"0\"\n          ng-value=\"option.referenceId || option.uniqueValue\"\n          ng-model=\"model[options.key]\"\n        />\n        {{option[to.labelProp || 'name']}}\n        <p\n          ng-if=\"option.description.length > 0\"\n          class=\"help-block help-inline\"\n        >\n          ({{option.description}})\n        </p>\n      </label>\n    </div>\n  </div>";
-      basicSelectTemplate = "\n  <ol\n    class=\"nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg-12\"\n    ng-model=\"model[options.key || index]\"\n    id=\"{{id}}\"\n    disabled=\"options.templateOptions.options.length === 0\"\n  >\n    <li\n      class=\"nya-bs-option\"\n      ng-if=\"!options.templateOptions.required\"\n      data-value=\"\"\n    >\n      <a>{{'NOTHING_SELECTED' | translate}}</a>\n    </li>\n    <li\n      class=\"nya-bs-option\"\n      nya-bs-option=\"option in options.templateOptions.options\"\n      data-value=\"{referenceId: option.referenceId, name: option.name, uniqueValue: option.uniqueValue}\"\n    >\n      <a>\n        <span>{{option.name}}</span>\n        <span\n          ng-if=\"option.description.length > 0\"\n          class=\"help-block help-inline\">\n          ({{option.description}})\n        </span>\n      </a>\n    </li>\n  </ol>";
-      basicMultiSelectTemplate = "\n  <ol\n    class=\"nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg-12\"\n    ng-model=\"model[options.key || index]\"\n    multiple\n    id=\"{{id}}\"\n    disabled=\"options.templateOptions.options.length === 0\"\n  >\n    <li\n      class=\"nya-bs-option\"\n      nya-bs-option=\"option in options.templateOptions.options\"\n      data-value=\"{referenceId: option.referenceId, name: option.name, uniqueValue: option.uniqueValue}\"\n      ng-class=\"{disabled: isDisabled(model[options.key || index], option.uniqueValue, options)}\"\n    >\n      <a>\n        <span>{{option.name}}</span>\n        <span\n          ng-if=\"option.description.length > 0\"\n          class=\"help-block help-inline\"\n        >\n          ({{option.description}})\n        </span>\n      </a>\n    </li>\n  </ol>";
-      groupedSelectTemplate = "\n  <ol class=\"nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg-12\"\n    ng-model=\"model[options.key || index]\"\n    data-live-search=\"true\"\n    disabled=\"options.templateOptions.options.length === 0\"\n  >\n    <li\n      class=\"nya-bs-option\"\n      ng-if=\"!options.templateOptions.required\"\n      data-value=\"\"\n    >\n      <a>{{'NOTHING_SELECTED' | translate}}</a>\n    </li>\n    <li\n      nya-bs-option=\"option in options.templateOptions.options group by option.group\"\n      value=\"{referenceId: option.referenceId, name: option.name, uniqueValue: option.uniqueValue}\"\n    >\n      <span class=\"dropdown-header\">{{$group}}</span>\n      <a>\n        <span>{{option.name}}</span>\n        <span\n          ng-if=\"option.description.length > 0\"\n          class=\"help-block help-inline\"\n        >\n          ({{option.description}})\n        </span>\n        <span class=\"glyphicon glyphicon-ok check-mark\"></span>\n      </a>\n    </li>\n  </ol>";
-      groupedMultiSelectTemplate = "\n  <ol class=\"nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg-12\"\n    ng-model=\"model[options.key || index]\"\n    multiple\n    data-live-search=\"true\"\n    disabled=\"options.templateOptions.options.length === 0\"\n  >\n    <li\n      nya-bs-option=\"option in options.templateOptions.options group by option.group\"\n      value=\"{referenceId: option.referenceId, name: option.name, uniqueValue: option.uniqueValue}\"\n      ng-class=\"{disabled: isDisabled(model[options.key || index], option.uniqueValue, options)}\"\n    >\n      <span class=\"dropdown-header\">{{$group}}</span>\n      <a>\n        <span>{{option.name}}</span>\n        <span\n          ng-if=\"option.description.length > 0\"\n          class=\"help-block help-inline\"\n        >\n          ({{option.description}})\n        </span>\n        <span class=\"glyphicon glyphicon-ok check-mark\"></span>\n      </a>\n    </li>\n  </ol>";
-      uploadTemplateListFiles = "\n  <div\n    ng-if=\"options.type == 'upload' && options.templateOptions.files\"\n    style=\"padding-bottom: 20px\"\n  >\n    <div ng-repeat=\"file in options.templateOptions.files\">\n      <div class=\"row\">\n        <div class=\"col-sm-9 col-xs-12 col-md-9 col-lg-9\">\n          <a class=\"upload-files\" href=\"{{file.path}}\" target=\"_blank\">{{file.name}}</a>\n        </div>\n        <div class=\"col-sm-3 col-xs-12 col-md-3 col-lg-3\">\n          <button\n            class=\"btn btn-sm btn-danger upload-files\"\n            ng-click=\"deleteFile(file.referenceId)\"\n          >\n            {{'REMOVE' | translate}}\n          </button>\n        </div>\n      </div>\n    </div>\n  </div>\n  <formly-transclude></formly-transclude>";
+      basicSelectTemplate = "\n  <ol\n    class=\"nya-bs-select no-margin-bottom col-sm-12 col-xs-12 col-md-12 col-lg-12\"\n    ng-model=\"model[options.key || index]\"\n    id=\"{{id}}\"\n    disabled=\"options.templateOptions.options.length === 0\"\n  >\n    <li\n      class=\"nya-bs-option\"\n      ng-if=\"!options.templateOptions.required\"\n      data-value=\"\"\n    >\n      <a>{{'NOTHING_SELECTED' | translate}}</a>\n    </li>\n    <li\n      class=\"nya-bs-option\"\n      nya-bs-option=\"option in options.templateOptions.options\"\n      data-value=\"{referenceId: option.referenceId, name: option.name, uniqueValue: option.uniqueValue}\"\n    >\n      <a>\n        <span>{{option.name}}</span>\n        <span\n          ng-if=\"option.description.length > 0\"\n          class=\"help-block help-inline\">\n          ({{option.description}})\n        </span>\n      </a>\n    </li>\n  </ol>";
+      basicMultiSelectTemplate = "\n  <ol\n    class=\"nya-bs-select no-margin-bottom col-sm-12 col-xs-12 col-md-12 col-lg-12\"\n    ng-model=\"model[options.key || index]\"\n    multiple\n    id=\"{{id}}\"\n    disabled=\"options.templateOptions.options.length === 0\"\n  >\n    <li\n      class=\"nya-bs-option\"\n      nya-bs-option=\"option in options.templateOptions.options\"\n      data-value=\"{referenceId: option.referenceId, name: option.name, uniqueValue: option.uniqueValue}\"\n      ng-class=\"{disabled: isDisabled(model[options.key || index], option.uniqueValue, options)}\"\n    >\n      <a>\n        <span>{{option.name}}</span>\n        <span\n          ng-if=\"option.description.length > 0\"\n          class=\"help-block help-inline\"\n        >\n          ({{option.description}})\n        </span>\n      </a>\n    </li>\n  </ol>";
+      groupedSelectTemplate = "\n  <ol class=\"nya-bs-select no-margin-bottom col-sm-12 col-xs-12 col-md-12 col-lg-12\"\n    ng-model=\"model[options.key || index]\"\n    data-live-search=\"true\"\n    disabled=\"options.templateOptions.options.length === 0\"\n  >\n    <li\n      class=\"nya-bs-option\"\n      ng-if=\"!options.templateOptions.required\"\n      data-value=\"\"\n    >\n      <a>{{'NOTHING_SELECTED' | translate}}</a>\n    </li>\n    <li\n      nya-bs-option=\"option in options.templateOptions.options group by option.group\"\n      value=\"{referenceId: option.referenceId, name: option.name, uniqueValue: option.uniqueValue}\"\n    >\n      <span class=\"dropdown-header\">{{$group}}</span>\n      <a>\n        <span>{{option.name}}</span>\n        <span\n          ng-if=\"option.description.length > 0\"\n          class=\"help-block help-inline\"\n        >\n          ({{option.description}})\n        </span>\n        <span class=\"glyphicon glyphicon-ok check-mark\"></span>\n      </a>\n    </li>\n  </ol>";
+      groupedMultiSelectTemplate = "\n  <ol class=\"nya-bs-select no-margin-bottom col-sm-12 col-xs-12 col-md-12 col-lg-12\"\n    ng-model=\"model[options.key || index]\"\n    multiple\n    data-live-search=\"true\"\n    disabled=\"options.templateOptions.options.length === 0\"\n  >\n    <li\n      nya-bs-option=\"option in options.templateOptions.options group by option.group\"\n      value=\"{referenceId: option.referenceId, name: option.name, uniqueValue: option.uniqueValue}\"\n      ng-class=\"{disabled: isDisabled(model[options.key || index], option.uniqueValue, options)}\"\n    >\n      <span class=\"dropdown-header\">{{$group}}</span>\n      <a>\n        <span>{{option.name}}</span>\n        <span\n          ng-if=\"option.description.length > 0\"\n          class=\"help-block help-inline\"\n        >\n          ({{option.description}})\n        </span>\n        <span class=\"glyphicon glyphicon-ok check-mark\"></span>\n      </a>\n    </li>\n  </ol>";
+      uploadTemplateListFiles = "\n  <div ng-if=\"options.type == 'upload' && options.templateOptions.files\">\n    <div\n      ng-repeat=\"file in options.templateOptions.files\"\n      style=\"padding-bottom: 20px\"\n    >\n      <div class=\"row\">\n        <div class=\"col-sm-9 col-xs-12 col-md-9 col-lg-9\">\n          <a class=\"upload-files\" href=\"{{file.path}}\" target=\"_blank\">{{file.name}}</a>\n        </div>\n        <div class=\"col-sm-3 col-xs-12 col-md-3 col-lg-3\">\n          <button\n            class=\"btn btn-sm btn-danger upload-files\"\n            ng-click=\"deleteFile(file.referenceId)\"\n          >\n            {{'REMOVE' | translate}}\n          </button>\n        </div>\n      </div>\n    </div>\n  </div>\n  <formly-transclude></formly-transclude>";
       uploadTemplate = "\n  <div\n    ng-hide=\"!(options.templateOptions.allowMultiple == -1 || !(options.templateOptions.files && options.templateOptions.files.length >= options.templateOptions.allowMultiple))\"\n  >\n    <input\n      type=\"file\"\n      class=\"form-control\"\n      ng-model=\"model[options.key][fieldIndex]\"\n      id=\"{{::id}}_{{fieldIndex}}\"\n      name=\"{{::id}}_{{fieldIndex}}\"\n    />\n  </div>";
       validationTemplate = "\n  <div\n    class=\"formly-template-wrapper form-group\"\n    ng-class=\"{'has-error': options.validation.errorExistsAndShouldBeVisible}\"\n  >\n    <formly-transclude></formly-transclude>\n    <div class=\"validation\"\n      ng-if=\"!options.templateOptions.canDisplayMultiple && fc[0] && fc[0].$invalid && (fc[0].$touched || fc[0].$viewValue)\"\n      ng-messages=\"fc[0].$error\"\n    >\n      <div ng-messages-include=\"validation.html\"></div>\n      <div ng-message=\"{{name}}\" ng-repeat=\"(name, value) in fc[0].$error\">\n        <div ng-if=\"value && options.validation.messages[name]\">\n          {{options.validation.messages[name](fc[0].$viewValue, fc[0].$modelValue, this)}}\n        </div>\n      </div>\n    </div>\n    <div class=\"validation\"\n      ng-if=\"!options.templateOptions.canDisplayMultiple && !fc[0] && fc.$invalid && (fc.$touched || fc.$viewValue)\"\n      ng-messages=\"fc.$error\"\n    >\n      <div ng-messages-include=\"validation.html\"></div>\n      <div ng-message=\"{{name}}\" ng-repeat=\"(name, value) in fc.$error\">\n        <div ng-if=\"value && options.validation.messages[name]\">\n          {{options.validation.messages[name](fc.$viewValue, fc.$modelValue, this)}}\n        </div>\n      </div>\n    </div>\n  </div>";
       validationTemplateMultiple = "\n  <div\n    ng-repeat=\"item in model[options.key] track by $index\" ng-init=\"fieldIndex = $index\"\n  >\n    <div class=\"row\">\n      <div class=\"col-sm-9 col-xs-12 col-md-9 col-lg-9\">\n        <formly-transclude></formly-transclude>\n      </div>\n      <div class=\"col-sm-3 col-xs-12 col-md-3 col-lg-3\" style=\"margin-bottom: 20px;\">\n        <button\n          type=\"button\"\n          id=\"delete-{{::id}}\"\n          class=\"btn btn-sm btn-danger\"\n          ng-click=\"model[options.key].splice($index, 1)\"\n          ng-if=\"model[options.key].length > 1\"\n        >\n          {{'REMOVE' | translate}}\n        </button>\n      </div>\n    </div>\n    <div class=\"row\">\n      <div class=\"col-sm-12 col-xs-12 col-md-12 col-lg-12\">\n        <div class=\"validation\"\n          ng-if=\"fc[$index] && fc[$index].$invalid && (fc[$index].$touched || fc[$index].$viewValue)\"\n          ng-messages=\"fc[$index].$error\"\n        >\n          <div ng-messages-include=\"validation.html\"></div>\n          <div ng-message=\"{{name}}\" ng-repeat=\"(name, value) in fc[$index].$error\">\n            <div ng-if=\"value && options.validation.messages[name]\">\n              {{options.validation.messages[name](fc[$index].$viewValue, fc[$index].$modelValue, this)}}\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n  <p\n    ng-if=\"options.templateOptions.allowMultiple == -1 || (options.type != 'upload' && model[options.key].length < options.templateOptions.allowMultiple) || (options.type == 'upload' && options.templateOptions.files && options.templateOptions.files.length + model[options.key].length < options.templateOptions.allowMultiple)\">\n    <button\n      type=\"button\"\n      class=\"btn btn-primary\"\n      ng-click=\"model[options.key].push('')\">\n      {{'ADD_NEW' | translate}}\n    </button>\n  </p>";
@@ -614,6 +614,7 @@ $__System.registerDynamic("7", [], true, function ($__require, exports, module) 
         "VALIDATION_EMAIL": " is not a valid email",
         "VALIDATION_MAXLENGTH": " size should have max {{max}} characters",
         "VALIDATION_DATE_INVALID": " has invalid date",
+        "VALIDATION_UNIQUE": " is not unique",
         "REMOVE": "Remove",
         "ADD_NEW": "Add new"
     };
@@ -1303,7 +1304,7 @@ $__System.register('11', ['10', '12', 'f'], function (_export) {
 
 			/**
    	* TODO : check if formly or easy form generato fields model
-   	* 
+   	*
    	* by default or if both -> easy for generator is chosen
    	*/
 			function loadFieldsModel() {
@@ -1326,7 +1327,7 @@ $__System.register('11', ['10', '12', 'f'], function (_export) {
 					$modelsTranslator.bindConfigurationLines(scope.configurationLoaded, configlines);
 					/**
      	* rebind special control properties :
-     	* 
+     	*
      	* formly expression properties
      	* Validators
      	* Validation
@@ -2293,8 +2294,28 @@ $__System.register('1b', [], function (_export) {
 						formlyValidators: {},
 						formlyValidation: {}
 					}
-
 				};
+
+				// Apply unique validator to all fields
+				var uniqueValidator = {
+					uniqueValue: {
+						expression: function expression(viewValue, modelValue, scope) {
+							if (scope.to.unique) {
+								//Write down logic to find uniqueness or put it in configuration
+							}
+
+							return true;
+						},
+						message: "(to.label ? to.label : (\"FIELD\" | translate)) + (\"VALIDATION_UNIQUE\" | translate)"
+					}
+				};
+
+				var notUnique = ['blank', 'header', 'subTitle'];
+				angular.forEach(newNyaSelectObj.controls, function (control) {
+					if (notUnique.indexOf(control.formlyType) === -1) {
+						control.formlyValidators = angular.merge({}, control.formlyValidators, uniqueValidator);
+					}
+				});
 
 				//reset
 				angular.copy(newNyaSelectObj, nyaSelectObj);
@@ -2653,7 +2674,7 @@ $__System.register('1c', ['13', '14', '1b'], function (_export) {
 									angular.forEach(_controlsDefinition.controls, function (aControl) {
 										if (column.control.type === aControl.formlyType && column.control.subtype === aControl.formlySubtype) {
 											//----> update control formlyExpressionProperties property
-											column.control.formlyExpressionProperties = aControl.formlyExpressionProperties;
+											column.control.formlyExpressionProperties = angular.merge({}, aControl.formlyExpressionProperties, column.control.formlyExpressionProperties);
 										}
 									});
 								});
@@ -2678,7 +2699,7 @@ $__System.register('1c', ['13', '14', '1b'], function (_export) {
 									angular.forEach(_controlsDefinition.controls, function (aControl) {
 										if (column.control.type === aControl.formlyType && column.control.subtype === aControl.formlySubtype) {
 											//----> update control formlyValidators property
-											column.control.formlyValidators = aControl.formlyValidators;
+											column.control.formlyValidators = angular.merge({}, aControl.formlyValidators, column.control.formlyValidators);
 										}
 									});
 								});
@@ -2703,7 +2724,7 @@ $__System.register('1c', ['13', '14', '1b'], function (_export) {
 									angular.forEach(_controlsDefinition.controls, function (aControl) {
 										if (column.control.type === aControl.formlyType && column.control.subtype === aControl.formlySubtype) {
 											//----> update control formlyValidation property
-											column.control.formlyValidation = aControl.formlyValidation;
+											column.control.formlyValidation = angular.merge({}, aControl.formlyValidation, column.control.formlyValidation);
 										}
 									});
 								});

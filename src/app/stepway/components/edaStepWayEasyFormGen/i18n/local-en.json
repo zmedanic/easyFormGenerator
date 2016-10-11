@@ -118,6 +118,7 @@
     "VALIDATION_EMAIL"    : " is not a valid email",
     "VALIDATION_MAXLENGTH": " size should have max {{max}} characters",
     "VALIDATION_DATE_INVALID" : " has invalid date",
+    "VALIDATION_UNIQUE" : " is not unique",
     "REMOVE"              : "Remove",
     "ADD_NEW"             : "Add new"
 }
