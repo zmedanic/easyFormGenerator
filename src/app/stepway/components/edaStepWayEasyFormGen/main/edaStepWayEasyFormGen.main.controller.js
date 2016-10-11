@@ -224,10 +224,10 @@ class edaStepWayEasyFormGenController {
 		let pos1, pos2;
 		let updatePositions = true;
 
-		for (let i = 0; i < this.configuration.lines.length; i++) {
-			for (let j = 0; j < this.configuration.lines[i].columns.length; j++) {
-				if (this.configuration.lines[i].columns[j].control.templateOptions && typeof(this.configuration.lines[i].columns[j].control.templateOptions.parentId) === 'object') {
-					let position = this.configuration.lines[i].columns[j].control.templateOptions.parentId.name.match(/([0-9]+)\,([0-9]+)/);
+		angular.forEach(this.configuration.lines, (line) => {
+			angular.forEach(line.columns, (column) => {
+				if (column.control.templateOptions && typeof(column.control.templateOptions.parentId) === 'object') {
+					let position = column.control.templateOptions.parentId.name.match(/([0-9]+)\,([0-9]+)/);
 					if (typeof(position) === 'object' && position[1] && position[2]) {
 						pos1 = parseInt(position[1]);
 						pos2 = parseInt(position[2]);
@@ -237,7 +237,7 @@ class edaStepWayEasyFormGenController {
               case 'removeLine':
                 if (pos1 === row) {
                   updatePositions = false;
-                  this.configuration.lines[i].columns[j].control.templateOptions.parentId = "";
+                  column.control.templateOptions.parentId = "";
                 } else {
                   newRow = (pos1 > row) ? pos1 - 1 : pos1;
                   newColumn = pos2;
@@ -261,7 +261,7 @@ class edaStepWayEasyFormGenController {
               case 'removeColumn':
                 if (pos2 === column) {
                   updatePositions = false;
-                  this.configuration.lines[i].columns[j].control.templateOptions.parentId = "";
+                  column.control.templateOptions.parentId = "";
                 } else {
                   newRow = pos1;
                   newColumn = (pos2 > column) ? pos2 - 1 : pos2;
@@ -274,7 +274,7 @@ class edaStepWayEasyFormGenController {
             }
 
             if (updatePositions) {
-              this.configuration.lines[i].columns[j].control.templateOptions.parentId.name =
+              column.control.templateOptions.parentId.name =
                 (this.configuration.lines[pos1].columns[pos2].control.templateOptions.label ?
                   this.configuration.lines[pos1].columns[pos2].control.templateOptions.label :
                   'Field'
@@ -284,8 +284,8 @@ class edaStepWayEasyFormGenController {
             }
 					}
 				}
-			}
-		}
+			});
+		});
 	}
 
 
@@ -373,24 +373,24 @@ class edaStepWayEasyFormGenController {
 		}];
 		let columns = angular.copy(titleColumns);
 
-		for (var i in this.configuration.lines) {
-			for (var j in this.configuration.lines[i].columns) {
-				if (this.configuration.lines[i].columns[j].control.templateOptions) {
-					if (this.configuration.lines[i].columns[j].control.templateOptions.referenceId !== currentReferenceId) {
+		angular.forEach(this.configuration.lines, (line, lineKey) => {
+			angular.forEach(line.columns, (column, columnKey) => {
+				if (column.control.templateOptions) {
+					if (column.control.templateOptions.referenceId !== currentReferenceId) {
 						field = {
-							id: this.configuration.lines[i].columns[j].control.templateOptions.referenceId,
-							name: (this.configuration.lines[i].columns[j].control.templateOptions.label ? this.configuration.lines[i].columns[j].control.templateOptions.label : 'Field') +
-								' ' + i + ',' + j + ' - ' + this.configuration.lines[i].columns[j].control.type + ' ' + this.configuration.lines[i].columns[j].control.subtype
+							id: column.control.templateOptions.referenceId,
+							name: (column.control.templateOptions.label ? column.control.templateOptions.label : 'Field') +
+								' ' + lineKey + ',' + columnKey + ' - ' + column.control.type + ' ' + column.control.subtype
 						}
-						if (this.configuration.lines[i].columns[j].control.type == 'header' || this.configuration.lines[i].columns[j].control.type == 'subTitle') {
+						if (column.control.type == 'header' || column.control.type == 'subTitle') {
 							titleColumns.push(field);
 						} else {
 							columns.push(field);
 						}
 					}
 				}
-			}
-		}
+			});
+		});
 
 		return {
 			titleColumns: titleColumns,
