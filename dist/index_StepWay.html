@@ -135,8 +135,8 @@
 				/**
 				 * controller
 				 **/
-				demoController.$inject = ['$timeout', 'easyFormSteWayConfig', '$http'];
-				function demoController($timeout, easyFormSteWayConfig, $http){
+				demoController.$inject = ['$timeout', 'easyFormSteWayConfig', '$http', '$scope', '$q'];
+				function demoController($timeout, easyFormSteWayConfig, $http, $scope, $q){
 					var demoCtrl = this;
 
 					demoCtrl.easyFormGeneratorModel	= {};

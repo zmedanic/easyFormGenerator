@@ -129,6 +129,10 @@ const extractFormlyValidators = (obj)=>{
 	return  typeof obj.formlyValidators !== 'undefined' ? angular.copy(obj.formlyValidators): {};
 };
 
+const extractFormlyAsyncValidators = (obj)=>{
+	return  typeof obj.formlyAsyncValidators !== 'undefined' ? angular.copy(obj.formlyAsyncValidators): {};
+};
+
 const extractFormlyValidation = (obj)=>{
 	return  typeof obj.formlyValidation !== 'undefined' ?  angular.copy(obj.formlyValidation) : {};
 };
@@ -290,6 +294,7 @@ function addColumnControl(formlyModel, configurationModel,lineIndex, numberOfCol
 		},
 		expressionProperties : extractFormlyExpressionProperties(configurationModel.lines[lineIndex].columns[columnIndex].control),
 		validators : extractFormlyValidators(configurationModel.lines[lineIndex].columns[columnIndex].control),
+		asyncValidators : extractFormlyAsyncValidators(configurationModel.lines[lineIndex].columns[columnIndex].control),
 		validation : extractFormlyValidation(configurationModel.lines[lineIndex].columns[columnIndex].control)
 	};
 	//////////////////////////////////////////////
@@ -380,6 +385,7 @@ export {
 	extractTemplateOptionAllowEmptyOption,
 	extractFormlyExpressionProperties,
 	extractFormlyValidators,
+	extractFormlyAsyncValidators,
 	extractFormlyValidation,
 	extractTemplateOptionRequired,
 	extractTemplateOptionUnique,

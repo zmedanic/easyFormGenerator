@@ -1,6 +1,6 @@
 /* global angular */
 
-const resetNyaSelect = (nyaSelectObj, $translate) => {
+const resetNyaSelect = (nyaSelectObj, $translate, $q, $timeout) => {
 
 	let newNyaSelectObj = {
 		controls : [
@@ -25,6 +25,7 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 				referenceId				: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
+				formlyAsyncValidators: {},
 				formlyValidation	: {}
 			},
 
@@ -49,6 +50,7 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 				referenceId				: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
+				formlyAsyncValidators: {},
 				formlyValidation	: {}
 			},
 
@@ -73,6 +75,7 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 				referenceId				: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
+				formlyAsyncValidators: {},
 				formlyValidation	: {}
 			},
 
@@ -96,7 +99,7 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 				referenceId				: '',
 				maxLengthOption		: null,
 				formlyExpressionProperties: {},
-				formlyValidators 						: {
+				formlyValidators 	: {
 					textShape : {
 						expression : function(viewValue, modelValue, scope) {
 							var value = modelValue || viewValue;
@@ -105,6 +108,7 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 						message	: "(to.label ? to.label : (\"FIELD\" | translate)) + (\"VALIDATION_MAX_LENGTH\"| translate: \"{max: \" + to.maxLengthOption + \"}\")"
 					}
 				},
+				formlyAsyncValidators: {},
 				formlyValidation	: {
 					messages: {
 						required: function(viewValue, modelValue, scope) {
@@ -140,7 +144,7 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 				incrementalOption	: false,
 				currentYearOption	: false,
 				formlyExpressionProperties: {},
-				formlyValidators 						: {
+				formlyValidators 	: {
 					numberShape : {
 						expression : function(viewValue, modelValue, scope) {
 							var value = modelValue || viewValue;
@@ -161,6 +165,7 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 						message	: "(to.label ? to.label : (\"FIELD\" | translate)) + (\"VALIDATION_YEAR\" | translate: \"{min: 0, max: 9999}\")"
 					}
 				},
+				formlyAsyncValidators: {},
 				formlyValidation	: {
 					messages: {
 						required: function(viewValue, modelValue, scope) {
@@ -192,6 +197,7 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 				referenceId				: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
+				formlyAsyncValidators: {},
 				formlyValidation	: {
 					messages: {
 						required: function(viewValue, modelValue, scope) {
@@ -203,26 +209,26 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 			},
 
 			{
-				id 													: 'Email',
-				name 												: 'Email',
-				subtitle 										: 'Email',
-				group 											: 'input',
-				formlyType									: 'input',
-				formlySubtype 							: 'email',
-				formlyLabel 								: '',
-				formlyLabelShort						: '',
-				formlyRequired 							: false,
-				formlyUnique								: false,
-				formlyDefaultValue					: '',
-				displayAddOption						: true,
-				displayEditOption						: true,
-				allowMultiple								: 1,
-				formlyDesciption 						: '',
-				formlyOptions 							: [],
-				parentId										: '',
-				referenceId									: '',
-				formlyExpressionProperties 	: {},
-				formlyValidators 						: {
+				id 									: 'Email',
+				name 								: 'Email',
+				subtitle 						: 'Email',
+				group 							: 'input',
+				formlyType					: 'input',
+				formlySubtype 			: 'email',
+				formlyLabel 				: '',
+				formlyLabelShort		: '',
+				formlyRequired 			: false,
+				formlyUnique				: false,
+				formlyDefaultValue	: '',
+				displayAddOption		: true,
+				displayEditOption		: true,
+				allowMultiple				: 1,
+				formlyDesciption 		: '',
+				formlyOptions 			: [],
+				parentId						: '',
+				referenceId					: '',
+				formlyExpressionProperties: {},
+				formlyValidators 		: {
 					emailShape : {
 						expression : (viewValue, modelValue) => {
 							var value = modelValue || viewValue;
@@ -234,7 +240,8 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 						message	: "(to.label ? to.label : (\"FIELD\" | translate)) + (\"VALIDATION_EMAIL\" | translate)"
 					}
 				},
-				formlyValidation: {
+				formlyAsyncValidators: {},
+				formlyValidation		: {
 					messages: {
 						required: function(viewValue, modelValue, scope) {
 							var returnMsg = (scope.to.label ? scope.to.label : $translate.instant('FIELD')) + $translate.instant('VALIDATION_REQUIRED');
@@ -267,6 +274,7 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 				currentDateOption	: false,
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
+				formlyAsyncValidators: {},
 				formlyValidation	: {
 					messages: {
 						required: function(viewValue, modelValue, scope) {
@@ -302,6 +310,7 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 				referenceId				: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
+				formlyAsyncValidators: {},
 				formlyValidation	: {
 					messages	: {
 						required: function(viewValue, modelValue, scope) {
@@ -333,6 +342,7 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 				referenceId				: '',
 				formlyExpressionProperties: {},
 				formlyValidators 	: {},
+				formlyAsyncValidators: {},
 				formlyValidation	: {
 					messages: {
 						required: function(viewValue, modelValue, scope) {
@@ -366,6 +376,7 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 				referenceId				: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
+				formlyAsyncValidators: {},
 				formlyValidation	: {
 					messages: {
 						required: function(viewValue, modelValue, scope) {
@@ -397,6 +408,7 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 				referenceId				: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
+				formlyAsyncValidators: {},
 				formlyValidation	: {
 					messages: {
 						required: function(viewValue, modelValue, scope) {
@@ -430,6 +442,7 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 				referenceId				: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
+				formlyAsyncValidators: {},
 				formlyValidation	: {
 					messages: {
 						required: function(viewValue, modelValue, scope) {
@@ -463,6 +476,7 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 				referenceId				: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
+				formlyAsyncValidators: {},
 				formlyValidation	: {
 					messages				: {
 						required	: function(viewValue, modelValue, scope) {
@@ -509,6 +523,7 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 						message	: "(to.label ? to.label : (\"FIELD\" | translate)) + (\"VALIDATION_REQUIRED\" | translate)"
 					},
 				},
+				formlyAsyncValidators: {},
 				formlyValidation	: {}
 			}
 		],
@@ -531,6 +546,7 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 			//expressions/validation fields
 			formlyExpressionProperties: {},
 			formlyValidators	: {},
+			formlyAsyncValidators: {},
 			formlyValidation	: {}
 		}
 
@@ -540,11 +556,19 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
 	let uniqueValidator = {
     uniqueValue: {
 			expression : function(viewValue, modelValue, scope) {
-				if (scope.to.unique) {
-          //Write down logic to find uniqueness or put it in configuration
-				}
+				let deferred = $q.defer();
 
-				return true;
+				return $timeout(function() {
+					// Write down own logic
+					let isOK = true;
+
+				  if (isOK || !scope.to.unique) {
+				    deferred.resolve(isOK);
+				  } else {
+				    deferred.reject(isOK);
+				  }
+					return deferred.promise;
+				}, 1000);
 			},
       message: "(to.label ? to.label : (\"FIELD\" | translate)) + (\"VALIDATION_UNIQUE\" | translate)"
     }
@@ -553,7 +577,7 @@ const resetNyaSelect = (nyaSelectObj, $translate) => {
   let notUnique = ['blank', 'header', 'subTitle'];
   angular.forEach(newNyaSelectObj.controls, (control) => {
   	if (notUnique.indexOf(control.formlyType) === -1) {
-			control.formlyValidators = angular.merge({}, control.formlyValidators, uniqueValidator);
+			control.formlyAsyncValidators = angular.merge({}, control.formlyAsyncValidators, uniqueValidator);
 		}
 	});
 

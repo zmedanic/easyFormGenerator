@@ -64,10 +64,12 @@ function edaStepWayEasyFormGenDirective(
 					*
 					* formly expression properties
 					* Validators
+					* Async Validators
 					* Validation
 					*/
 				$modalProxy.refreshControlFormlyExpressionProperties(scope.configurationLoaded);
 				$modalProxy.refreshControlFormlyValidators(scope.configurationLoaded);
+				$modalProxy.refreshControlFormlyAsyncValidators(scope.configurationLoaded);
 				$modalProxy.refreshControlFormlyValidation(scope.configurationLoaded);
 				//apply configuration model
 				scope.vm.configuration = angular.copy(scope.configurationLoaded);

@@ -9,25 +9,27 @@ const CONTROLLER_MODAL_PROXY_SERVICE = '$modalProxy';
 
 class $modalProxy{
 
-	constructor(easyFormSteWayConfig, $translate) {
+	constructor(easyFormSteWayConfig, $translate, $q, $timeout) {
 		this.easyFormSteWayConfig	=	easyFormSteWayConfig;
 		this.$translate = $translate;
 		this.columnRemoved = false;
 		this.columnUpdated = false;
+		this.$q = $q;
+		this.$timeout = $timeout;
 	}
 
 	initNyaSelect(nyaSelectObj) {
-		return resetNyaSelect(nyaSelectObj, this.$translate);
+		return resetNyaSelect(nyaSelectObj, this.$translate, this.$q, this.$timeout);
 	}
 
 	getControlsDefinition() {
 		let controls = {};
-		resetNyaSelect(controls, this.$translate);
+		resetNyaSelect(controls, this.$translate, this.$q, this.$timeout);
 		return controls;
 	}
 
 	getNyASelectFromSelectedLineColumn(nyaSelectObj, configurationObj, indexLine, numcolumn) {
-		resetNyaSelect(nyaSelectObj, this.$translate);
+		resetNyaSelect(nyaSelectObj, this.$translate, this.$q, this.$timeout);
 		/**
 			* data send to modal controller
 			*/
@@ -275,6 +277,29 @@ class $modalProxy{
 
 
 	/**
+		* loading forms will not be able to retrieve formlyAsyncValidators
+		* -> here does the job
+		*/
+	refreshControlFormlyAsyncValidators(configurationModel){
+		if (angular.isObject(configurationModel)) {
+			//iterates lines
+			angular.forEach(configurationModel.lines, (line, indexLine) => {
+				angular.forEach(line.columns, (column, controlIndex) => {
+					let _controlsDefinition = this.getControlsDefinition();
+					angular.forEach(_controlsDefinition.controls, (aControl, aControlIndex) => {
+						if (column.control.type === aControl.formlyType &&
+							column.control.subtype === aControl.formlySubtype) {
+							//----> update control formlyAsyncValidators property
+							column.control.formlyAsyncValidators = angular.merge({}, aControl.formlyAsyncValidators, column.control.formlyAsyncValidators);
+						}
+					});
+				});
+			});
+		}
+	}
+
+
+	/**
 		* loading forms will not be able to retrieve formlyValidation
 		* -> here does the job
 		*/
@@ -313,12 +338,12 @@ class $modalProxy{
 
 	getFilteredNyaSelectObject(){
 		let newNyaSelectObj = {};
-		resetNyaSelect(newNyaSelectObj, this.$translate);
+		resetNyaSelect(newNyaSelectObj, this.$translate, this.$q, this.$timeout);
 		return angular.copy(this.filterDisabledControl(angular.copy(newNyaSelectObj)));
 		//return angular.copy(angular.copy(newNyaSelectObj));
 	}
 }
 
-$modalProxy.$inject= ['easyFormSteWayConfig', '$translate'];
+$modalProxy.$inject= ['easyFormSteWayConfig', '$translate', '$q', '$timeout'];
 export default $modalProxy;
 export {CONTROLLER_MODAL_PROXY_SERVICE};

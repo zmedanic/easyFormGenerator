@@ -17,14 +17,16 @@ const MODEL_TRANSLATOR_SERVICE = '$modelsTranslator';
 
 class $modelsTranslator{
 
-	constructor($translate, $http){
+	constructor($translate, $http, $q, $timeout){
 		this.$translate = $translate;
 		this.$http = $http;
+		this.$q = $q;
+		this.$timeout = $timeout;
 	}
 
 
 	initNyaSelect(nyaSelectObj){
-		return resetNyaSelect(nyaSelectObj, this.$translate, this.$http);
+		return resetNyaSelect(nyaSelectObj, this.$translate, this.$http, this.$q, this.$timeout);
 	}
 
 	/**
@@ -34,11 +36,12 @@ class $modelsTranslator{
 		*
 		* formlyExpressionProperties: {},
 		* formlyValidators: {},
+		* formlyAsyncValidators: {},
 		* formlyValidation
 		*/
 	getControlsDefinition(){
 		let controls = {};
-		resetNyaSelect(controls, this.$translate, this.$http);
+		resetNyaSelect(controls, this.$translate, this.$http, this.$q, this.$timeout);
 		return controls;
 	}
 
@@ -80,6 +83,29 @@ class $modelsTranslator{
 							column.control.subtype === aControl.formlySubtype) {
 							//----> update control formlyValidators property
 							column.control.formlyValidators = angular.merge({}, aControl.formlyValidators, column.control.formlyValidators);
+						}
+					});
+				});
+			});
+		}
+	}
+
+
+	/**
+		* loading forms will not be able to retrieve formlyAsyncValidators
+		* -> here does the job
+		*/
+	refreshControlFormlyAsyncValidators(configurationModel){
+		if (angular.isObject(configurationModel)) {
+			//iterates lines
+			angular.forEach(configurationModel.lines, (line) => {
+				angular.forEach(line.columns, (column) => {
+					let _controlsDefinition = this.getControlsDefinition();
+					angular.forEach(_controlsDefinition.controls, (aControl) => {
+						if (column.control.type === aControl.formlyType &&
+							column.control.subtype === aControl.formlySubtype) {
+							//----> update control formlyAsyncValidators property
+							column.control.formlyAsyncValidators = angular.merge({}, aControl.formlyAsyncValidators, column.control.formlyAsyncValidators);
 						}
 					});
 				});
@@ -147,7 +173,7 @@ class $modelsTranslator{
 	}
 }
 
-$modelsTranslator.$inject = ['$translate', '$http'];
+$modelsTranslator.$inject = ['$translate', '$http', '$q', '$timeout'];
 
 export default $modelsTranslator;
 

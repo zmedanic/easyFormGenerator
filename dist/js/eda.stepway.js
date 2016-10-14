@@ -1825,10 +1825,12 @@ $__System.register('17', ['10', '13'], function (_export) {
      	*
      	* formly expression properties
      	* Validators
+     	* Async Validators
      	* Validation
      	*/
 					$modalProxy.refreshControlFormlyExpressionProperties(scope.configurationLoaded);
 					$modalProxy.refreshControlFormlyValidators(scope.configurationLoaded);
+					$modalProxy.refreshControlFormlyAsyncValidators(scope.configurationLoaded);
 					$modalProxy.refreshControlFormlyValidation(scope.configurationLoaded);
 					//apply configuration model
 					scope.vm.configuration = angular.copy(scope.configurationLoaded);
@@ -2694,7 +2696,7 @@ $__System.register('1b', [], function (_export) {
 	return {
 		setters: [],
 		execute: function () {
-			resetNyaSelect = function resetNyaSelect(nyaSelectObj, $translate) {
+			resetNyaSelect = function resetNyaSelect(nyaSelectObj, $translate, $q, $timeout) {
 
 				var newNyaSelectObj = {
 					controls: [{
@@ -2718,6 +2720,7 @@ $__System.register('1b', [], function (_export) {
 						referenceId: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {},
+						formlyAsyncValidators: {},
 						formlyValidation: {}
 					}, {
 						id: 'Header',
@@ -2740,6 +2743,7 @@ $__System.register('1b', [], function (_export) {
 						referenceId: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {},
+						formlyAsyncValidators: {},
 						formlyValidation: {}
 					}, {
 						id: 'Subtitle',
@@ -2762,6 +2766,7 @@ $__System.register('1b', [], function (_export) {
 						referenceId: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {},
+						formlyAsyncValidators: {},
 						formlyValidation: {}
 					}, {
 						id: 'TextInput',
@@ -2792,6 +2797,7 @@ $__System.register('1b', [], function (_export) {
 								message: "(to.label ? to.label : (\"FIELD\" | translate)) + (\"VALIDATION_MAX_LENGTH\"| translate: \"{max: \" + to.maxLengthOption + \"}\")"
 							}
 						},
+						formlyAsyncValidators: {},
 						formlyValidation: {
 							messages: {
 								required: function required(viewValue, modelValue, scope) {
@@ -2847,6 +2853,7 @@ $__System.register('1b', [], function (_export) {
 								message: "(to.label ? to.label : (\"FIELD\" | translate)) + (\"VALIDATION_YEAR\" | translate: \"{min: 0, max: 9999}\")"
 							}
 						},
+						formlyAsyncValidators: {},
 						formlyValidation: {
 							messages: {
 								required: function required(viewValue, modelValue, scope) {
@@ -2876,6 +2883,7 @@ $__System.register('1b', [], function (_export) {
 						referenceId: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {},
+						formlyAsyncValidators: {},
 						formlyValidation: {
 							messages: {
 								required: function required(viewValue, modelValue, scope) {
@@ -2917,6 +2925,7 @@ $__System.register('1b', [], function (_export) {
 								message: "(to.label ? to.label : (\"FIELD\" | translate)) + (\"VALIDATION_EMAIL\" | translate)"
 							}
 						},
+						formlyAsyncValidators: {},
 						formlyValidation: {
 							messages: {
 								required: function required(viewValue, modelValue, scope) {
@@ -2948,6 +2957,7 @@ $__System.register('1b', [], function (_export) {
 						currentDateOption: false,
 						formlyExpressionProperties: {},
 						formlyValidators: {},
+						formlyAsyncValidators: {},
 						formlyValidation: {
 							messages: {
 								required: function required(viewValue, modelValue, scope) {
@@ -2981,6 +2991,7 @@ $__System.register('1b', [], function (_export) {
 						referenceId: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {},
+						formlyAsyncValidators: {},
 						formlyValidation: {
 							messages: {
 								required: function required(viewValue, modelValue, scope) {
@@ -3010,6 +3021,7 @@ $__System.register('1b', [], function (_export) {
 						referenceId: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {},
+						formlyAsyncValidators: {},
 						formlyValidation: {
 							messages: {
 								required: function required(viewValue, modelValue, scope) {
@@ -3041,6 +3053,7 @@ $__System.register('1b', [], function (_export) {
 						referenceId: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {},
+						formlyAsyncValidators: {},
 						formlyValidation: {
 							messages: {
 								required: function required(viewValue, modelValue, scope) {
@@ -3070,6 +3083,7 @@ $__System.register('1b', [], function (_export) {
 						referenceId: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {},
+						formlyAsyncValidators: {},
 						formlyValidation: {
 							messages: {
 								required: function required(viewValue, modelValue, scope) {
@@ -3101,6 +3115,7 @@ $__System.register('1b', [], function (_export) {
 						referenceId: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {},
+						formlyAsyncValidators: {},
 						formlyValidation: {
 							messages: {
 								required: function required(viewValue, modelValue, scope) {
@@ -3132,6 +3147,7 @@ $__System.register('1b', [], function (_export) {
 						referenceId: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {},
+						formlyAsyncValidators: {},
 						formlyValidation: {
 							messages: {
 								required: function required(viewValue, modelValue, scope) {
@@ -3176,6 +3192,7 @@ $__System.register('1b', [], function (_export) {
 								message: "(to.label ? to.label : (\"FIELD\" | translate)) + (\"VALIDATION_REQUIRED\" | translate)"
 							}
 						},
+						formlyAsyncValidators: {},
 						formlyValidation: {}
 					}],
 					selectedControl: 'none',
@@ -3197,6 +3214,7 @@ $__System.register('1b', [], function (_export) {
 						//expressions/validation fields
 						formlyExpressionProperties: {},
 						formlyValidators: {},
+						formlyAsyncValidators: {},
 						formlyValidation: {}
 					}
 
@@ -3206,11 +3224,19 @@ $__System.register('1b', [], function (_export) {
 				var uniqueValidator = {
 					uniqueValue: {
 						expression: function expression(viewValue, modelValue, scope) {
-							if (scope.to.unique) {
-								//Write down logic to find uniqueness or put it in configuration
-							}
+							var deferred = $q.defer();
 
-							return true;
+							return $timeout(function () {
+								// Write down own logic
+								var isOK = true;
+
+								if (isOK || !scope.to.unique) {
+									deferred.resolve(isOK);
+								} else {
+									deferred.reject(isOK);
+								}
+								return deferred.promise;
+							}, 1000);
 						},
 						message: "(to.label ? to.label : (\"FIELD\" | translate)) + (\"VALIDATION_UNIQUE\" | translate)"
 					}
@@ -3219,7 +3245,7 @@ $__System.register('1b', [], function (_export) {
 				var notUnique = ['blank', 'header', 'subTitle'];
 				angular.forEach(newNyaSelectObj.controls, function (control) {
 					if (notUnique.indexOf(control.formlyType) === -1) {
-						control.formlyValidators = angular.merge({}, control.formlyValidators, uniqueValidator);
+						control.formlyAsyncValidators = angular.merge({}, control.formlyAsyncValidators, uniqueValidator);
 					}
 				});
 
@@ -3380,31 +3406,33 @@ $__System.register('1c', ['15', '16', '1b'], function (_export) {
 			CONTROLLER_MODAL_PROXY_SERVICE = '$modalProxy';
 
 			$modalProxy = (function () {
-				function $modalProxy(easyFormSteWayConfig, $translate) {
+				function $modalProxy(easyFormSteWayConfig, $translate, $q, $timeout) {
 					_classCallCheck(this, $modalProxy);
 
 					this.easyFormSteWayConfig = easyFormSteWayConfig;
 					this.$translate = $translate;
 					this.columnRemoved = false;
 					this.columnUpdated = false;
+					this.$q = $q;
+					this.$timeout = $timeout;
 				}
 
 				_createClass($modalProxy, [{
 					key: 'initNyaSelect',
 					value: function initNyaSelect(nyaSelectObj) {
-						return resetNyaSelect(nyaSelectObj, this.$translate);
+						return resetNyaSelect(nyaSelectObj, this.$translate, this.$q, this.$timeout);
 					}
 				}, {
 					key: 'getControlsDefinition',
 					value: function getControlsDefinition() {
 						var controls = {};
-						resetNyaSelect(controls, this.$translate);
+						resetNyaSelect(controls, this.$translate, this.$q, this.$timeout);
 						return controls;
 					}
 				}, {
 					key: 'getNyASelectFromSelectedLineColumn',
 					value: function getNyASelectFromSelectedLineColumn(nyaSelectObj, configurationObj, indexLine, numcolumn) {
-						resetNyaSelect(nyaSelectObj, this.$translate);
+						resetNyaSelect(nyaSelectObj, this.$translate, this.$q, this.$timeout);
 						/**
       	* data send to modal controller
       	*/
@@ -3654,12 +3682,12 @@ $__System.register('1c', ['15', '16', '1b'], function (_export) {
 					}
 
 					/**
-     	* loading forms will not be able to retrieve formlyValidation
+     	* loading forms will not be able to retrieve formlyAsyncValidators
      	* -> here does the job
      	*/
 				}, {
-					key: 'refreshControlFormlyValidation',
-					value: function refreshControlFormlyValidation(configurationModel) {
+					key: 'refreshControlFormlyAsyncValidators',
+					value: function refreshControlFormlyAsyncValidators(configurationModel) {
 						var _this3 = this;
 
 						if (angular.isObject(configurationModel)) {
@@ -3667,6 +3695,31 @@ $__System.register('1c', ['15', '16', '1b'], function (_export) {
 							angular.forEach(configurationModel.lines, function (line, indexLine) {
 								angular.forEach(line.columns, function (column, controlIndex) {
 									var _controlsDefinition = _this3.getControlsDefinition();
+									angular.forEach(_controlsDefinition.controls, function (aControl, aControlIndex) {
+										if (column.control.type === aControl.formlyType && column.control.subtype === aControl.formlySubtype) {
+											//----> update control formlyAsyncValidators property
+											column.control.formlyAsyncValidators = angular.merge({}, aControl.formlyAsyncValidators, column.control.formlyAsyncValidators);
+										}
+									});
+								});
+							});
+						}
+					}
+
+					/**
+     	* loading forms will not be able to retrieve formlyValidation
+     	* -> here does the job
+     	*/
+				}, {
+					key: 'refreshControlFormlyValidation',
+					value: function refreshControlFormlyValidation(configurationModel) {
+						var _this4 = this;
+
+						if (angular.isObject(configurationModel)) {
+							//iterates lines
+							angular.forEach(configurationModel.lines, function (line, indexLine) {
+								angular.forEach(line.columns, function (column, controlIndex) {
+									var _controlsDefinition = _this4.getControlsDefinition();
 									angular.forEach(_controlsDefinition.controls, function (aControl, aControlIndex) {
 										if (column.control.type === aControl.formlyType && column.control.subtype === aControl.formlySubtype) {
 											//----> update control formlyValidation property
@@ -3695,7 +3748,7 @@ $__System.register('1c', ['15', '16', '1b'], function (_export) {
 					key: 'getFilteredNyaSelectObject',
 					value: function getFilteredNyaSelectObject() {
 						var newNyaSelectObj = {};
-						resetNyaSelect(newNyaSelectObj, this.$translate);
+						resetNyaSelect(newNyaSelectObj, this.$translate, this.$q, this.$timeout);
 						return angular.copy(this.filterDisabledControl(angular.copy(newNyaSelectObj)));
 						//return angular.copy(angular.copy(newNyaSelectObj));
 					}
@@ -3704,7 +3757,7 @@ $__System.register('1c', ['15', '16', '1b'], function (_export) {
 				return $modalProxy;
 			})();
 
-			$modalProxy.$inject = ['easyFormSteWayConfig', '$translate'];
+			$modalProxy.$inject = ['easyFormSteWayConfig', '$translate', '$q', '$timeout'];
 
 			_export('default', $modalProxy);
 
@@ -3734,7 +3787,7 @@ $__System.register('1e', [], function (_export) {
 
 	'use strict';
 
-	var configurationModelInit, configurationModelResult, isTemplateOptionDefined, extractTemplateOptionLabel, extractTemplateOptionLabelShort, extractTemplateOptionParentId, extractTemplateOptionReferenceId, extractTemplateOptionDatepickerOptions, extractTemplateOptionMaxLengthOption, extractTemplateOptionMinValueOption, extractTemplateOptionMaxValueOption, extractTemplateOptionNumberType, extractTemplateOptionIncrementalOption, extractTemplateOptionCurrentYearOption, extractTemplateOptionCurrentDateOption, extractTemplateOptionAllowEmptyOption, extractFormlyExpressionProperties, extractFormlyValidators, extractFormlyValidation, extractTemplateOptionRequired, extractTemplateOptionUnique, extractDefaultValue, extractTemplateOptionDisplayAddOption, extractTemplateOptionDisplayEditOption, extractTemplateOptionAllowMultiple, extractTemplateOptionOptions, extractTemplateOptionType, extractTemplateOptionPlaceholder, extractTemplateOptionDescription, addDatepickerOptionsProperty, addMaxLengthOptionProperty, addAllowEmptyOptionProperty, addNumberTypeProperty, addMinValueOptionProperty, addMaxValueOptionProperty, addIncrementalOptionProperty, addCurrentYearOptionProperty, addCurrentDateOptionProperty, addOneColumnHeader, addColumns, resetDataModel, resetFormlyModel;
+	var configurationModelInit, configurationModelResult, isTemplateOptionDefined, extractTemplateOptionLabel, extractTemplateOptionLabelShort, extractTemplateOptionParentId, extractTemplateOptionReferenceId, extractTemplateOptionDatepickerOptions, extractTemplateOptionMaxLengthOption, extractTemplateOptionMinValueOption, extractTemplateOptionMaxValueOption, extractTemplateOptionNumberType, extractTemplateOptionIncrementalOption, extractTemplateOptionCurrentYearOption, extractTemplateOptionCurrentDateOption, extractTemplateOptionAllowEmptyOption, extractFormlyExpressionProperties, extractFormlyValidators, extractFormlyAsyncValidators, extractFormlyValidation, extractTemplateOptionRequired, extractTemplateOptionUnique, extractDefaultValue, extractTemplateOptionDisplayAddOption, extractTemplateOptionDisplayEditOption, extractTemplateOptionAllowMultiple, extractTemplateOptionOptions, extractTemplateOptionType, extractTemplateOptionPlaceholder, extractTemplateOptionDescription, addDatepickerOptionsProperty, addMaxLengthOptionProperty, addAllowEmptyOptionProperty, addNumberTypeProperty, addMinValueOptionProperty, addMaxValueOptionProperty, addIncrementalOptionProperty, addCurrentYearOptionProperty, addCurrentDateOptionProperty, addOneColumnHeader, addColumns, resetDataModel, resetFormlyModel;
 
 	function checkIfCanDisplayMultiple(type, subtype) {
 		var multipleTypes = ['input', 'datepicker', 'textarea', 'richEditor', 'upload'];
@@ -3801,6 +3854,7 @@ $__System.register('1e', [], function (_export) {
 			},
 			expressionProperties: extractFormlyExpressionProperties(configurationModel.lines[lineIndex].columns[columnIndex].control),
 			validators: extractFormlyValidators(configurationModel.lines[lineIndex].columns[columnIndex].control),
+			asyncValidators: extractFormlyAsyncValidators(configurationModel.lines[lineIndex].columns[columnIndex].control),
 			validation: extractFormlyValidation(configurationModel.lines[lineIndex].columns[columnIndex].control)
 		};
 		//////////////////////////////////////////////
@@ -3943,6 +3997,10 @@ $__System.register('1e', [], function (_export) {
 
 			extractFormlyValidators = function extractFormlyValidators(obj) {
 				return typeof obj.formlyValidators !== 'undefined' ? angular.copy(obj.formlyValidators) : {};
+			};
+
+			extractFormlyAsyncValidators = function extractFormlyAsyncValidators(obj) {
+				return typeof obj.formlyAsyncValidators !== 'undefined' ? angular.copy(obj.formlyAsyncValidators) : {};
 			};
 
 			extractFormlyValidation = function extractFormlyValidation(obj) {
@@ -4095,6 +4153,8 @@ $__System.register('1e', [], function (_export) {
 			_export('extractFormlyExpressionProperties', extractFormlyExpressionProperties);
 
 			_export('extractFormlyValidators', extractFormlyValidators);
+
+			_export('extractFormlyAsyncValidators', extractFormlyAsyncValidators);
 
 			_export('extractFormlyValidation', extractFormlyValidation);
 

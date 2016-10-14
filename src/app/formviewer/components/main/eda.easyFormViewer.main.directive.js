@@ -139,10 +139,12 @@ function edaFormViewerDirective($modelsTranslator){
 					*
 					* formly expression properties
 					* Validators
+					* Async Validators
 					* Validation
 					*/
 				$modelsTranslator.refreshControlFormlyExpressionProperties(scope.configurationLoaded);
 				$modelsTranslator.refreshControlFormlyValidators(scope.configurationLoaded);
+				$modelsTranslator.refreshControlFormlyAsyncValidators(scope.configurationLoaded);
 				$modelsTranslator.refreshControlFormlyValidation(scope.configurationLoaded);
 
 				//apply configuration model
