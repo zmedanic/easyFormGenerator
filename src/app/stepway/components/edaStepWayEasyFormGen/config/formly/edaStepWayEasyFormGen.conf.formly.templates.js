@@ -98,6 +98,7 @@ const basicSelectTemplate = `
     ng-model="model[options.key || index]"
     id="{{id}}"
     disabled="options.templateOptions.options.length === 0"
+    title="{{'NOTHING_SELECTED' | translate}}"
   >
     <li
       class="nya-bs-option"
@@ -129,6 +130,7 @@ const basicMultiSelectTemplate = `
     multiple
     id="{{id}}"
     disabled="options.templateOptions.options.length === 0"
+    title="{{'NOTHING_SELECTED' | translate}}"
   >
     <li
       class="nya-bs-option"
@@ -153,6 +155,7 @@ const groupedSelectTemplate = `
     ng-model="model[options.key || index]"
     data-live-search="true"
     disabled="options.templateOptions.options.length === 0"
+    title="{{'NOTHING_SELECTED' | translate}}"
   >
     <li
       class="nya-bs-option"
@@ -185,10 +188,11 @@ const groupedMultiSelectTemplate = `
     multiple
     data-live-search="true"
     disabled="options.templateOptions.options.length === 0"
+    title="{{'NOTHING_SELECTED' | translate}}"
   >
     <li
       nya-bs-option="option in options.templateOptions.options group by option.group"
-      value="{referenceId: option.referenceId, name: option.name, uniqueValue: option.uniqueValue}"
+      data-value="{referenceId: option.referenceId, name: option.name, uniqueValue: option.uniqueValue}"
       ng-class="{disabled: isDisabled(model[options.key || index], option.uniqueValue, options)}"
     >
       <span class="dropdown-header">{{$group}}</span>

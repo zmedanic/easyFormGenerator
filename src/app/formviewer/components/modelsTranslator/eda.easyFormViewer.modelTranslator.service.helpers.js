@@ -606,17 +606,15 @@ const resetNyaSelect = (nyaSelectObj, $translate, $http, $q, $timeout) => {
 			expression : function(viewValue, modelValue, scope) {
 				let deferred = $q.defer();
 
-				return $timeout(function() {
-					// Write down own logic
-					let isOK = true;
+				// Write down own logic
+				let isOK = true;
 
-				  if (isOK || !scope.to.unique) {
-				    deferred.resolve(isOK);
-				  } else {
-				    deferred.reject(isOK);
-				  }
-					return deferred.promise;
-				}, 1000);
+			  if (isOK || !scope.to.unique) {
+			    deferred.resolve(isOK);
+			  } else {
+			    deferred.reject(isOK);
+			  }
+				return deferred.promise;
 			},
       message: "(to.label ? to.label : (\"FIELD\" | translate)) + (\"VALIDATION_UNIQUE\" | translate)"
     }

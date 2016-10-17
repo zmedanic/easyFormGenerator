@@ -207,7 +207,7 @@ function formlyConfig(formlyConfigProvider) {
             }
           }
           let optionsMultiple = options.templateOptions.allowMultiple > 1;
-          let optionsLength = model.length >= options.templateOptions.allowMultiple
+          let optionsLength = model.length >= options.templateOptions.allowMultiple;
           return optionSelected && optionsMultiple && optionsLength;
         }
 
@@ -237,7 +237,7 @@ function formlyConfig(formlyConfigProvider) {
             }
           }
           let optionsMultiple = options.templateOptions.allowMultiple > 1;
-          let optionsLength = model.length >= options.templateOptions.allowMultiple
+          let optionsLength = model.length >= options.templateOptions.allowMultiple;
           return optionSelected && optionsMultiple && optionsLength;
         }
 
