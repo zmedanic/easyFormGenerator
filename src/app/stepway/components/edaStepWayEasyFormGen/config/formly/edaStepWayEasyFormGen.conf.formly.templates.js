@@ -45,6 +45,7 @@ const datepickerTemplate = `
         uib-datepicker-popup="{{to.datepickerOptions.format}}"
         is-open="datepicker.opened[fieldIndex]"
         datepicker-options="to.datepickerOptions"
+        ng-model-options="{timezone: 0}"
       />
     </p>
   </div>`;

@@ -101,7 +101,7 @@ function formlyConfig(formlyConfigProvider) {
           datepickerOptions: {
               format: 'dd/MM/yyyy',
               initDate: new Date(),
-              showWeeks: false
+              showWeeks: true
           }
       }
     },
