@@ -301,7 +301,7 @@ function addColumnControl(formlyModel, configurationModel,lineIndex, numberOfCol
 	//datepicker additionnal particular property
 	//////////////////////////////////////////////
 	if (configurationModel.lines[lineIndex].columns[columnIndex].control.type === 'datepicker') {
-		addDatepickerOptionsProperty(controlCol, configurationModel,lineIndex, 0);
+		addDatepickerOptionsProperty(controlCol, configurationModel,lineIndex, columnIndex);
 		addCurrentDateOptionProperty(controlCol, configurationModel,lineIndex, columnIndex);
 	}
 	if (configurationModel.lines[lineIndex].columns[columnIndex].control.type === 'input') {

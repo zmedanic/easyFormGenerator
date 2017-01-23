@@ -3861,7 +3861,7 @@ $__System.register('1e', [], function (_export) {
 		//datepicker additionnal particular property
 		//////////////////////////////////////////////
 		if (configurationModel.lines[lineIndex].columns[columnIndex].control.type === 'datepicker') {
-			addDatepickerOptionsProperty(controlCol, configurationModel, lineIndex, 0);
+			addDatepickerOptionsProperty(controlCol, configurationModel, lineIndex, columnIndex);
 			addCurrentDateOptionProperty(controlCol, configurationModel, lineIndex, columnIndex);
 		}
 		if (configurationModel.lines[lineIndex].columns[columnIndex].control.type === 'input') {
