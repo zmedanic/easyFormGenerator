@@ -100,6 +100,7 @@ const basicSelectTemplate = `
     id="{{id}}"
     disabled="options.templateOptions.options.length === 0"
     title="{{'NOTHING_SELECTED' | translate}}"
+    data-live-search="true"
   >
     <li
       class="nya-bs-option"
@@ -132,6 +133,7 @@ const basicMultiSelectTemplate = `
     id="{{id}}"
     disabled="options.templateOptions.options.length === 0"
     title="{{'NOTHING_SELECTED' | translate}}"
+    data-live-search="true"
   >
     <li
       class="nya-bs-option"
@@ -157,6 +159,7 @@ const groupedSelectTemplate = `
     data-live-search="true"
     disabled="options.templateOptions.options.length === 0"
     title="{{'NOTHING_SELECTED' | translate}}"
+    data-live-search="true"
   >
     <li
       class="nya-bs-option"
@@ -190,6 +193,7 @@ const groupedMultiSelectTemplate = `
     data-live-search="true"
     disabled="options.templateOptions.options.length === 0"
     title="{{'NOTHING_SELECTED' | translate}}"
+    data-live-search="true"
   >
     <li
       nya-bs-option="option in options.templateOptions.options group by option.group"

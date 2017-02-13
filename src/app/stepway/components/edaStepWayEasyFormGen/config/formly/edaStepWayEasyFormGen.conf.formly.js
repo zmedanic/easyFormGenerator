@@ -361,7 +361,7 @@ function formlyConfig(formlyConfigProvider){
     scope.options.validation.errorExistsAndShouldBeVisible = false;
 
     scope.$watch('model["' + key + '"]', function(newVal, oldVal) {
-      if (newVal.length != oldVal.length || scope.options.formControl.length <= 0) {
+      if (newVal && oldVal && (newVal.length != oldVal.length || scope.options.formControl.length <= 0)) {
         setTimeout(function() {
           scope.options.formControl = [];
           scope.validationGroup = [];
