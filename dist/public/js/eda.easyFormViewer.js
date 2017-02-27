@@ -65,6 +65,8 @@ $__System.register("5", [], function (_export) {
       inputTemplate = "\n  <input\n    id=\"{{::id}}_{{fieldIndex}}\"\n    name=\"{{::id}}_{{fieldIndex}}\"\n    class=\"form-control\"\n    ng-model=\"model[options.key][fieldIndex]\"\n  />";
       datepickerTemplate = "\n  <div>\n    <p class=\"input-group\">\n      <span class=\"input-group-btn\">\n        <button\n          type=\"button\"\n          class=\"btn btn-default\"\n          ng-click=\"formlyDatePicker.open($event, fieldIndex)\"\n        >\n          <i class=\"glyphicon glyphicon-calendar\"></i>\n        </button>\n      </span>\n      <input\n        type=\"text\"\n        id=\"{{::id}}_{{fieldIndex}}\"\n        name=\"{{::id}}_{{fieldIndex}}\"\n        ng-model=\"model[options.key][fieldIndex]\"\n        class=\"form-control\"\n        ng-click=\"datepicker.open($event, fieldIndex)\"\n        uib-datepicker-popup=\"{{to.datepickerOptions.format}}\"\n        is-open=\"datepicker.opened[fieldIndex]\"\n        datepicker-options=\"to.datepickerOptions\"\n        ng-model-options=\"{timezone: 0}\"\n      />\n    </p>\n  </div>";
       textareaTemplate = "\n  <textarea\n    id=\"{{::id}}_{{fieldIndex}}\"\n    name=\"{{::id}}_{{fieldIndex}}\"\n    class=\"form-control\"\n    ng-model=\"model[options.key][fieldIndex]\"\n  >\n  </textarea>";
+
+      //    ta-toolbar="[['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p'],['bold', 'italics', 'underline', 'ul', 'ol', 'redo', 'undo', 'clear'],['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent'],['wordcount', 'charcount']]"
       richTextTemplate = "\n  <text-angular\n    id=\"{{::id}}_{{fieldIndex}}\"\n    name=\"{{::id}}_{{fieldIndex}}\"\n    class=\"richTextAngular\"\n    ng-model=\"model[options.key || index][fieldIndex]\"\n  >\n  </text-angular>";
       radioTemplate = "\n  <div class=\"radio-group\">\n    <div\n      ng-repeat=\"(key, option) in to.options\"\n      ng-class=\"{ 'radio': !to.inline, 'radio-inline': to.inline }\"\n    >\n      <label>\n        <input\n          type=\"radio\"\n          id=\"{{id + '_'+ $index}}\"\n          tabindex=\"0\"\n          ng-value=\"option.referenceId || option.uniqueValue\"\n          ng-model=\"model[options.key]\"\n        />\n        {{option[to.labelProp || 'name']}}\n        <p\n          ng-if=\"option.description.length > 0\"\n          class=\"help-block help-inline\"\n        >\n          ({{option.description}})\n        </p>\n      </label>\n    </div>\n  </div>";
       basicSelectTemplate = "\n  <ol\n    class=\"nya-bs-select no-margin-bottom col-sm-12 col-xs-12 col-md-12 col-lg-12\"\n    ng-model=\"model[options.key || index]\"\n    id=\"{{id}}\"\n    disabled=\"options.templateOptions.options.length === 0\"\n    title=\"{{'NOTHING_SELECTED' | translate}}\"\n    data-live-search=\"true\"\n  >\n    <li\n      class=\"nya-bs-option\"\n      ng-if=\"!options.templateOptions.required\"\n      data-value=\"\"\n    >\n      <a>{{'NOTHING_SELECTED' | translate}}</a>\n    </li>\n    <li\n      class=\"nya-bs-option\"\n      nya-bs-option=\"option in options.templateOptions.options\"\n      data-value=\"{referenceId: option.referenceId, name: option.name, uniqueValue: option.uniqueValue}\"\n    >\n      <a>\n        <span>{{option.name}}</span>\n        <span\n          ng-if=\"option.description.length > 0\"\n          class=\"help-block help-inline\">\n          ({{option.description}})\n        </span>\n      </a>\n    </li>\n  </ol>";
@@ -1140,14 +1142,57 @@ $__System.register('e', ['d'], function (_export) {
 																}
 								};
 });
-$__System.registerDynamic("f", [], true, function ($__require, exports, module) {
+$__System.register('f', [], function (_export) {
+  'use strict';
+
+  var TEXTANGULAR_CONFIG;
+
+  function textAngularConfig($provide) {
+    $provide.decorator('taOptions', ['taRegisterTool', '$delegate', function (taRegisterTool, taOptions) {
+
+      taOptions.toolbar = [['h1', 'h2', 'h3', 'h4', 'h5', 'h6'], ['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'], ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent'], ['html', 'wordcount', 'charcount']];
+
+      return taOptions;
+    }]);
+  }
+
+  return {
+    setters: [],
+    execute: function () {
+      TEXTANGULAR_CONFIG = 'easyFormTextAngularConfig';
+      textAngularConfig.$inject = ['$provide'];
+
+      _export('default', textAngularConfig);
+
+      _export('TEXTANGULAR_CONFIG', TEXTANGULAR_CONFIG);
+    }
+  };
+});
+$__System.register('10', ['f'], function (_export) {
+								/* global angular */
+								'use strict';
+
+								var textAngularConfig, TEXTANGULAR_CONFIG, TEXTANGULAR_MODULE;
+								return {
+																setters: [function (_f) {
+																								textAngularConfig = _f['default'];
+																								TEXTANGULAR_CONFIG = _f.TEXTANGULAR_CONFIG;
+																}],
+																execute: function () {
+																								TEXTANGULAR_MODULE = 'eda.easyFormGenerator.textAngular';
+
+																								_export('default', angular.module(TEXTANGULAR_MODULE, ['textAngular']).config(textAngularConfig));
+																}
+								};
+});
+$__System.registerDynamic("11", [], true, function ($__require, exports, module) {
   var define,
       global = this || self,
       GLOBAL = global;
   module.exports = "<div class=\"easyFormViewer\">\n\t\n\t<form \tng-submit=\"vm.onSubmit()\"\n\t\t\t\t\tname=\"vm.form\"> \n\t\t<formly-form \tmodel=\"vm.model\" \n\t\t\t\t\t\t\t\t\tfields=\"vm.fields\" \n\t\t\t\t\t\t\t\t\tform=\"vm.form\"> \n\t\t\t\n\t\t\t<div class=\"pull-right\">\n\t\t\t\t<button type=\"submit\" class=\"btn btn-primary\" \n\t\t\t\t\t\t\t\tng-disabled=\"vm.form.$invalid\"\n\t\t\t\t\t\t\t\tng-click=\"vm.edaSubmitThisDataModel();\">{{vm.submitText}}</button>\n\t\t\t\t<button type=\"button\" class=\"btn btn-primary\" \n\t\t\t\t\t\t\t\tng-click=\"vm.edaCancelEvent();\">{{vm.cancelText}}</button>\t\t\t\t\n\t\t\t</div>\t\t\t\t\t\t\n\n\t\t</formly-form> \n\t</form>\n\n</div>";
   return module.exports;
 });
-$__System.register('10', [], function (_export) {
+$__System.register('12', [], function (_export) {
 	/* global angular */
 
 	'use strict';
@@ -1200,11 +1245,11 @@ $__System.register('10', [], function (_export) {
 		}
 	};
 });
-$__System.register('11', ['10', '12', 'f'], function (_export) {
+$__System.register('13', ['11', '12', '14'], function (_export) {
 	/* global angular */
 	'use strict';
 
-	var returnAttributeConfigurationLinesIfNotEmpty, EASY_FORM_VIEWER_CONTROLLER, EASY_FORM_VIEWER_CONTROLLERAS, easyFormViewerTemplate, EASY_FORM_VIEWER_DIRECTIVE_NAME;
+	var easyFormViewerTemplate, returnAttributeConfigurationLinesIfNotEmpty, EASY_FORM_VIEWER_CONTROLLER, EASY_FORM_VIEWER_CONTROLLERAS, EASY_FORM_VIEWER_DIRECTIVE_NAME;
 
 	function edaFormViewerDirective($modelsTranslator) {
 		var directive = {
@@ -1352,12 +1397,12 @@ $__System.register('11', ['10', '12', 'f'], function (_export) {
 
 	return {
 		setters: [function (_) {
-			returnAttributeConfigurationLinesIfNotEmpty = _.returnAttributeConfigurationLinesIfNotEmpty;
+			easyFormViewerTemplate = _['default'];
 		}, function (_2) {
-			EASY_FORM_VIEWER_CONTROLLER = _2.EASY_FORM_VIEWER_CONTROLLER;
-			EASY_FORM_VIEWER_CONTROLLERAS = _2.EASY_FORM_VIEWER_CONTROLLERAS;
-		}, function (_f) {
-			easyFormViewerTemplate = _f['default'];
+			returnAttributeConfigurationLinesIfNotEmpty = _2.returnAttributeConfigurationLinesIfNotEmpty;
+		}, function (_3) {
+			EASY_FORM_VIEWER_CONTROLLER = _3.EASY_FORM_VIEWER_CONTROLLER;
+			EASY_FORM_VIEWER_CONTROLLERAS = _3.EASY_FORM_VIEWER_CONTROLLERAS;
 		}],
 		execute: function () {
 			EASY_FORM_VIEWER_DIRECTIVE_NAME = 'edaEasyFormViewer';
@@ -1369,7 +1414,7 @@ $__System.register('11', ['10', '12', 'f'], function (_export) {
 		}
 	};
 });
-$__System.register('12', ['13', '14'], function (_export) {
+$__System.register('14', ['15', '16'], function (_export) {
 	var _createClass, _classCallCheck, EASY_FORM_VIEWER_CONTROLLER, EASY_FORM_VIEWER_CONTROLLERAS, edaEasyFormViewerController;
 
 	return {
@@ -1426,7 +1471,7 @@ $__System.register('12', ['13', '14'], function (_export) {
 		}
 	};
 });
-$__System.register('15', [], function (_export) {
+$__System.register('17', [], function (_export) {
 	/* global angular */
 	'use strict';
 
@@ -1505,7 +1550,7 @@ $__System.register('15', [], function (_export) {
 		}
 	};
 });
-$__System.register('16', ['11', '12', '15'], function (_export) {
+$__System.register('18', ['13', '14', '17'], function (_export) {
 	/* global angular */
 	'use strict';
 
@@ -1528,7 +1573,7 @@ $__System.register('16', ['11', '12', '15'], function (_export) {
 		}
 	};
 });
-$__System.register('17', [], function (_export) {
+$__System.register('19', [], function (_export) {
 	'use strict';
 
 	var CORE_MODULES, FORMVIEWER_CORE_MODULE_NAME;
@@ -1542,7 +1587,7 @@ $__System.register('17', [], function (_export) {
 		}
 	};
 });
-$__System.registerDynamic("18", [], true, function ($__require, exports, module) {
+$__System.registerDynamic("1a", [], true, function ($__require, exports, module) {
   var define,
       global = this || self,
       GLOBAL = global;
@@ -1562,33 +1607,33 @@ $__System.registerDynamic("18", [], true, function ($__require, exports, module)
   };
   return module.exports;
 });
-$__System.registerDynamic('19', ['18'], true, function ($__require, exports, module) {
+$__System.registerDynamic('1b', ['1a'], true, function ($__require, exports, module) {
   var define,
       global = this || self,
       GLOBAL = global;
   /* */
-  var $ = $__require('18');
+  var $ = $__require('1a');
   module.exports = function defineProperty(it, key, desc) {
     return $.setDesc(it, key, desc);
   };
   return module.exports;
 });
-$__System.registerDynamic("1a", ["19"], true, function ($__require, exports, module) {
+$__System.registerDynamic("1c", ["1b"], true, function ($__require, exports, module) {
   var define,
       global = this || self,
       GLOBAL = global;
   /* */
-  module.exports = { "default": $__require("19"), __esModule: true };
+  module.exports = { "default": $__require("1b"), __esModule: true };
   return module.exports;
 });
-$__System.registerDynamic("13", ["1a"], true, function ($__require, exports, module) {
+$__System.registerDynamic("15", ["1c"], true, function ($__require, exports, module) {
   /* */
   "use strict";
 
   var define,
       global = this || self,
       GLOBAL = global;
-  var _Object$defineProperty = $__require("1a")["default"];
+  var _Object$defineProperty = $__require("1c")["default"];
   exports["default"] = function () {
     function defineProperties(target, props) {
       for (var i = 0; i < props.length; i++) {
@@ -1608,7 +1653,7 @@ $__System.registerDynamic("13", ["1a"], true, function ($__require, exports, mod
   exports.__esModule = true;
   return module.exports;
 });
-$__System.registerDynamic("14", [], true, function ($__require, exports, module) {
+$__System.registerDynamic("16", [], true, function ($__require, exports, module) {
   /* */
   "use strict";
 
@@ -1624,7 +1669,7 @@ $__System.registerDynamic("14", [], true, function ($__require, exports, module)
   exports.__esModule = true;
   return module.exports;
 });
-$__System.register('1b', [], function (_export) {
+$__System.register('1d', [], function (_export) {
 	/* global angular */
 
 	'use strict';
@@ -2631,7 +2676,7 @@ $__System.register('1b', [], function (_export) {
 		}
 	};
 });
-$__System.register('1c', ['13', '14', '1b'], function (_export) {
+$__System.register('1e', ['15', '16', '1d'], function (_export) {
 	var _createClass, _classCallCheck, resetNyaSelect, getEmptyConfigModelResult, resetDataModel, getErrorObject, getMessageObject, resetFormlyModel, addOneColumnHeader, addColumns, MODEL_TRANSLATOR_SERVICE, $modelsTranslator;
 
 	return {
@@ -2639,15 +2684,15 @@ $__System.register('1c', ['13', '14', '1b'], function (_export) {
 			_createClass = _['default'];
 		}, function (_2) {
 			_classCallCheck = _2['default'];
-		}, function (_b) {
-			resetNyaSelect = _b.resetNyaSelect;
-			getEmptyConfigModelResult = _b.getEmptyConfigModelResult;
-			resetDataModel = _b.resetDataModel;
-			getErrorObject = _b.getErrorObject;
-			getMessageObject = _b.getMessageObject;
-			resetFormlyModel = _b.resetFormlyModel;
-			addOneColumnHeader = _b.addOneColumnHeader;
-			addColumns = _b.addColumns;
+		}, function (_d) {
+			resetNyaSelect = _d.resetNyaSelect;
+			getEmptyConfigModelResult = _d.getEmptyConfigModelResult;
+			resetDataModel = _d.resetDataModel;
+			getErrorObject = _d.getErrorObject;
+			getMessageObject = _d.getMessageObject;
+			resetFormlyModel = _d.resetFormlyModel;
+			addOneColumnHeader = _d.addOneColumnHeader;
+			addColumns = _d.addColumns;
 		}],
 		execute: function () {
 			/* global angular */
@@ -2839,15 +2884,15 @@ $__System.register('1c', ['13', '14', '1b'], function (_export) {
 });
 
 // getConfigurationModelInit,
-$__System.register('1d', ['1c'], function (_export) {
+$__System.register('1f', ['1e'], function (_export) {
 	/* global angular */
 	'use strict';
 
 	var $modelsTranslator, MODEL_TRANSLATOR_SERVICE, FORM_VIEWER_MODEL_TRANSLATOR_MODULE_NAME;
 	return {
-		setters: [function (_c) {
-			$modelsTranslator = _c['default'];
-			MODEL_TRANSLATOR_SERVICE = _c.MODEL_TRANSLATOR_SERVICE;
+		setters: [function (_e) {
+			$modelsTranslator = _e['default'];
+			MODEL_TRANSLATOR_SERVICE = _e.MODEL_TRANSLATOR_SERVICE;
 		}],
 		execute: function () {
 			FORM_VIEWER_MODEL_TRANSLATOR_MODULE_NAME = 'edaFormViewerModelTranslatorModule';
@@ -2856,10 +2901,10 @@ $__System.register('1d', ['1c'], function (_export) {
 		}
 	};
 });
-$__System.register('1', ['2', '4', '6', '16', '17', 'e', '1d'], function (_export) {
+$__System.register('1', ['2', '4', '6', '10', '18', '19', 'e', '1f'], function (_export) {
          'use strict';
 
-         var edaEasyFormViewConfig, EASY_FORM_VIEWER_VERSION_NAME, EASY_FORM_VIEWER_VERSION_VALUE, formlyConfig, edaFormViewerMainModule, edaFormViewerCoreModule, translateConfig, edaFormViewerModelTranslatorModule, MAIN_MODULE_NAME, DEP_TO_INJECT_IN_MAIN, mainModule;
+         var edaEasyFormViewConfig, EASY_FORM_VIEWER_VERSION_NAME, EASY_FORM_VIEWER_VERSION_VALUE, formlyConfig, textAngularConfig, edaFormViewerMainModule, edaFormViewerCoreModule, translateConfig, edaFormViewerModelTranslatorModule, MAIN_MODULE_NAME, DEP_TO_INJECT_IN_MAIN, mainModule;
          return {
                   setters: [function (_) {}, function (_2) {
                            edaEasyFormViewConfig = _2['default'];
@@ -2868,17 +2913,19 @@ $__System.register('1', ['2', '4', '6', '16', '17', 'e', '1d'], function (_expor
                   }, function (_3) {
                            formlyConfig = _3['default'];
                   }, function (_4) {
-                           edaFormViewerMainModule = _4['default'];
+                           textAngularConfig = _4['default'];
                   }, function (_5) {
-                           edaFormViewerCoreModule = _5['default'];
+                           edaFormViewerMainModule = _5['default'];
+                  }, function (_6) {
+                           edaFormViewerCoreModule = _6['default'];
                   }, function (_e) {
                            translateConfig = _e['default'];
-                  }, function (_d) {
-                           edaFormViewerModelTranslatorModule = _d['default'];
+                  }, function (_f) {
+                           edaFormViewerModelTranslatorModule = _f['default'];
                   }],
                   execute: function () {
                            MAIN_MODULE_NAME = 'eda.easyFormViewer';
-                           DEP_TO_INJECT_IN_MAIN = [edaFormViewerCoreModule.name, translateConfig.name, edaFormViewerMainModule.name, edaFormViewerModelTranslatorModule.name];
+                           DEP_TO_INJECT_IN_MAIN = [edaFormViewerCoreModule.name, translateConfig.name, textAngularConfig.name, edaFormViewerMainModule.name, edaFormViewerModelTranslatorModule.name];
                            mainModule = angular.module(MAIN_MODULE_NAME, DEP_TO_INJECT_IN_MAIN).value(EASY_FORM_VIEWER_VERSION_NAME, EASY_FORM_VIEWER_VERSION_VALUE).config(formlyConfig).config(edaEasyFormViewConfig);
 
                            _export('default', mainModule);

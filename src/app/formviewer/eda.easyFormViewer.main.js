@@ -4,6 +4,7 @@ import edaEasyFormViewConfig, {
     EASY_FORM_VIEWER_VERSION_VALUE }      from './config/eda.easyFormViewer.conf.easyFormConf';
 import formlyConfig                       from './config/eda.easyFormViewer.config';
 import translateConfig                    from './components/translate/edaStepWayEasyFormGen.translate.module';
+import textAngularConfig                  from './components/textAngular/edaStepWayEasyFormGen.textAngular.module';
 import edaFormViewerMainModule 						from './components/main/eda.easyFormViewer.main.module';
 import edaFormViewerCoreModule						from './components/core/eda.easyFormViewer.core.module';
 import edaFormViewerModelTranslatorModule	from './components/modelsTranslator/eda.easyFormViewer.modelTranslator.module';
@@ -12,6 +13,7 @@ const MAIN_MODULE_NAME                = 'eda.easyFormViewer';
 const DEP_TO_INJECT_IN_MAIN = [
   edaFormViewerCoreModule.name,
   translateConfig.name,
+  textAngularConfig.name,
 	edaFormViewerMainModule.name,
 	edaFormViewerModelTranslatorModule.name
 ];
