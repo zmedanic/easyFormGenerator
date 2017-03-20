@@ -5,7 +5,7 @@ function textAngularConfig($provide) {
 
     taOptions.toolbar = [
         ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
-        ['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],
+        ['bold', 'italics', 'underline', 'redo', 'undo', 'clear'],
         ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent'],
         ['html', 'wordcount', 'charcount']
     ];
