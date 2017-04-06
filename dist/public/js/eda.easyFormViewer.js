@@ -1698,7 +1698,8 @@ $__System.register('1d', [], function (_export) {
 	function defaultValueForMultiFields(type, defaultValue) {
 		var returnValue = defaultValue;
 		var multipleTypes = ['input', 'datepicker', 'textarea', 'richEditor', 'upload', 'basicMultiSelect', 'groupedMultiSelect'];
-		if (multipleTypes.indexOf(type) !== -1 && typeof defaultValue[0] === "undefined") {
+
+		if (multipleTypes.indexOf(type) !== -1 && (typeof defaultValue[0] === "undefined" || typeof defaultValue == 'string' && defaultValue != '')) {
 			returnValue = [];
 			returnValue.push(defaultValue);
 		}
