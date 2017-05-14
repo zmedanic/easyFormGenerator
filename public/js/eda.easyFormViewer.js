@@ -1148,7 +1148,7 @@ $__System.register('f', [], function (_export) {
   function textAngularConfig($provide) {
     $provide.decorator('taOptions', ['taRegisterTool', '$delegate', function (taRegisterTool, taOptions) {
 
-      taOptions.toolbar = [['h1', 'h2', 'h3', 'h4', 'h5', 'h6'], ['bold', 'italics', 'underline', 'redo', 'undo', 'clear'], ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent'], ['html', 'wordcount', 'charcount']];
+      taOptions.toolbar = [['bold', 'italics', 'underline', 'redo', 'undo', 'clear'], ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent'], ['html', 'wordcount', 'charcount']];
 
       return taOptions;
     }]);
