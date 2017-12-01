@@ -437,6 +437,9 @@ const resetNyaSelect = (nyaSelectObj, $translate, $q, $timeout) => {
 				allowEmptyOption 	: false,
 				allowMultiple			: 1,
 				formlyDesciption	: '',
+				optionsSourceType : 'static',
+				optionsSourceDbTable : null,
+				optionsSourceDbFormat : null,
 				formlyOptions			: [],
 				parentId					: '',
 				referenceId				: '',
@@ -471,6 +474,9 @@ const resetNyaSelect = (nyaSelectObj, $translate, $q, $timeout) => {
 				allowEmptyOption 	: false,
 				allowMultiple			: 1,
 				formlyDesciption	: '',
+				optionsSourceType : 'static',
+				optionsSourceDbTable : null,
+				optionsSourceDbFormat : null,
 				formlyOptions			: [],
 				parentId					: '',
 				referenceId				: '',
@@ -681,9 +687,12 @@ const returnControlFromAddCtrlModalModel = (CtrlModalModel) =>{
 						break;
 				}
 			}
-			let fildsWithOptions = ['basicSelect', 'groupedSelect', 'radio'];
-			if (fildsWithOptions.indexOf(CtrlModalModel.controls[i].formlyType) !== -1) {
+			let fieldsWithOptions = ['basicSelect', 'groupedSelect', 'radio'];
+			if (fieldsWithOptions.indexOf(CtrlModalModel.controls[i].formlyType) !== -1) {
 				modelToReturn.allowEmptyOption = CtrlModalModel.controls[i].allowEmptyOption;
+				modelToReturn.optionsSourceType = CtrlModalModel.controls[i].optionsSourceType;
+				modelToReturn.optionsSourceDbTable = CtrlModalModel.controls[i].optionsSourceDbTable;
+				modelToReturn.optionsSourceDbFormat = CtrlModalModel.controls[i].optionsSourceDbFormat;
 			}
 		}
 	}

@@ -3,14 +3,15 @@ const CORE_MODULES = [
 	'textAngular',
 	'textAngularSetup',
 	'ngAnimate',
-	'toaster',                      
-	'formly', 
+	'toaster',
+	'formly',
 	'formlyBootstrap',
 	'ui.bootstrap',
 	'nya.bootstrap.select',
-	'pascalprecht.translate'
+	'pascalprecht.translate',
+	'selectize'
 ];
 
 export default angular
 								.module('edaStepWayEasyFormGen.core', CORE_MODULES);
-								
+

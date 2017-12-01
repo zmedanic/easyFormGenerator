@@ -120,5 +120,10 @@
     "VALIDATION_DATE_INVALID" : " has invalid date",
     "VALIDATION_UNIQUE" : " is not unique",
     "REMOVE"              : "Remove",
-    "ADD_NEW"             : "Add new"
+    "ADD_NEW"             : "Add new",
+    "OPTIONS_SOURCE_TYPE" : "Options source type",
+    "OPTIONS_SOURCE_STATIC": "Option values static",
+    "OPTIONS_SOURCE_DB"   : "Option values defined in DB",
+    "OPTIONS_SOURCE_DB_TABLE": "External table",
+    "OPTIONS_SOURCE_DB_FORMAT": "Display format",
 }

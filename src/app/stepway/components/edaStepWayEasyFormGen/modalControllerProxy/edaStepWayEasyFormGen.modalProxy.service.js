@@ -72,9 +72,12 @@ class $modalProxy{
 				nyaSelectObj.temporyConfig.incrementalOption 	= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.incrementalOption != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.incrementalOption : false;
 				nyaSelectObj.temporyConfig.currentYearOption 	= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.currentYearOption != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.currentYearOption : false;
 			}
-			let fildsWithOptions = ['BasicSelect', 'GroupedSelect', 'Radio'];
-			if (fildsWithOptions.indexOf(nyaSelectObj.temporyConfig.selectedControl) !== -1) {
+			let fieldsWithOptions = ['BasicSelect', 'GroupedSelect', 'Radio'];
+			if (fieldsWithOptions.indexOf(nyaSelectObj.temporyConfig.selectedControl) !== -1) {
 				nyaSelectObj.temporyConfig.allowEmptyOption 	= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.allowEmptyOption != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.allowEmptyOption : false;
+				nyaSelectObj.temporyConfig.optionsSourceType 	= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.optionsSourceType != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.optionsSourceType : 'static';
+				nyaSelectObj.temporyConfig.optionsSourceDbTable = typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.optionsSourceDbTable != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.optionsSourceDbTable : null;
+				nyaSelectObj.temporyConfig.optionsSourceDbFormat = typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.optionsSourceDbFormat != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.optionsSourceDbFormat : null;
 			}
 		}
 		return nyaSelectObj;
@@ -150,9 +153,12 @@ class $modalProxy{
 			}
 		}
 
-		let fildsWithOptions = ['basicSelect', 'groupedSelect', 'radio'];
-		if (fildsWithOptions.indexOf(configurationObj.lines[indexLine].columns[numcolumn].control.type) !== -1) {
+		let fieldsWithOptions = ['basicSelect', 'groupedSelect', 'radio'];
+		if (fieldsWithOptions.indexOf(configurationObj.lines[indexLine].columns[numcolumn].control.type) !== -1) {
 			configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.allowEmptyOption = extractedProps.allowEmptyOption;
+			configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.optionsSourceType = extractedProps.optionsSourceType;
+			configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.optionsSourceDbTable = extractedProps.optionsSourceDbTable;
+			configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.optionsSourceDbFormat = extractedProps.optionsSourceDbFormat;
 		}
 
 		/**
@@ -188,41 +194,44 @@ class $modalProxy{
 		for (let i = nyaSelectObj.controls.length - 1; i >= 0; i--) {
 			if (nyaSelectObj.controls[i].id === nyaSelectObj.selectedControl) {
 
-					nyaSelectObj.controls[i].formlyLabel 								= nyaSelectObj.temporyConfig.formlyLabel;
-					nyaSelectObj.controls[i].formlyLabelShort 					= nyaSelectObj.temporyConfig.formlyLabelShort;
-					nyaSelectObj.controls[i].formlyRequired 						= nyaSelectObj.temporyConfig.formlyRequired;
-					nyaSelectObj.controls[i].formlyUnique 							= nyaSelectObj.temporyConfig.formlyUnique;
-					nyaSelectObj.controls[i].formlyDefaultValue 				= nyaSelectObj.temporyConfig.formlyDefaultValue;
-					nyaSelectObj.controls[i].displayAddOption 					= nyaSelectObj.temporyConfig.displayAddOption;
-					nyaSelectObj.controls[i].displayEditOption 					= nyaSelectObj.temporyConfig.displayEditOption;
-					nyaSelectObj.controls[i].allowMultiple 							= nyaSelectObj.temporyConfig.allowMultiple;
-					nyaSelectObj.controls[i].formlyDesciption 					= nyaSelectObj.temporyConfig.formlyDesciption;
-					nyaSelectObj.controls[i].formlyPlaceholder 					= nyaSelectObj.temporyConfig.formlyPlaceholder;
-					nyaSelectObj.controls[i].formlyOptions 							= nyaSelectObj.temporyConfig.formlyOptions;
-					nyaSelectObj.controls[i].parentId 									= nyaSelectObj.temporyConfig.parentId;
-					nyaSelectObj.controls[i].referenceId 								= nyaSelectObj.temporyConfig.referenceId;
+				nyaSelectObj.controls[i].formlyLabel 								= nyaSelectObj.temporyConfig.formlyLabel;
+				nyaSelectObj.controls[i].formlyLabelShort 					= nyaSelectObj.temporyConfig.formlyLabelShort;
+				nyaSelectObj.controls[i].formlyRequired 						= nyaSelectObj.temporyConfig.formlyRequired;
+				nyaSelectObj.controls[i].formlyUnique 							= nyaSelectObj.temporyConfig.formlyUnique;
+				nyaSelectObj.controls[i].formlyDefaultValue 				= nyaSelectObj.temporyConfig.formlyDefaultValue;
+				nyaSelectObj.controls[i].displayAddOption 					= nyaSelectObj.temporyConfig.displayAddOption;
+				nyaSelectObj.controls[i].displayEditOption 					= nyaSelectObj.temporyConfig.displayEditOption;
+				nyaSelectObj.controls[i].allowMultiple 							= nyaSelectObj.temporyConfig.allowMultiple;
+				nyaSelectObj.controls[i].formlyDesciption 					= nyaSelectObj.temporyConfig.formlyDesciption;
+				nyaSelectObj.controls[i].formlyPlaceholder 					= nyaSelectObj.temporyConfig.formlyPlaceholder;
+				nyaSelectObj.controls[i].formlyOptions 							= nyaSelectObj.temporyConfig.formlyOptions;
+				nyaSelectObj.controls[i].parentId 									= nyaSelectObj.temporyConfig.parentId;
+				nyaSelectObj.controls[i].referenceId 								= nyaSelectObj.temporyConfig.referenceId;
 
-					if (nyaSelectObj.controls[i].id ==='Date' ) {
-						nyaSelectObj.controls[i].datepickerOptions 				= angular.copy(nyaSelectObj.temporyConfig.datepickerOptions);
-						nyaSelectObj.controls[i].currentDateOption 				= nyaSelectObj.temporyConfig.currentDateOption;
-					}
-
-					if (nyaSelectObj.controls[i].id ==='TextInput' ) {
-						nyaSelectObj.controls[i].maxLengthOption 					= nyaSelectObj.temporyConfig.maxLengthOption;
-					}
-
-					if (nyaSelectObj.controls[i].id ==='Number' ) {
-						nyaSelectObj.controls[i].numberType 							= nyaSelectObj.temporyConfig.numberType;
-						nyaSelectObj.controls[i].minValueOption 					= nyaSelectObj.temporyConfig.minValueOption;
-						nyaSelectObj.controls[i].maxValueOption 					= nyaSelectObj.temporyConfig.maxValueOption;
-						nyaSelectObj.controls[i].incrementalOption 				= nyaSelectObj.temporyConfig.incrementalOption;
-						nyaSelectObj.controls[i].currentYearOption 				= nyaSelectObj.temporyConfig.currentYearOption;
-					}
-					let fildsWithOptions = ['BasicSelect', 'GroupedSelect', 'Radio'];
-					if (fildsWithOptions.indexOf(nyaSelectObj.controls[i].id) !== -1) {
-						nyaSelectObj.controls[i].allowEmptyOption 				= nyaSelectObj.temporyConfig.allowEmptyOption;
-					}
+				if (nyaSelectObj.controls[i].id ==='Date' ) {
+					nyaSelectObj.controls[i].datepickerOptions 				= angular.copy(nyaSelectObj.temporyConfig.datepickerOptions);
+					nyaSelectObj.controls[i].currentDateOption 				= nyaSelectObj.temporyConfig.currentDateOption;
 				}
+
+				if (nyaSelectObj.controls[i].id ==='TextInput' ) {
+					nyaSelectObj.controls[i].maxLengthOption 					= nyaSelectObj.temporyConfig.maxLengthOption;
+				}
+
+				if (nyaSelectObj.controls[i].id ==='Number' ) {
+					nyaSelectObj.controls[i].numberType 							= nyaSelectObj.temporyConfig.numberType;
+					nyaSelectObj.controls[i].minValueOption 					= nyaSelectObj.temporyConfig.minValueOption;
+					nyaSelectObj.controls[i].maxValueOption 					= nyaSelectObj.temporyConfig.maxValueOption;
+					nyaSelectObj.controls[i].incrementalOption 				= nyaSelectObj.temporyConfig.incrementalOption;
+					nyaSelectObj.controls[i].currentYearOption 				= nyaSelectObj.temporyConfig.currentYearOption;
+				}
+				let fildsWithOptions = ['BasicSelect', 'GroupedSelect', 'Radio'];
+				if (fildsWithOptions.indexOf(nyaSelectObj.controls[i].id) !== -1) {
+					nyaSelectObj.controls[i].allowEmptyOption 				= nyaSelectObj.temporyConfig.allowEmptyOption;
+					nyaSelectObj.controls[i].optionsSourceType 				= nyaSelectObj.temporyConfig.optionsSourceType;
+					nyaSelectObj.controls[i].optionsSourceDbTable 		= nyaSelectObj.temporyConfig.optionsSourceDbTable;
+					nyaSelectObj.controls[i].optionsSourceDbFormat 		= nyaSelectObj.temporyConfig.optionsSourceDbFormat;
+				}
+			}
 		}
 	}
 

@@ -9,9 +9,11 @@
 		<meta name="author" content="Erwan Datin (MacKentoch)">
 
 
-			<!-- jquery framework : top 1 priority -->
-			<script type="text/javascript" src="./public/lib/js/jquery.min.js"></script>
+		<!-- jquery framework : top 1 priority -->
+		<script type="text/javascript" src="./public/lib/js/jquery.min.js"></script>
 		<!-- IMPORTANT : angular js lib (here for better result with ng-cloak) -->
+		<script type="text/javascript" src="./public/lib/js/selectize.min.js"></script>
+
 		<script type="text/javascript" src="./public/lib/js/angular.min.js"></script>
 		<!-- Bootstrap core CSS -->
 		<link href="./public/lib/css/bootstrap.min.css" rel="stylesheet">
@@ -27,8 +29,10 @@
 		<link rel='stylesheet' href='./public/lib/css/nya-bs-select.min.css'>
     <!-- Dropzone JS -->
 		<link rel='stylesheet' href='./public/lib/css/dropzone.min.css'>
+
 		<!-- Custom styles for this template -->
 		<link href="./public/css/eda.stepway.css" rel="stylesheet">
+		<link rel='stylesheet' href='./public/lib/css/selectize.css'>
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
 			<script src="./public/lib/html5shiv/dist/html5shiv.min.js"></script>
@@ -96,8 +100,6 @@
 
 		</div>
 
-
-
 		<script type="text/javascript">
 			//demo purpose : here should be your app
 
@@ -135,8 +137,8 @@
 				/**
 				 * controller
 				 **/
-				demoController.$inject = ['$timeout', 'easyFormSteWayConfig', '$http', '$scope', '$q'];
-				function demoController($timeout, easyFormSteWayConfig, $http, $scope, $q){
+				demoController.$inject = ['$timeout', 'easyFormSteWayConfig', '$http', '$scope', '$q', '$rootScope'];
+				function demoController($timeout, easyFormSteWayConfig, $http, $scope, $q, $rootScope){
 					var demoCtrl = this;
 
 					demoCtrl.easyFormGeneratorModel	= {};
@@ -165,6 +167,14 @@
 					function refreshCurrentLanguage(){
 						return easyFormSteWayConfig.getCurrentLanguage();
 					}
+
+					$rootScope.$on('sourceTables', function(event) {
+						event.targetScope.editControlModCtrl.optionsSourceDbTables.push({id: 1, name: 'jjj'});
+					});
+
+					$rootScope.$on('sourceFields', function(event, data) {
+						event.targetScope.editControlModCtrl.optionsSourceDbFields.push({value: '[FIELD_11]', text: 'Test'});
+					});
 
 					/**
 					 * when click on save form, will call your save form function :
@@ -523,7 +533,8 @@
 		=============================================================-->
 		<footer id="pageFooter">
 			<!-- jquery framework : top 1 priority -->
-			<script type="text/javascript" src="./public/lib/js/jquery.min.js"></script>
+			<!--script type="text/javascript" src="./public/lib/js/jquery.min.js"></script-->
+
 			<!-- bootstrap framework scripts -->
 			<script type="text/javascript" src="./public/lib/js/bootstrap.min.js"></script>
 			<!-- angular ui bootstrap -->
@@ -534,6 +545,10 @@
 			<script type="text/javascript" src='./public/lib/js/textAngular-rangy.min.js'></script>
 			<script type="text/javascript" src='./public/lib/js/textAngular-sanitize.min.js'></script>
 			<script type="text/javascript" src='./public/lib/js/textAngular.min.js'></script>
+
+			<script type="text/javascript" src="./public/lib/js/angular-selectize.js"></script>
+
+
       <!-- dropzone js -->
 			<script type="text/javascript" src='./public/lib/js/dropzone.min.js'></script>
 			<!-- lodash -->

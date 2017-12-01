@@ -121,6 +121,18 @@ const extractTemplateOptionAllowEmptyOption= (obj)=>{
 	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.allowEmptyOption !== 'undefined'? obj.templateOptions.allowEmptyOption: false) : false;
 };
 
+const extractTemplateOptionOptionsSourceType= (obj)=>{
+	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.optionsSourceType !== 'undefined'? obj.templateOptions.optionsSourceType: 'static') : 'static';
+};
+
+const extractTemplateOptionOptionsSourceDbTable= (obj)=>{
+	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.optionsSourceDbTable !== 'undefined'? obj.templateOptions.optionsSourceDbTable: null) : null;
+};
+
+const extractTemplateOptionOptionsSourceDbFormat= (obj)=>{
+	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.optionsSourceDbFormat !== 'undefined'? obj.templateOptions.optionsSourceDbFormat: null) : null;
+};
+
 const extractFormlyExpressionProperties = (obj)=>{
 	return  typeof obj.formlyExpressionProperties !== 'undefined' ? angular.copy(obj.formlyExpressionProperties) : {};
 };
@@ -188,6 +200,18 @@ const addMaxLengthOptionProperty = (fieldToPush, configurationModel,lineIndex, p
 
 const addAllowEmptyOptionProperty = (fieldToPush, configurationModel,lineIndex, position) => {
 		fieldToPush.templateOptions.allowEmptyOption = extractTemplateOptionAllowEmptyOption(configurationModel.lines[lineIndex].columns[position].control);
+};
+
+const addOptionsSourceTypeProperty = (fieldToPush, configurationModel,lineIndex, position) => {
+		fieldToPush.templateOptions.optionsSourceType = extractTemplateOptionOptionsSourceType(configurationModel.lines[lineIndex].columns[position].control);
+};
+
+const addOptionsSourceDbTableProperty = (fieldToPush, configurationModel,lineIndex, position) => {
+		fieldToPush.templateOptions.optionsSourceDbTable = extractTemplateOptionOptionsSourceDbTable(configurationModel.lines[lineIndex].columns[position].control);
+};
+
+const addOptionsSourceDbFormatProperty = (fieldToPush, configurationModel,lineIndex, position) => {
+		fieldToPush.templateOptions.optionsSourceDbFormat = extractTemplateOptionOptionsSourceDbFormat(configurationModel.lines[lineIndex].columns[position].control);
 };
 
 const addNumberTypeProperty = (fieldToPush, configurationModel,lineIndex, position) => {
@@ -321,9 +345,12 @@ function addColumnControl(formlyModel, configurationModel,lineIndex, numberOfCol
 		}
 	}
 
-	let fildsWithOptions = ['basicSelect', 'groupedSelect', 'radio'];
-	if (fildsWithOptions.indexOf(configurationModel.lines[lineIndex].columns[columnIndex].control.type) !== -1) {
+	let fieldsWithOptions = ['basicSelect', 'groupedSelect', 'radio'];
+	if (fieldsWithOptions.indexOf(configurationModel.lines[lineIndex].columns[columnIndex].control.type) !== -1) {
 		addAllowEmptyOptionProperty(controlCol, configurationModel,lineIndex, columnIndex);
+		addOptionsSourceTypeProperty(controlCol, configurationModel,lineIndex, columnIndex);
+		addOptionsSourceDbTableProperty(controlCol, configurationModel,lineIndex, columnIndex);
+		addOptionsSourceDbFormatProperty(controlCol, configurationModel,lineIndex, columnIndex);
 	}
 
 	if (configurationModel.lines[lineIndex].columns[columnIndex].control.type === 'header') {
@@ -384,6 +411,9 @@ export {
 	extractTemplateOptionCurrentYearOption,
 	extractTemplateOptionCurrentDateOption,
 	extractTemplateOptionAllowEmptyOption,
+	extractTemplateOptionOptionsSourceType,
+	extractTemplateOptionOptionsSourceDbTable,
+	extractTemplateOptionOptionsSourceDbFormat,
 	extractFormlyExpressionProperties,
 	extractFormlyValidators,
 	extractFormlyAsyncValidators,
@@ -408,6 +438,9 @@ export {
 	addCurrentYearOptionProperty,
 	addCurrentDateOptionProperty,
 	addAllowEmptyOptionProperty,
+	addOptionsSourceTypeProperty,
+	addOptionsSourceDbTableProperty,
+	addOptionsSourceDbFormatProperty,
 	addOneColumnHeader,
 	addColumns
 };

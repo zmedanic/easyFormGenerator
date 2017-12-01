@@ -12,7 +12,8 @@ class editControlModalController {
 								columns,
 								activeLine,
 								activeColumn,
-								activeLineColumnsCount) {
+								activeLineColumnsCount,
+								$scope) {
 
 		this.$modalInstance 					= $uibModalInstance;
 		this.nyaSelect 								= nyaSelect;
@@ -24,6 +25,24 @@ class editControlModalController {
 		this.activeLine 							= activeLine;
 		this.activeColumn 						= activeColumn;
 		this.activeLineColumnsCount 	= activeLineColumnsCount;
+
+		this.populateSourceTables = function() {
+			this.optionsSourceDbTables		= [{id: null, name: 'Nothing selected'}];
+			$scope.$emit('sourceTables');
+		}
+
+		this.populateSourceFields = function(value) {
+			this.optionsSourceDbFields		= [{value: '[VALUE]', text: 'Field value'}];
+			$scope.$emit('sourceFields', value);
+			if (this.nyaSelect.temporyConfig.optionsSourceDbFormat && this.nyaSelect.temporyConfig.optionsSourceDbFormat.length > 0) {
+				angular.forEach(this.nyaSelect.temporyConfig.optionsSourceDbFormat, (formatPart) => {
+					let matches = formatPart.match(/\[CHAR_[0-9]*:(.*?)\]/);
+					if (matches && matches.length == 2 && matches[1] && matches[1].length > 0) {
+						this.optionsSourceDbFields.push({value: formatPart, text: matches[1]});
+					}
+				});
+			}
+		}
 
 		this.init();
 	}
@@ -56,10 +75,22 @@ class editControlModalController {
 		this.nyaSelectFiltered 					= {};
 		this.modelNyaSelect							= {};
 
+		let optionsSourceDbFormatConfigIndex = this.nyaSelect.temporyConfig.optionsSourceDbFormat ? this.nyaSelect.temporyConfig.optionsSourceDbFormat.length : 0;
+		this.optionsSourceDbFormatConfig = {
+			create: function(input) {
+				optionsSourceDbFormatConfigIndex++;
+				let obj = {
+					'value': '[CHAR_' + optionsSourceDbFormatConfigIndex + ':' + input + ']',
+					'text': input,
+				};
+				return obj;
+			},
+			maxItems: 10,
+		}
+
 		//init nyaSelect model depending selected control
 		this.initNyaSelectConformingSelectedControl();
 	}
-
 
 	initNyaSelectConformingSelectedControl(){
 		//place nya-select to selection if not none :
@@ -506,7 +537,8 @@ const toInject =  [
 	'columns',
 	'activeLine',
 	'activeColumn',
-	'activeLineColumnsCount'
+	'activeLineColumnsCount',
+	'$scope'
 ];
 
 editControlModalController.$inject = toInject;

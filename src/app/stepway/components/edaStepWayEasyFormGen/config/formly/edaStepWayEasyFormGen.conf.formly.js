@@ -190,7 +190,7 @@ function formlyConfig(formlyConfigProvider){
   formlyConfigProvider.setType({
     name      : 'basicSelect',
     template  : basicSelectTemplate,
-    wrapper   : ['descriptionTemplate', 'bootstrapLabel', 'bootstrapHasError']
+    wrapper   : ['descriptionTemplate', 'bootstrapLabel', 'bootstrapHasError'],
   });
 
   formlyConfigProvider.setType({
