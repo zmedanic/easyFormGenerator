@@ -126,4 +126,5 @@
     "OPTIONS_SOURCE_DB"   : "Option values defined in DB",
     "OPTIONS_SOURCE_DB_TABLE": "External table",
     "OPTIONS_SOURCE_DB_FORMAT": "Display format",
+    "OPTION_DESCRIPTION"  : "Option description",
 }

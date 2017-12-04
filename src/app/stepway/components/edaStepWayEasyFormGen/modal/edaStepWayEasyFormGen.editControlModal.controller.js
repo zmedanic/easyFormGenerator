@@ -55,7 +55,8 @@ class editControlModalController {
 			description : '',
 			parentId 		: '',
 			referenceId : '',
-			order 			: -1
+			order 			: -1,
+			uniqueValue : '',
 		}];
 		this.radioRowCollection 				= initOptionModel;
 		this.newOptionRadio     				= {saisie: '', description: ''};

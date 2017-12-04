@@ -2648,19 +2648,22 @@
                       class="table table-striped">
                       <thead>
                       <tr>
-                        <th st-ratio="20">
+                        <th st-ratio="10">
                           {{'ORDER' | translate}}
                         </th>
-                        <th st-ratio="55">
+                        <th st-ratio="25">
                           {{'OPTION' | translate}}
+                        </th>
+                        <th st-ratio="40">
+                          {{'OPTION_DESCRIPTION' | translate}}
                         </th>
                         <th st-ratio="25">
                         </th>
                       </tr>
                       <tr>
-                        <th st-ratio="20">
+                        <th st-ratio="10">
                         </th>
-                        <th st-ratio="55">
+                        <th st-ratio="25">
                           <input
                             ng-model="editControlModCtrl.radioFilter"
                             placeholder="{{'SEARCH_4_OPTION' | translate}}"
@@ -2668,17 +2671,22 @@
                             type="search"
                           />
                         </th>
+                        <th st-ratio="40">
+                        </th>
                         <th st-ratio="25">
                         </th>
                       </tr>
                       </thead>
                       <tbody>
                         <tr ng-repeat="radioRow in editControlModCtrl.radioRowCollection.rows | filter:radioFilter as radioRow">
-                          <td st-ratio="20">
+                          <td st-ratio="10">
                             {{$index}}
                           </td>
-                          <td st-ratio="55">
+                          <td st-ratio="25">
                             {{radioRow.option}}
+                          </td>
+                          <td st-ratio="40">
+                            {{radioRow.description}}
                           </td>
                           <td st-ratio="25">
                             <div class="pull-right">
@@ -3189,11 +3197,11 @@
                       <a>
                         <span>
                           {{basicSelectRow.option}}
-                        </span>
-                        <span
-                          ng-if="basicSelectRow.description.length > 0"
-                          class="help-block help-inline">
-                          ({{basicSelectRow.description}})
+                          <span
+                            ng-if="basicSelectRow.description.length > 0"
+                            class="help-block help-inline">
+                            ({{basicSelectRow.description}})
+                          </span>
                         </span>
                       </a>
                     </li>
@@ -3213,11 +3221,11 @@
                       <a>
                         <span>
                           {{basicSelectRow.option}}
-                        </span>
-                        <span
-                          ng-if="basicSelectRow.description.length > 0"
-                          class="help-block help-inline">
-                          ({{basicSelectRow.description}})
+                          <span
+                            ng-if="basicSelectRow.description.length > 0"
+                            class="help-block help-inline">
+                            ({{basicSelectRow.description}})
+                          </span>
                         </span>
                       </a>
                     </li>
@@ -3347,24 +3355,27 @@
                       class="table table-striped">
                       <thead>
                         <tr>
-                          <th st-ratio="20">
+                          <th st-ratio="5">
                             {{'ORDER' | translate}}
                           </th>
-                          <th st-ratio="30">
+                          <th st-ratio="25">
                             {{'PARENT_ID' | translate}}
                           </th>
-                          <th st-ratio="25">
+                          <th st-ratio="20">
                             {{'OPTION' | translate}}
+                          </th>
+                          <th st-ratio="25">
+                            {{'OPTION_DESCRIPTION' | translate}}
                           </th>
                           <th st-ratio="25">
                           </th>
                         </tr>
                         <tr>
-                          <th st-ratio="20">
-                          </th>
-                          <th st-ratio="30">
+                          <th st-ratio="5">
                           </th>
                           <th st-ratio="25">
+                          </th>
+                          <th st-ratio="20">
                             <input
                               ng-model="basicSelectFilter"
                               placeholder="{{'SEARCH_4_OPTION' | translate}}"
@@ -3374,14 +3385,16 @@
                           </th>
                           <th st-ratio="25">
                           </th>
+                          <th st-ratio="25">
+                          </th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr ng-repeat="basicSelectRow in editControlModCtrl.basicSelectRowCollection.rows | filter:basicSelectFilter as basicSelectRow">
-                          <td st-ratio="20">
+                        <tr ng-repeat="basicSelectRow in editControlModCtrl.basicSelectRowCollection.rows">
+                          <td st-ratio="5">
                             {{$index}}
                           </td>
-                          <td st-ratio="30">
+                          <td st-ratio="25">
                             <div ng-if="editControlModCtrl.basicSelectGroupClick.showList === true">
                               <div ng-if="editControlModCtrl.basicSelectRowCollection.parents.length === 0">
                                 <p class="text-left noGroupText">-</p>
@@ -3406,8 +3419,11 @@
                               {{basicSelectRow.parentId.name}}
                             </div>
                           </td>
-                          <td st-ratio="25">
+                          <td st-ratio="20">
                             {{basicSelectRow.option}}
+                          </td>
+                          <td st-ratio="25">
+                            {{basicSelectRow.description}}
                           </td>
                           <td st-ratio="25">
                             <div class="pull-right">
@@ -3759,11 +3775,11 @@
                       <a>
                         <span>
                           {{groupedSelectRow.option}}
-                        </span>
-                        <span
-                          ng-if="groupedSelectRow.description.length > 0"
-                          class="help-block help-inline">
-                          ({{groupedSelectRow.description}})
+                          <span
+                            ng-if="groupedSelectRow.description.length > 0"
+                            class="help-block help-inline">
+                            ({{groupedSelectRow.description}})
+                          </span>
                         </span>
                         <span class="glyphicon glyphicon-ok check-mark">
                         </span>
@@ -3787,11 +3803,11 @@
                       <a>
                         <span>
                           {{groupedSelectRow.option}}
-                        </span>
-                        <span
-                          ng-if="groupedSelectRow.description.length > 0"
-                          class="help-block help-inline">
-                          ({{groupedSelectRow.description}})
+                          <span
+                            ng-if="groupedSelectRow.description.length > 0"
+                            class="help-block help-inline">
+                            ({{groupedSelectRow.description}})
+                          </span>
                         </span>
                         <span class="glyphicon glyphicon-ok check-mark">
                         </span>
@@ -3954,27 +3970,32 @@
                       class="table table-striped">
                       <thead>
                         <tr>
-                          <th st-ratio="15">
+                          <th st-ratio="5">
                             {{'ORDER' | translate}}
                           </th>
                           <th st-ratio="20">
                             {{'PARENT_ID' | translate}}
                           </th>
-                          <th st-ratio="20">
+                          <th st-ratio="15">
                             {{'GROUP' | translate}}
                           </th>
-                          <th st-ratio="20">
+                          <th st-ratio="15">
                             {{'OPTION' | translate}}
+                          </th>
+                          <th st-ratio="20">
+                            {{'OPTION_DESCRIPTION' | translate}}
                           </th>
                           <th st-ratio="25">
                           </th>
                         </tr>
                         <tr>
+                          <th st-ratio="5">
+                          </th>
+                          <th st-ratio="20">
+                          </th>
                           <th st-ratio="15">
                           </th>
-                          <th st-ratio="20">
-                          </th>
-                          <th st-ratio="20">
+                          <th st-ratio="15">
                           </th>
                           <th st-ratio="20">
                             <input
@@ -3990,7 +4011,7 @@
                         </thead>
                         <tbody>
                         <tr ng-repeat="groupedSelectRow in editControlModCtrl.groupedSelectRowCollection.rows | filter:editControlModCtrl.groupedSelectFilter as groupedSelectRow">
-                          <td st-ratio="15">
+                          <td st-ratio="5">
                             {{$index}}
                           </td>
                           <td st-ratio="20">
@@ -4018,7 +4039,7 @@
                               {{groupedSelectRow.parentId.name}}
                             </div>
                           </td>
-                          <td st-ratio="20">
+                          <td st-ratio="15">
                             <div ng-if="editControlModCtrl.groupSelectGroupClick.showList === true">
                               <div ng-if="editControlModCtrl.GroupedSelectGroups.list.length === 0">
                                 <p class="text-left noGroupText">- {{'NO_GROUP_ADD_NEW' | translate}} -</p>
@@ -4036,8 +4057,11 @@
                               {{groupedSelectRow.group}}
                             </div>
                           </td>
-                          <td st-ratio="20">
+                          <td st-ratio="15">
                             {{groupedSelectRow.option}}
+                          </td>
+                          <td st-ratio="20">
+                            {{groupedSelectRow.description}}
                           </td>
                           <td st-ratio="25">
                             <div class="pull-right">

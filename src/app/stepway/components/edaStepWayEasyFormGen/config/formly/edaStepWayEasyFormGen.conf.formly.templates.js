@@ -115,11 +115,13 @@ const basicSelectTemplate = `
       data-value="{referenceId: option.referenceId, name: option.name, uniqueValue: option.uniqueValue}"
     >
       <a>
-        <span>{{option.name}}</span>
-        <span
-          ng-if="option.description.length > 0"
-          class="help-block help-inline">
-          ({{option.description}})
+        <span>
+          {{option.name}}
+          <span
+            ng-if="option.description.length > 0"
+            class="help-block help-inline">
+            ({{option.description}})
+          </span>
         </span>
       </a>
     </li>
@@ -142,12 +144,14 @@ const basicMultiSelectTemplate = `
       ng-class="{disabled: isDisabled(model[options.key || index], option.uniqueValue, options)}"
     >
       <a>
-        <span>{{option.name}}</span>
-        <span
-          ng-if="option.description.length > 0"
-          class="help-block help-inline"
-        >
-          ({{option.description}})
+        <span>
+          {{option.name}}
+          <span
+            ng-if="option.description.length > 0"
+            class="help-block help-inline"
+          >
+            ({{option.description}})
+          </span>
         </span>
       </a>
     </li>
@@ -174,12 +178,14 @@ const groupedSelectTemplate = `
     >
       <span class="dropdown-header">{{$group}}</span>
       <a>
-        <span>{{option.name}}</span>
-        <span
-          ng-if="option.description.length > 0"
-          class="help-block help-inline"
-        >
-          ({{option.description}})
+        <span>
+          {{option.name}}
+          <span
+            ng-if="option.description.length > 0"
+            class="help-block help-inline"
+          >
+            ({{option.description}})
+          </span>
         </span>
         <span class="glyphicon glyphicon-ok check-mark"></span>
       </a>
@@ -202,12 +208,14 @@ const groupedMultiSelectTemplate = `
     >
       <span class="dropdown-header">{{$group}}</span>
       <a>
-        <span>{{option.name}}</span>
-        <span
-          ng-if="option.description.length > 0"
-          class="help-block help-inline"
-        >
-          ({{option.description}})
+        <span>
+          {{option.name}}
+          <span
+            ng-if="option.description.length > 0"
+            class="help-block help-inline"
+          >
+            ({{option.description}})
+          </span>
         </span>
         <span class="glyphicon glyphicon-ok check-mark"></span>
       </a>
