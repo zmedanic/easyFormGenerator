@@ -2185,10 +2185,10 @@ $__System.register('14', ['15', '16'], function (_export) {
 							value: '[VALUE]',
 							text: 'Field value'
 						}, {
-							value: '{',
+							value: '[OPTIONAL_START]',
 							text: 'Optional display start'
 						}, {
-							value: '}',
+							value: '[OPTIONAL_END]',
 							text: 'Optional display end'
 						}];
 						$scope.$emit('sourceFields', value);

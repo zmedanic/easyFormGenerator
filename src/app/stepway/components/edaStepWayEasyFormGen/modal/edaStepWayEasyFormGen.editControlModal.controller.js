@@ -38,11 +38,11 @@ class editControlModalController {
 					text: 'Field value',
 				},
 				{
-					value: '{',
+					value: '[OPTIONAL_START]',
 					text: 'Optional display start',
 				},
 				{
-					value: '}',
+					value: '[OPTIONAL_END]',
 					text: 'Optional display end',
 				},
 			];
