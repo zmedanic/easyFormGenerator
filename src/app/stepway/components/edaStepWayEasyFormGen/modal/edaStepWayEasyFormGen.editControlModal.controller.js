@@ -32,7 +32,20 @@ class editControlModalController {
 		}
 
 		this.populateSourceFields = function(value) {
-			this.optionsSourceDbFields		= [{value: '[VALUE]', text: 'Field value'}];
+			this.optionsSourceDbFields = [
+				{
+					value: '[VALUE]',
+					text: 'Field value',
+				},
+				{
+					value: '{',
+					text: 'Optional display start',
+				},
+				{
+					value: '}',
+					text: 'Optional display end',
+				},
+			];
 			$scope.$emit('sourceFields', value);
 			if (this.nyaSelect.temporyConfig.optionsSourceDbFormat && this.nyaSelect.temporyConfig.optionsSourceDbFormat.length > 0) {
 				angular.forEach(this.nyaSelect.temporyConfig.optionsSourceDbFormat, (formatPart) => {

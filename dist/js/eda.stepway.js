@@ -2181,7 +2181,16 @@ $__System.register('14', ['15', '16'], function (_export) {
 					this.populateSourceFields = function (value) {
 						var _this = this;
 
-						this.optionsSourceDbFields = [{ value: '[VALUE]', text: 'Field value' }];
+						this.optionsSourceDbFields = [{
+							value: '[VALUE]',
+							text: 'Field value'
+						}, {
+							value: '{',
+							text: 'Optional display start'
+						}, {
+							value: '}',
+							text: 'Optional display end'
+						}];
 						$scope.$emit('sourceFields', value);
 						if (this.nyaSelect.temporyConfig.optionsSourceDbFormat && this.nyaSelect.temporyConfig.optionsSourceDbFormat.length > 0) {
 							angular.forEach(this.nyaSelect.temporyConfig.optionsSourceDbFormat, function (formatPart) {
