@@ -28,7 +28,7 @@ function edaStepWayEasyFormGenDirective(
 	};
 	return directive;
 
-	function linkFct(scope){
+	function linkFct(scope, element, attr, mCtrl){
 
 		//watch "scope.easyFormGeneratorModel"
 		scope.$watch(() => scope.edaEasyFormGeneratorModel,
@@ -43,6 +43,8 @@ function edaStepWayEasyFormGenDirective(
 					formName          				: scope.vm.configuration.formName,
 					btnSubmitText     				: scope.vm.configuration.submitButtonText,
 					btnCancelText     				: scope.vm.configuration.cancelButtonText,
+					parentForm     						: scope.vm.configuration.parentForm,
+					idFormat									: scope.vm.configuration.idFormat,
 					edaFieldsModel    				: scope.vm.configuration.lines,
 					edaFieldsModelStringified : angular.toJson(scope.vm.configuration.lines),
 					formlyFieldsModel 				: scope.vm.wfFormFieldsOnlyNeededProperties,
@@ -53,6 +55,31 @@ function edaStepWayEasyFormGenDirective(
 				scope.returnSaveEvent = false;
 			}
 		});
+
+		//watch "scope.vm.configuration.idFormat"" = validate if optional tags are correctly opened
+		scope.$watch(() => scope.vm.configuration.idFormat, (newValue, oldValue) => {
+			scope.vm.configuration.idFormatValidation = true;
+			let inOptional = false;
+			if (newValue != oldValue) {
+				angular.forEach(scope.vm.configuration.idFormat, (idFormatPart) => {
+					if (idFormatPart == '[OPTIONAL_START]') {
+						inOptional = true;
+					}
+
+					if (idFormatPart == '[OPTIONAL_END]') {
+						if (!inOptional) {
+							scope.vm.configuration.idFormatValidation = false;
+						}
+						inOptional = false;
+					}
+				});
+			}
+
+			if (inOptional) {
+				scope.vm.configuration.idFormatValidation = false;
+			}
+		}, true);
+
 
 		function loadExistingConfigurationModel(){
 			if(angular.isDefined(scope.edaEasyFormGeneratorModel)){
@@ -80,6 +107,8 @@ function edaStepWayEasyFormGenDirective(
 				scope.vm.configuration.formName           = angular.isString(scope.edaEasyFormGeneratorModel.formName) 			? scope.edaEasyFormGeneratorModel.formName 			: '';
 				scope.vm.configuration.submitButtonText   = angular.isString(scope.edaEasyFormGeneratorModel.btnSubmitText)	? scope.edaEasyFormGeneratorModel.btnSubmitText	: 'Submit';
 				scope.vm.configuration.cancelButtonText   = angular.isString(scope.edaEasyFormGeneratorModel.btnCancelText)	? scope.edaEasyFormGeneratorModel.btnCancelText	: 'Cancel';
+				scope.vm.configuration.parentForm   			= scope.edaEasyFormGeneratorModel.parentForm	? scope.edaEasyFormGeneratorModel.parentForm	: null;
+				scope.vm.configuration.idFormat 	  			= scope.edaEasyFormGeneratorModel.idFormat	? scope.edaEasyFormGeneratorModel.idFormat	: [];
 			}
 		}
 

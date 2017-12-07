@@ -176,6 +176,10 @@
 						event.targetScope.editControlModCtrl.optionsSourceDbFields.push({value: '[FIELD_11]', text: 'Test'});
 					});
 
+					$rootScope.$on('parentForms', function(event, data) {
+						event.targetScope.vm.parentForms.push({id: '[FIELD_11]', name: 'Test'});
+					});
+
 					/**
 					 * when click on save form, will call your save form function :
 					 */
@@ -186,6 +190,7 @@
 								'easyFormGeneratorModel' : easyFormGeneratorModel
 						});
 						console.log(easyFormGeneratorModel);
+						console.log($scope);
 
 					/**
 					 *
@@ -230,6 +235,15 @@
 							demoCtrl
 								.easyFormGeneratorModel
 								.btnCancelText = 'I give up';
+
+							demoCtrl
+								.easyFormGeneratorModel
+								.idFormat = ["[OPTIONAL_START]","[FIELD_ID_3:password 1,1 - input number]", "[FIELD_ID_4:email 1,2 - input number]"];
+
+							demoCtrl
+								.easyFormGeneratorModel
+								.parentForm = {id: '[FIELD_11]', name: 'Test'};
+
 
 							console.info('timeout model change');
 							console.dir(demoCtrl.easyFormGeneratorModel);

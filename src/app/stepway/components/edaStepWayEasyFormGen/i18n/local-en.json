@@ -127,4 +127,7 @@
     "OPTIONS_SOURCE_DB_TABLE": "External table",
     "OPTIONS_SOURCE_DB_FORMAT": "Display format",
     "OPTION_DESCRIPTION"  : "Option description",
+    "PARENT_FORM"         : "Parent Form",
+    "FORM_ID_FORMAT"      : "Format of form ID",
+    "OPTIONAL_VALIDATION_FALSE" : "Incorrect usage of optional tags",
 }

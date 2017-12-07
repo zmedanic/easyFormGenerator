@@ -302,7 +302,52 @@
 																	</div>
 																</div>
 															</div>
-															<button class="btn btn-primary btn-block btn-lg" ng-click="vm.saveThisForm()">{{'SAVE_THIS_FORM' | translate}}</button>
+															<hr/>
+															<div class="row">
+																<div class="col-xs-12">
+																	<div class="form-group">
+																		<label for="parentForm" class=" greyText control-label">{{'PARENT_FORM' | translate}} :</label>
+																		<div class="">
+										                  <ol
+										                    class="nya-bs-select col-xs-12"
+										                    ng-model="vm.configuration.parentForm"
+										                    ng-init="vm.populateSourceForms();"
+										                    id="parentForm"
+										                    title="Nothing selected">
+										                    <li nya-bs-option="form in vm.parentForms">
+										                      <a>
+										                        <span>
+										                          {{ form.name }}
+										                        </span>
+										                        <span class="glyphicon glyphicon-ok check-mark"></span>
+										                      </a>
+										                    </li>
+										                  </ol>
+										                </div>
+																	</div>
+																</div>
+															</div>
+															<hr/>
+															<div class="row">
+																<div class="col-xs-12">
+																	<div class="form-group" ng-class="{'has-error': vm.configuration.idFormat.length < 1 || !vm.configuration.idFormatValidation}">
+																		<label for="idFormat" class=" greyText control-label">{{'FORM_ID_FORMAT' | translate}} :</label>
+																		<div class="">
+										                  <selectize
+										                    ng-init="vm.populateFields();"
+										                    config="vm.optionsSourceDbFormatConfig"
+										                    options="vm.fields"
+										                    ng-model="vm.configuration.idFormat">
+										                  </selectize>
+										                  <div class="validation">
+										                  	<div ng-if="vm.configuration.idFormat.length < 1">{{'FIELD' | translate}}{{'VALIDATION_REQUIRED' | translate}}</div>
+										                  	<div ng-if="!vm.configuration.idFormatValidation">{{'OPTIONAL_VALIDATION_FALSE' | translate}}</div>
+										                  </div>
+										                </div>
+																	</div>
+																</div>
+															</div>
+															<button class="btn btn-primary btn-block btn-lg" ng-click="vm.saveThisForm()" ng-disabled="!vm.configuration.idFormatValidation || vm.configuration.idFormat.length < 1">{{'SAVE_THIS_FORM' | translate}}</button>
 														</div>
 													</div>
 												</div>

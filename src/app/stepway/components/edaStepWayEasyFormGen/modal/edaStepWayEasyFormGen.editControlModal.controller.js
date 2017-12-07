@@ -57,6 +57,30 @@ class editControlModalController {
 			}
 		}
 
+		//watch "scope.editControlModCtrl.idFormat"" = validate if optional tags are correctly opened
+		$scope.$watch(() => $scope.editControlModCtrl.nyaSelect.temporyConfig.optionsSourceDbFormat, (newValue, oldValue) => {
+			$scope.editControlModCtrl.optionsSourceDbFormatValidation = true;
+			let inOptional = false;
+			if (newValue != oldValue) {
+				angular.forEach($scope.editControlModCtrl.nyaSelect.temporyConfig.optionsSourceDbFormat, (idFormatPart) => {
+					if (idFormatPart == '[OPTIONAL_START]') {
+						inOptional = true;
+					}
+
+					if (idFormatPart == '[OPTIONAL_END]') {
+						if (!inOptional) {
+							$scope.editControlModCtrl.optionsSourceDbFormatValidation = false;
+						}
+						inOptional = false;
+					}
+				});
+			}
+
+			if (inOptional) {
+				$scope.editControlModCtrl.optionsSourceDbFormatValidation = false;
+			}
+		}, true);
+
 		this.init();
 	}
 
@@ -88,6 +112,7 @@ class editControlModalController {
 		this.nyaSelect.selectedControl  = this.nyaSelect.temporyConfig.selectedControl;
 		this.nyaSelectFiltered 					= {};
 		this.modelNyaSelect							= {};
+		this.optionsSourceDbFormatValidation = true;
 
 		let optionsSourceDbFormatConfigIndex = this.nyaSelect.temporyConfig.optionsSourceDbFormat ? this.nyaSelect.temporyConfig.optionsSourceDbFormat.length : 0;
 		this.optionsSourceDbFormatConfig = {

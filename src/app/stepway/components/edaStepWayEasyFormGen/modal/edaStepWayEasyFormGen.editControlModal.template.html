@@ -2717,7 +2717,7 @@
           </div>
           <div ng-if="editControlModCtrl.nyaSelect.temporyConfig.optionsSourceType == 'db'">
             <div class="row">
-              <div class="form-group">
+              <div class="form-group" ng-class="{'has-error': editControlModCtrl.nyaSelect.temporyConfig.optionsSourceDbTable.id == null}">
                 <label
                   for="radioOptionsSourceDbTable"
                   class="col-lg-3 control-label greyText editPropertiesLabel">
@@ -2740,11 +2740,14 @@
                       </a>
                     </li>
                   </ol>
+                  <div class="validation">
+                    <div ng-if="editControlModCtrl.nyaSelect.temporyConfig.optionsSourceDbTable.id == null">{{'FIELD' | translate}}{{'VALIDATION_REQUIRED' | translate}}</div>
+                  </div>
                 </div>
               </div>
             </div>
             <div class="row">
-              <div class="form-group">
+              <div class="form-group" ng-class="{'has-error': !editControlModCtrl.optionsSourceDbFormatValidation}">
                 <label
                   for="radioOptionsSourceDbFormat"
                   class="col-lg-3 control-label greyText editPropertiesLabel">
@@ -2756,6 +2759,9 @@
                     options="editControlModCtrl.optionsSourceDbFields"
                     ng-model="editControlModCtrl.nyaSelect.temporyConfig.optionsSourceDbFormat">
                   </selectize>
+                  <div class="validation">
+                    <div ng-if="!editControlModCtrl.optionsSourceDbFormatValidation">{{'OPTIONAL_VALIDATION_FALSE' | translate}}</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -3459,7 +3465,7 @@
           </div>
           <div ng-if="editControlModCtrl.nyaSelect.temporyConfig.optionsSourceType == 'db'">
             <div class="row">
-              <div class="form-group">
+              <div class="form-group" ng-class="{'has-error': editControlModCtrl.nyaSelect.temporyConfig.optionsSourceDbTable.id == null}">
                 <label
                   for="basicSelectOptionsSourceDbTable"
                   class="col-lg-3 control-label greyText editPropertiesLabel">
@@ -3482,11 +3488,14 @@
                       </a>
                     </li>
                   </ol>
+                  <div class="validation">
+                    <div ng-if="editControlModCtrl.nyaSelect.temporyConfig.optionsSourceDbTable.id == null">{{'FIELD' | translate}}{{'VALIDATION_REQUIRED' | translate}}</div>
+                  </div>
                 </div>
               </div>
             </div>
             <div class="row">
-              <div class="form-group">
+              <div class="form-group" ng-class="{'has-error': !editControlModCtrl.optionsSourceDbFormatValidation}">
                 <label
                   for="basicSelectOptionsSourceDbFormat"
                   class="col-lg-3 control-label greyText editPropertiesLabel">
@@ -3498,6 +3507,9 @@
                     options="editControlModCtrl.optionsSourceDbFields"
                     ng-model="editControlModCtrl.nyaSelect.temporyConfig.optionsSourceDbFormat">
                   </selectize>
+                  <div class="validation">
+                    <div ng-if="!editControlModCtrl.optionsSourceDbFormatValidation">{{'OPTIONAL_VALIDATION_FALSE' | translate}}</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -4097,7 +4109,7 @@
           </div>
           <div ng-if="editControlModCtrl.nyaSelect.temporyConfig.optionsSourceType == 'db'">
             <div class="row">
-              <div class="form-group">
+              <div class="form-group" ng-class="{'has-error': editControlModCtrl.nyaSelect.temporyConfig.optionsSourceDbTable.id == null}">
                 <label
                   for="SelectOptionsSourceDbTable"
                   class="col-lg-3 control-label greyText editPropertiesLabel">
@@ -4120,11 +4132,14 @@
                       </a>
                     </li>
                   </ol>
+                  <div class="validation">
+                    <div ng-if="editControlModCtrl.nyaSelect.temporyConfig.optionsSourceDbTable.id == null">{{'FIELD' | translate}}{{'VALIDATION_REQUIRED' | translate}}</div>
+                  </div>
                 </div>
               </div>
             </div>
             <div class="row">
-              <div class="form-group">
+              <div class="form-group" ng-class="{'has-error': !editControlModCtrl.optionsSourceDbFormatValidation}">
                 <label
                   for="groupedSelectOptionsSourceDbFormat"
                   class="col-lg-3 control-label greyText editPropertiesLabel">
@@ -4136,6 +4151,9 @@
                     options="editControlModCtrl.optionsSourceDbFields"
                     ng-model="editControlModCtrl.nyaSelect.temporyConfig.optionsSourceDbFormat">
                   </selectize>
+                  <div class="validation">
+                    <div ng-if="!editControlModCtrl.optionsSourceDbFormatValidation">{{'OPTIONAL_VALIDATION_FALSE' | translate}}</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -4624,7 +4642,7 @@
     <div class="col-lg-6">
       <button
         class="btn btn-primary"
-        ng-class="{'disabled': editControlModCtrl.nyaSelect.selectedControl === 'none' || (editControlModCtrl.nyaSelect.temporyConfig.optionsSourceType == 'db' && editControlModCtrl.nyaSelect.temporyConfig.optionsSourceDbTable.id == null)}"
+        ng-class="{'disabled': editControlModCtrl.nyaSelect.selectedControl === 'none' || (editControlModCtrl.nyaSelect.temporyConfig.optionsSourceType == 'db' && editControlModCtrl.nyaSelect.temporyConfig.optionsSourceDbTable.id == null) || !editControlModCtrl.optionsSourceDbFormatValidation}"
         ng-click="editControlModCtrl.ok()">
         {{'OK' | translate}}
       </button>

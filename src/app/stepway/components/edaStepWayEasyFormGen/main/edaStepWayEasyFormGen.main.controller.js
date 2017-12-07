@@ -27,6 +27,7 @@ class edaStepWayEasyFormGenController {
 		$log,
 		$formlyProxy,
 		$modalProxy,
+		$scope,
 		easyFormSteWayConfig){
 
 		this.easyFormGenVersion		= easyFormGenVersion;
@@ -39,8 +40,12 @@ class edaStepWayEasyFormGenController {
 		this.$modalProxy 					= $modalProxy;
 		this.easyFormSteWayConfig	= easyFormSteWayConfig;
 
-		this.init();
+		this.populateSourceForms = function() {
+			this.parentForms = [{id: null, name: 'Nothing selected'}];
+			$scope.$emit('parentForms');
+		}
 
+		this.init();
 	}
 
 	init() {
@@ -65,11 +70,49 @@ class edaStepWayEasyFormGenController {
 		this.configurationLoaded      = {};
 		this.returnSaveEvent          = false;
 		//this.resetToZeroModel         = resetToZeroModel; //function no more used
+		this.configuration.idFormatValidation = true;
 
 		this.$formlyProxy.initConfigurationEditFromScratch(this.configuration);
 
 
 		this.$modalProxy.initNyaSelect(this.nyaSelect);
+
+
+		this.populateFields = function(value) {
+			this.fields = [
+				{
+					value: '[OPTIONAL_START]',
+					text: 'Optional display start',
+				},
+				{
+					value: '[OPTIONAL_END]',
+					text: 'Optional display end',
+				},
+			];
+
+			let columns = this.prepareExistingColumns(null);
+			angular.forEach(columns.columns, (column) => {
+				if (column.id !== null) {
+					this.fields.push({
+						value: '[FIELD_ID_' + column.id + ':' + column.name + ']',
+						text: column.name,
+					});
+				}
+			});
+		}
+
+		let formFormatConfigIndex = this.idFormat ? this.idFormat.length : 0;
+		this.optionsSourceDbFormatConfig = {
+			create: function(input) {
+				formFormatConfigIndex++;
+				let obj = {
+					'value': '[CHAR_' + formFormatConfigIndex + ':' + input + ']',
+					'text': input,
+				};
+				return obj;
+			},
+			maxItems: 10,
+		}
 
 		//console.info(`main controller : init nyaSelect model`);
 		//console.dir(angular.copy(this.nyaSelect));
@@ -485,9 +528,6 @@ class edaStepWayEasyFormGenController {
 		this.returnSaveEvent = true;
 		return true;
 	}
-
-
-
 }
 
 
@@ -500,6 +540,7 @@ const toInject = [
 	'$log',
 	'$formlyProxy',
 	'$modalProxy',
+	'$scope',
 	'easyFormSteWayConfig'
 ];
 
