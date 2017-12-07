@@ -17,21 +17,6 @@
       <ol
         class="nya-bs-select col-xs-12 col-sm-12 col-md-12 col-lg-12"
         ng-model="editControlModCtrl.modelNyaSelect"
-        ng-if="editControlModCtrl.activeLine === 0 && editControlModCtrl.activeColumn === 0"
-        data-live-search="false">
-        <li nya-bs-option="option in editControlModCtrl.nyaSelectFiltered.controls | filter : {id: 'Header'}: true">
-          <a ng-click="editControlModCtrl.selectThisControl(option.id)">
-            <span>
-              {{ option.name }}
-            </span>
-            <span class="glyphicon glyphicon-ok check-mark"></span>
-          </a>
-        </li>
-      </ol>
-      <ol
-        class="nya-bs-select col-xs-12 col-sm-12 col-md-12 col-lg-12"
-        ng-model="editControlModCtrl.modelNyaSelect"
-        ng-if="!(editControlModCtrl.activeLine === 0 && editControlModCtrl.activeColumn === 0)"
         data-live-search="false">
         <li nya-bs-option="option in editControlModCtrl.nyaSelectFiltered.controls group by option.group">
           <span class="dropdown-header greyText">
@@ -124,35 +109,6 @@
           </div>
           <hr/>
           <div class="marginTopFivepixels"></div>
-          <div
-            class="row"
-            ng-if="!(editControlModCtrl.activeLine === 0 && editControlModCtrl.activeColumn === 0)">
-            <div class="form-group">
-              <label
-                for="headerParentIdUpdate"
-                class="col-lg-3 control-label greyText editPropertiesLabel">
-                {{'PARENT_ID' | translate}} :
-              </label>
-              <div class="col-lg-9">
-                <ol
-                  class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
-                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.parentId"
-                  id="headerParentIdUpdate"
-                  data-live-search="true"
-                  title="No value">
-                  <li nya-bs-option="column in editControlModCtrl.titleColumns">
-                    <a>
-                      <span>
-                        {{ column.name }}
-                      </span>
-                      <span class="glyphicon glyphicon-ok check-mark"></span>
-                    </a>
-                  </li>
-                </ol>
-              </div>
-            </div>
-          </div>
-          <div class="marginTopFivepixels"></div>
           <div class="row">
             <div class="form-group">
               <label
@@ -233,33 +189,6 @@
             </div>
           </div>
           <hr/>
-          <div class="marginTopFivepixels"></div>
-          <div class="row">
-            <div class="form-group">
-              <label
-                for="subtitleParentIdUpdate"
-                class="col-lg-3 control-label greyText editPropertiesLabel">
-                {{'PARENT_ID' | translate}} :
-              </label>
-              <div class="col-lg-9">
-                <ol
-                  class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
-                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.parentId"
-                  id="subtitleParentIdUpdate"
-                  data-live-search="true"
-                  title="No value">
-                  <li nya-bs-option="column in editControlModCtrl.titleColumns">
-                    <a>
-                      <span>
-                        {{ column.name }}
-                      </span>
-                      <span class="glyphicon glyphicon-ok check-mark"></span>
-                    </a>
-                  </li>
-                </ol>
-              </div>
-            </div>
-          </div>
           <div class="marginTopFivepixels"></div>
           <div class="row">
             <div class="form-group">
