@@ -99,6 +99,15 @@ class edaStepWayEasyFormGenController {
 					});
 				}
 			});
+
+			if (this.configuration.idFormat && this.configuration.idFormat.length > 0) {
+				angular.forEach(this.configuration.idFormat, (formatPart) => {
+					let matches = formatPart.match(/\[CHAR_[0-9]*:(.*?)\]/);
+					if (matches && matches.length == 2 && matches[1] && matches[1].length > 0) {
+						this.optionsSourceDbFields.push({value: formatPart, text: matches[1]});
+					}
+				});
+			}
 		}
 
 		let formFormatConfigIndex = this.idFormat ? this.idFormat.length : 0;
