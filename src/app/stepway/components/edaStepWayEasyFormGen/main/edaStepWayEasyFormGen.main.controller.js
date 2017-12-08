@@ -77,7 +77,7 @@ class edaStepWayEasyFormGenController {
 
 		this.$modalProxy.initNyaSelect(this.nyaSelect);
 
-
+		let formFormatConfigIndex = 0;
 		this.populateFields = function(value) {
 			this.fields = [
 				{
@@ -100,7 +100,7 @@ class edaStepWayEasyFormGenController {
 				}
 			});
 
-			let formFormatConfigIndex = this.configuration.idFormat ? this.configuration.idFormat.length : 0;
+			formFormatConfigIndex = this.configuration.idFormat ? this.configuration.idFormat.length : 0;
 
 			if (formFormatConfigIndex > 0) {
 				angular.forEach(this.configuration.idFormat, (formatPart) => {

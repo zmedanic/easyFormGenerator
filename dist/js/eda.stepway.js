@@ -1354,6 +1354,7 @@ $__System.register('13', ['11', '12', '14', '15', '16'], function (_export) {
 
 						this.$modalProxy.initNyaSelect(this.nyaSelect);
 
+						var formFormatConfigIndex = 0;
 						this.populateFields = function (value) {
 							var _this = this;
 
@@ -1375,7 +1376,7 @@ $__System.register('13', ['11', '12', '14', '15', '16'], function (_export) {
 								}
 							});
 
-							var formFormatConfigIndex = this.configuration.idFormat ? this.configuration.idFormat.length : 0;
+							formFormatConfigIndex = this.configuration.idFormat ? this.configuration.idFormat.length : 0;
 
 							if (formFormatConfigIndex > 0) {
 								angular.forEach(this.configuration.idFormat, function (formatPart) {
