@@ -330,7 +330,7 @@
 															<hr/>
 															<div class="row">
 																<div class="col-xs-12">
-																	<div class="form-group" ng-class="{'has-error': vm.configuration.idFormat.length < 1 || !vm.configuration.idFormatValidation}">
+																	<div class="form-group" ng-class="{'has-error': !vm.configuration.idFormatValidation}">
 																		<label for="idFormat" class=" greyText control-label">{{'FORM_ID_FORMAT' | translate}} :</label>
 																		<div class="">
 										                  <selectize
@@ -340,14 +340,13 @@
 										                    ng-model="vm.configuration.idFormat">
 										                  </selectize>
 										                  <div class="validation">
-										                  	<div ng-if="vm.configuration.idFormat.length < 1">{{'FIELD' | translate}}{{'VALIDATION_REQUIRED' | translate}}</div>
 										                  	<div ng-if="!vm.configuration.idFormatValidation">{{'OPTIONAL_VALIDATION_FALSE' | translate}}</div>
 										                  </div>
 										                </div>
 																	</div>
 																</div>
 															</div>
-															<button class="btn btn-primary btn-block btn-lg" ng-click="vm.saveThisForm()" ng-disabled="!vm.configuration.idFormatValidation || vm.configuration.idFormat.length < 1">{{'SAVE_THIS_FORM' | translate}}</button>
+															<button class="btn btn-primary btn-block btn-lg" ng-click="vm.saveThisForm()" ng-disabled="!vm.configuration.idFormatValidation">{{'SAVE_THIS_FORM' | translate}}</button>
 														</div>
 													</div>
 												</div>
