@@ -1375,7 +1375,9 @@ $__System.register('13', ['11', '12', '14', '15', '16'], function (_export) {
 								}
 							});
 
-							if (this.configuration.idFormat && this.configuration.idFormat.length > 0) {
+							var formFormatConfigIndex = this.configuration.idFormat ? this.configuration.idFormat.length : 0;
+
+							if (formFormatConfigIndex > 0) {
 								angular.forEach(this.configuration.idFormat, function (formatPart) {
 									var matches = formatPart.match(/\[CHAR_[0-9]*:(.*?)\]/);
 									if (matches && matches.length == 2 && matches[1] && matches[1].length > 0) {
@@ -1385,7 +1387,6 @@ $__System.register('13', ['11', '12', '14', '15', '16'], function (_export) {
 							}
 						};
 
-						var formFormatConfigIndex = this.configuration.idFormat ? this.configuration.idFormat.length : 0;
 						this.optionsSourceDbFormatConfig = {
 							create: function create(input) {
 								formFormatConfigIndex++;
