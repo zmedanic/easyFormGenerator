@@ -104,7 +104,7 @@ class edaStepWayEasyFormGenController {
 				angular.forEach(this.configuration.idFormat, (formatPart) => {
 					let matches = formatPart.match(/\[CHAR_[0-9]*:(.*?)\]/);
 					if (matches && matches.length == 2 && matches[1] && matches[1].length > 0) {
-						this.optionsSourceDbFields.push({value: formatPart, text: matches[1]});
+						this.fields.push({value: formatPart, text: matches[1]});
 					}
 				});
 			}
