@@ -1385,7 +1385,7 @@ $__System.register('13', ['11', '12', '14', '15', '16'], function (_export) {
 							}
 						};
 
-						var formFormatConfigIndex = this.idFormat ? this.idFormat.length : 0;
+						var formFormatConfigIndex = this.configuration.idFormat ? this.configuration.idFormat.length : 0;
 						this.optionsSourceDbFormatConfig = {
 							create: function create(input) {
 								formFormatConfigIndex++;

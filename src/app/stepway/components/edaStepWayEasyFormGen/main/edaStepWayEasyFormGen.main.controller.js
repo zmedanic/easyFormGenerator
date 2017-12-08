@@ -110,7 +110,7 @@ class edaStepWayEasyFormGenController {
 			}
 		}
 
-		let formFormatConfigIndex = this.idFormat ? this.idFormat.length : 0;
+		let formFormatConfigIndex = this.configuration.idFormat ? this.configuration.idFormat.length : 0;
 		this.optionsSourceDbFormatConfig = {
 			create: function(input) {
 				formFormatConfigIndex++;
