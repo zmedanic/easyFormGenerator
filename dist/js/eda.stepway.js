@@ -631,7 +631,8 @@ $__System.registerDynamic("7", [], true, function ($__require, exports, module) 
         "OPTION_DESCRIPTION": "Option description",
         "PARENT_FORM": "Parent Form",
         "FORM_ID_FORMAT": "Format of form ID",
-        "OPTIONAL_VALIDATION_FALSE": "Incorrect usage of optional tags"
+        "OPTIONAL_VALIDATION_FALSE": "Incorrect usage of optional tags",
+        "DESCRIBE_THIS_FORM": "Describe this form"
     };
     return module.exports;
 });

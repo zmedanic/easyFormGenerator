@@ -130,4 +130,5 @@
     "PARENT_FORM"         : "Parent Form",
     "FORM_ID_FORMAT"      : "Format of form ID",
     "OPTIONAL_VALIDATION_FALSE" : "Incorrect usage of optional tags",
+    "DESCRIBE_THIS_FORM"  : "Describe this form",
 }
