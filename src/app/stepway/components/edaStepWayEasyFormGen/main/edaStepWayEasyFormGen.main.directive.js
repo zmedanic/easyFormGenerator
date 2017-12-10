@@ -41,6 +41,7 @@ function edaStepWayEasyFormGenDirective(
 			if (newValue === true) {
 				let _easyFormGeneratorModel = {
 					formName          				: scope.vm.configuration.formName,
+					formDescription						: scope.vm.configuration.formDescription,
 					btnSubmitText     				: scope.vm.configuration.submitButtonText,
 					btnCancelText     				: scope.vm.configuration.cancelButtonText,
 					parentForm     						: scope.vm.configuration.parentForm,
@@ -105,6 +106,7 @@ function edaStepWayEasyFormGenDirective(
 				scope.vm.wfFormFieldsOnlyNeededProperties = angular.copy(scope.vm.wfFormFields);
 				scope.vm.dataModel                            = returnAttributeDataModelIfNotEmpty();
 				scope.vm.configuration.formName           = angular.isString(scope.edaEasyFormGeneratorModel.formName) 			? scope.edaEasyFormGeneratorModel.formName 			: '';
+				scope.vm.configuration.formDescription		= angular.isString(scope.edaEasyFormGeneratorModel.formDescription) ? scope.edaEasyFormGeneratorModel.formDescription : '';
 				scope.vm.configuration.submitButtonText   = angular.isString(scope.edaEasyFormGeneratorModel.btnSubmitText)	? scope.edaEasyFormGeneratorModel.btnSubmitText	: 'Submit';
 				scope.vm.configuration.cancelButtonText   = angular.isString(scope.edaEasyFormGeneratorModel.btnCancelText)	? scope.edaEasyFormGeneratorModel.btnCancelText	: 'Cancel';
 				scope.vm.configuration.parentForm   			= scope.edaEasyFormGeneratorModel.parentForm	? scope.edaEasyFormGeneratorModel.parentForm	: null;
