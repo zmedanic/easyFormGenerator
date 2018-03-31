@@ -1672,7 +1672,7 @@ $__System.register('1d', [], function (_export) {
 
 	'use strict';
 
-	var resetNyaSelect, getConfigurationModelInit, getEmptyConfigModelResult, resetDataModel, getErrorObject, getMessageObject, resetFormlyModel, extractTemplateOptionDescription, extractTemplateOptionPlaceholder, extractTemplateOptionType, extractTemplateOptionLabel, extractTemplateOptionLabelShort, extractTemplateOptionParentId, extractTemplateOptionReferenceId, extractTemplateOptionDatepickerOptions, extractTemplateOptionMaxLengthOption, extractTemplateOptionNumberType, extractTemplateOptionMinValueOption, extractTemplateOptionMaxValueOption, extractTemplateOptionIncrementalOption, extractTemplateOptionCurrentYearOption, extractTemplateOptionCurrentDateOption, extractTemplateOptionAllowEmptyOption, extractTemplateOptionFiles, extractFormlyExpressionProperties, extractFormlyValidators, extractFormlyAsyncValidators, extractFormlyValidation, extractTemplateOptionRequired, extractTemplateOptionUnique, extractDefaultValue, extractTemplateOptionDisplayAddOption, extractTemplateOptionDisplayEditOption, extractTemplateOptionAllowMultiple, extractTemplateOptionOptions, extractTemplateEventOnChange, addDatepickerOptionsProperty, addMaxLengthOptionProperty, addNumberTypeProperty, addMinValueOptionProperty, addMaxValueOptionProperty, addIncrementalOptionProperty, addCurrentYearOptionProperty, addCurrentDateOptionProperty, addAllowEmptyOptionProperty, addFilesProperty, addOneColumnHeader, addColumns;
+	var resetNyaSelect, getConfigurationModelInit, getEmptyConfigModelResult, resetDataModel, getErrorObject, getMessageObject, resetFormlyModel, extractTemplateOptionDescription, extractTemplateOptionPlaceholder, extractTemplateOptionType, extractTemplateOptionLabel, extractTemplateOptionLabelShort, extractTemplateOptionParentId, extractTemplateOptionReferenceId, extractTemplateOptionDatepickerOptions, extractTemplateOptionMaxLengthOption, extractTemplateOptionNumberType, extractTemplateOptionMinValueOption, extractTemplateOptionMaxValueOption, extractTemplateOptionIncrementalOption, extractTemplateOptionCurrentYearOption, extractTemplateOptionCurrentDateOption, extractTemplateOptionAllowEmptyOption, extractTemplateOptionFiles, extractFormlyHideExpression, extractFormlyExpressionProperties, extractFormlyValidators, extractFormlyAsyncValidators, extractFormlyValidation, extractTemplateOptionRequired, extractTemplateOptionUnique, extractDefaultValue, extractTemplateOptionDisplayAddOption, extractTemplateOptionDisplayEditOption, extractTemplateOptionAllowMultiple, extractTemplateOptionOptions, extractTemplateEventOnChange, addDatepickerOptionsProperty, addMaxLengthOptionProperty, addNumberTypeProperty, addMinValueOptionProperty, addMaxValueOptionProperty, addIncrementalOptionProperty, addCurrentYearOptionProperty, addCurrentDateOptionProperty, addAllowEmptyOptionProperty, addFilesProperty, addOneColumnHeader, addColumns;
 
 	function checkIfCanDisplayMultiple(type, subtype) {
 		var multipleTypes = ['input', 'datepicker', 'textarea', 'richEditor', 'upload'];
@@ -1739,6 +1739,7 @@ $__System.register('1d', [], function (_export) {
 				canDisplayMultiple: checkIfCanDisplayMultiple(type, subtype),
 				onChange: extractTemplateEventOnChange(configurationModel.lines[lineIndex].columns[columnIndex].control)
 			},
+			hideExpression: extractFormlyHideExpression(configurationModel.lines[lineIndex].columns[columnIndex].control),
 			expressionProperties: extractFormlyExpressionProperties(configurationModel.lines[lineIndex].columns[columnIndex].control),
 			validators: extractFormlyValidators(configurationModel.lines[lineIndex].columns[columnIndex].control),
 			asyncValidators: extractFormlyAsyncValidators(configurationModel.lines[lineIndex].columns[columnIndex].control),
@@ -1812,6 +1813,7 @@ $__System.register('1d', [], function (_export) {
 						formlyEvents: {
 							onChange: ''
 						},
+						formlyHideExpression: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {},
 						formlyAsyncValidators: {},
@@ -1838,6 +1840,7 @@ $__System.register('1d', [], function (_export) {
 						formlyEvents: {
 							onChange: ''
 						},
+						formlyHideExpression: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {},
 						formlyAsyncValidators: {},
@@ -1864,6 +1867,7 @@ $__System.register('1d', [], function (_export) {
 						formlyEvents: {
 							onChange: ''
 						},
+						formlyHideExpression: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {},
 						formlyAsyncValidators: {},
@@ -1891,6 +1895,7 @@ $__System.register('1d', [], function (_export) {
 						formlyEvents: {
 							onChange: ''
 						},
+						formlyHideExpression: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {
 							textShape: {
@@ -1937,6 +1942,7 @@ $__System.register('1d', [], function (_export) {
 						formlyEvents: {
 							onChange: ''
 						},
+						formlyHideExpression: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {
 							numberShape: {
@@ -1991,6 +1997,7 @@ $__System.register('1d', [], function (_export) {
 						formlyEvents: {
 							onChange: ''
 						},
+						formlyHideExpression: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {},
 						formlyAsyncValidators: {},
@@ -2024,6 +2031,7 @@ $__System.register('1d', [], function (_export) {
 						formlyEvents: {
 							onChange: ''
 						},
+						formlyHideExpression: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {
 							emailShape: {
@@ -2071,6 +2079,7 @@ $__System.register('1d', [], function (_export) {
 						formlyEvents: {
 							onChange: ''
 						},
+						formlyHideExpression: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {},
 						formlyAsyncValidators: {},
@@ -2108,6 +2117,7 @@ $__System.register('1d', [], function (_export) {
 						formlyEvents: {
 							onChange: ''
 						},
+						formlyHideExpression: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {},
 						formlyAsyncValidators: {},
@@ -2141,6 +2151,7 @@ $__System.register('1d', [], function (_export) {
 						formlyEvents: {
 							onChange: ''
 						},
+						formlyHideExpression: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {},
 						formlyAsyncValidators: {},
@@ -2176,6 +2187,7 @@ $__System.register('1d', [], function (_export) {
 						formlyEvents: {
 							onChange: ''
 						},
+						formlyHideExpression: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {},
 						formlyAsyncValidators: {},
@@ -2209,6 +2221,7 @@ $__System.register('1d', [], function (_export) {
 						formlyEvents: {
 							onChange: ''
 						},
+						formlyHideExpression: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {},
 						formlyAsyncValidators: {},
@@ -2244,6 +2257,7 @@ $__System.register('1d', [], function (_export) {
 						formlyEvents: {
 							onChange: ''
 						},
+						formlyHideExpression: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {},
 						formlyAsyncValidators: {},
@@ -2279,6 +2293,7 @@ $__System.register('1d', [], function (_export) {
 						formlyEvents: {
 							onChange: ''
 						},
+						formlyHideExpression: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {},
 						formlyAsyncValidators: {},
@@ -2312,6 +2327,7 @@ $__System.register('1d', [], function (_export) {
 						formlyEvents: {
 							onChange: ''
 						},
+						formlyHideExpression: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {
 							required: {
@@ -2351,7 +2367,7 @@ $__System.register('1d', [], function (_export) {
 						formlyEvents: {
 							onChange: ''
 						},
-						//expressions/validation fields
+						formlyHideExpression: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {},
 						formlyAsyncValidators: {},
@@ -2542,6 +2558,10 @@ $__System.register('1d', [], function (_export) {
 
 			extractTemplateOptionFiles = function extractTemplateOptionFiles(obj) {
 				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.files !== 'undefined' ? obj.templateOptions.files : [] : [];
+			};
+
+			extractFormlyHideExpression = function extractFormlyHideExpression(obj) {
+				return typeof obj.formlyHideExpression !== 'undefined' ? angular.copy(obj.formlyHideExpression) : '';
 			};
 
 			extractFormlyExpressionProperties = function extractFormlyExpressionProperties(obj) {

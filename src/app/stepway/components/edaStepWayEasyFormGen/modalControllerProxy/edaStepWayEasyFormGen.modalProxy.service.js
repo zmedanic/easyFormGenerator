@@ -51,6 +51,7 @@ class $modalProxy{
 			nyaSelectObj.temporyConfig.parentId 					= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.parentId 					!= 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.parentId : '';
 			nyaSelectObj.temporyConfig.referenceId 				= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.referenceId 			!= 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.referenceId : '';
 
+			nyaSelectObj.temporyConfig.formlyHideExpression = typeof configurationObj.lines[indexLine].columns[numcolumn].control.formlyHideExpression 							!= 'undefined' ? angular.copy(configurationObj.lines[indexLine].columns[numcolumn].control.formlyHideExpression) : {};
 			nyaSelectObj.temporyConfig.formlyExpressionProperties = typeof configurationObj.lines[indexLine].columns[numcolumn].control.formlyExpressionProperties 	!= 'undefined' ? angular.copy(configurationObj.lines[indexLine].columns[numcolumn].control.formlyExpressionProperties) : {};
 			nyaSelectObj.temporyConfig.formlyValidators 	= typeof configurationObj.lines[indexLine].columns[numcolumn].control.formlyValidators 										!= 'undefined' ? angular.copy(configurationObj.lines[indexLine].columns[numcolumn].control.formlyValidators) : {};
 			nyaSelectObj.temporyConfig.formlyValidation 	= typeof configurationObj.lines[indexLine].columns[numcolumn].control.formlyValidation 										!= 'undefined' ? angular.copy(configurationObj.lines[indexLine].columns[numcolumn].control.formlyValidation) : {};
@@ -124,6 +125,7 @@ class $modalProxy{
 		configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.options 						= extractedProps.formlyOptions;
 		configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.parentId 					= extractedProps.parentId;
 		configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.referenceId 				= extractedProps.referenceId;
+		configurationObj.lines[indexLine].columns[numcolumn].control.formlyHideExpression 							= angular.copy(extractedProps.formlyHideExpression);
 		configurationObj.lines[indexLine].columns[numcolumn].control.formlyExpressionProperties 				= angular.copy(extractedProps.formlyExpressionProperties);
 		configurationObj.lines[indexLine].columns[numcolumn].control.formlyValidators 									= angular.copy(extractedProps.formlyValidators);
 		configurationObj.lines[indexLine].columns[numcolumn].control.formlyValidation 									= angular.copy(extractedProps.formlyValidation);

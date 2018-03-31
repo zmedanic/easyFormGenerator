@@ -2882,6 +2882,7 @@ $__System.register('1b', [], function (_export) {
 						formlyOptions: [],
 						parentId: '',
 						referenceId: '',
+						formlyHideExpression: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {},
 						formlyAsyncValidators: {},
@@ -2905,6 +2906,7 @@ $__System.register('1b', [], function (_export) {
 						formlyOptions: [],
 						parentId: '',
 						referenceId: '',
+						formlyHideExpression: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {},
 						formlyAsyncValidators: {},
@@ -2928,6 +2930,7 @@ $__System.register('1b', [], function (_export) {
 						formlyOptions: [],
 						parentId: '',
 						referenceId: '',
+						formlyHideExpression: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {},
 						formlyAsyncValidators: {},
@@ -2951,6 +2954,7 @@ $__System.register('1b', [], function (_export) {
 						parentId: '',
 						referenceId: '',
 						maxLengthOption: null,
+						formlyHideExpression: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {
 							textShape: {
@@ -2994,6 +2998,7 @@ $__System.register('1b', [], function (_export) {
 						maxValueOption: null,
 						incrementalOption: false,
 						currentYearOption: false,
+						formlyHideExpression: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {
 							numberShape: {
@@ -3045,6 +3050,7 @@ $__System.register('1b', [], function (_export) {
 						formlyOptions: [],
 						parentId: '',
 						referenceId: '',
+						formlyHideExpression: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {},
 						formlyAsyncValidators: {},
@@ -3075,6 +3081,7 @@ $__System.register('1b', [], function (_export) {
 						formlyOptions: [],
 						parentId: '',
 						referenceId: '',
+						formlyHideExpression: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {
 							emailShape: {
@@ -3119,6 +3126,7 @@ $__System.register('1b', [], function (_export) {
 						referenceId: '',
 						datepickerOptions: 'dd-MMMM-yyyy',
 						currentDateOption: false,
+						formlyHideExpression: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {},
 						formlyAsyncValidators: {},
@@ -3153,6 +3161,7 @@ $__System.register('1b', [], function (_export) {
 						formlyOptions: [],
 						parentId: '',
 						referenceId: '',
+						formlyHideExpression: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {},
 						formlyAsyncValidators: {},
@@ -3183,6 +3192,7 @@ $__System.register('1b', [], function (_export) {
 						formlyOptions: [],
 						parentId: '',
 						referenceId: '',
+						formlyHideExpression: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {},
 						formlyAsyncValidators: {},
@@ -3215,6 +3225,7 @@ $__System.register('1b', [], function (_export) {
 						formlyOptions: [],
 						parentId: '',
 						referenceId: '',
+						formlyHideExpression: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {},
 						formlyAsyncValidators: {},
@@ -3245,6 +3256,7 @@ $__System.register('1b', [], function (_export) {
 						formlyOptions: [],
 						parentId: '',
 						referenceId: '',
+						formlyHideExpression: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {},
 						formlyAsyncValidators: {},
@@ -3280,6 +3292,7 @@ $__System.register('1b', [], function (_export) {
 						formlyOptions: [],
 						parentId: '',
 						referenceId: '',
+						formlyHideExpression: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {},
 						formlyAsyncValidators: {},
@@ -3315,6 +3328,7 @@ $__System.register('1b', [], function (_export) {
 						formlyOptions: [],
 						parentId: '',
 						referenceId: '',
+						formlyHideExpression: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {},
 						formlyAsyncValidators: {},
@@ -3344,6 +3358,7 @@ $__System.register('1b', [], function (_export) {
 						formlyOptions: [],
 						parentId: '',
 						referenceId: '',
+						formlyHideExpression: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {
 							required: {
@@ -3381,7 +3396,7 @@ $__System.register('1b', [], function (_export) {
 						formlyOptions: [],
 						parentId: '',
 						referenceId: '',
-						//expressions/validation fields
+						formlyHideExpression: '',
 						formlyExpressionProperties: {},
 						formlyValidators: {},
 						formlyAsyncValidators: {},
@@ -3468,7 +3483,7 @@ $__System.register('1b', [], function (_export) {
 					formlyOptions: [],
 					parentId: '',
 					referenceId: '',
-					//validation fields
+					formlyHideExpression: '',
 					formlyExpressionProperties: {},
 					formlyValidators: {},
 					formlyValidation: {}
@@ -3493,6 +3508,7 @@ $__System.register('1b', [], function (_export) {
 						modelToReturn.parentId = CtrlModalModel.controls[i].parentId;
 						modelToReturn.referenceId = CtrlModalModel.controls[i].referenceId;
 
+						modelToReturn.formlyHideExpression = angular.copy(CtrlModalModel.controls[i].formlyHideExpression);
 						modelToReturn.formlyExpressionProperties = angular.copy(CtrlModalModel.controls[i].formlyExpressionProperties);
 						modelToReturn.formlyValidators = angular.copy(CtrlModalModel.controls[i].formlyValidators);
 						modelToReturn.formlyValidation = angular.copy(CtrlModalModel.controls[i].formlyValidation);
@@ -3627,6 +3643,7 @@ $__System.register('1c', ['15', '16', '1b'], function (_export) {
 							nyaSelectObj.temporyConfig.parentId = typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.parentId != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.parentId : '';
 							nyaSelectObj.temporyConfig.referenceId = typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.referenceId != 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.referenceId : '';
 
+							nyaSelectObj.temporyConfig.formlyHideExpression = typeof configurationObj.lines[indexLine].columns[numcolumn].control.formlyHideExpression != 'undefined' ? angular.copy(configurationObj.lines[indexLine].columns[numcolumn].control.formlyHideExpression) : {};
 							nyaSelectObj.temporyConfig.formlyExpressionProperties = typeof configurationObj.lines[indexLine].columns[numcolumn].control.formlyExpressionProperties != 'undefined' ? angular.copy(configurationObj.lines[indexLine].columns[numcolumn].control.formlyExpressionProperties) : {};
 							nyaSelectObj.temporyConfig.formlyValidators = typeof configurationObj.lines[indexLine].columns[numcolumn].control.formlyValidators != 'undefined' ? angular.copy(configurationObj.lines[indexLine].columns[numcolumn].control.formlyValidators) : {};
 							nyaSelectObj.temporyConfig.formlyValidation = typeof configurationObj.lines[indexLine].columns[numcolumn].control.formlyValidation != 'undefined' ? angular.copy(configurationObj.lines[indexLine].columns[numcolumn].control.formlyValidation) : {};
@@ -3697,6 +3714,7 @@ $__System.register('1c', ['15', '16', '1b'], function (_export) {
 						configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.options = extractedProps.formlyOptions;
 						configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.parentId = extractedProps.parentId;
 						configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.referenceId = extractedProps.referenceId;
+						configurationObj.lines[indexLine].columns[numcolumn].control.formlyHideExpression = angular.copy(extractedProps.formlyHideExpression);
 						configurationObj.lines[indexLine].columns[numcolumn].control.formlyExpressionProperties = angular.copy(extractedProps.formlyExpressionProperties);
 						configurationObj.lines[indexLine].columns[numcolumn].control.formlyValidators = angular.copy(extractedProps.formlyValidators);
 						configurationObj.lines[indexLine].columns[numcolumn].control.formlyValidation = angular.copy(extractedProps.formlyValidation);
@@ -3969,7 +3987,7 @@ $__System.register('1e', [], function (_export) {
 
 	'use strict';
 
-	var configurationModelInit, configurationModelResult, isTemplateOptionDefined, extractTemplateOptionLabel, extractTemplateOptionLabelShort, extractTemplateOptionParentId, extractTemplateOptionReferenceId, extractTemplateOptionDatepickerOptions, extractTemplateOptionMaxLengthOption, extractTemplateOptionMinValueOption, extractTemplateOptionMaxValueOption, extractTemplateOptionNumberType, extractTemplateOptionIncrementalOption, extractTemplateOptionCurrentYearOption, extractTemplateOptionCurrentDateOption, extractTemplateOptionAllowEmptyOption, extractTemplateOptionOptionsSourceType, extractTemplateOptionOptionsSourceDbTable, extractTemplateOptionOptionsSourceDbFormat, extractFormlyExpressionProperties, extractFormlyValidators, extractFormlyAsyncValidators, extractFormlyValidation, extractTemplateOptionRequired, extractTemplateOptionUnique, extractDefaultValue, extractTemplateOptionDisplayAddOption, extractTemplateOptionDisplayEditOption, extractTemplateOptionAllowMultiple, extractTemplateOptionOptions, extractTemplateOptionType, extractTemplateOptionPlaceholder, extractTemplateOptionDescription, addDatepickerOptionsProperty, addMaxLengthOptionProperty, addAllowEmptyOptionProperty, addOptionsSourceTypeProperty, addOptionsSourceDbTableProperty, addOptionsSourceDbFormatProperty, addNumberTypeProperty, addMinValueOptionProperty, addMaxValueOptionProperty, addIncrementalOptionProperty, addCurrentYearOptionProperty, addCurrentDateOptionProperty, addOneColumnHeader, addColumns, resetDataModel, resetFormlyModel;
+	var configurationModelInit, configurationModelResult, isTemplateOptionDefined, extractTemplateOptionLabel, extractTemplateOptionLabelShort, extractTemplateOptionParentId, extractTemplateOptionReferenceId, extractTemplateOptionDatepickerOptions, extractTemplateOptionMaxLengthOption, extractTemplateOptionMinValueOption, extractTemplateOptionMaxValueOption, extractTemplateOptionNumberType, extractTemplateOptionIncrementalOption, extractTemplateOptionCurrentYearOption, extractTemplateOptionCurrentDateOption, extractTemplateOptionAllowEmptyOption, extractTemplateOptionOptionsSourceType, extractTemplateOptionOptionsSourceDbTable, extractTemplateOptionOptionsSourceDbFormat, extractFormlyHideExpression, extractFormlyExpressionProperties, extractFormlyValidators, extractFormlyAsyncValidators, extractFormlyValidation, extractTemplateOptionRequired, extractTemplateOptionUnique, extractDefaultValue, extractTemplateOptionDisplayAddOption, extractTemplateOptionDisplayEditOption, extractTemplateOptionAllowMultiple, extractTemplateOptionOptions, extractTemplateOptionType, extractTemplateOptionPlaceholder, extractTemplateOptionDescription, addDatepickerOptionsProperty, addMaxLengthOptionProperty, addAllowEmptyOptionProperty, addOptionsSourceTypeProperty, addOptionsSourceDbTableProperty, addOptionsSourceDbFormatProperty, addNumberTypeProperty, addMinValueOptionProperty, addMaxValueOptionProperty, addIncrementalOptionProperty, addCurrentYearOptionProperty, addCurrentDateOptionProperty, addOneColumnHeader, addColumns, resetDataModel, resetFormlyModel;
 
 	function checkIfCanDisplayMultiple(type, subtype) {
 		var multipleTypes = ['input', 'datepicker', 'textarea', 'richEditor', 'upload'];
@@ -4035,6 +4053,8 @@ $__System.register('1e', [], function (_export) {
 				canDisplayMultiple: checkIfCanDisplayMultiple(type, subtype),
 				parentId: extractTemplateOptionParentId(configurationModel.lines[lineIndex].columns[columnIndex].control)
 			},
+
+			hideExpression: extractFormlyHideExpression(configurationModel.lines[lineIndex].columns[columnIndex].control),
 			expressionProperties: extractFormlyExpressionProperties(configurationModel.lines[lineIndex].columns[columnIndex].control),
 			validators: extractFormlyValidators(configurationModel.lines[lineIndex].columns[columnIndex].control),
 			asyncValidators: extractFormlyAsyncValidators(configurationModel.lines[lineIndex].columns[columnIndex].control),
@@ -4187,6 +4207,10 @@ $__System.register('1e', [], function (_export) {
 
 			extractTemplateOptionOptionsSourceDbFormat = function extractTemplateOptionOptionsSourceDbFormat(obj) {
 				return typeof obj.templateOptions !== 'undefined' ? typeof obj.templateOptions.optionsSourceDbFormat !== 'undefined' ? obj.templateOptions.optionsSourceDbFormat : null : null;
+			};
+
+			extractFormlyHideExpression = function extractFormlyHideExpression(obj) {
+				return typeof obj.formlyHideExpression !== 'undefined' ? angular.copy(obj.formlyHideExpression) : '';
 			};
 
 			extractFormlyExpressionProperties = function extractFormlyExpressionProperties(obj) {
@@ -4365,6 +4389,8 @@ $__System.register('1e', [], function (_export) {
 			_export('extractTemplateOptionOptionsSourceDbTable', extractTemplateOptionOptionsSourceDbTable);
 
 			_export('extractTemplateOptionOptionsSourceDbFormat', extractTemplateOptionOptionsSourceDbFormat);
+
+			_export('extractFormlyHideExpression', extractFormlyHideExpression);
 
 			_export('extractFormlyExpressionProperties', extractFormlyExpressionProperties);
 

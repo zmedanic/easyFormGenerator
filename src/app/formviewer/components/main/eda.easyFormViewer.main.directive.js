@@ -155,15 +155,8 @@ function edaFormViewerDirective($modelsTranslator){
 
 				return  formlyFieldsModel;
 			}
-
 		}
-
-
-
-
 	}
-
-
 }
 
 edaFormViewerDirective.$inject = [

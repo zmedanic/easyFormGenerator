@@ -26,6 +26,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $http, $q, $timeout) => {
 				formlyEvents: {
 					onChange 				: ''
 				},
+				formlyHideExpression: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
 				formlyAsyncValidators: {},
@@ -54,6 +55,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $http, $q, $timeout) => {
 				formlyEvents: {
 					onChange 				: ''
 				},
+				formlyHideExpression: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
 				formlyAsyncValidators: {},
@@ -82,6 +84,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $http, $q, $timeout) => {
 				formlyEvents: {
 					onChange 				: ''
 				},
+				formlyHideExpression: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
 				formlyAsyncValidators: {},
@@ -111,6 +114,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $http, $q, $timeout) => {
 				formlyEvents: {
 					onChange 				: ''
 				},
+				formlyHideExpression: '',
 				formlyExpressionProperties: {},
 				formlyValidators 						: {
 					textShape : {
@@ -159,6 +163,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $http, $q, $timeout) => {
 				formlyEvents: {
 					onChange 				: ''
 				},
+				formlyHideExpression: '',
 				formlyExpressionProperties: {},
 				formlyValidators  : {
 					numberShape : {
@@ -214,6 +219,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $http, $q, $timeout) => {
 				formlyEvents: {
 					onChange 				: ''
 				},
+				formlyHideExpression: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
 				formlyAsyncValidators: {},
@@ -249,6 +255,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $http, $q, $timeout) => {
 				formlyEvents: {
 					onChange 				: ''
 				},
+				formlyHideExpression: '',
 				formlyExpressionProperties : {},
 				formlyValidators 	: {
 					emailShape : {
@@ -297,6 +304,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $http, $q, $timeout) => {
 				formlyEvents: {
 					onChange 				: ''
 				},
+				formlyHideExpression: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
 				formlyAsyncValidators: {},
@@ -336,6 +344,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $http, $q, $timeout) => {
 				formlyEvents: {
 					onChange 				: ''
 				},
+				formlyHideExpression: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
 				formlyAsyncValidators: {},
@@ -371,6 +380,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $http, $q, $timeout) => {
 				formlyEvents: {
 					onChange 				: ''
 				},
+				formlyHideExpression: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
 				formlyAsyncValidators: {},
@@ -408,6 +418,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $http, $q, $timeout) => {
 				formlyEvents: {
 					onChange 				: ''
 				},
+				formlyHideExpression: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
 				formlyAsyncValidators: {},
@@ -443,6 +454,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $http, $q, $timeout) => {
 				formlyEvents: {
 					onChange 				: ''
 				},
+				formlyHideExpression: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
 				formlyAsyncValidators: {},
@@ -480,6 +492,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $http, $q, $timeout) => {
 				formlyEvents: {
 					onChange 				: ''
 				},
+				formlyHideExpression: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
 				formlyAsyncValidators: {},
@@ -517,6 +530,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $http, $q, $timeout) => {
 				formlyEvents: {
 					onChange 				: ''
 				},
+				formlyHideExpression: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
 				formlyAsyncValidators: {},
@@ -552,6 +566,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $http, $q, $timeout) => {
 				formlyEvents: {
 					onChange 				: ''
 				},
+				formlyHideExpression: '',
 				formlyExpressionProperties: {},
 				formlyValidators  : {
 					required : {
@@ -592,7 +607,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $http, $q, $timeout) => {
 			formlyEvents: {
 				onChange 				: ''
 			},
-			//expressions/validation fields
+			formlyHideExpression: '',
 			formlyExpressionProperties: {},
 			formlyValidators	: {},
 			formlyAsyncValidators: {},
@@ -770,6 +785,8 @@ const extractTemplateOptionAllowEmptyOption = (obj) => typeof obj.templateOption
 
 const extractTemplateOptionFiles = (obj) => typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.files !== 'undefined'? obj.templateOptions.files : []) : [];
 
+const extractFormlyHideExpression = (obj) => typeof obj.formlyHideExpression !== 'undefined' ? angular.copy(obj.formlyHideExpression) : '';
+
 const extractFormlyExpressionProperties = (obj) => typeof obj.formlyExpressionProperties !== 'undefined' ? angular.copy(obj.formlyExpressionProperties) : {};
 
 const extractFormlyValidators = (obj) => typeof obj.formlyValidators !== 'undefined' ?  angular.copy(obj.formlyValidators) : {};
@@ -891,6 +908,7 @@ function addColumnControl(formlyModel, configurationModel,lineIndex, numberOfCol
 			canDisplayMultiple: checkIfCanDisplayMultiple(type, subtype),
 			onChange    			: extractTemplateEventOnChange(configurationModel.lines[lineIndex].columns[columnIndex].control),
 		},
+		hideExpression: extractFormlyHideExpression(configurationModel.lines[lineIndex].columns[columnIndex].control),
 		expressionProperties : extractFormlyExpressionProperties(configurationModel.lines[lineIndex].columns[columnIndex].control),
 		validators : extractFormlyValidators(configurationModel.lines[lineIndex].columns[columnIndex].control),
 		asyncValidators : extractFormlyAsyncValidators(configurationModel.lines[lineIndex].columns[columnIndex].control),
