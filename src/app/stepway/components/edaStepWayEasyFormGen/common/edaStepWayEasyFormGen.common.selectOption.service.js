@@ -332,8 +332,8 @@ class selectOptionManage {
 				break;
 
 			case 'show_only_if':
-				valid = valid && typeof newEvent.field != "undefined" && newEvent.field.id && newEvent.value != '';
-				details = this.$translate.instant('VALUE_NOT_VALID')
+				valid = valid && typeof newEvent.field != "undefined" && newEvent.field.id != null;
+				details = this.$translate.instant('FIELD_NOT_VALID')
 				break;
 
 			default:
