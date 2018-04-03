@@ -131,4 +131,12 @@
     "FORM_ID_FORMAT"      : "Format of form ID",
     "OPTIONAL_VALIDATION_FALSE" : "Incorrect usage of optional tags",
     "DESCRIBE_THIS_FORM"  : "Describe this form",
+    "INCREMENT"           : "Increment",
+    "SHOW_ONLY_IF"        : "Show only if",
+    "FIELD_NOT_VALID"     : "Field is not valid",
+    "VALUE_NOT_VALID"     : "Value is not valid",
+    "ALREADY_EXISTS"      : "Already exists",
+    "NO_FIELD_SELECTED"   : "No field selected",
+    "TYPE"                : "Type",
+    "VALUE"               : "Value",
 }

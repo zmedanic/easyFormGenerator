@@ -23,6 +23,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $q, $timeout) => {
 				formlyOptions			: [] ,
 				parentId					: '',
 				referenceId				: '',
+				eventsList				: [],
 				formlyHideExpression: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
@@ -49,6 +50,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $q, $timeout) => {
 				formlyOptions			: [] ,
 				parentId					: '',
 				referenceId				: '',
+				eventsList				: [],
 				formlyHideExpression: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
@@ -75,6 +77,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $q, $timeout) => {
 				formlyOptions			: [] ,
 				parentId					: '',
 				referenceId				: '',
+				eventsList				: [],
 				formlyHideExpression: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
@@ -101,6 +104,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $q, $timeout) => {
 				parentId					: '',
 				referenceId				: '',
 				maxLengthOption		: null,
+				eventsList				: [],
 				formlyHideExpression: '',
 				formlyExpressionProperties: {},
 				formlyValidators 	: {
@@ -147,6 +151,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $q, $timeout) => {
 				maxValueOption  	: null,
 				incrementalOption	: false,
 				currentYearOption	: false,
+				eventsList				: [],
 				formlyHideExpression: '',
 				formlyExpressionProperties: {},
 				formlyValidators 	: {
@@ -200,6 +205,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $q, $timeout) => {
 				formlyOptions			: [] ,
 				parentId					: '',
 				referenceId				: '',
+				eventsList				: [],
 				formlyHideExpression: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
@@ -233,6 +239,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $q, $timeout) => {
 				formlyOptions 			: [],
 				parentId						: '',
 				referenceId					: '',
+				eventsList				: [],
 				formlyHideExpression: '',
 				formlyExpressionProperties: {},
 				formlyValidators 		: {
@@ -279,6 +286,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $q, $timeout) => {
 				referenceId				: '',
 				datepickerOptions	: 'dd-MMMM-yyyy',
 				currentDateOption	: false,
+				eventsList				: [],
 				formlyHideExpression: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
@@ -316,6 +324,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $q, $timeout) => {
 				formlyOptions			: [],
 				parentId					: '',
 				referenceId				: '',
+				eventsList				: [],
 				formlyHideExpression: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
@@ -349,6 +358,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $q, $timeout) => {
 				formlyOptions			: [],
 				parentId					: '',
 				referenceId				: '',
+				eventsList				: [],
 				formlyHideExpression: '',
 				formlyExpressionProperties: {},
 				formlyValidators 	: {},
@@ -384,6 +394,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $q, $timeout) => {
 				formlyOptions			: [],
 				parentId					: '',
 				referenceId				: '',
+				eventsList				: [],
 				formlyHideExpression: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
@@ -417,6 +428,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $q, $timeout) => {
 				formlyOptions			: [],
 				parentId					: '',
 				referenceId				: '',
+				eventsList				: [],
 				formlyHideExpression: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
@@ -455,6 +467,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $q, $timeout) => {
 				formlyOptions			: [],
 				parentId					: '',
 				referenceId				: '',
+				eventsList				: [],
 				formlyHideExpression: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
@@ -493,6 +506,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $q, $timeout) => {
 				formlyOptions			: [],
 				parentId					: '',
 				referenceId				: '',
+				eventsList				: [],
 				formlyHideExpression: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
@@ -525,6 +539,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $q, $timeout) => {
 				formlyOptions			: [] ,
 				parentId					: '',
 				referenceId				: '',
+				eventsList				: [],
 				formlyHideExpression: '',
 				formlyExpressionProperties: {},
 				formlyValidators  : {
@@ -564,6 +579,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $q, $timeout) => {
 			formlyOptions 		: [],
 			parentId					: '',
 			referenceId				: '',
+			eventsList				: [],
 			formlyHideExpression: '',
 			formlyExpressionProperties: {},
 			formlyValidators	: {},
@@ -651,6 +667,7 @@ const returnControlFromAddCtrlModalModel = (CtrlModalModel) =>{
 		formlyOptions: [],
 		parentId					: '',
 		referenceId				: '',
+		eventsList: [],
 		formlyHideExpression: '',
 		formlyExpressionProperties: {},
 		formlyValidators: {},
@@ -677,6 +694,7 @@ const returnControlFromAddCtrlModalModel = (CtrlModalModel) =>{
 			modelToReturn.parentId 						= CtrlModalModel.controls[i].parentId;
 			modelToReturn.referenceId 				= CtrlModalModel.controls[i].referenceId;
 
+			modelToReturn.eventsList					 				= angular.copy(CtrlModalModel.controls[i].eventsList);
 			modelToReturn.formlyHideExpression 				= angular.copy(CtrlModalModel.controls[i].formlyHideExpression);
 			modelToReturn.formlyExpressionProperties 	= angular.copy(CtrlModalModel.controls[i].formlyExpressionProperties);
 			modelToReturn.formlyValidators 						= angular.copy(CtrlModalModel.controls[i].formlyValidators);

@@ -13,7 +13,9 @@ class editControlModalController {
 								activeLine,
 								activeColumn,
 								activeLineColumnsCount,
-								$scope) {
+								allOptions,
+								$scope,
+								$translate) {
 
 		this.$modalInstance 					= $uibModalInstance;
 		this.nyaSelect 								= nyaSelect;
@@ -25,6 +27,8 @@ class editControlModalController {
 		this.activeLine 							= activeLine;
 		this.activeColumn 						= activeColumn;
 		this.activeLineColumnsCount 	= activeLineColumnsCount;
+		this.allOptions 							= allOptions;
+		this.$translate								= $translate;
 
 		this.populateSourceTables = function() {
 			this.optionsSourceDbTables		= [{id: null, name: 'Nothing selected'}];
@@ -113,6 +117,8 @@ class editControlModalController {
 		this.nyaSelectFiltered 					= {};
 		this.modelNyaSelect							= {};
 		this.optionsSourceDbFormatValidation = true;
+
+		this.resetEventTypes(false);
 
 		let optionsSourceDbFormatConfigIndex = this.nyaSelect.temporyConfig.optionsSourceDbFormat ? this.nyaSelect.temporyConfig.optionsSourceDbFormat.length : 0;
 		this.optionsSourceDbFormatConfig = {
@@ -420,6 +426,34 @@ class editControlModalController {
 		}
 	}
 
+
+	addNewEvent() {
+		let result = this.selectOptionManage.addNewEvent(this.nyaSelect.temporyConfig.eventsList, this.newEvent);
+		if (result.resultFlag === false) {
+			this.toaster.pop({
+				type		: 'warning',
+				timeout	: 2000,
+				title		: result.details,
+				body		: `'${this.newEvent.field ? this.newEvent.field.name : 'Field'}' cannot be added.`,
+				showCloseButton: true
+			});
+		}
+	}
+
+	removeEvent(index) {
+		let result = this.selectOptionManage.removeEvent(this.nyaSelect.temporyConfig.eventsList, index);
+		if (result.resultFlag === false) {
+			this.toaster.pop({
+				type			: 'warning',
+				timeout		: 2000,
+				title			: result.details,
+				body			: 'Delete was cancelled.',
+				showCloseButton: true
+			});
+		}
+	}
+
+
 	today(field, position) {
 		if (position >= 0) {
 			this[field].dt[position] = new Date();
@@ -452,6 +486,7 @@ class editControlModalController {
 			if (this.nyaSelect.controls[i].id === controlName) this.nyaSelect.selectedControl = this.nyaSelect.controls[i].id;
 		}
 		if (this.nyaSelect.selectedControl === 'Date') this.initDatePicker();
+		if (this.nyaSelect.selectedControl === 'Number') this.nyaSelect.temporyConfig.numberType = 'integer';
 	}
 
 
@@ -563,6 +598,29 @@ class editControlModalController {
 			referenceId 			: ''
 		};
 	}
+
+
+	resetEventTypes(resetEvents) {
+		this.eventTypes = [{
+			name: this.$translate.instant('SHOW_ONLY_IF'),
+			id: 'show_only_if',
+			if: true
+		}, {
+			name: this.$translate.instant('INCREMENT'),
+			id: 'increment',
+			if: this.nyaSelect.selectedControl == 'Number' && this.nyaSelect.temporyConfig.numberType == 'integer',
+		}];
+
+		this.newEvent = {
+			type: this.eventTypes[0],
+			field: null,
+			value: null
+		};
+
+		if (resetEvents) {
+			this.nyaSelect.temporyConfig.eventsList = [];
+		}
+	}
 }
 
 
@@ -577,7 +635,9 @@ const toInject =  [
 	'activeLine',
 	'activeColumn',
 	'activeLineColumnsCount',
-	'$scope'
+	'allOptions',
+	'$scope',
+	'$translate'
 ];
 
 editControlModalController.$inject = toInject;

@@ -4,8 +4,8 @@ const SELECT_OPTION_MANAGE_NAME = 'selectOptionManage';
 
 class selectOptionManage {
 
-	constructor() {
-
+	constructor($translate) {
+		this.$translate	= $translate;
 	}
 
 	initModel(selectObj) {
@@ -274,10 +274,90 @@ class selectOptionManage {
 	}
 
 
+
+	addNewEvent(selectObj, newEvent) {
+		let fullResponse = {
+					resultFlag 	: false,
+					details 		: ''
+				};
+
+		let checkResult = this.validateEvent(selectObj, newEvent);
+
+		if (newEvent.type && checkResult.resultFlag) {
+			let newEventParams = {
+				field: newEvent.field,
+				value: newEvent.value,
+				type: newEvent.type
+			};
+
+			selectObj.push(newEventParams);
+
+			fullResponse.resultFlag = true;
+			fullResponse.details = '';
+			return fullResponse;
+
+		}else{
+			angular.copy(checkResult, fullResponse);
+			return fullResponse;
+		}
+	}
+
+	removeEvent(selectObj, AtIndex) {
+		let fullResponse = {
+			resultFlag : false,
+			details : ''
+		};
+
+		if (AtIndex !== -1) {
+			selectObj.splice(AtIndex, 1);
+
+			fullResponse.resultFlag = true;
+			fullResponse.details= '';
+			return fullResponse;
+		}else{
+			fullResponse.resultFlag = false;
+			fullResponse.details = 'Option index not valid';
+			return fullResponse;
+		}
+	}
+
+  validateEvent(selectObj, newEvent) {
+  	let valid = true;
+  	let details = '';
+
+		switch (newEvent.type.id) {
+			case 'increment':
+				valid = valid && typeof newEvent.field != "undefined" && newEvent.field.id != null;
+				details = this.$translate.instant('FIELD_NOT_VALID')
+				break;
+
+			case 'show_only_if':
+				valid = valid && typeof newEvent.field != "undefined" && newEvent.field.id && newEvent.value != '';
+				details = this.$translate.instant('VALUE_NOT_VALID')
+				break;
+
+			default:
+				valid = false;
+		}
+
+		angular.forEach(selectObj, (event)  => {
+			if (angular.equals(event, newEvent)) {
+				valid = false;
+				details = this.$translate.instant('ALREADY_EXISTS');
+			}
+		});
+
+		return {
+			resultFlag: valid,
+			details: details
+		}
+  }
 }
 
 
-selectOptionManage.$inject = [];
+selectOptionManage.$inject = [
+  '$translate'
+];
 
 export default selectOptionManage;
 export {SELECT_OPTION_MANAGE_NAME};

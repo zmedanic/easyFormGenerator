@@ -133,6 +133,10 @@ const extractTemplateOptionOptionsSourceDbFormat= (obj)=>{
 	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.optionsSourceDbFormat !== 'undefined'? obj.templateOptions.optionsSourceDbFormat: null) : null;
 };
 
+const extractTemplateOptionEventsList= (obj)=>{
+	return  typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.eventsList !== 'undefined'? obj.templateOptions.eventsList: []) : [];
+};
+
 const extractFormlyHideExpression = (obj)=>{
 	return  typeof obj.formlyHideExpression !== 'undefined' ? angular.copy(obj.formlyHideExpression) : '';
 };
@@ -319,7 +323,8 @@ function addColumnControl(formlyModel, configurationModel,lineIndex, numberOfCol
 			options 					: extractTemplateOptionOptions(configurationModel.lines[lineIndex].columns[columnIndex].control),
 			referenceId 			: extractTemplateOptionReferenceId(configurationModel.lines[lineIndex].columns[columnIndex].control),
 			canDisplayMultiple: checkIfCanDisplayMultiple(type, subtype),
-			parentId    			: extractTemplateOptionParentId(configurationModel.lines[lineIndex].columns[columnIndex].control)
+			parentId    			: extractTemplateOptionParentId(configurationModel.lines[lineIndex].columns[columnIndex].control),
+			eventsList    		: extractTemplateOptionEventsList(configurationModel.lines[lineIndex].columns[columnIndex].control),
 		},
 
 		hideExpression : extractFormlyHideExpression(configurationModel.lines[lineIndex].columns[columnIndex].control),
@@ -420,6 +425,7 @@ export {
 	extractTemplateOptionOptionsSourceType,
 	extractTemplateOptionOptionsSourceDbTable,
 	extractTemplateOptionOptionsSourceDbFormat,
+	extractTemplateOptionEventsList,
 
 	extractFormlyHideExpression,
 	extractFormlyExpressionProperties,

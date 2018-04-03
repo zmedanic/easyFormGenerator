@@ -51,6 +51,7 @@ class $modalProxy{
 			nyaSelectObj.temporyConfig.parentId 					= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.parentId 					!= 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.parentId : '';
 			nyaSelectObj.temporyConfig.referenceId 				= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.referenceId 			!= 'undefined' ? configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.referenceId : '';
 
+			nyaSelectObj.temporyConfig.eventsList					= typeof configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.eventsList 					!= 'undefined' ? angular.copy(configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.eventsList) : [];
 			nyaSelectObj.temporyConfig.formlyHideExpression = typeof configurationObj.lines[indexLine].columns[numcolumn].control.formlyHideExpression 							!= 'undefined' ? angular.copy(configurationObj.lines[indexLine].columns[numcolumn].control.formlyHideExpression) : {};
 			nyaSelectObj.temporyConfig.formlyExpressionProperties = typeof configurationObj.lines[indexLine].columns[numcolumn].control.formlyExpressionProperties 	!= 'undefined' ? angular.copy(configurationObj.lines[indexLine].columns[numcolumn].control.formlyExpressionProperties) : {};
 			nyaSelectObj.temporyConfig.formlyValidators 	= typeof configurationObj.lines[indexLine].columns[numcolumn].control.formlyValidators 										!= 'undefined' ? angular.copy(configurationObj.lines[indexLine].columns[numcolumn].control.formlyValidators) : {};
@@ -108,7 +109,8 @@ class $modalProxy{
 				placeholder: '',
 				options: [],
 				parentId: '',
-				referenceId: ''
+				referenceId: '',
+				eventsList: []
 			};
 
 			//then bind templateOptions
@@ -125,6 +127,8 @@ class $modalProxy{
 		configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.options 						= extractedProps.formlyOptions;
 		configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.parentId 					= extractedProps.parentId;
 		configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.referenceId 				= extractedProps.referenceId;
+
+		configurationObj.lines[indexLine].columns[numcolumn].control.templateOptions.eventsList 				= angular.copy(extractedProps.eventsList);
 		configurationObj.lines[indexLine].columns[numcolumn].control.formlyHideExpression 							= angular.copy(extractedProps.formlyHideExpression);
 		configurationObj.lines[indexLine].columns[numcolumn].control.formlyExpressionProperties 				= angular.copy(extractedProps.formlyExpressionProperties);
 		configurationObj.lines[indexLine].columns[numcolumn].control.formlyValidators 									= angular.copy(extractedProps.formlyValidators);
@@ -209,6 +213,7 @@ class $modalProxy{
 				nyaSelectObj.controls[i].formlyOptions 							= nyaSelectObj.temporyConfig.formlyOptions;
 				nyaSelectObj.controls[i].parentId 									= nyaSelectObj.temporyConfig.parentId;
 				nyaSelectObj.controls[i].referenceId 								= nyaSelectObj.temporyConfig.referenceId;
+				nyaSelectObj.controls[i].eventsList 								= angular.copy(nyaSelectObj.temporyConfig.eventsList);
 
 				if (nyaSelectObj.controls[i].id ==='Date' ) {
 					nyaSelectObj.controls[i].datepickerOptions 				= angular.copy(nyaSelectObj.temporyConfig.datepickerOptions);
@@ -226,6 +231,7 @@ class $modalProxy{
 					nyaSelectObj.controls[i].incrementalOption 				= nyaSelectObj.temporyConfig.incrementalOption;
 					nyaSelectObj.controls[i].currentYearOption 				= nyaSelectObj.temporyConfig.currentYearOption;
 				}
+
 				let fildsWithOptions = ['BasicSelect', 'GroupedSelect', 'Radio'];
 				if (fildsWithOptions.indexOf(nyaSelectObj.controls[i].id) !== -1) {
 					nyaSelectObj.controls[i].allowEmptyOption 				= nyaSelectObj.temporyConfig.allowEmptyOption;

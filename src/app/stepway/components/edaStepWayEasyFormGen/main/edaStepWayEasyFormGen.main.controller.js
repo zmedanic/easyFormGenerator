@@ -281,7 +281,7 @@ class edaStepWayEasyFormGenController {
 			angular.forEach(line.columns, (column) => {
 				if (column.control.templateOptions && typeof(column.control.templateOptions.parentId) === 'object') {
 					let position = column.control.templateOptions.parentId.name.match(/([0-9]+)\,([0-9]+)/);
-					if (typeof(position) === 'object' && position[1] && position[2]) {
+					if (typeof position === 'object' && position != null && position[1] && position[2]) {
 						pos1 = parseInt(position[1]);
 						pos2 = parseInt(position[2]);
 						updatePositions = true;
@@ -422,7 +422,10 @@ class edaStepWayEasyFormGenController {
 		let field = '';
 		let titleColumns = [{
 			id: null,
-			name: 'No value'
+			name: 'No value',
+			type: null,
+			subtype: null,
+			optionsSourceType: 'static'
 		}];
 		let columns = angular.copy(titleColumns);
 
@@ -433,7 +436,10 @@ class edaStepWayEasyFormGenController {
 						field = {
 							id: column.control.templateOptions.referenceId,
 							name: (column.control.templateOptions.label ? column.control.templateOptions.label : 'Field') +
-								' ' + lineKey + ',' + columnKey + ' - ' + column.control.type + ' ' + column.control.subtype
+								' ' + lineKey + ',' + columnKey + ' - ' + column.control.type + ' ' + column.control.subtype,
+							type: column.control.type,
+							subtype: column.control.subtype,
+							optionsSourceType: column.control.templateOptions.optionsSourceType ? column.control.templateOptions.optionsSourceType : 'static'
 						}
 						if (column.control.type == 'header' || column.control.type == 'subTitle') {
 							titleColumns.push(field);
@@ -449,6 +455,29 @@ class edaStepWayEasyFormGenController {
 			titleColumns: titleColumns,
 			columns 		: columns
 		};
+	}
+
+	prepareAllOptions() {
+		let options = {};
+
+		angular.forEach(this.configuration.lines, (line, lineKey) => {
+			angular.forEach(line.columns, (column, columnKey) => {
+				if (column.control.type == 'radio' || column.control.type == 'basicSelect' || column.control.type == 'groupedSelect') {
+					angular.forEach(column.control.templateOptions.options, (option, optionKey) => {
+						if (! options[column.control.templateOptions.referenceId]) {
+							options[column.control.templateOptions.referenceId] = [];
+						}
+						options[column.control.templateOptions.referenceId].push({
+							referenceId: option.referenceId,
+							id: option.uniqueValue,
+							name: option.name
+						});
+					});
+				}
+			});
+		});
+
+		return options;
 	}
 
 	showModalAddCtrlToColumn(size, indexLine, numcolumn) {
@@ -469,7 +498,8 @@ class edaStepWayEasyFormGenController {
 				activeLine 							: indexLine,
 				activeColumn 						: numcolumn,
 				activeLineColumnsCount 	: () => this.configuration.lines[indexLine].columns.length,
-				nyaSelect 							: () => nyaSelect
+				nyaSelect 							: () => nyaSelect,
+				allOptions 							: () => this.prepareAllOptions()
 			}
 		});
 

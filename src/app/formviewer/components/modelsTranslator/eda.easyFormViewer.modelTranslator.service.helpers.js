@@ -26,6 +26,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $http, $q, $timeout) => {
 				formlyEvents: {
 					onChange 				: ''
 				},
+				eventsList				: [],
 				formlyHideExpression: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
@@ -55,6 +56,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $http, $q, $timeout) => {
 				formlyEvents: {
 					onChange 				: ''
 				},
+				eventsList				: [],
 				formlyHideExpression: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
@@ -84,6 +86,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $http, $q, $timeout) => {
 				formlyEvents: {
 					onChange 				: ''
 				},
+				eventsList				: [],
 				formlyHideExpression: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
@@ -114,6 +117,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $http, $q, $timeout) => {
 				formlyEvents: {
 					onChange 				: ''
 				},
+				eventsList				: [],
 				formlyHideExpression: '',
 				formlyExpressionProperties: {},
 				formlyValidators 						: {
@@ -163,6 +167,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $http, $q, $timeout) => {
 				formlyEvents: {
 					onChange 				: ''
 				},
+				eventsList				: [],
 				formlyHideExpression: '',
 				formlyExpressionProperties: {},
 				formlyValidators  : {
@@ -219,6 +224,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $http, $q, $timeout) => {
 				formlyEvents: {
 					onChange 				: ''
 				},
+				eventsList				: [],
 				formlyHideExpression: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
@@ -255,6 +261,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $http, $q, $timeout) => {
 				formlyEvents: {
 					onChange 				: ''
 				},
+				eventsList				: [],
 				formlyHideExpression: '',
 				formlyExpressionProperties : {},
 				formlyValidators 	: {
@@ -304,6 +311,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $http, $q, $timeout) => {
 				formlyEvents: {
 					onChange 				: ''
 				},
+				eventsList				: [],
 				formlyHideExpression: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
@@ -344,6 +352,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $http, $q, $timeout) => {
 				formlyEvents: {
 					onChange 				: ''
 				},
+				eventsList				: [],
 				formlyHideExpression: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
@@ -380,6 +389,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $http, $q, $timeout) => {
 				formlyEvents: {
 					onChange 				: ''
 				},
+				eventsList				: [],
 				formlyHideExpression: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
@@ -418,6 +428,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $http, $q, $timeout) => {
 				formlyEvents: {
 					onChange 				: ''
 				},
+				eventsList				: [],
 				formlyHideExpression: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
@@ -454,6 +465,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $http, $q, $timeout) => {
 				formlyEvents: {
 					onChange 				: ''
 				},
+				eventsList				: [],
 				formlyHideExpression: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
@@ -492,6 +504,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $http, $q, $timeout) => {
 				formlyEvents: {
 					onChange 				: ''
 				},
+				eventsList				: [],
 				formlyHideExpression: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
@@ -530,6 +543,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $http, $q, $timeout) => {
 				formlyEvents: {
 					onChange 				: ''
 				},
+				eventsList				: [],
 				formlyHideExpression: '',
 				formlyExpressionProperties: {},
 				formlyValidators	: {},
@@ -566,6 +580,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $http, $q, $timeout) => {
 				formlyEvents: {
 					onChange 				: ''
 				},
+				eventsList				: [],
 				formlyHideExpression: '',
 				formlyExpressionProperties: {},
 				formlyValidators  : {
@@ -607,6 +622,7 @@ const resetNyaSelect = (nyaSelectObj, $translate, $http, $q, $timeout) => {
 			formlyEvents: {
 				onChange 				: ''
 			},
+			eventsList				: [],
 			formlyHideExpression: '',
 			formlyExpressionProperties: {},
 			formlyValidators	: {},
@@ -785,6 +801,8 @@ const extractTemplateOptionAllowEmptyOption = (obj) => typeof obj.templateOption
 
 const extractTemplateOptionFiles = (obj) => typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.files !== 'undefined'? obj.templateOptions.files : []) : [];
 
+const extractTemplateOptionEventsList = (obj) => typeof obj.templateOptions !== 'undefined' ? (typeof obj.templateOptions.eventsList !== 'undefined'? obj.templateOptions.eventsList : []) : [];
+
 const extractFormlyHideExpression = (obj) => typeof obj.formlyHideExpression !== 'undefined' ? angular.copy(obj.formlyHideExpression) : '';
 
 const extractFormlyExpressionProperties = (obj) => typeof obj.formlyExpressionProperties !== 'undefined' ? angular.copy(obj.formlyExpressionProperties) : {};
@@ -907,6 +925,7 @@ function addColumnControl(formlyModel, configurationModel,lineIndex, numberOfCol
 			parentId    			: extractTemplateOptionParentId(configurationModel.lines[lineIndex].columns[columnIndex].control),
 			canDisplayMultiple: checkIfCanDisplayMultiple(type, subtype),
 			onChange    			: extractTemplateEventOnChange(configurationModel.lines[lineIndex].columns[columnIndex].control),
+			eventsList   			: extractTemplateOptionEventsList(configurationModel.lines[lineIndex].columns[columnIndex].control),
 		},
 		hideExpression: extractFormlyHideExpression(configurationModel.lines[lineIndex].columns[columnIndex].control),
 		expressionProperties : extractFormlyExpressionProperties(configurationModel.lines[lineIndex].columns[columnIndex].control),

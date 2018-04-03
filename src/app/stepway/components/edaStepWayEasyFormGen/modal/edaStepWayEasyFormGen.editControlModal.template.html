@@ -17,6 +17,7 @@
       <ol
         class="nya-bs-select col-xs-12 col-sm-12 col-md-12 col-lg-12"
         ng-model="editControlModCtrl.modelNyaSelect"
+        ng-change="editControlModCtrl.resetEventTypes(true)"
         data-live-search="false">
         <li nya-bs-option="option in editControlModCtrl.nyaSelectFiltered.controls group by option.group">
           <span class="dropdown-header greyText">
@@ -66,6 +67,7 @@
               </h5>
             </div>
           </div>
+          <div ng-include="'events.html'"></div>
         </div>
       </div>
     </div>
@@ -144,6 +146,7 @@
               </div>
             </div>
           </div>
+          <div ng-include="'events.html'"></div>
         </div>
       </div>
     </div>
@@ -225,6 +228,7 @@
               </div>
             </div>
           </div>
+          <div ng-include="'events.html'"></div>
         </div>
       </div>
     </div>
@@ -308,33 +312,6 @@
             </div>
           </div>
           <hr/>
-          <div class="marginTopFivepixels"></div>
-          <div class="row">
-            <div class="form-group">
-              <label
-                for="inputTextParentIdUpdate"
-                class="col-lg-3 control-label greyText editPropertiesLabel">
-                {{'PARENT_ID' | translate}} :
-              </label>
-              <div class="col-lg-9">
-                <ol
-                  class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
-                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.parentId"
-                  id="inputTextParentIdUpdate"
-                  data-live-search="true"
-                  title="No value">
-                  <li nya-bs-option="column in editControlModCtrl.columns">
-                    <a>
-                      <span>
-                        {{ column.name }}
-                      </span>
-                      <span class="glyphicon glyphicon-ok check-mark"></span>
-                    </a>
-                  </li>
-                </ol>
-              </div>
-            </div>
-          </div>
           <div class="marginTopFivepixels"></div>
           <div class="row">
             <div class="form-group">
@@ -539,6 +516,34 @@
               </div>
             </div>
           </div>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="form-group">
+              <label
+                for="inputTextParentIdUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'PARENT_ID' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <ol
+                  class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.parentId"
+                  id="inputTextParentIdUpdate"
+                  data-live-search="true"
+                  title="No value">
+                  <li nya-bs-option="column in editControlModCtrl.columns">
+                    <a>
+                      <span>
+                        {{ column.name }}
+                      </span>
+                      <span class="glyphicon glyphicon-ok check-mark"></span>
+                    </a>
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <div ng-include="'events.html'"></div>
         </div>
       </div>
     </div>
@@ -749,7 +754,7 @@
                 <ol
                   class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
                   ng-model="editControlModCtrl.nyaSelect.temporyConfig.numberType"
-                  ng-change="editControlModCtrl.nyaSelect.temporyConfig.incrementalOption=false;editControlModCtrl.nyaSelect.temporyConfig.currentYearOption=false"
+                  ng-change="editControlModCtrl.nyaSelect.temporyConfig.incrementalOption=false;editControlModCtrl.nyaSelect.temporyConfig.currentYearOption=false;editControlModCtrl.resetEventTypes(true)"
                   id="inputNumberTypeUpdate"
                   title="No value">
                   <li nya-bs-option="type in editControlModCtrl.$modalProxy.easyFormSteWayConfig.getNumberTypesList()">
@@ -944,6 +949,7 @@
               </div>
             </div>
           </div>
+          <div ng-include="'events.html'"></div>
         </div>
       </div>
     </div>
@@ -1242,6 +1248,7 @@
               </div>
             </div>
           </div>
+          <div ng-include="'events.html'"></div>
         </div>
       </div>
     </div>
@@ -1540,6 +1547,7 @@
               </div>
             </div>
           </div>
+          <div ng-include="'events.html'"></div>
         </div>
       </div>
     </div>
@@ -1882,6 +1890,7 @@
               </div>
             </div>
           </div>
+          <div ng-include="'events.html'"></div>
         </div>
       </div>
     </div>
@@ -2144,6 +2153,7 @@
               </div>
             </div>
           </div>
+          <div ng-include="'events.html'"></div>
         </div>
       </div>
     </div>
@@ -2401,6 +2411,7 @@
               </div>
             </div>
           </div>
+          <div ng-include="'events.html'"></div>
         </div>
       </div>
     </div>
@@ -2876,6 +2887,7 @@
               </div>
             </div>
           </div>
+          <div ng-include="'events.html'"></div>
         </div>
       </div>
     </div>
@@ -3082,6 +3094,7 @@
               </div>
             </div>
           </div>
+          <div ng-include="'events.html'"></div>
         </div>
       </div>
     </div>
@@ -3663,6 +3676,7 @@
               </div>
             </div>
           </div>
+          <div ng-include="'events.html'"></div>
         </div>
       </div>
     </div>
@@ -4310,6 +4324,7 @@
               </div>
             </div>
           </div>
+          <div ng-include="'events.html'"></div>
         </div>
       </div>
     </div>
@@ -4553,6 +4568,7 @@
               </div>
             </div>
           </div>
+          <div ng-include="'events.html'"></div>
         </div>
       </div>
     </div>
@@ -4583,3 +4599,181 @@
     </div>
   </div>
 </div>
+
+
+<script type="text/ng-template" id="events.html">
+  <div class="marginTopFivepixels"></div>
+  <div class="row">
+    <div class="col-sm-9 col-xs-9 col-md-9 col-lg-9">
+      <label
+        for="inputTextParentIdUpdate"
+        class="control-label greyText editPropertiesLabel">
+        {{'EVENTS' | translate}}
+      </label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-3 col-xs-3 col-md-3 col-lg-3">
+      <label
+        for="addNewEventType"
+        class="control-label greyText editPropertiesLabel">
+        {{'TYPE' | translate}}
+      </label>
+    </div>
+    <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
+      <ol
+        class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg-12"
+        ng-model="editControlModCtrl.newEvent.type"
+        id="addNewEventType">
+        <li
+          nya-bs-option="type in editControlModCtrl.eventTypes"
+          ng-show="type.if">
+          <a>
+            <span>
+              {{ type.name }}
+            </span>
+            <span class="glyphicon glyphicon-ok check-mark"></span>
+          </a>
+        </li>
+      </ol>
+    </div>
+    <div class="col-sm-3 col-xs-3 col-md-3 col-lg-3">
+      <button
+        class="btn btn-primary"
+        ng-click="editControlModCtrl.addNewEvent()">
+        {{'ADD' | translate}}
+      </button>
+    </div>
+  </div>
+  <div class="row hidden">
+    <div class="col-sm-3 col-xs-3 col-md-3 col-lg-3">
+      <label
+        for="addNewEventFieldGroup"
+        class="control-label greyText editPropertiesLabel">
+        {{'FIELD_GROUP' | translate}}
+      </label>
+    </div>
+    <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
+      <ol
+        class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg-12"
+        ng-model="editControlModCtrl.newEvent.fieldGroup"
+        ng-init="editControlModCtrl.populateSourceTables();"
+        id="addNewEventFieldGroup"
+        data-live-search="true"
+        title="{{'NOTHING_SELECTED' | translate}}">
+        <li nya-bs-option="table in editControlModCtrl.optionsSourceDbTables">
+          <a>
+            <span>
+              {{ table.name }}
+            </span>
+            <span class="glyphicon glyphicon-ok check-mark"></span>
+          </a>
+        </li>
+      </ol>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-3 col-xs-3 col-md-3 col-lg-3">
+      <label
+        for="addNewEventField"
+        class="control-label greyText editPropertiesLabel">
+        {{'FIELD' | translate}}
+      </label>
+    </div>
+    <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
+      <ol
+        class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg-12"
+        ng-model="editControlModCtrl.newEvent.field"
+        ng-change="editControlModCtrl.newEvent.value = ''"
+        id="addNewEventField"
+        data-live-search="true"
+        title="No value">
+        <li nya-bs-option="column in editControlModCtrl.columns">
+          <a>
+            <span>
+              {{ column.name }}
+            </span>
+            <span class="glyphicon glyphicon-ok check-mark"></span>
+          </a>
+        </li>
+      </ol>
+    </div>
+  </div>
+  <div class="row" ng-if="editControlModCtrl.newEvent.type.id == 'show_only_if'">
+    <div class="col-sm-3 col-xs-3 col-md-3 col-lg-3">
+      <label
+        for="addNewEventFieldValue"
+        class="control-label greyText editPropertiesLabel">
+        {{'VALUE' | translate}}
+      </label>
+    </div>
+    <div class="col-lg-6">
+      <div
+        ng-if="editControlModCtrl.newEvent.field.type == null">
+        {{'NO_FIELD_SELECTED' | translate}}
+      </div>
+      <input
+        type="text"
+        class="form-control"
+        ng-model="editControlModCtrl.newEvent.value"
+        ng-if="editControlModCtrl.newEvent.field.type.length > 0 && editControlModCtrl.newEvent.field.type != 'checkbox' && editControlModCtrl.newEvent.field.type != 'radio' && editControlModCtrl.newEvent.field.type != 'basicSelect' && editControlModCtrl.newEvent.field.type != 'groupedSelect'"
+        id="addNewEventFieldValue">
+      <input
+        type="checkbox"
+        class="form-control"
+        ng-model="editControlModCtrl.newEvent.value"
+        ng-if="editControlModCtrl.newEvent.field.type == 'checkbox'"
+        id="addNewEventFieldValue">
+      <input
+        type="text"
+        class="form-control"
+        ng-model="editControlModCtrl.newEvent.value"
+        ng-if="editControlModCtrl.newEvent.field.optionsSourceType != 'static' && (editControlModCtrl.newEvent.field.type == 'radio' || editControlModCtrl.newEvent.field.type == 'basicSelect' || editControlModCtrl.newEvent.field.type == 'groupedSelect')"
+        id="addNewEventFieldValue">
+      <ol
+        class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg-12"
+        ng-if="editControlModCtrl.newEvent.field.optionsSourceType == 'static' && (editControlModCtrl.newEvent.field.type == 'radio' || editControlModCtrl.newEvent.field.type == 'basicSelect' || editControlModCtrl.newEvent.field.type == 'groupedSelect')"
+        ng-model="editControlModCtrl.newEvent.value"
+        id="addNewEventFieldValue"
+        data-live-search="true"
+        title="No value">
+        <li nya-bs-option="option in editControlModCtrl.allOptions[editControlModCtrl.newEvent.field.id]">
+          <a>
+            <span>
+              {{ option.name }}
+            </span>
+            <span class="glyphicon glyphicon-ok check-mark"></span>
+          </a>
+        </li>
+      </ol>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <table class="table table-striped tabe-condensed">
+        <thead>
+          <tr>
+            <th>{{'FIELD' | translate}}</th>
+            <th>{{'VALUE' | translate}}</th>
+            <th>{{'TYPE' | translate}}</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="event in editControlModCtrl.nyaSelect.temporyConfig.eventsList">
+            <td>{{event.type.name}}</td>
+            <td>{{event.field.name}}</td>
+            <td>{{event.value.name ? event.value.name : event.value}}</td>
+            <td>
+              <button
+                class="btn btn-danger"
+                ng-click="editControlModCtrl.removeEvent($index)">
+                <i class="fa fa-trash-o"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</script>
