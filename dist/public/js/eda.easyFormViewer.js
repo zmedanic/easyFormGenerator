@@ -1699,7 +1699,7 @@ $__System.register('1d', [], function (_export) {
 		var returnValue = defaultValue;
 		var multipleTypes = ['input', 'datepicker', 'textarea', 'richEditor', 'upload', 'basicMultiSelect', 'groupedMultiSelect'];
 
-		if (multipleTypes.indexOf(type) !== -1 && (typeof defaultValue[0] === "undefined" || typeof defaultValue == 'string' && defaultValue != '')) {
+		if (multipleTypes.indexOf(type) !== -1 && (defaultValue === null || typeof defaultValue[0] === "undefined" || typeof defaultValue == 'string' && defaultValue != '')) {
 			returnValue = [];
 			returnValue.push(defaultValue);
 		}

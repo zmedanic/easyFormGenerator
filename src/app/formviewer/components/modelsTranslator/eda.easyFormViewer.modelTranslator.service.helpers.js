@@ -886,7 +886,7 @@ function defaultValueForMultiFields(type, defaultValue) {
 	let returnValue = defaultValue;
 	let multipleTypes = ['input', 'datepicker', 'textarea', 'richEditor', 'upload', 'basicMultiSelect', 'groupedMultiSelect'];
 
-	if (multipleTypes.indexOf(type) !== -1 && (typeof defaultValue[0] === "undefined" || (typeof defaultValue == 'string' && defaultValue != ''))) {
+	if (multipleTypes.indexOf(type) !== -1 && (defaultValue === null || typeof defaultValue[0] === "undefined" || (typeof defaultValue == 'string' && defaultValue != ''))) {
 		returnValue = [];
 		returnValue.push(defaultValue);
 	}
