@@ -123,6 +123,7 @@ const basicSelectTemplate = `
             ({{option.description}})
           </span>
         </span>
+        <span class="glyphicon glyphicon-ok check-mark"></span>
       </a>
     </li>
   </ol>`;
@@ -153,6 +154,7 @@ const basicMultiSelectTemplate = `
             ({{option.description}})
           </span>
         </span>
+        <span class="glyphicon glyphicon-ok check-mark"></span>
       </a>
     </li>
   </ol>`;
