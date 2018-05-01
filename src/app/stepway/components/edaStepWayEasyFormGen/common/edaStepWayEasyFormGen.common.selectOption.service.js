@@ -326,13 +326,18 @@ class selectOptionManage {
   	let details = '';
 
 		switch (newEvent.type.id) {
+			case 'unique':
+				valid = valid && newEvent.field && newEvent.field.id != null;
+				details = this.$translate.instant('FIELD_NOT_VALID')
+				break;
+
 			case 'increment':
-				valid = valid && typeof newEvent.field != "undefined" && newEvent.field.id != null;
+				valid = valid && newEvent.field && newEvent.field.id != null;
 				details = this.$translate.instant('FIELD_NOT_VALID')
 				break;
 
 			case 'show_only_if':
-				valid = valid && typeof newEvent.field != "undefined" && newEvent.field.id != null;
+				valid = valid && newEvent.field && newEvent.field.id != null;
 				details = this.$translate.instant('FIELD_NOT_VALID')
 				break;
 

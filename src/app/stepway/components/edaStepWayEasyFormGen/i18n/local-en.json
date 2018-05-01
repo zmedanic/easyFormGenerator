@@ -93,6 +93,7 @@
     "MIN_VALUE"           : "Minimum value",
     "MAX_VALUE"           : "Maximum value",
     "INCREMENTAL"         : "Incremental value",
+    "EVENT_DEPENDENCY"    : "Dependency is specified at events section",
     "MAX_LENGTH"          : "Maximum length",
     "CURRENT_YEAR"        : "Current year as default value",
     "CURRENT_DATE"        : "Current date as default value",

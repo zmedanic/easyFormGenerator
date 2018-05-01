@@ -608,7 +608,11 @@ class editControlModalController {
 		}, {
 			name: this.$translate.instant('INCREMENT'),
 			id: 'increment',
-			if: this.nyaSelect.selectedControl == 'Number' && this.nyaSelect.temporyConfig.numberType == 'integer',
+			if: this.nyaSelect.selectedControl == 'Number' && this.nyaSelect.temporyConfig.numberType == 'integer' && this.nyaSelect.temporyConfig.incrementalOption,
+		}, {
+			name: this.$translate.instant('UNIQUE'),
+			id: 'unique',
+			if: this.nyaSelect.temporyConfig.formlyUnique,
 		}];
 
 		this.newEvent = {

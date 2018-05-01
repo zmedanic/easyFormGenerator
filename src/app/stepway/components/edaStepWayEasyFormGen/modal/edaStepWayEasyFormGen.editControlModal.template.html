@@ -316,6 +316,33 @@
           <div class="row">
             <div class="form-group">
               <label
+                for="inputTextParentIdUpdate"
+                class="col-lg-3 control-label greyText editPropertiesLabel">
+                {{'PARENT_ID' | translate}} :
+              </label>
+              <div class="col-lg-9">
+                <ol
+                  class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
+                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.parentId"
+                  id="inputTextParentIdUpdate"
+                  data-live-search="true"
+                  title="No value">
+                  <li nya-bs-option="column in editControlModCtrl.columns">
+                    <a>
+                      <span>
+                        {{ column.name }}
+                      </span>
+                      <span class="glyphicon glyphicon-ok check-mark"></span>
+                    </a>
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <div class="marginTopFivepixels"></div>
+          <div class="row">
+            <div class="form-group">
+              <label
                 for="inputTextLabelUpdate"
                 class="col-lg-3 control-label greyText editPropertiesLabel">
                 {{'LABEL_TEXT' | translate}} :
@@ -396,7 +423,9 @@
                 <input
                   type="checkbox"
                   ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyUnique"
+                  ng-change="editControlModCtrl.resetEventTypes(true)"
                   id="inputTextUniqueUpdate">
+                <em>{{'EVENT_DEPENDENCY' | translate}}</em>
               </div>
             </div>
           </div>
@@ -513,33 +542,6 @@
                   ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyDesciption"
                   id="inputTextDescriptionUpdate"
                   placeholder="{{'ADDEDIT_DESCRIPTION' | translate}}">
-              </div>
-            </div>
-          </div>
-          <div class="marginTopFivepixels"></div>
-          <div class="row">
-            <div class="form-group">
-              <label
-                for="inputTextParentIdUpdate"
-                class="col-lg-3 control-label greyText editPropertiesLabel">
-                {{'PARENT_ID' | translate}} :
-              </label>
-              <div class="col-lg-9">
-                <ol
-                  class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
-                  ng-model="editControlModCtrl.nyaSelect.temporyConfig.parentId"
-                  id="inputTextParentIdUpdate"
-                  data-live-search="true"
-                  title="No value">
-                  <li nya-bs-option="column in editControlModCtrl.columns">
-                    <a>
-                      <span>
-                        {{ column.name }}
-                      </span>
-                      <span class="glyphicon glyphicon-ok check-mark"></span>
-                    </a>
-                  </li>
-                </ol>
               </div>
             </div>
           </div>
@@ -738,7 +740,9 @@
                 <input
                   type="checkbox"
                   ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyUnique"
+                  ng-change="editControlModCtrl.resetEventTypes(true)"
                   id="inputNumbeUniqueUpdate">
+                <em>{{'EVENT_DEPENDENCY' | translate}}</em>
               </div>
             </div>
           </div>
@@ -784,9 +788,10 @@
                     <div class="checkboxCssCorrection">&nbsp;</div>
                     <input
                       type="checkbox"
-                      ng-change="editControlModCtrl.nyaSelect.temporyConfig.allowMultiple = 1"
+                      ng-change="editControlModCtrl.nyaSelect.temporyConfig.allowMultiple = 1;editControlModCtrl.resetEventTypes(true)"
                       ng-model="editControlModCtrl.nyaSelect.temporyConfig.incrementalOption"
                       id="inputNumberIncrementalUpdate">
+                      <em>{{'EVENT_DEPENDENCY' | translate}}</em>
                   </div>
                 </div>
               </div>
@@ -814,7 +819,7 @@
           <div class="marginTopFivepixels"></div>
           <div
             class="row"
-            ng-if="editControlModCtrl.nyaSelect.temporyConfig.currentYearOption === false">
+            ng-if="!editControlModCtrl.nyaSelect.temporyConfig.currentYearOption">
             <div class="form-group">
               <label
                 for="inputNumberDefaultValueUpdate"
@@ -1146,7 +1151,9 @@
                 <input
                   type="checkbox"
                   ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyUnique"
+                  ng-change="editControlModCtrl.resetEventTypes(true)"
                   id="inputPasswordUniqueUpdate">
+                <em>{{'EVENT_DEPENDENCY' | translate}}</em>
               </div>
             </div>
           </div>
@@ -1445,7 +1452,9 @@
                 <input
                   type="checkbox"
                   ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyUnique"
+                  ng-change="editControlModCtrl.resetEventTypes(true)"
                   id="inputEmailUniqueUpdate">
+                <em>{{'EVENT_DEPENDENCY' | translate}}</em>
               </div>
             </div>
           </div>
@@ -1736,7 +1745,9 @@
                 <input
                   type="checkbox"
                   ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyUnique"
+                  ng-change="editControlModCtrl.resetEventTypes(true)"
                   id="inputDateUniqueUpdate">
+                <em>{{'EVENT_DEPENDENCY' | translate}}</em>
               </div>
             </div>
           </div>
@@ -4601,6 +4612,7 @@
 </div>
 
 
+<!-- Events template -->
 <script type="text/ng-template" id="events.html">
   <div class="marginTopFivepixels"></div>
   <div class="row">
