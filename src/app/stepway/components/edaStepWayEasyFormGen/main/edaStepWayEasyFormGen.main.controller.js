@@ -121,7 +121,7 @@ class edaStepWayEasyFormGenController {
 				};
 				return obj;
 			},
-			maxItems: 10,
+			maxItems: 30,
 		}
 
 		//console.info(`main controller : init nyaSelect model`);

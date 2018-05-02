@@ -621,8 +621,17 @@ class editControlModalController {
 			value: null
 		};
 
-		if (resetEvents) {
-			this.nyaSelect.temporyConfig.eventsList = [];
+		if (typeof resetEvents == 'object' && resetEvents.length > 0) {
+			let offset = 0;
+			let events = angular.copy(this.nyaSelect.temporyConfig.eventsList);
+
+			// Using offset since array is changing on fly
+			angular.forEach(events, (event, index) => {
+				if (event.type && event.type.id && resetEvents.indexOf(event.type.id) >= 0) {
+					this.removeEvent(index - offset);
+					offset++;
+				}
+			});
 		}
 	}
 }

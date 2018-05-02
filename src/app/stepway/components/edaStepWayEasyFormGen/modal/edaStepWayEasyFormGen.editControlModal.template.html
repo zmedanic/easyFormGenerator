@@ -17,7 +17,7 @@
       <ol
         class="nya-bs-select col-xs-12 col-sm-12 col-md-12 col-lg-12"
         ng-model="editControlModCtrl.modelNyaSelect"
-        ng-change="editControlModCtrl.resetEventTypes(true)"
+        ng-change="editControlModCtrl.resetEventTypes(['show_only_if', 'increment', 'unique'])"
         data-live-search="false">
         <li nya-bs-option="option in editControlModCtrl.nyaSelectFiltered.controls group by option.group">
           <span class="dropdown-header greyText">
@@ -423,7 +423,7 @@
                 <input
                   type="checkbox"
                   ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyUnique"
-                  ng-change="editControlModCtrl.resetEventTypes(true)"
+                  ng-change="editControlModCtrl.resetEventTypes(['unique'])"
                   id="inputTextUniqueUpdate">
                 <em>{{'EVENT_DEPENDENCY' | translate}}</em>
               </div>
@@ -740,7 +740,7 @@
                 <input
                   type="checkbox"
                   ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyUnique"
-                  ng-change="editControlModCtrl.resetEventTypes(true)"
+                  ng-change="editControlModCtrl.resetEventTypes(['unique'])"
                   id="inputNumbeUniqueUpdate">
                 <em>{{'EVENT_DEPENDENCY' | translate}}</em>
               </div>
@@ -758,7 +758,7 @@
                 <ol
                   class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg12"
                   ng-model="editControlModCtrl.nyaSelect.temporyConfig.numberType"
-                  ng-change="editControlModCtrl.nyaSelect.temporyConfig.incrementalOption=false;editControlModCtrl.nyaSelect.temporyConfig.currentYearOption=false;editControlModCtrl.resetEventTypes(true)"
+                  ng-change="editControlModCtrl.nyaSelect.temporyConfig.incrementalOption=false;editControlModCtrl.nyaSelect.temporyConfig.currentYearOption=false;editControlModCtrl.resetEventTypes(['increment'])"
                   id="inputNumberTypeUpdate"
                   title="No value">
                   <li nya-bs-option="type in editControlModCtrl.$modalProxy.easyFormSteWayConfig.getNumberTypesList()">
@@ -788,7 +788,7 @@
                     <div class="checkboxCssCorrection">&nbsp;</div>
                     <input
                       type="checkbox"
-                      ng-change="editControlModCtrl.nyaSelect.temporyConfig.allowMultiple = 1;editControlModCtrl.resetEventTypes(true)"
+                      ng-change="editControlModCtrl.nyaSelect.temporyConfig.allowMultiple = 1;editControlModCtrl.resetEventTypes(['increment'])"
                       ng-model="editControlModCtrl.nyaSelect.temporyConfig.incrementalOption"
                       id="inputNumberIncrementalUpdate">
                       <em>{{'EVENT_DEPENDENCY' | translate}}</em>
@@ -1151,7 +1151,7 @@
                 <input
                   type="checkbox"
                   ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyUnique"
-                  ng-change="editControlModCtrl.resetEventTypes(true)"
+                  ng-change="editControlModCtrl.resetEventTypes(['unique'])"
                   id="inputPasswordUniqueUpdate">
                 <em>{{'EVENT_DEPENDENCY' | translate}}</em>
               </div>
@@ -1452,7 +1452,7 @@
                 <input
                   type="checkbox"
                   ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyUnique"
-                  ng-change="editControlModCtrl.resetEventTypes(true)"
+                  ng-change="editControlModCtrl.resetEventTypes(['unique'])"
                   id="inputEmailUniqueUpdate">
                 <em>{{'EVENT_DEPENDENCY' | translate}}</em>
               </div>
@@ -1745,7 +1745,7 @@
                 <input
                   type="checkbox"
                   ng-model="editControlModCtrl.nyaSelect.temporyConfig.formlyUnique"
-                  ng-change="editControlModCtrl.resetEventTypes(true)"
+                  ng-change="editControlModCtrl.resetEventTypes(['unique'])"
                   id="inputDateUniqueUpdate">
                 <em>{{'EVENT_DEPENDENCY' | translate}}</em>
               </div>

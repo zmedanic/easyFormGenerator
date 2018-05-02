@@ -312,7 +312,7 @@ class selectOptionManage {
 			selectObj.splice(AtIndex, 1);
 
 			fullResponse.resultFlag = true;
-			fullResponse.details= '';
+			fullResponse.details = '';
 			return fullResponse;
 		}else{
 			fullResponse.resultFlag = false;
