@@ -17,7 +17,7 @@
       <ol
         class="nya-bs-select col-xs-12 col-sm-12 col-md-12 col-lg-12"
         ng-model="editControlModCtrl.modelNyaSelect"
-        ng-change="editControlModCtrl.resetEventTypes(['show_only_if', 'increment', 'unique'])"
+        ng-change="editControlModCtrl.resetEventTypes(['show_only_if', 'increment', 'unique', 'refresh_db_select'])"
         data-live-search="false">
         <li nya-bs-option="option in editControlModCtrl.nyaSelectFiltered.controls group by option.group">
           <span class="dropdown-header greyText">
@@ -2512,6 +2512,7 @@
                         type="radio"
                         id="optionsSourceTypeRadioOption"
                         value="static"
+                        ng-change="editControlModCtrl.resetEventTypes(['refresh_db_select'])"
                         ng-model="editControlModCtrl.nyaSelect.temporyConfig.optionsSourceType">
                       {{'OPTIONS_SOURCE_STATIC' | translate}} :
                     </label>
@@ -2524,6 +2525,7 @@
                         type="radio"
                         id="optionsSourceTypeRadioOption"
                         value="db"
+                        ng-change="editControlModCtrl.resetEventTypes(['refresh_db_select'])"
                         ng-model="editControlModCtrl.nyaSelect.temporyConfig.optionsSourceType">
                       {{'OPTIONS_SOURCE_DB' | translate}} :
                     </label>
@@ -3232,6 +3234,7 @@
                         type="radio"
                         id="optionsSourceTypeBasicSelectOption"
                         value="static"
+                        ng-change="editControlModCtrl.resetEventTypes(['refresh_db_select'])"
                         ng-model="editControlModCtrl.nyaSelect.temporyConfig.optionsSourceType">
                       {{'OPTIONS_SOURCE_STATIC' | translate}} :
                     </label>
@@ -3244,6 +3247,7 @@
                         type="radio"
                         id="optionsSourceTypeBasicSelectOption"
                         value="db"
+                        ng-change="editControlModCtrl.resetEventTypes(['refresh_db_select'])"
                         ng-model="editControlModCtrl.nyaSelect.temporyConfig.optionsSourceType">
                       {{'OPTIONS_SOURCE_DB' | translate}} :
                     </label>
@@ -3822,6 +3826,7 @@
                         type="radio"
                         id="optionsSourceTypeGroupedSelectOption"
                         value="static"
+                        ng-change="editControlModCtrl.resetEventTypes(['refresh_db_select'])"
                         ng-model="editControlModCtrl.nyaSelect.temporyConfig.optionsSourceType">
                       {{'OPTIONS_SOURCE_STATIC' | translate}} :
                     </label>
@@ -3834,6 +3839,7 @@
                         type="radio"
                         id="optionsSourceTypeGroupedSelectOption"
                         value="db"
+                        ng-change="editControlModCtrl.resetEventTypes(['refresh_db_select'])"
                         ng-model="editControlModCtrl.nyaSelect.temporyConfig.optionsSourceType">
                       {{'OPTIONS_SOURCE_DB' | translate}} :
                     </label>

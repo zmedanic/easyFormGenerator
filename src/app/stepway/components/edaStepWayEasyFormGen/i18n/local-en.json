@@ -134,6 +134,7 @@
     "DESCRIBE_THIS_FORM"  : "Describe this form",
     "INCREMENT"           : "Increment",
     "SHOW_ONLY_IF"        : "Show only if",
+    "REFRESH_DB_SELECT"   : "Refresh list from DB",
     "FIELD_NOT_VALID"     : "Field is not valid",
     "VALUE_NOT_VALID"     : "Value is not valid",
     "ALREADY_EXISTS"      : "Already exists",

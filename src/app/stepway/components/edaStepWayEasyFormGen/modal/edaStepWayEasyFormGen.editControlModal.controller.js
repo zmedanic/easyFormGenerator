@@ -613,6 +613,10 @@ class editControlModalController {
 			name: this.$translate.instant('UNIQUE'),
 			id: 'unique',
 			if: this.nyaSelect.temporyConfig.formlyUnique,
+		}, {
+			name: this.$translate.instant('REFRESH_DB_SELECT'),
+			id: 'refresh_db_select',
+			if: this.nyaSelect.temporyConfig.optionsSourceType && this.nyaSelect.temporyConfig.optionsSourceType == 'db',
 		}];
 
 		this.newEvent = {

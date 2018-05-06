@@ -326,7 +326,7 @@ class selectOptionManage {
   	let details = '';
 
 		switch (newEvent.type.id) {
-			case 'unique':
+			case 'show_only_if':
 				valid = valid && newEvent.field && newEvent.field.id != null;
 				details = this.$translate.instant('FIELD_NOT_VALID')
 				break;
@@ -336,7 +336,12 @@ class selectOptionManage {
 				details = this.$translate.instant('FIELD_NOT_VALID')
 				break;
 
-			case 'show_only_if':
+			case 'unique':
+				valid = valid && newEvent.field && newEvent.field.id != null;
+				details = this.$translate.instant('FIELD_NOT_VALID')
+				break;
+
+			case 'refresh_db_select':
 				valid = valid && newEvent.field && newEvent.field.id != null;
 				details = this.$translate.instant('FIELD_NOT_VALID')
 				break;
