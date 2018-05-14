@@ -1130,17 +1130,17 @@ $__System.registerDynamic("d", [], true, function ($__require, exports, module) 
         "SELECT_CTRL_IN_LIST": "Select a control in the list below",
         "COL_WILL_BE_BLANK": "Column will be blank",
 
-        "EDIT_PROPERTIES": "Edit properties",
+        "EDIT_PROPERTIES": "Uredi svojstva",
 
-        "HEADER_TITLE": "Header title",
+        "HEADER_TITLE": "Naslov",
         "ADD_EDIT_HEADER_TITLE_HERE": "Add / edit header title here",
-        "HEADER_TEXT": "Header text",
-        "ADD_EDIT_HEADER_HERE": "Add / edit header text here",
+        "HEADER_TEXT": "Tekst naslova",
+        "ADD_EDIT_HEADER_HERE": "Uredi tekst naslova",
 
-        "SUBTITLE_TITLE": "Subtitle title",
+        "SUBTITLE_TITLE": "Podnaslov",
         "ADD_EDIT_SUBTIL_TITLE_HERE": "Add / edit subtitle title here",
-        "SUBTITLE_TEXT": "Subtitle text",
-        "ADD_EDIT_SUBTIL_HERE": "Add / edit subtitle text here",
+        "SUBTITLE_TEXT": "Tekst podnaslova",
+        "ADD_EDIT_SUBTIL_HERE": "Uredi tekst podnaslova",
 
         "LABEL_TEXT": "Label text",
         "ADD_EDIT_LABEL_HERE": "Add / edit control label here",
@@ -1148,34 +1148,34 @@ $__System.registerDynamic("d", [], true, function ($__require, exports, module) 
         "PLACEHOLDER": "Placeholder",
         "ADD_EDIT_PLACEHOLD": "Add / edit placeholder text here",
 
-        "REQUIRED": "Required",
+        "REQUIRED": "Obavezan",
 
-        "DESCRIPTION": "Description",
-        "ADDEDIT_DESCRIPTION": "Add / edit description here",
+        "DESCRIPTION": "Opis",
+        "ADDEDIT_DESCRIPTION": "Uredi opis",
 
         "DATE_FORMAT": "Date format",
 
-        "ADD_NEW_RADIO": "Add new radio",
-        "ADD_RADIO_PLACEHOLD": "add new radio",
-        "EDIT_REMOVE_RADIO": "Edit/Remove radio",
-        "NO_RADIO_ADD_NEW": "no radio : add new radio values",
+        "ADD_NEW_RADIO": "Dodaj novu radio opciju",
+        "ADD_RADIO_PLACEHOLD": "Dodaj novu radio opciju",
+        "EDIT_REMOVE_RADIO": "Uredi/izbriši radio opciju",
+        "NO_RADIO_ADD_NEW": "Nema radio gumba. Dodaj novu",
 
         "SEARCH_4_OPTION": "search for option",
 
-        "ADD": "add",
+        "ADD": "dodaj",
         "ORDER": "order",
         "OPTION": "option",
         "GROUP": "group",
 
-        "ADD_NEW_OPTIONS": "Add new options",
-        "ADD_A_NEW_OPTION": "add new option",
-        "EDIT_REMOVE_OPTIONS": "Edit/Remove options",
-        "NO_OPTION_ADD_NEW": "no option : add new options",
+        "ADD_NEW_OPTIONS": "Dodaj nove opcije",
+        "ADD_A_NEW_OPTION": "Dodaj novu opciju",
+        "EDIT_REMOVE_OPTIONS": "Uredi/izbriši opciju",
+        "NO_OPTION_ADD_NEW": "Nema opcija. Dodaj novu",
 
-        "ADD_NEW_GROUPS": "Add new groups",
-        "ADD_A_NEW_GROUP": "Add new group",
-        "EDIT_GROUPS_OPTIONS": "Edit/Remove options/groups",
-        "NO_GROUP_ADD_NEW": "add new groups",
+        "ADD_NEW_GROUPS": "Dodaj nove grupe",
+        "ADD_A_NEW_GROUP": "Dodaj novu grupu",
+        "EDIT_GROUPS_OPTIONS": "Uredi/dodaj opcije grupe",
+        "NO_GROUP_ADD_NEW": "Nema grupa. Dodaj novu",
 
         "OK": "U redu",
         "CANCEL": "Odbaci",
