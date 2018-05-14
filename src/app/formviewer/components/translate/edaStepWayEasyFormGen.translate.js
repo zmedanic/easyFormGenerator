@@ -4,6 +4,7 @@ import localEs from '../i18n/local-es.json!json';
 import localDe from '../i18n/local-de.json!json';
 import localTr from '../i18n/local-tr.json!json';
 import localJp from '../i18n/local-jp.json!json';
+import localJp from '../i18n/local-hr.json!json';
 
 const TRANSLATE_CONFIG = 'easyFormTranslateConfig';
 
@@ -13,7 +14,8 @@ function translateConfig($translateProvider){
 	$translateProvider.translations('es', localEs);
 	$translateProvider.translations('de', localDe);
 	$translateProvider.translations('tr', localTr);
-	$translateProvider.translations('jp', localJp);
+  $translateProvider.translations('jp', localJp);
+  $translateProvider.translations('hr', localHr);
 }
 
 translateConfig.$inject = ['$translateProvider'];
