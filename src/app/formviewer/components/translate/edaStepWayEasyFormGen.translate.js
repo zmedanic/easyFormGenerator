@@ -4,7 +4,7 @@ import localEs from '../i18n/local-es.json!json';
 import localDe from '../i18n/local-de.json!json';
 import localTr from '../i18n/local-tr.json!json';
 import localJp from '../i18n/local-jp.json!json';
-import localJp from '../i18n/local-hr.json!json';
+import localHr from '../i18n/local-hr.json!json';
 
 const TRANSLATE_CONFIG = 'easyFormTranslateConfig';
 

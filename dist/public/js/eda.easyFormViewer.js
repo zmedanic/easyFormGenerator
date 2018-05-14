@@ -1085,10 +1085,139 @@ $__System.registerDynamic("c", [], true, function ($__require, exports, module) 
     };
     return module.exports;
 });
-$__System.register('d', ['7', '8', '9', 'a', 'b', 'c'], function (_export) {
+$__System.registerDynamic("d", [], true, function ($__require, exports, module) {
+    var define,
+        global = this || self,
+        GLOBAL = global;
+    module.exports = {
+        "SAY_HI": "Pozdrav",
+
+        "EDIT_TAB": "Promijeni / Kreiraj",
+        "PREVIEW_TAB": "Pregledaj",
+
+        "WIZARD_LINES": "linije",
+        "WIZARD_LAYOUT": "pogled",
+        "WIZARD_CONTROLS": "kontrole",
+        "WIZARD_SAVE": "snimi",
+
+        "PAGER_PREVIOUS": "Prethodni",
+        "PAGER_NEXT": "Slijedeći",
+
+        "COMMAND_PANEL": "Komanda",
+        "VISUAL_PANEL": "Izgled",
+
+        "ADD_NEW_LINE": "Dodaj novu liniju",
+
+        "SELECTED_LINE": "Odabrana linija",
+
+        "NUMBER_OF_COLUMN": "broj stupaca",
+        "APPLY_CTRL2COL": "Apply controls to columns",
+
+        "CLIC_TAP_2_OPEN": "Click / Tap on column to open control selection",
+        "SELECT_2_APPLY_COL": "Select desired control and valid to apply it to column",
+
+        "CUSTOM_SUBMIT_BTN": "Customize Submit button Text",
+        "CUSTOM_CANCEL_BTN": "Customize Cancel button Text",
+        "NAME_THIS_FORM": "Name this form",
+        "SAVE_THIS_FORM": "snimi formu",
+
+        "FINAL_STEP": "Final Step : form preview",
+
+        "DATA_MODEL": "DATA MODEL",
+        "FIELDS_MODEL": "FIELDS MODEL (ready to save to database one)",
+
+        "SELECT_A_CTRL": "Select a control",
+        "SELECT_CTRL_IN_LIST": "Select a control in the list below",
+        "COL_WILL_BE_BLANK": "Column will be blank",
+
+        "EDIT_PROPERTIES": "Edit properties",
+
+        "HEADER_TITLE": "Header title",
+        "ADD_EDIT_HEADER_TITLE_HERE": "Add / edit header title here",
+        "HEADER_TEXT": "Header text",
+        "ADD_EDIT_HEADER_HERE": "Add / edit header text here",
+
+        "SUBTITLE_TITLE": "Subtitle title",
+        "ADD_EDIT_SUBTIL_TITLE_HERE": "Add / edit subtitle title here",
+        "SUBTITLE_TEXT": "Subtitle text",
+        "ADD_EDIT_SUBTIL_HERE": "Add / edit subtitle text here",
+
+        "LABEL_TEXT": "Label text",
+        "ADD_EDIT_LABEL_HERE": "Add / edit control label here",
+
+        "PLACEHOLDER": "Placeholder",
+        "ADD_EDIT_PLACEHOLD": "Add / edit placeholder text here",
+
+        "REQUIRED": "Required",
+
+        "DESCRIPTION": "Description",
+        "ADDEDIT_DESCRIPTION": "Add / edit description here",
+
+        "DATE_FORMAT": "Date format",
+
+        "ADD_NEW_RADIO": "Add new radio",
+        "ADD_RADIO_PLACEHOLD": "add new radio",
+        "EDIT_REMOVE_RADIO": "Edit/Remove radio",
+        "NO_RADIO_ADD_NEW": "no radio : add new radio values",
+
+        "SEARCH_4_OPTION": "search for option",
+
+        "ADD": "add",
+        "ORDER": "order",
+        "OPTION": "option",
+        "GROUP": "group",
+
+        "ADD_NEW_OPTIONS": "Add new options",
+        "ADD_A_NEW_OPTION": "add new option",
+        "EDIT_REMOVE_OPTIONS": "Edit/Remove options",
+        "NO_OPTION_ADD_NEW": "no option : add new options",
+
+        "ADD_NEW_GROUPS": "Add new groups",
+        "ADD_A_NEW_GROUP": "Add new group",
+        "EDIT_GROUPS_OPTIONS": "Edit/Remove options/groups",
+        "NO_GROUP_ADD_NEW": "add new groups",
+
+        "OK": "U redu",
+        "CANCEL": "Odbaci",
+
+        "MIN_VALUE": "Minimalna vrijednost",
+        "MAX_VALUE": "Maksimalna vrijednost",
+        "INCREMENTAL": "Incremental value",
+        "MAX_LENGTH": "Maksimalna duljina",
+        "CURRENT_YEAR": "Predložena vrijednost je trenutna godina",
+        "CURRENT_DATE": "Predložena vrijenost je trenutni datum",
+        "PARENT_ID": "Ovisno o polju",
+        "LABEL_TEXT_SHORT": "Kratak opis",
+        "UNIQUE": "Jedinstven",
+        "DEFAULT_VALUE": "Predložena vrijednost",
+        "START_VALUE": "Početna vrijednost",
+        "DISPLAY_ADD": "Prikaži na formi upisa",
+        "DISPLAY_EDIT": "Prikaži na formi uređivanja",
+        "ALLOW_MULTIPLE": "Broj dopuštenih vrijednosti",
+        "NOTHING_SELECTED": "Ništa odabrano",
+        "NO_VALUE": "Nema vrijednosti",
+        "ADD_DEFAUT_VALUE_HERE": "Dodaj predloženu vrijednost",
+        "ADD_EDIT_SHORT_LABEL_HERE": "Dodaj label",
+        "NUMBER_TYPE": "Vrsta broja",
+        "ALLOW_EMPTY_OPTION": "Dozvoli praznu vrijednost",
+        "RESET_SELECTION": "Resetiraj odabir",
+        "FIELD": "Polje",
+        "VALIDATION_REQUIRED": " je obavezno",
+        "VALIDATION_MIN_MAX": " je ograničen na vrijednosti ({{min}} - {{max}})",
+        "VALIDATION_YEAR": " godina nije valjana. Moguć raspon ({{min}} - {{max}})",
+        "VALIDATION_EMAIL": " nije valjan email",
+        "VALIDATION_MAXLENGTH": " vrijednost je predugačka. Podržano najviše {{max}} znakova",
+        "VALIDATION_DATE_INVALID": " sadrži neveljan datum",
+        "VALIDATION_UNIQUE": " nije jedinstven",
+        "REMOVE": "Izbriši",
+        "ADD_NEW": "Dodaj novi"
+    };
+    return module.exports;
+});
+$__System.register('e', ['7', '8', '9', 'a', 'b', 'c', 'd'], function (_export) {
 	'use strict';
 
-	var localEn, localFr, localEs, localDe, localTr, localJp, TRANSLATE_CONFIG;
+	var localEn, localFr, localEs, localDe, localTr, localJp, localHr, TRANSLATE_CONFIG;
 
 	function translateConfig($translateProvider) {
 		$translateProvider.translations('en', localEn);
@@ -1097,6 +1226,7 @@ $__System.register('d', ['7', '8', '9', 'a', 'b', 'c'], function (_export) {
 		$translateProvider.translations('de', localDe);
 		$translateProvider.translations('tr', localTr);
 		$translateProvider.translations('jp', localJp);
+		$translateProvider.translations('hr', localHr);
 	}
 
 	return {
@@ -1112,6 +1242,8 @@ $__System.register('d', ['7', '8', '9', 'a', 'b', 'c'], function (_export) {
 			localTr = _b['default'];
 		}, function (_c) {
 			localJp = _c['default'];
+		}, function (_d) {
+			localHr = _d['default'];
 		}],
 		execute: function () {
 			TRANSLATE_CONFIG = 'easyFormTranslateConfig';
@@ -1123,15 +1255,15 @@ $__System.register('d', ['7', '8', '9', 'a', 'b', 'c'], function (_export) {
 		}
 	};
 });
-$__System.register('e', ['d'], function (_export) {
+$__System.register('f', ['e'], function (_export) {
 								/* global angular */
 								'use strict';
 
 								var translateConfig, TRANSLATE_CONFIG, TRANSLATE_MODULE;
 								return {
-																setters: [function (_d) {
-																								translateConfig = _d['default'];
-																								TRANSLATE_CONFIG = _d.TRANSLATE_CONFIG;
+																setters: [function (_e) {
+																								translateConfig = _e['default'];
+																								TRANSLATE_CONFIG = _e.TRANSLATE_CONFIG;
 																}],
 																execute: function () {
 																								TRANSLATE_MODULE = 'eda.easyFormGenerator.translate';
@@ -1140,7 +1272,7 @@ $__System.register('e', ['d'], function (_export) {
 																}
 								};
 });
-$__System.register('f', [], function (_export) {
+$__System.register('10', [], function (_export) {
   'use strict';
 
   var TEXTANGULAR_CONFIG;
@@ -1166,15 +1298,15 @@ $__System.register('f', [], function (_export) {
     }
   };
 });
-$__System.register('10', ['f'], function (_export) {
+$__System.register('11', ['10'], function (_export) {
 								/* global angular */
 								'use strict';
 
 								var textAngularConfig, TEXTANGULAR_CONFIG, TEXTANGULAR_MODULE;
 								return {
-																setters: [function (_f) {
-																								textAngularConfig = _f['default'];
-																								TEXTANGULAR_CONFIG = _f.TEXTANGULAR_CONFIG;
+																setters: [function (_) {
+																								textAngularConfig = _['default'];
+																								TEXTANGULAR_CONFIG = _.TEXTANGULAR_CONFIG;
 																}],
 																execute: function () {
 																								TEXTANGULAR_MODULE = 'eda.easyFormGenerator.textAngular';
@@ -1183,14 +1315,14 @@ $__System.register('10', ['f'], function (_export) {
 																}
 								};
 });
-$__System.registerDynamic("11", [], true, function ($__require, exports, module) {
+$__System.registerDynamic("12", [], true, function ($__require, exports, module) {
   var define,
       global = this || self,
       GLOBAL = global;
   module.exports = "<div class=\"easyFormViewer\">\n\t\n\t<form \tng-submit=\"vm.onSubmit()\"\n\t\t\t\t\tname=\"vm.form\"> \n\t\t<formly-form \tmodel=\"vm.model\" \n\t\t\t\t\t\t\t\t\tfields=\"vm.fields\" \n\t\t\t\t\t\t\t\t\tform=\"vm.form\"> \n\t\t\t\n\t\t\t<div class=\"pull-right\">\n\t\t\t\t<button type=\"submit\" class=\"btn btn-primary\" \n\t\t\t\t\t\t\t\tng-disabled=\"vm.form.$invalid\"\n\t\t\t\t\t\t\t\tng-click=\"vm.edaSubmitThisDataModel();\">{{vm.submitText}}</button>\n\t\t\t\t<button type=\"button\" class=\"btn btn-primary\" \n\t\t\t\t\t\t\t\tng-click=\"vm.edaCancelEvent();\">{{vm.cancelText}}</button>\t\t\t\t\n\t\t\t</div>\t\t\t\t\t\t\n\n\t\t</formly-form> \n\t</form>\n\n</div>";
   return module.exports;
 });
-$__System.register('12', [], function (_export) {
+$__System.register('13', [], function (_export) {
 	/* global angular */
 
 	'use strict';
@@ -1243,7 +1375,7 @@ $__System.register('12', [], function (_export) {
 		}
 	};
 });
-$__System.register('13', ['11', '12', '14'], function (_export) {
+$__System.register('14', ['12', '13', '15'], function (_export) {
 	/* global angular */
 	'use strict';
 
@@ -1412,7 +1544,7 @@ $__System.register('13', ['11', '12', '14'], function (_export) {
 		}
 	};
 });
-$__System.register('14', ['15', '16'], function (_export) {
+$__System.register('15', ['16', '17'], function (_export) {
 	var _createClass, _classCallCheck, EASY_FORM_VIEWER_CONTROLLER, EASY_FORM_VIEWER_CONTROLLERAS, edaEasyFormViewerController;
 
 	return {
@@ -1469,7 +1601,7 @@ $__System.register('14', ['15', '16'], function (_export) {
 		}
 	};
 });
-$__System.register('17', [], function (_export) {
+$__System.register('18', [], function (_export) {
 	/* global angular */
 	'use strict';
 
@@ -1548,7 +1680,7 @@ $__System.register('17', [], function (_export) {
 		}
 	};
 });
-$__System.register('18', ['13', '14', '17'], function (_export) {
+$__System.register('19', ['14', '15', '18'], function (_export) {
 	/* global angular */
 	'use strict';
 
@@ -1571,7 +1703,7 @@ $__System.register('18', ['13', '14', '17'], function (_export) {
 		}
 	};
 });
-$__System.register('19', [], function (_export) {
+$__System.register('1a', [], function (_export) {
 	'use strict';
 
 	var CORE_MODULES, FORMVIEWER_CORE_MODULE_NAME;
@@ -1585,7 +1717,7 @@ $__System.register('19', [], function (_export) {
 		}
 	};
 });
-$__System.registerDynamic("1a", [], true, function ($__require, exports, module) {
+$__System.registerDynamic("1b", [], true, function ($__require, exports, module) {
   var define,
       global = this || self,
       GLOBAL = global;
@@ -1605,33 +1737,33 @@ $__System.registerDynamic("1a", [], true, function ($__require, exports, module)
   };
   return module.exports;
 });
-$__System.registerDynamic('1b', ['1a'], true, function ($__require, exports, module) {
+$__System.registerDynamic('1c', ['1b'], true, function ($__require, exports, module) {
   var define,
       global = this || self,
       GLOBAL = global;
   /* */
-  var $ = $__require('1a');
+  var $ = $__require('1b');
   module.exports = function defineProperty(it, key, desc) {
     return $.setDesc(it, key, desc);
   };
   return module.exports;
 });
-$__System.registerDynamic("1c", ["1b"], true, function ($__require, exports, module) {
+$__System.registerDynamic("1d", ["1c"], true, function ($__require, exports, module) {
   var define,
       global = this || self,
       GLOBAL = global;
   /* */
-  module.exports = { "default": $__require("1b"), __esModule: true };
+  module.exports = { "default": $__require("1c"), __esModule: true };
   return module.exports;
 });
-$__System.registerDynamic("15", ["1c"], true, function ($__require, exports, module) {
+$__System.registerDynamic("16", ["1d"], true, function ($__require, exports, module) {
   /* */
   "use strict";
 
   var define,
       global = this || self,
       GLOBAL = global;
-  var _Object$defineProperty = $__require("1c")["default"];
+  var _Object$defineProperty = $__require("1d")["default"];
   exports["default"] = function () {
     function defineProperties(target, props) {
       for (var i = 0; i < props.length; i++) {
@@ -1651,7 +1783,7 @@ $__System.registerDynamic("15", ["1c"], true, function ($__require, exports, mod
   exports.__esModule = true;
   return module.exports;
 });
-$__System.registerDynamic("16", [], true, function ($__require, exports, module) {
+$__System.registerDynamic("17", [], true, function ($__require, exports, module) {
   /* */
   "use strict";
 
@@ -1667,7 +1799,7 @@ $__System.registerDynamic("16", [], true, function ($__require, exports, module)
   exports.__esModule = true;
   return module.exports;
 });
-$__System.register('1d', [], function (_export) {
+$__System.register('1e', [], function (_export) {
 	/* global angular */
 
 	'use strict';
@@ -2716,7 +2848,7 @@ $__System.register('1d', [], function (_export) {
 		}
 	};
 });
-$__System.register('1e', ['15', '16', '1d'], function (_export) {
+$__System.register('1f', ['16', '17', '1e'], function (_export) {
 	var _createClass, _classCallCheck, resetNyaSelect, getEmptyConfigModelResult, resetDataModel, getErrorObject, getMessageObject, resetFormlyModel, addOneColumnHeader, addColumns, MODEL_TRANSLATOR_SERVICE, $modelsTranslator;
 
 	return {
@@ -2724,15 +2856,15 @@ $__System.register('1e', ['15', '16', '1d'], function (_export) {
 			_createClass = _['default'];
 		}, function (_2) {
 			_classCallCheck = _2['default'];
-		}, function (_d) {
-			resetNyaSelect = _d.resetNyaSelect;
-			getEmptyConfigModelResult = _d.getEmptyConfigModelResult;
-			resetDataModel = _d.resetDataModel;
-			getErrorObject = _d.getErrorObject;
-			getMessageObject = _d.getMessageObject;
-			resetFormlyModel = _d.resetFormlyModel;
-			addOneColumnHeader = _d.addOneColumnHeader;
-			addColumns = _d.addColumns;
+		}, function (_e) {
+			resetNyaSelect = _e.resetNyaSelect;
+			getEmptyConfigModelResult = _e.getEmptyConfigModelResult;
+			resetDataModel = _e.resetDataModel;
+			getErrorObject = _e.getErrorObject;
+			getMessageObject = _e.getMessageObject;
+			resetFormlyModel = _e.resetFormlyModel;
+			addOneColumnHeader = _e.addOneColumnHeader;
+			addColumns = _e.addColumns;
 		}],
 		execute: function () {
 			/* global angular */
@@ -2924,15 +3056,15 @@ $__System.register('1e', ['15', '16', '1d'], function (_export) {
 });
 
 // getConfigurationModelInit,
-$__System.register('1f', ['1e'], function (_export) {
+$__System.register('20', ['1f'], function (_export) {
 	/* global angular */
 	'use strict';
 
 	var $modelsTranslator, MODEL_TRANSLATOR_SERVICE, FORM_VIEWER_MODEL_TRANSLATOR_MODULE_NAME;
 	return {
-		setters: [function (_e) {
-			$modelsTranslator = _e['default'];
-			MODEL_TRANSLATOR_SERVICE = _e.MODEL_TRANSLATOR_SERVICE;
+		setters: [function (_f) {
+			$modelsTranslator = _f['default'];
+			MODEL_TRANSLATOR_SERVICE = _f.MODEL_TRANSLATOR_SERVICE;
 		}],
 		execute: function () {
 			FORM_VIEWER_MODEL_TRANSLATOR_MODULE_NAME = 'edaFormViewerModelTranslatorModule';
@@ -2941,10 +3073,10 @@ $__System.register('1f', ['1e'], function (_export) {
 		}
 	};
 });
-$__System.register('1', ['2', '4', '6', '10', '18', '19', 'e', '1f'], function (_export) {
+$__System.register('1', ['2', '4', '6', '11', '19', '20', 'f', '1a'], function (_export) {
          'use strict';
 
-         var edaEasyFormViewConfig, EASY_FORM_VIEWER_VERSION_NAME, EASY_FORM_VIEWER_VERSION_VALUE, formlyConfig, textAngularConfig, edaFormViewerMainModule, edaFormViewerCoreModule, translateConfig, edaFormViewerModelTranslatorModule, MAIN_MODULE_NAME, DEP_TO_INJECT_IN_MAIN, mainModule;
+         var edaEasyFormViewConfig, EASY_FORM_VIEWER_VERSION_NAME, EASY_FORM_VIEWER_VERSION_VALUE, formlyConfig, textAngularConfig, edaFormViewerMainModule, edaFormViewerModelTranslatorModule, translateConfig, edaFormViewerCoreModule, MAIN_MODULE_NAME, DEP_TO_INJECT_IN_MAIN, mainModule;
          return {
                   setters: [function (_) {}, function (_2) {
                            edaEasyFormViewConfig = _2['default'];
@@ -2957,11 +3089,11 @@ $__System.register('1', ['2', '4', '6', '10', '18', '19', 'e', '1f'], function (
                   }, function (_5) {
                            edaFormViewerMainModule = _5['default'];
                   }, function (_6) {
-                           edaFormViewerCoreModule = _6['default'];
-                  }, function (_e) {
-                           translateConfig = _e['default'];
+                           edaFormViewerModelTranslatorModule = _6['default'];
                   }, function (_f) {
-                           edaFormViewerModelTranslatorModule = _f['default'];
+                           translateConfig = _f['default'];
+                  }, function (_a) {
+                           edaFormViewerCoreModule = _a['default'];
                   }],
                   execute: function () {
                            MAIN_MODULE_NAME = 'eda.easyFormViewer';
