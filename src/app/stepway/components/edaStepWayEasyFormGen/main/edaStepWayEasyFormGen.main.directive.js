@@ -58,26 +58,9 @@ function edaStepWayEasyFormGenDirective(
 		});
 
 		//watch "scope.vm.configuration.idFormat"" = validate if optional tags are correctly opened
-		scope.$watch(() => scope.vm.configuration.idFormat, (newValue, oldValue) => {
-			scope.vm.configuration.idFormatValidation = true;
-			let inOptional = false;
-			if (newValue != oldValue) {
-				angular.forEach(scope.vm.configuration.idFormat, (idFormatPart) => {
-					if (idFormatPart == '[OPTIONAL_START]') {
-						inOptional = true;
-					}
-
-					if (idFormatPart == '[OPTIONAL_END]') {
-						if (!inOptional) {
-							scope.vm.configuration.idFormatValidation = false;
-						}
-						inOptional = false;
-					}
-				});
-			}
-
-			if (inOptional) {
-				scope.vm.configuration.idFormatValidation = false;
+		scope.$watch(() => scope.vm.fieldsSpecial, (newValue, oldValue) => {
+			if (scope.vm.fieldsSpecial && scope.vm.fieldsSpecial.OPTIONAL_START && scope.vm.fieldsSpecial.OPTIONAL_START.count && scope.vm.fieldsSpecial.OPTIONAL_END && scope.vm.fieldsSpecial.OPTIONAL_END.count) {
+				scope.vm.configuration.idFormatValidation = scope.vm.fieldsSpecial.OPTIONAL_START.count === scope.vm.fieldsSpecial.OPTIONAL_END.count;
 			}
 		}, true);
 

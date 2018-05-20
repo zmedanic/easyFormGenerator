@@ -29,59 +29,90 @@ class editControlModalController {
 		this.activeLineColumnsCount 	= activeLineColumnsCount;
 		this.allOptions 							= allOptions;
 		this.$translate								= $translate;
+		this.$scope										= $scope;
+		this.optionsSourceDbFormatValidation = true;
+
+		this.optionsSourceDbFormatConfigIndex = 0;
 
 		this.populateSourceTables = function() {
-			this.optionsSourceDbTables		= [{id: null, name: 'Nothing selected'}];
+			this.optionsSourceDbTables = [{id: null, name: 'Nothing selected'}];
 			$scope.$emit('sourceTables');
 		}
 
-		this.populateSourceFields = function(value) {
-			this.optionsSourceDbFields = [
-				{
-					value: '[VALUE]',
-					text: 'Field value',
+		this.populateSourceFields = function() {
+			this.optionsSourceDbFields = [];
+			this.nyaSelect.temporyConfig.optionsSourceDbFormat = [];
+			this.fieldsInit = true;
+
+			this.fieldsSpecial = {
+				VALUE: {
+					value: 'VALUE_',
+					text: this.$translate.instant('FIELD_VALUE'),
+					count: 0,
+					index: 0,
 				},
-				{
-					value: '[OPTIONAL_START]',
-					text: 'Optional display start',
+				OPTIONAL_START: {
+					value: 'OPTIONAL_START_',
+					text: this.$translate.instant('FORMAT_OPTIONAL_START'),
+					count: 0,
+					index: 0,
 				},
-				{
-					value: '[OPTIONAL_END]',
-					text: 'Optional display end',
+				OPTIONAL_END: {
+					value: 'OPTIONAL_END_',
+					text: this.$translate.instant('FORMAT_OPTIONAL_END'),
+					count: 0,
+					index: 0,
 				},
-			];
-			$scope.$emit('sourceFields', value);
-			if (this.nyaSelect.temporyConfig.optionsSourceDbFormat && this.nyaSelect.temporyConfig.optionsSourceDbFormat.length > 0) {
+				SPACE: {
+					value: 'SPACE_',
+					text: this.$translate.instant('FORMAT_SPACE'),
+					count: 0,
+					index: 0,
+				},
+			};
+
+			this.optionsSourceDbFormatConfigIndex = this.nyaSelect.temporyConfig.optionsSourceDbFormat ? this.nyaSelect.temporyConfig.optionsSourceDbFormat.length : 0;
+
+			if (this.optionsSourceDbFormatConfigIndex > 0) {
 				angular.forEach(this.nyaSelect.temporyConfig.optionsSourceDbFormat, (formatPart) => {
 					let matches = formatPart.match(/\[CHAR_[0-9]*:(.*?)\]/);
 					if (matches && matches.length == 2 && matches[1] && matches[1].length > 0) {
-						this.optionsSourceDbFields.push({value: formatPart, text: matches[1]});
+						this.optionsSourceDbFields.push({
+							value: formatPart,
+							text: matches[1]
+						});
+					}
+
+					matches = formatPart.match(/\[(OPTIONAL_START|OPTIONAL_END|SPACE|VALUE)_([0-9]*)\]/);
+					if (matches && matches.length == 3 && matches[1] && matches[1].length > 0 && matches[2] && matches[2].length > 0) {
+						let fieldSpecial = this.fieldsSpecial[matches[1]];
+						fieldSpecial.count++;
+						fieldSpecial.index++;
+						this.optionsSourceDbFields.push({
+							value: '[' + fieldSpecial.value + fieldSpecial.index + ']',
+							text: fieldSpecial.text,
+						});
 					}
 				});
 			}
+
+			angular.forEach(this.fieldsSpecial, (field) => {
+				field.count++;
+				field.index++;
+
+				this.optionsSourceDbFields.push({
+					value: '[' + field.value + field.index + ']',
+					text: field.text,
+				});
+			});
+
+			$scope.$emit('sourceFields', this.nyaSelect.temporyConfig.optionsSourceDbTable);
 		}
 
-		//watch "scope.editControlModCtrl.idFormat"" = validate if optional tags are correctly opened
-		$scope.$watch(() => $scope.editControlModCtrl.nyaSelect.temporyConfig.optionsSourceDbFormat, (newValue, oldValue) => {
-			$scope.editControlModCtrl.optionsSourceDbFormatValidation = true;
-			let inOptional = false;
-			if (newValue != oldValue) {
-				angular.forEach($scope.editControlModCtrl.nyaSelect.temporyConfig.optionsSourceDbFormat, (idFormatPart) => {
-					if (idFormatPart == '[OPTIONAL_START]') {
-						inOptional = true;
-					}
-
-					if (idFormatPart == '[OPTIONAL_END]') {
-						if (!inOptional) {
-							$scope.editControlModCtrl.optionsSourceDbFormatValidation = false;
-						}
-						inOptional = false;
-					}
-				});
-			}
-
-			if (inOptional) {
-				$scope.editControlModCtrl.optionsSourceDbFormatValidation = false;
+		//watch "scope.editControlModCtrl.idFormat" = validate if optional tags are correctly opened
+		$scope.$watch(() => $scope.editControlModCtrl.fieldsSpecial, (newValue, oldValue) => {
+			if (this.fieldsSpecial && this.fieldsSpecial.OPTIONAL_START && this.fieldsSpecial.OPTIONAL_START.count && this.fieldsSpecial.OPTIONAL_END && this.fieldsSpecial.OPTIONAL_END.count) {
+				this.optionsSourceDbFormatValidation = this.fieldsSpecial.OPTIONAL_START.count === this.fieldsSpecial.OPTIONAL_END.count;
 			}
 		}, true);
 
@@ -116,21 +147,64 @@ class editControlModalController {
 		this.nyaSelect.selectedControl  = this.nyaSelect.temporyConfig.selectedControl;
 		this.nyaSelectFiltered 					= {};
 		this.modelNyaSelect							= {};
-		this.optionsSourceDbFormatValidation = true;
 
 		this.resetEventTypes(false);
 
-		let optionsSourceDbFormatConfigIndex = this.nyaSelect.temporyConfig.optionsSourceDbFormat ? this.nyaSelect.temporyConfig.optionsSourceDbFormat.length : 0;
+		var edaController = this;
+
 		this.optionsSourceDbFormatConfig = {
 			create: function(input) {
-				optionsSourceDbFormatConfigIndex++;
+				edaController.optionsSourceDbFormatConfigIndex++;
 				let obj = {
-					'value': '[CHAR_' + optionsSourceDbFormatConfigIndex + ':' + input + ']',
+					'value': '[CHAR_' + edaController.optionsSourceDbFormatConfigIndex + ':' + input + ']',
 					'text': input,
 				};
 				return obj;
 			},
-			maxItems: 10,
+			maxItems: 30,
+			onDropdownOpen: function() {
+				edaController.fieldsInit = false;
+			},
+			onItemAdd: function(value) {
+				if (!edaController.fieldsInit) {
+					let matches = value.match(/\[(OPTIONAL_START|OPTIONAL_END|SPACE|VALUE)_([0-9]*)\]/);
+					if (matches && matches.length == 3 && matches[1] && matches[1].length > 0 && matches[2] && matches[2].length > 0) {
+						let fieldSpecial = edaController.fieldsSpecial[matches[1]];
+						fieldSpecial.count++;
+						fieldSpecial.index++;
+
+						let field = {
+							value: '[' + fieldSpecial.value + fieldSpecial.index + ']',
+							text: fieldSpecial.text,
+						};
+						this.addOption(field);
+						this.refreshOptions(false);
+					}
+				}
+			},
+			onItemRemove: function(value) {
+				if (!edaController.fieldsInit) {
+					let matches = value.match(/\[(OPTIONAL_START|OPTIONAL_END|SPACE|VALUE)_([0-9]*)\]/);
+					if (matches && matches.length == 3 && matches[1] && matches[1].length > 0 && matches[2] && matches[2].length > 0) {
+						let fieldSpecial = edaController.fieldsSpecial[matches[1]];
+						fieldSpecial.count--;
+
+						let index = -1;
+						angular.forEach(edaController.optionsSourceDbFields, (field, key) => {
+							if (field.value == value) {
+								index = key;
+							}
+						});
+
+						if (index >= 0) {
+							this.removeOption(value);
+							this.refreshOptions(false);
+							edaController.optionsSourceDbFields.splice(index, 1);
+							edaController.$scope.$apply();
+						}
+					}
+				}
+			}
 		}
 
 		//init nyaSelect model depending selected control
