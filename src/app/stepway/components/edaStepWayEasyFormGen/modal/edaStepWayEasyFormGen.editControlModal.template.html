@@ -2512,7 +2512,7 @@
                         type="radio"
                         id="optionsSourceTypeRadioOption"
                         value="static"
-                        ng-change="editControlModCtrl.resetEventTypes(['refresh_db_select'])"
+                        ng-change="editControlModCtrl.resetEventTypes(['refresh_db_select']);editControlModCtrl.resetOptions()"
                         ng-model="editControlModCtrl.nyaSelect.temporyConfig.optionsSourceType">
                       {{'OPTIONS_SOURCE_STATIC' | translate}} :
                     </label>
@@ -2525,7 +2525,7 @@
                         type="radio"
                         id="optionsSourceTypeRadioOption"
                         value="db"
-                        ng-change="editControlModCtrl.resetEventTypes(['refresh_db_select'])"
+                        ng-change="editControlModCtrl.resetEventTypes(['refresh_db_select']);editControlModCtrl.resetOptions()"
                         ng-model="editControlModCtrl.nyaSelect.temporyConfig.optionsSourceType">
                       {{'OPTIONS_SOURCE_DB' | translate}} :
                     </label>
@@ -2681,7 +2681,7 @@
                     class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg-12"
                     ng-model="editControlModCtrl.nyaSelect.temporyConfig.optionsSourceDbTable"
                     ng-init="editControlModCtrl.populateSourceTables(); editControlModCtrl.populateSourceFields()"
-                    ng-change="editControlModCtrl.populateSourceFields()"
+                    ng-change="editControlModCtrl.nyaSelect.temporyConfig.optionsSourceDbFormat = [];editControlModCtrl.populateSourceFields()"
                     id="radioOptionsSourceDbTable"
                     title="Nothing selected">
                     <li nya-bs-option="table in editControlModCtrl.optionsSourceDbTables">
@@ -3234,7 +3234,7 @@
                         type="radio"
                         id="optionsSourceTypeBasicSelectOption"
                         value="static"
-                        ng-change="editControlModCtrl.resetEventTypes(['refresh_db_select'])"
+                        ng-change="editControlModCtrl.resetEventTypes(['refresh_db_select']);editControlModCtrl.resetOptions()"
                         ng-model="editControlModCtrl.nyaSelect.temporyConfig.optionsSourceType">
                       {{'OPTIONS_SOURCE_STATIC' | translate}} :
                     </label>
@@ -3247,7 +3247,7 @@
                         type="radio"
                         id="optionsSourceTypeBasicSelectOption"
                         value="db"
-                        ng-change="editControlModCtrl.resetEventTypes(['refresh_db_select'])"
+                        ng-change="editControlModCtrl.resetEventTypes(['refresh_db_select']);editControlModCtrl.resetOptions()"
                         ng-model="editControlModCtrl.nyaSelect.temporyConfig.optionsSourceType">
                       {{'OPTIONS_SOURCE_DB' | translate}} :
                     </label>
@@ -3435,7 +3435,7 @@
                     class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg-12"
                     ng-model="editControlModCtrl.nyaSelect.temporyConfig.optionsSourceDbTable"
                     ng-init="editControlModCtrl.populateSourceTables(); editControlModCtrl.populateSourceFields()"
-                    ng-change="editControlModCtrl.populateSourceFields()"
+                    ng-change="editControlModCtrl.nyaSelect.temporyConfig.optionsSourceDbFormat = [];editControlModCtrl.populateSourceFields()"
                     id="basicSelectOptionsSourceDbTable"
                     title="Nothing selected">
                     <li nya-bs-option="table in editControlModCtrl.optionsSourceDbTables">
@@ -3826,7 +3826,7 @@
                         type="radio"
                         id="optionsSourceTypeGroupedSelectOption"
                         value="static"
-                        ng-change="editControlModCtrl.resetEventTypes(['refresh_db_select'])"
+                        ng-change="editControlModCtrl.resetEventTypes(['refresh_db_select']);editControlModCtrl.resetOptions()"
                         ng-model="editControlModCtrl.nyaSelect.temporyConfig.optionsSourceType">
                       {{'OPTIONS_SOURCE_STATIC' | translate}} :
                     </label>
@@ -3839,7 +3839,7 @@
                         type="radio"
                         id="optionsSourceTypeGroupedSelectOption"
                         value="db"
-                        ng-change="editControlModCtrl.resetEventTypes(['refresh_db_select'])"
+                        ng-change="editControlModCtrl.resetEventTypes(['refresh_db_select']);editControlModCtrl.resetOptions()"
                         ng-model="editControlModCtrl.nyaSelect.temporyConfig.optionsSourceType">
                       {{'OPTIONS_SOURCE_DB' | translate}} :
                     </label>
@@ -4080,7 +4080,7 @@
                     class="nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg-12"
                     ng-model="editControlModCtrl.nyaSelect.temporyConfig.optionsSourceDbTable"
                     ng-init="editControlModCtrl.populateSourceTables(); editControlModCtrl.populateSourceFields()"
-                    ng-change="editControlModCtrl.populateSourceFields()"
+                    ng-change="editControlModCtrl.nyaSelect.temporyConfig.optionsSourceDbFormat = [];editControlModCtrl.populateSourceFields()"
                     id="groupedSelectOptionsSourceDbTable"
                     title="Nothing selected">
                     <li nya-bs-option="table in editControlModCtrl.optionsSourceDbTables">

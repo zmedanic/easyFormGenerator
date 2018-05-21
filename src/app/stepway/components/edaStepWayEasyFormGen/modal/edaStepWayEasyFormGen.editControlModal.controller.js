@@ -41,7 +41,6 @@ class editControlModalController {
 
 		this.populateSourceFields = function() {
 			this.optionsSourceDbFields = [];
-			this.nyaSelect.temporyConfig.optionsSourceDbFormat = [];
 			this.fieldsInit = true;
 
 			this.fieldsSpecial = {
@@ -223,8 +222,6 @@ class editControlModalController {
 		}
 		this.initNyaSelectFiltered();
 
-		// console.info(`modal controller : nyaSelect`);
-		// console.dir(this.nyaSelect);
 	}
 
 	initNyaSelectFiltered(){
@@ -673,6 +670,19 @@ class editControlModalController {
 		};
 	}
 
+	resetOptions() {
+		const initOptionModel 					= { rows:[], parents:[] };
+
+		if (this.nyaSelect.temporyConfig.optionsSourceType == 'db') {
+			this.radioRowCollection 				= initOptionModel;
+			this.basicSelectRowCollection 	= initOptionModel;
+			this.groupedSelectRowCollection = initOptionModel;
+		}
+		if (this.nyaSelect.temporyConfig.optionsSourceType == 'static') {
+			this.nyaSelect.temporyConfig.optionsSourceDbTable = [{id: null, name: 'Nothing selected'}];;
+			this.nyaSelect.temporyConfig.optionsSourceDbFormat = [];
+		}
+	}
 
 	resetEventTypes(resetEvents) {
 		this.eventTypes = [{

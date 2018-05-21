@@ -78,29 +78,80 @@ class edaStepWayEasyFormGenController {
 
 
 		this.$modalProxy.initNyaSelect(this.nyaSelect);
-		this.fieldsSpecial = {
-			OPTIONAL_START: {
-				value: 'OPTIONAL_START_',
-				text: this.$translate.instant('FORMAT_OPTIONAL_START'),
-				count: 0,
-				index: 0,
-			},
-			OPTIONAL_END: {
-				value: 'OPTIONAL_END_',
-				text: this.$translate.instant('FORMAT_OPTIONAL_END'),
-				count: 0,
-				index: 0,
-			},
-			SPACE: {
-				value: 'SPACE_',
-				text: this.$translate.instant('FORMAT_SPACE'),
-				count: 0,
-				index: 0,
-			},
-		};
 
 		let formFormatConfigIndex = 0;
 		this.fieldsInit = true;
+
+		this.populateSourceFields = function() {
+      this.fieldsInit = true;
+      this.fields = [];
+
+      this.fieldsSpecial = {
+        OPTIONAL_START: {
+          value: 'OPTIONAL_START_',
+          text: this.$translate.instant('FORMAT_OPTIONAL_START'),
+          count: 0,
+          index: 0,
+        },
+        OPTIONAL_END: {
+          value: 'OPTIONAL_END_',
+          text: this.$translate.instant('FORMAT_OPTIONAL_END'),
+          count: 0,
+          index: 0,
+        },
+        SPACE: {
+          value: 'SPACE_',
+          text: this.$translate.instant('FORMAT_SPACE'),
+          count: 0,
+          index: 0,
+        },
+      };
+
+      let columns = this.prepareExistingColumns(null);
+      angular.forEach(columns.columns, (column) => {
+        if (column.id !== null) {
+          this.fields.push({
+            value: '[FIELD_ID_' + column.id + ':' + column.name + ']',
+            text: column.name,
+          });
+        }
+      });
+
+      formFormatConfigIndex = this.configuration.idFormat ? this.configuration.idFormat.length : 0;
+
+      if (formFormatConfigIndex > 0) {
+        angular.forEach(this.configuration.idFormat, (formatPart) => {
+          let matches = formatPart.match(/\[CHAR_[0-9]*:(.*?)\]/);
+          if (matches && matches.length == 2 && matches[1] && matches[1].length > 0) {
+            this.fields.push({
+              value: formatPart,
+              text: matches[1]
+            });
+          }
+
+          matches = formatPart.match(/\[(OPTIONAL_START|OPTIONAL_END|SPACE)_([0-9]*)\]/);
+          if (matches && matches.length == 3 && matches[1] && matches[1].length > 0 && matches[2] && matches[2].length > 0) {
+            let fieldSpecial = this.fieldsSpecial[matches[1]];
+            fieldSpecial.count++;
+            fieldSpecial.index++;
+            this.fields.push({
+              value: '[' + fieldSpecial.value + fieldSpecial.index + ']',
+              text: fieldSpecial.text,
+            });
+          }
+        });
+      }
+
+      angular.forEach(this.fieldsSpecial, (field) => {
+        field.count++;
+        field.index++;
+
+        this.fields.push({
+          value: '[' + field.value + field.index + ']',
+          text: field.text,
+        });
+      });
+		};
 
 		var edaController = this;
 		this.optionsSourceDbFormatConfig = {
@@ -113,55 +164,6 @@ class edaStepWayEasyFormGenController {
 				return obj;
 			},
 			maxItems: 30,
-			onInitialize: function(selectize) {
-				this.fieldsInit = true;
-				edaController.fields = [];
-
-				let columns = edaController.prepareExistingColumns(null);
-				angular.forEach(columns.columns, (column) => {
-					if (column.id !== null) {
-						edaController.fields.push({
-							value: '[FIELD_ID_' + column.id + ':' + column.name + ']',
-							text: column.name,
-						});
-					}
-				});
-
-				formFormatConfigIndex = edaController.configuration.idFormat ? edaController.configuration.idFormat.length : 0;
-
-				if (formFormatConfigIndex > 0) {
-					angular.forEach(edaController.configuration.idFormat, (formatPart) => {
-						let matches = formatPart.match(/\[CHAR_[0-9]*:(.*?)\]/);
-						if (matches && matches.length == 2 && matches[1] && matches[1].length > 0) {
-							edaController.fields.push({
-								value: formatPart,
-								text: matches[1]
-							});
-						}
-
-						matches = formatPart.match(/\[(OPTIONAL_START|OPTIONAL_END|SPACE)_([0-9]*)\]/);
-						if (matches && matches.length == 3 && matches[1] && matches[1].length > 0 && matches[2] && matches[2].length > 0) {
-							let fieldSpecial = edaController.fieldsSpecial[matches[1]];
-							fieldSpecial.count++;
-							fieldSpecial.index++;
-							edaController.fields.push({
-								value: '[' + fieldSpecial.value + fieldSpecial.index + ']',
-								text: fieldSpecial.text,
-							});
-						}
-					});
-				}
-
-				angular.forEach(edaController.fieldsSpecial, (field) => {
-					field.count++;
-					field.index++;
-
-					edaController.fields.push({
-						value: '[' + field.value + field.index + ']',
-						text: field.text,
-					});
-				});
-			},
 			onDropdownOpen: function() {
 				edaController.fieldsInit = false;
 			},
