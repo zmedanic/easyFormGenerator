@@ -42,11 +42,12 @@ class editControlModalController {
 		this.populateSourceFields = function() {
 			this.optionsSourceDbFields = [];
 			this.fieldsInit = true;
+			let parsedValue = 0;
 
 			this.fieldsSpecial = {
 				VALUE: {
 					value: 'VALUE_',
-					text: this.$translate.instant('FIELD_VALUE'),
+					text: this.$translate.instant('FORMAT_VALUE'),
 					count: 0,
 					index: 0,
 				},
@@ -86,7 +87,11 @@ class editControlModalController {
 					if (matches && matches.length == 3 && matches[1] && matches[1].length > 0 && matches[2] && matches[2].length > 0) {
 						let fieldSpecial = this.fieldsSpecial[matches[1]];
 						fieldSpecial.count++;
-						fieldSpecial.index++;
+						parsedValue = parseInt(matches[2]);
+						if (parsedValue > fieldSpecial.index) {
+							fieldSpecial.index = parsedValue;
+						}
+
 						this.optionsSourceDbFields.push({
 							value: '[' + fieldSpecial.value + fieldSpecial.index + ']',
 							text: fieldSpecial.text,
@@ -110,8 +115,29 @@ class editControlModalController {
 
 		//watch "scope.editControlModCtrl.idFormat" = validate if optional tags are correctly opened
 		$scope.$watch(() => $scope.editControlModCtrl.fieldsSpecial, (newValue, oldValue) => {
-			if (this.fieldsSpecial && this.fieldsSpecial.OPTIONAL_START && this.fieldsSpecial.OPTIONAL_START.count && this.fieldsSpecial.OPTIONAL_END && this.fieldsSpecial.OPTIONAL_END.count) {
-				this.optionsSourceDbFormatValidation = this.fieldsSpecial.OPTIONAL_START.count === this.fieldsSpecial.OPTIONAL_END.count;
+			if (this.fieldsSpecial && newValue.OPTIONAL_START && newValue.OPTIONAL_START.count && newValue.OPTIONAL_END && newValue.OPTIONAL_END.count) {
+
+				let indexes = {};
+				let match;
+				let validation = newValue.OPTIONAL_START.count === newValue.OPTIONAL_END.count;
+
+				if (newValue.OPTIONAL_START.count > 1 && validation) {
+					angular.forEach(this.nyaSelect.temporyConfig.optionsSourceDbFormat, (idPart, key) => {
+						match = idPart.match(/\[(OPTIONAL_START|OPTIONAL_END)_([0-9]*)\]/);
+						if (match && match[1] && match[2]) {
+							if (!indexes[match[1]]) {
+								indexes[match[1]] = [];
+							}
+							indexes[match[1]].push(key);
+						}
+					});
+
+					angular.forEach(indexes['OPTIONAL_START'], (value, key) => {
+						validation = validation && value < indexes['OPTIONAL_END'][key];
+					});
+				}
+
+				this.optionsSourceDbFormatValidation = validation;
 			}
 		}, true);
 

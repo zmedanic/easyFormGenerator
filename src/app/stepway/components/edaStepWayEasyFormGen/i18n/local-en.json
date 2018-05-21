@@ -145,5 +145,5 @@
     "FORMAT_SPACE"        : "Space",
     "FORMAT_OPTIONAL_START": "Optional display start",
     "FORMAT_OPTIONAL_END" : "Optional display end",
-    "FIELD_VALUE"         : "Field value"
+    "FORMAT_VALUE"         : "Value"
 }

@@ -59,8 +59,27 @@ function edaStepWayEasyFormGenDirective(
 
 		//watch "scope.vm.configuration.idFormat"" = validate if optional tags are correctly opened
 		scope.$watch(() => scope.vm.fieldsSpecial, (newValue, oldValue) => {
-			if (scope.vm.fieldsSpecial && scope.vm.fieldsSpecial.OPTIONAL_START && scope.vm.fieldsSpecial.OPTIONAL_START.count && scope.vm.fieldsSpecial.OPTIONAL_END && scope.vm.fieldsSpecial.OPTIONAL_END.count) {
-				scope.vm.configuration.idFormatValidation = scope.vm.fieldsSpecial.OPTIONAL_START.count === scope.vm.fieldsSpecial.OPTIONAL_END.count;
+			if (scope.vm.fieldsSpecial && newValue.OPTIONAL_START && newValue.OPTIONAL_START.count && newValue.OPTIONAL_END && newValue.OPTIONAL_END.count) {
+
+				let indexes = {};
+				let match;
+				let validation = newValue.OPTIONAL_START.count === newValue.OPTIONAL_END.count;
+				if (newValue.OPTIONAL_START.count > 1 && validation) {
+					angular.forEach(scope.vm.configuration.idFormat, (idPart, key) => {
+						match = idPart.match(/\[(OPTIONAL_START|OPTIONAL_END)_([0-9]*)\]/);
+						if (match && match[1] && match[2]) {
+							if (!indexes[match[1]]) {
+								indexes[match[1]] = [];
+							}
+							indexes[match[1]].push(key);
+						}
+					});
+					angular.forEach(indexes['OPTIONAL_START'], (value, key) => {
+						validation = validation && value < indexes['OPTIONAL_END'][key];
+					});
+				}
+
+				scope.vm.configuration.idFormatValidation = validation;
 			}
 		}, true);
 

@@ -85,6 +85,7 @@ class edaStepWayEasyFormGenController {
 		this.populateSourceFields = function() {
       this.fieldsInit = true;
       this.fields = [];
+			let parsedValue = 0;
 
       this.fieldsSpecial = {
         OPTIONAL_START: {
@@ -133,7 +134,10 @@ class edaStepWayEasyFormGenController {
           if (matches && matches.length == 3 && matches[1] && matches[1].length > 0 && matches[2] && matches[2].length > 0) {
             let fieldSpecial = this.fieldsSpecial[matches[1]];
             fieldSpecial.count++;
-            fieldSpecial.index++;
+						parsedValue = parseInt(matches[2]);
+						if (parsedValue > fieldSpecial.index) {
+							fieldSpecial.index = parsedValue;
+						}
             this.fields.push({
               value: '[' + fieldSpecial.value + fieldSpecial.index + ']',
               text: fieldSpecial.text,
@@ -173,7 +177,7 @@ class edaStepWayEasyFormGenController {
 					if (matches && matches.length == 3 && matches[1] && matches[1].length > 0 && matches[2] && matches[2].length > 0) {
 						let fieldSpecial = edaController.fieldsSpecial[matches[1]];
 						fieldSpecial.count++;
-						fieldSpecial.index++;
+            fieldSpecial.index++;
 
 						let field = {
 							value: '[' + fieldSpecial.value + fieldSpecial.index + ']',

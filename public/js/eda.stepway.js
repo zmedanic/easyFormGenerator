@@ -647,7 +647,7 @@ $__System.registerDynamic("7", [], true, function ($__require, exports, module) 
         "FORMAT_SPACE": "Space",
         "FORMAT_OPTIONAL_START": "Optional display start",
         "FORMAT_OPTIONAL_END": "Optional display end",
-        "FIELD_VALUE": "Field value"
+        "FORMAT_VALUE": "Value"
     };
     return module.exports;
 });
@@ -1379,6 +1379,7 @@ $__System.register('13', ['11', '12', '14', '15', '16'], function (_export) {
 
 							this.fieldsInit = true;
 							this.fields = [];
+							var parsedValue = 0;
 
 							this.fieldsSpecial = {
 								OPTIONAL_START: {
@@ -1427,7 +1428,10 @@ $__System.register('13', ['11', '12', '14', '15', '16'], function (_export) {
 									if (matches && matches.length == 3 && matches[1] && matches[1].length > 0 && matches[2] && matches[2].length > 0) {
 										var fieldSpecial = _this.fieldsSpecial[matches[1]];
 										fieldSpecial.count++;
-										fieldSpecial.index++;
+										parsedValue = parseInt(matches[2]);
+										if (parsedValue > fieldSpecial.index) {
+											fieldSpecial.index = parsedValue;
+										}
 										_this.fields.push({
 											value: '[' + fieldSpecial.value + fieldSpecial.index + ']',
 											text: fieldSpecial.text
@@ -2016,8 +2020,29 @@ $__System.register('17', ['10', '13'], function (_export) {
 			scope.$watch(function () {
 				return scope.vm.fieldsSpecial;
 			}, function (newValue, oldValue) {
-				if (scope.vm.fieldsSpecial && scope.vm.fieldsSpecial.OPTIONAL_START && scope.vm.fieldsSpecial.OPTIONAL_START.count && scope.vm.fieldsSpecial.OPTIONAL_END && scope.vm.fieldsSpecial.OPTIONAL_END.count) {
-					scope.vm.configuration.idFormatValidation = scope.vm.fieldsSpecial.OPTIONAL_START.count === scope.vm.fieldsSpecial.OPTIONAL_END.count;
+				if (scope.vm.fieldsSpecial && newValue.OPTIONAL_START && newValue.OPTIONAL_START.count && newValue.OPTIONAL_END && newValue.OPTIONAL_END.count) {
+					(function () {
+
+						var indexes = {};
+						var match = undefined;
+						var validation = newValue.OPTIONAL_START.count === newValue.OPTIONAL_END.count;
+						if (newValue.OPTIONAL_START.count > 1 && validation) {
+							angular.forEach(scope.vm.configuration.idFormat, function (idPart, key) {
+								match = idPart.match(/\[(OPTIONAL_START|OPTIONAL_END)_([0-9]*)\]/);
+								if (match && match[1] && match[2]) {
+									if (!indexes[match[1]]) {
+										indexes[match[1]] = [];
+									}
+									indexes[match[1]].push(key);
+								}
+							});
+							angular.forEach(indexes['OPTIONAL_START'], function (value, key) {
+								validation = validation && value < indexes['OPTIONAL_END'][key];
+							});
+						}
+
+						scope.vm.configuration.idFormatValidation = validation;
+					})();
 				}
 			}, true);
 
@@ -2394,11 +2419,12 @@ $__System.register('14', ['15', '16'], function (_export) {
 
 						this.optionsSourceDbFields = [];
 						this.fieldsInit = true;
+						var parsedValue = 0;
 
 						this.fieldsSpecial = {
 							VALUE: {
 								value: 'VALUE_',
-								text: this.$translate.instant('FIELD_VALUE'),
+								text: this.$translate.instant('FORMAT_VALUE'),
 								count: 0,
 								index: 0
 							},
@@ -2438,7 +2464,11 @@ $__System.register('14', ['15', '16'], function (_export) {
 								if (matches && matches.length == 3 && matches[1] && matches[1].length > 0 && matches[2] && matches[2].length > 0) {
 									var fieldSpecial = _this.fieldsSpecial[matches[1]];
 									fieldSpecial.count++;
-									fieldSpecial.index++;
+									parsedValue = parseInt(matches[2]);
+									if (parsedValue > fieldSpecial.index) {
+										fieldSpecial.index = parsedValue;
+									}
+
 									_this.optionsSourceDbFields.push({
 										value: '[' + fieldSpecial.value + fieldSpecial.index + ']',
 										text: fieldSpecial.text
@@ -2464,8 +2494,31 @@ $__System.register('14', ['15', '16'], function (_export) {
 					$scope.$watch(function () {
 						return $scope.editControlModCtrl.fieldsSpecial;
 					}, function (newValue, oldValue) {
-						if (_this2.fieldsSpecial && _this2.fieldsSpecial.OPTIONAL_START && _this2.fieldsSpecial.OPTIONAL_START.count && _this2.fieldsSpecial.OPTIONAL_END && _this2.fieldsSpecial.OPTIONAL_END.count) {
-							_this2.optionsSourceDbFormatValidation = _this2.fieldsSpecial.OPTIONAL_START.count === _this2.fieldsSpecial.OPTIONAL_END.count;
+						if (_this2.fieldsSpecial && newValue.OPTIONAL_START && newValue.OPTIONAL_START.count && newValue.OPTIONAL_END && newValue.OPTIONAL_END.count) {
+							(function () {
+
+								var indexes = {};
+								var match = undefined;
+								var validation = newValue.OPTIONAL_START.count === newValue.OPTIONAL_END.count;
+
+								if (newValue.OPTIONAL_START.count > 1 && validation) {
+									angular.forEach(_this2.nyaSelect.temporyConfig.optionsSourceDbFormat, function (idPart, key) {
+										match = idPart.match(/\[(OPTIONAL_START|OPTIONAL_END)_([0-9]*)\]/);
+										if (match && match[1] && match[2]) {
+											if (!indexes[match[1]]) {
+												indexes[match[1]] = [];
+											}
+											indexes[match[1]].push(key);
+										}
+									});
+
+									angular.forEach(indexes['OPTIONAL_START'], function (value, key) {
+										validation = validation && value < indexes['OPTIONAL_END'][key];
+									});
+								}
+
+								_this2.optionsSourceDbFormatValidation = validation;
+							})();
 						}
 					}, true);
 
