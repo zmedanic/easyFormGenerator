@@ -61,7 +61,7 @@ $__System.register('4', ['3'], function (_export) {
 $__System.register("5", [], function (_export) {
   "use strict";
 
-  var blankTemplate, subTitleTemplate, inputTemplate, datepickerTemplate, textareaTemplate, richTextTemplate, radioTemplate, basicSelectTemplate, basicMultiSelectTemplate, groupedSelectTemplate, groupedMultiSelectTemplate, uploadTemplateListFiles, uploadTemplate, validationTemplate, validationTemplateMultiple, descriptionTemplate;
+  var blankTemplate, subTitleTemplate, inputTemplate, datepickerTemplate, textareaTemplate, richTextTemplate, radioTemplate, checkboxTemplate, basicSelectTemplate, basicMultiSelectTemplate, groupedSelectTemplate, groupedMultiSelectTemplate, uploadTemplateListFiles, uploadTemplate, validationTemplate, validationTemplateMultiple, descriptionTemplate, visibilityTemplate;
   return {
     setters: [],
     execute: function () {
@@ -72,6 +72,7 @@ $__System.register("5", [], function (_export) {
       textareaTemplate = "\n  <textarea\n    id=\"{{::id}}_{{fieldIndex}}\"\n    name=\"{{::id}}_{{fieldIndex}}\"\n    class=\"form-control\"\n    ng-model=\"model[options.key][fieldIndex]\"\n  >\n  </textarea>";
       richTextTemplate = "\n  <text-angular\n    id=\"{{::id}}_{{fieldIndex}}\"\n    name=\"{{::id}}_{{fieldIndex}}\"\n    class=\"richTextAngular\"\n    ng-model=\"model[options.key || index][fieldIndex]\"\n  >\n  </text-angular>";
       radioTemplate = "\n  <div class=\"radio-group\">\n    <div\n      ng-repeat=\"(key, option) in to.options\"\n      ng-class=\"{ 'radio': !to.inline, 'radio-inline': to.inline }\"\n    >\n      <label>\n        <input\n          type=\"radio\"\n          id=\"{{id + '_'+ $index}}\"\n          tabindex=\"0\"\n          ng-value=\"option.referenceId || option.uniqueValue\"\n          ng-model=\"model[options.key]\"\n        />\n        {{option[to.labelProp || 'name']}}\n        <p\n          ng-if=\"option.description.length > 0\"\n          class=\"help-block help-inline\"\n        >\n          ({{option.description}})\n        </p>\n      </label>\n    </div>\n  </div>";
+      checkboxTemplate = "\n    <label>\n      <input\n        type=\"checkbox\"\n        class=\"formly-field-checkbox\"\n        id=\"{{id}}\"\n        name=\"{{id}}\"\n        ng-model=\"model[options.key]\">\n      {{to.label}}\n      {{to.required ? '*' : ''}}\n    </label>";
       basicSelectTemplate = "\n  <ol\n    class=\"nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg-12\"\n    ng-model=\"model[options.key || index]\"\n    id=\"{{id}}\"\n    disabled=\"options.templateOptions.options.length === 0\"\n    title=\"{{'NOTHING_SELECTED' | translate}}\"\n    data-live-search=\"true\"\n  >\n    <li\n      class=\"nya-bs-option\"\n      ng-if=\"!options.templateOptions.required\"\n      data-value=\"\"\n    >\n      <a>{{'NOTHING_SELECTED' | translate}}</a>\n    </li>\n    <li\n      class=\"nya-bs-option\"\n      nya-bs-option=\"option in options.templateOptions.options\"\n      data-value=\"{referenceId: option.referenceId, name: option.name, uniqueValue: option.uniqueValue}\"\n    >\n      <a>\n        <span>\n          {{option.name}}\n          <span\n            ng-if=\"option.description.length > 0\"\n            class=\"help-block help-inline\">\n            ({{option.description}})\n          </span>\n        </span>\n        <span class=\"glyphicon glyphicon-ok check-mark\"></span>\n      </a>\n    </li>\n  </ol>";
       basicMultiSelectTemplate = "\n  <ol\n    class=\"nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg-12\"\n    ng-model=\"model[options.key || index]\"\n    multiple\n    id=\"{{id}}\"\n    disabled=\"options.templateOptions.options.length === 0\"\n    title=\"{{'NOTHING_SELECTED' | translate}}\"\n    data-live-search=\"true\"\n  >\n    <li\n      class=\"nya-bs-option\"\n      nya-bs-option=\"option in options.templateOptions.options\"\n      data-value=\"{referenceId: option.referenceId, name: option.name, uniqueValue: option.uniqueValue}\"\n      ng-class=\"{disabled: isDisabled(model[options.key || index], option.uniqueValue, options)}\"\n    >\n      <a>\n        <span>\n          {{option.name}}\n          <span\n            ng-if=\"option.description.length > 0\"\n            class=\"help-block help-inline\"\n          >\n            ({{option.description}})\n          </span>\n        </span>\n        <span class=\"glyphicon glyphicon-ok check-mark\"></span>\n      </a>\n    </li>\n  </ol>";
       groupedSelectTemplate = "\n  <ol class=\"nya-bs-select col-sm-12 col-xs-12 col-md-12 col-lg-12\"\n    ng-model=\"model[options.key || index]\"\n    data-live-search=\"true\"\n    disabled=\"options.templateOptions.options.length === 0\"\n    title=\"{{'NOTHING_SELECTED' | translate}}\"\n    data-live-search=\"true\"\n  >\n    <li\n      class=\"nya-bs-option\"\n      ng-if=\"!options.templateOptions.required\"\n      data-value=\"\"\n    >\n      <a>{{'NOTHING_SELECTED' | translate}}</a>\n    </li>\n    <li\n      nya-bs-option=\"option in options.templateOptions.options group by option.group\"\n      value=\"{referenceId: option.referenceId, name: option.name, uniqueValue: option.uniqueValue}\"\n    >\n      <span class=\"dropdown-header\">{{$group}}</span>\n      <a>\n        <span>\n          {{option.name}}\n          <span\n            ng-if=\"option.description.length > 0\"\n            class=\"help-block help-inline\"\n          >\n            ({{option.description}})\n          </span>\n        </span>\n        <span class=\"glyphicon glyphicon-ok check-mark\"></span>\n      </a>\n    </li>\n  </ol>";
@@ -81,6 +82,7 @@ $__System.register("5", [], function (_export) {
       validationTemplate = "\n  <div\n    class=\"formly-template-wrapper form-group\"\n    ng-class=\"{'has-error': options.validation.errorExistsAndShouldBeVisible}\"\n  >\n    <formly-transclude></formly-transclude>\n    <div class=\"validation\"\n      ng-if=\"!options.templateOptions.canDisplayMultiple && fc[0] && fc[0].$invalid && (fc[0].$touched || fc[0].$viewValue)\"\n      ng-messages=\"fc[0].$error\"\n    >\n      <div ng-messages-include=\"validation.html\"></div>\n      <div ng-message=\"{{name}}\" ng-repeat=\"(name, value) in fc[0].$error\">\n        <div ng-if=\"value && options.validation.messages[name]\">\n          {{options.validation.messages[name](fc[0].$viewValue, fc[0].$modelValue, this)}}\n        </div>\n      </div>\n    </div>\n    <div class=\"validation\"\n      ng-if=\"!options.templateOptions.canDisplayMultiple && !fc[0] && fc.$invalid && (fc.$touched || fc.$viewValue)\"\n      ng-messages=\"fc.$error\"\n    >\n      <div ng-messages-include=\"validation.html\"></div>\n      <div ng-message=\"{{name}}\" ng-repeat=\"(name, value) in fc.$error\">\n        <div ng-if=\"value && options.validation.messages[name]\">\n          {{options.validation.messages[name](fc.$viewValue, fc.$modelValue, this)}}\n        </div>\n      </div>\n    </div>\n  </div>";
       validationTemplateMultiple = "\n  <div\n    ng-repeat=\"item in model[options.key] track by $index\" ng-init=\"fieldIndex = $index\"\n  >\n    <div class=\"row\">\n      <div class=\"col-sm-9 col-xs-12 col-md-9 col-lg-9\">\n        <formly-transclude></formly-transclude>\n      </div>\n      <div class=\"col-sm-3 col-xs-12 col-md-3 col-lg-3\" style=\"margin-bottom: 20px;\">\n        <button\n          type=\"button\"\n          id=\"delete-{{::id}}\"\n          class=\"btn btn-sm btn-danger\"\n          ng-click=\"model[options.key].splice($index, 1)\"\n          ng-if=\"model[options.key].length > 1\"\n        >\n          {{'REMOVE' | translate}}\n        </button>\n      </div>\n    </div>\n    <div class=\"row\">\n      <div class=\"col-sm-12 col-xs-12 col-md-12 col-lg-12\">\n        <div class=\"validation\"\n          ng-if=\"fc[$index] && fc[$index].$invalid && (fc[$index].$touched || fc[$index].$viewValue)\"\n          ng-messages=\"fc[$index].$error\"\n        >\n          <div ng-messages-include=\"validation.html\"></div>\n          <div ng-message=\"{{name}}\" ng-repeat=\"(name, value) in fc[$index].$error\">\n            <div ng-if=\"value && options.validation.messages[name]\">\n              {{options.validation.messages[name](fc[$index].$viewValue, fc[$index].$modelValue, this)}}\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n  <p\n    ng-if=\"options.templateOptions.allowMultiple == -1 || (options.type != 'upload' && model[options.key].length < options.templateOptions.allowMultiple) || (options.type == 'upload' && options.templateOptions.files && options.templateOptions.files.length + model[options.key].length < options.templateOptions.allowMultiple)\">\n    <button\n      type=\"button\"\n      class=\"btn btn-primary\"\n      ng-click=\"model[options.key].push('')\">\n      {{'ADD_NEW' | translate}}\n    </button>\n  </p>";
       descriptionTemplate = "\n  <formly-transclude></formly-transclude>\n  <p\n    class=\"help-block\"\n    ng-if=\"to.descriptionNew\"\n  >\n    {{to.descriptionNew}}\n  </p>";
+      visibilityTemplate = "\n  <div style=\"float: right;\">\n    <label>\n      <input\n        type=\"checkbox\"\n        id=\"visibility_{{::id}}\"\n        name=\"visibility_{{::id}}\"\n      />\n      {{'RECTRICT_VISIBILITY' | translate}}\n    </label>\n  </div>\n  <formly-transclude></formly-transclude>";
 
       _export("blankTemplate", blankTemplate);
 
@@ -95,6 +97,8 @@ $__System.register("5", [], function (_export) {
       _export("richTextTemplate", richTextTemplate);
 
       _export("radioTemplate", radioTemplate);
+
+      _export("checkboxTemplate", checkboxTemplate);
 
       _export("basicSelectTemplate", basicSelectTemplate);
 
@@ -113,6 +117,8 @@ $__System.register("5", [], function (_export) {
       _export("validationTemplateMultiple", validationTemplateMultiple);
 
       _export("descriptionTemplate", descriptionTemplate);
+
+      _export("visibilityTemplate", visibilityTemplate);
     }
   };
 });
@@ -120,7 +126,7 @@ $__System.register('6', ['5'], function (_export) {
   /* global angular */
   'use strict';
 
-  var blankTemplate, subTitleTemplate, inputTemplate, datepickerTemplate, textareaTemplate, richTextTemplate, radioTemplate, basicSelectTemplate, basicMultiSelectTemplate, groupedSelectTemplate, groupedMultiSelectTemplate, uploadTemplate, uploadTemplateListFiles, validationTemplate, validationTemplateMultiple, descriptionTemplate;
+  var blankTemplate, subTitleTemplate, inputTemplate, datepickerTemplate, textareaTemplate, richTextTemplate, checkboxTemplate, radioTemplate, basicSelectTemplate, basicMultiSelectTemplate, groupedSelectTemplate, groupedMultiSelectTemplate, uploadTemplate, uploadTemplateListFiles, validationTemplate, validationTemplateMultiple, descriptionTemplate, visibilityTemplate;
 
   function formlyConfig(formlyConfigProvider) {
     var initInjector = angular.injector(['ng']);
@@ -268,6 +274,20 @@ $__System.register('6', ['5'], function (_export) {
     });
 
     formlyConfigProvider.setType({
+      name: 'checkbox',
+      overwriteOk: true,
+      template: checkboxTemplate,
+      wrapper: ['descriptionTemplate', 'bootstrapHasError'],
+      apiCheck: function apiCheck(check) {
+        return {
+          templateOptions: {
+            label: check.string
+          }
+        };
+      }
+    });
+
+    formlyConfigProvider.setType({
       name: 'basicSelect',
       template: basicSelectTemplate,
       wrapper: ['descriptionTemplate', 'bootstrapLabel', 'bootstrapHasError']
@@ -331,7 +351,7 @@ $__System.register('6', ['5'], function (_export) {
     formlyConfigProvider.setType({
       name: 'upload',
       template: uploadTemplate,
-      wrapper: ['validationTemplateMultiple', 'descriptionTemplate', 'uploadTemplateListFiles', 'bootstrapLabel', 'bootstrapHasError'],
+      wrapper: ['validationTemplateMultiple', 'descriptionTemplate', 'uploadTemplateListFÏiles', 'bootstrapLabel', 'bootstrapHasError'],
       defaultOptions: {
         noFormControl: true
       },
@@ -424,6 +444,11 @@ $__System.register('6', ['5'], function (_export) {
       template: descriptionTemplate
     }]);
 
+    formlyConfigProvider.setWrapper([{
+      name: 'visibilityTemplate',
+      template: visibilityTemplate
+    }]);
+
     function camelize(string) {
       string = string.replace(/[\-_\s]+(.)?/g, function (match, chr) {
         return chr ? chr.toUpperCase() : '';
@@ -479,6 +504,7 @@ $__System.register('6', ['5'], function (_export) {
       datepickerTemplate = _.datepickerTemplate;
       textareaTemplate = _.textareaTemplate;
       richTextTemplate = _.richTextTemplate;
+      checkboxTemplate = _.checkboxTemplate;
       radioTemplate = _.radioTemplate;
       basicSelectTemplate = _.basicSelectTemplate;
       basicMultiSelectTemplate = _.basicMultiSelectTemplate;
@@ -489,6 +515,7 @@ $__System.register('6', ['5'], function (_export) {
       validationTemplate = _.validationTemplate;
       validationTemplateMultiple = _.validationTemplateMultiple;
       descriptionTemplate = _.descriptionTemplate;
+      visibilityTemplate = _.visibilityTemplate;
     }],
     execute: function () {
       formlyConfig.$inject = ['formlyConfigProvider'];

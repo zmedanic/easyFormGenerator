@@ -6,6 +6,7 @@ import {
   textareaTemplate,
   richTextTemplate,
   radioTemplate,
+  checkboxTemplate,
   basicSelectTemplate,
   basicMultiSelectTemplate,
   groupedSelectTemplate,
@@ -14,7 +15,8 @@ import {
   uploadTemplateListFiles,
   validationTemplate,
   validationTemplateMultiple,
-  descriptionTemplate
+  descriptionTemplate,
+  visibilityTemplate
 } from './eda.easyFormViewer.formly.template';
 
 
@@ -187,6 +189,18 @@ function formlyConfig(formlyConfigProvider) {
   });
 
   formlyConfigProvider.setType({
+    name: 'checkbox',
+    overwriteOk: true,
+    template: checkboxTemplate,
+    wrapper: ['descriptionTemplate', 'bootstrapHasError'],
+    apiCheck: check => ({
+      templateOptions: {
+        label: check.string
+      }
+    })
+  });
+
+  formlyConfigProvider.setType({
     name      : 'basicSelect',
     template  : basicSelectTemplate,
     wrapper   : ['descriptionTemplate', 'bootstrapLabel', 'bootstrapHasError']
@@ -341,6 +355,11 @@ function formlyConfig(formlyConfigProvider) {
   formlyConfigProvider.setWrapper([{
     name: 'descriptionTemplate',
     template: descriptionTemplate
+  }]);
+
+  formlyConfigProvider.setWrapper([{
+    name: 'visibilityTemplate',
+    template: visibilityTemplate
   }]);
 
   function camelize(string) {

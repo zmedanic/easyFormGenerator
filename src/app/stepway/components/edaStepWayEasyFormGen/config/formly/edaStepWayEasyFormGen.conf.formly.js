@@ -6,6 +6,7 @@ import {
   datepickerTemplate,
   textareaTemplate,
   richTextTemplate,
+  checkboxTemplate,
   radioTemplate,
   basicSelectTemplate,
   basicMultiSelectTemplate,
@@ -15,7 +16,8 @@ import {
   uploadTemplateListFiles,
   validationTemplate,
   validationTemplateMultiple,
-  descriptionTemplate
+  descriptionTemplate,
+  visibilityTemplate
 } from './edaStepWayEasyFormGen.conf.formly.templates';
 
 
@@ -188,6 +190,18 @@ function formlyConfig(formlyConfigProvider){
   });
 
   formlyConfigProvider.setType({
+    name: 'checkbox',
+    overwriteOk: true,
+    template: checkboxTemplate,
+    wrapper: ['descriptionTemplate', 'bootstrapHasError'],
+    apiCheck: check => ({
+      templateOptions: {
+        label: check.string
+      }
+    })
+  });
+
+  formlyConfigProvider.setType({
     name      : 'basicSelect',
     template  : basicSelectTemplate,
     wrapper   : ['descriptionTemplate', 'bootstrapLabel', 'bootstrapHasError'],
@@ -251,7 +265,7 @@ function formlyConfig(formlyConfigProvider){
   formlyConfigProvider.setType({
     name: 'upload',
     template  : uploadTemplate,
-    wrapper: ['validationTemplateMultiple', 'descriptionTemplate', 'uploadTemplateListFiles', 'bootstrapLabel', 'bootstrapHasError'],
+    wrapper: ['validationTemplateMultiple', 'descriptionTemplate', 'uploadTemplateListFÏiles', 'bootstrapLabel', 'bootstrapHasError'],
     defaultOptions: {
       noFormControl: true
     },
@@ -342,6 +356,11 @@ function formlyConfig(formlyConfigProvider){
   formlyConfigProvider.setWrapper([{
     name: 'descriptionTemplate',
     template: descriptionTemplate
+  }]);
+
+  formlyConfigProvider.setWrapper([{
+    name: 'visibilityTemplate',
+    template: visibilityTemplate
   }]);
 
 	function camelize(string) {

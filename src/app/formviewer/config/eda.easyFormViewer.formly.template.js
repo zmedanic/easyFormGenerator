@@ -93,6 +93,18 @@ const radioTemplate = `
     </div>
   </div>`;
 
+const checkboxTemplate = `
+    <label>
+      <input
+        type="checkbox"
+        class="formly-field-checkbox"
+        id="{{id}}"
+        name="{{id}}"
+        ng-model="model[options.key]">
+      {{to.label}}
+      {{to.required ? '*' : ''}}
+    </label>`;
+
 const basicSelectTemplate = `
   <ol
     class="nya-bs-select no-margin-bottom col-sm-12 col-xs-12 col-md-12 col-lg-12"
@@ -345,6 +357,18 @@ const descriptionTemplate = `
     {{to.descriptionNew}}
   </p>`;
 
+const visibilityTemplate = `
+  <div style="float: right;">
+    <label>
+      <input
+        type="checkbox"
+        id="visibility_{{::id}}"
+        name="visibility_{{::id}}"
+      />
+      {{'RECTRICT_VISIBILITY' | translate}}
+    </label>
+  </div>
+  <formly-transclude></formly-transclude>`;
 
 export {
   blankTemplate,
@@ -354,6 +378,7 @@ export {
   textareaTemplate,
   richTextTemplate,
   radioTemplate,
+  checkboxTemplate,
   basicSelectTemplate,
   basicMultiSelectTemplate,
   groupedSelectTemplate,
@@ -362,5 +387,6 @@ export {
   uploadTemplateListFiles,
   validationTemplate,
   validationTemplateMultiple,
-  descriptionTemplate
+  descriptionTemplate,
+  visibilityTemplate
 };

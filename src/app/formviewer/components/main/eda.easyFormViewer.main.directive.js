@@ -21,7 +21,8 @@ function edaFormViewerDirective($modelsTranslator){
 				edaEasyFormViewerSubmitButtonText 						: '@?',
 				edaEasyFormViewerCancelButtonText 						: '@?',
 				edaEasyFormViewerSubmitFormEvent  						: '&?',
-				edaEasyFormViewerCancelFormEvent							: '&?'
+				edaEasyFormViewerCancelFormEvent							: '&?',
+				edaEasyFormViewerFormDirty										: '=?',
 			},
 			replace 			: false,
 			controller		: EASY_FORM_VIEWER_CONTROLLER,
@@ -45,6 +46,7 @@ function edaFormViewerDirective($modelsTranslator){
 		scope.$watch(cancelBtnTextToWatch, 	cancelBtnTextWatcher);
 		scope.$watch(submitEventToWatch, 		submitEventWatcher);
 		scope.$watch(cancelEventToWatch, 		cancelEventWatcher);
+		scope.$watch(dirtyFormToWatch,	 		dirtyFormWatcher);
 
 		function dataModelToWatch(){
 			return scope.vm.model;
@@ -70,6 +72,10 @@ function edaFormViewerDirective($modelsTranslator){
 			return scope.vm.hasJustCancelled;
 		}
 
+		function dirtyFormToWatch(){
+			return scope.vm.form.$dirty;
+		}
+
 		function fieldsModelWatcher(newFieldsModel){
 			scope.vm.fields = loadExistingConfigurationModel(newFieldsModel);
 		}
@@ -88,6 +94,10 @@ function edaFormViewerDirective($modelsTranslator){
 
 		function dataModelWatcher(newDataModel){
 			scope.edaEasyFormViewerDataModel = newDataModel;
+		}
+
+		function dirtyFormWatcher(newFormDirty){
+			scope.edaEasyFormViewerFormDirty = newFormDirty;
 		}
 
 		function submitEventWatcher(newSubmitEvent){
